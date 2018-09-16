@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Futura';
+    src: url('Futura-Bold.woff2') format('woff2'),
+        url('Futura-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url('Futura.woff2') format('woff2'),
+        url('Futura.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url('Futura-CondExtraBoldObl.woff2') format('woff2'),
+        url('Futura-CondExtraBoldObl.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url('FuturaBT-MediumItalic.woff2') format('woff2'),
+        url('FuturaBT-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
