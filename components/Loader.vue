@@ -163,7 +163,7 @@
                     TweenMax.to('#eyes .lp-0', 0.5, {morphSVG: '#eyes .lp-120', ease: Power3.easeOut});
                     TweenMax.to('#eyes .rp-0', 0.5, {morphSVG: '#eyes .rp-120', ease: Power3.easeOut});
                     TweenMax.to('#eyes .rg-0', 0.5, {morphSVG: '#eyes .rg-120', ease: Power3.easeOut});
-                    TweenMax.to('.loader__bg', 0.5, {scale : 0, delay : 1});
+                    TweenMax.to('.loader__bg', 0.6, {scale : 0, delay : 1});
                     TweenMax.to('.wrapper', 0.3, {scale : 0, ease: Power2.easeInOut, delay : 0.9});
                     app.$store.commit('appStart', true);
                   }});

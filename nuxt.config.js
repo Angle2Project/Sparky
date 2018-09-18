@@ -22,7 +22,7 @@ module.exports = {
     ]
   },
   router: {
-    // base: '/sparky/'
+    //base: '/sparky/'
   },
   /*
   ** Customize the progress bar color

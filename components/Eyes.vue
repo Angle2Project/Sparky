@@ -2,21 +2,40 @@
   <div id="app-eyes">
 
     <!-- =========================================== EYE__01 ============================================= -->
-    <section class="eye__01">
-      <svg version="1.1" id="eye__01" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="130px" height="81px" viewBox="0 0 130 81" style="enable-background:new 0 0 130 81;" xml:space="preserve">
+    <section class="eye__01" @mouseenter="eye01Hover" @mouseleave="eye01Hover">
+      <svg version="1.1" id="eye__01" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="214.9px" height="99.6px" viewBox="0 0 214.9 99.6" style="enable-background:new 0 0 214.9 99.6;" xml:space="preserve">
         <style type="text/css">
           #eye__01 .st0{fill:#FFFFFF;}
           #eye__01 .st1{fill:#181919;}
-          #eye__01 .st2{display:none;fill:#FFFFFF;}
+          #eye__01 .st2{fill:#FFFFFF;}
           #eye__01 .st3{display:none;}
           #eye__01 .st4{display:inline;fill:#181919;}
+          #eye__01 .rp-2, #eye__01 .lp-2, #eye__01 .lg-2, #eye__01 .rg-2,
+          #eye__01 .rp-3, #eye__01 .lp-3, #eye__01 .lg-3, #eye__01 .rg-3 {
+            visibility: hidden;
+          }          
         </style>
         <path class="st0" d="M99.1,0C82,0,68.1,18.1,68.1,40.5S82,81,99.1,81S130,62.9,130,40.5S116.2,0,99.1,0L99.1,0z"/>
-        <path class="st1" d="M118.9,36.5c-1.7,0-3.1,1.8-3.1,4s1.4,4,3.1,4c1.7,0,3.1-1.8,3.1-4S120.6,36.5,118.9,36.5z"/>
-        <path class="st0" d="M30.9,0C13.8,0,0,18.1,0,40.5S13.8,81,30.9,81s30.9-18.1,30.9-40.5S48,0,30.9,0L30.9,0z"/>
-        <path class="st1" d="M51,36.5c-1.7,0-3.1,1.8-3.1,4s1.4,4,3.1,4s3.1-1.8,3.1-4S52.7,36.5,51,36.5z"/>
-        <ellipse class="st2" cx="38.2" cy="60.7" rx="3" ry="4"/>
-        <ellipse class="st2" cx="121.2" cy="60.7" rx="3" ry="4"/>
+        <path class="st0" d="M30.9,0C13.8,0,0,18.1,0,40.5S13.8,81,30.9,81s30.9-18.1,30.9-40.5S48,0,30.9,0L30.9,0z"/>        
+
+
+        <path class="st1 rp-1" d="M118.9,36.5c-1.7,0-3.1,1.8-3.1,4s1.4,4,3.1,4c1.7,0,3.1-1.8,3.1-4S120.6,36.5,118.9,36.5z"/>
+        <path class="st1 rp-2" d="M99.1,16.2c-10.1,0-18.3,10.9-18.3,24.3s8.2,24.3,18.3,24.3s18.3-10.9,18.3-24.3S109.2,16.2,99.1,16.2z"/>
+        <path class="st1 rp-3" d="M81.9,36.5c-1.7,0-3.1,1.8-3.1,4s1.4,4,3.1,4s3.1-1.8,3.1-4S83.6,36.5,81.9,36.5z"/>
+
+        
+
+        <path class="st1 lp-1" d="M51,36.5c-1.7,0-3.1,1.8-3.1,4s1.4,4,3.1,4s3.1-1.8,3.1-4S52.7,36.5,51,36.5z"/>
+        <path class="st1 lp-2" d="M30.9,16.1c-10.2,0-18.4,10.9-18.4,24.4s8.2,24.4,18.4,24.4S49.3,54,49.3,40.5S41.1,16.1,30.9,16.1z"/>
+        <path class="st1 lp-3" d="M11.3,36.5c-1.7,0-3.1,1.8-3.1,4s1.4,4,3.1,4s3.1-1.8,3.1-4S13,36.5,11.3,36.5z"/>
+
+        <ellipse class="st0 lg-1" cx="53.2" cy="38.8" rx="0.3" ry="0.3"/>
+        <ellipse class="st0 lg-2" cx="43.2" cy="34.4" rx="2.4" ry="3.2"/>
+        <ellipse class="st0 lg-3" cx="16.2" cy="38.8" rx="0.3" ry="0.3"/>
+
+        <ellipse class="st0 rg-1" cx="120.9" cy="38.8" rx="0.3" ry="0.4"/>
+        <ellipse class="st0 rg-2" cx="111.4" cy="34.4" rx="2.4" ry="3.2"/>
+        <ellipse class="st0 rg-3" cx="83.9" cy="38.8" rx="0.3" ry="0.4"/>
         <g class="st3">
           <path class="st4" d="M144.9,40.5c0-27.6-17-50-38-50s-38,22.4-38,50c0,3.4,0.3,6.8,0.8,10c0,0-0.8,8,37.2,8s37.2-8,37.2-8 C144.6,47.3,144.9,43.9,144.9,40.5z"/>
           <path class="st4" d="M61.1,40.5c0-27.6-17-50-38-50s-38,22.4-38,50c0,3.4,0.3,6.8,0.8,10c0,0-0.8,8,37.2,8s37.2-8,37.2-8 C60.9,47.3,61.1,43.9,61.1,40.5z"/>
@@ -28,74 +47,183 @@
     <!--============================================== / ======================================================-->
 
     <!-- =========================================== EYE__02 ============================================= -->
-    <section class="eye__02">
-      <svg version="1.1" id="eye__02" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="152px" height="81px" viewBox="0 0 152 81" style="enable-background:new 0 0 152 81;" xml:space="preserve">
+    <section class="eye__02" @mouseenter="eye02Hover" @mouseleave="eye02Hover">      
+      <svg version="1.1" id="eye__02" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="214.9px" height="99.6px" viewBox="0 0 214.9 99.6" style="enable-background:new 0 0 214.9 99.6;" xml:space="preserve">
         <style type="text/css">
           #eye__02 .st0{fill:#FFFFFF;}
           #eye__02 .st1{fill:#181919;}
           #eye__02 .st2{display:none;}
           #eye__02 .st3{display:inline;fill:#181919;}
+          #eye__02 .rp-2, #eye__02 .rp-3,
+          #eye__02 .lp-2, #eye__02 .lp-3,
+          #eye__02 .lg-2, #eye__02 .lg-3,
+          #eye__02 .rg-2, #eye__02 .rg-3,
+          #eye__02 .o-2, #eye__02 .o-3,
+          #eye__02 .ry-2, #eye__02 .ry-3,
+          #eye__02 .ly-2, #eye__02 .ly-3 {
+            visibility: hidden;
+          }
         </style>
-        <path class="st0" d="M106.4,0C91.2,0,78.8,16.2,78.8,36.2s12.4,36.1,27.6,36.1S134,56.1,134,36.2S121.6,0,106.4,0L106.4,0z"/>
-        <path class="st1" d="M113,33.7c-7.4,0-13.4,8-13.4,17.8s6,17.8,13.4,17.8c7.4,0,13.4-8,13.4-17.8S120.4,33.7,113,33.7z"/>
-        <path class="st0" d="M45.6,0C30.4,0,18,16.2,18,36.2s12.4,36.1,27.6,36.1s27.6-16.2,27.6-36.1S60.8,0,45.6,0L45.6,0z"/>
-        <path class="st1" d="M51.8,33.7c-7.4,0-13.4,8-13.4,17.8s6,17.8,13.4,17.8s13.4-8,13.4-17.8S59.2,33.7,51.8,33.7z"/>
-        <ellipse class="st0" cx="57.7" cy="43.7" rx="2.7" ry="3.6"/>
-        <ellipse class="st0" cx="119.4" cy="43.7" rx="2.7" ry="3.6"/>
+        <path class="st0 ry-1" d="M106.4,0C91.2,0,78.8,16.2,78.8,36.2s12.4,36.1,27.6,36.1S134,56.1,134,36.2S121.6,0,106.4,0L106.4,0z"/>
+        <path class="st0 ry-2" d="M106.4,0C91.2,0,78.8,16.2,78.8,36.2s12.4,36.1,27.6,36.1S134,56.1,134,36.2S121.6,0,106.4,0L106.4,0z"/>
+        <path class="st0 ry-3" d="M137.9,13.7c-15.2,0-27.6,16.2-27.6,36.1S122.6,86,137.9,86s27.6-16.2,27.6-36.1S153.1,13.7,137.9,13.7 L137.9,13.7z"/>
+
+        <path class="st0 ly-1" d="M45.6,0C30.4,0,18,16.2,18,36.2s12.4,36.1,27.6,36.1s27.6-16.2,27.6-36.1S60.8,0,45.6,0L45.6,0z"/>
+        <path class="st0 ly-2" d="M45.6,0C30.4,0,18,16.2,18,36.2s12.4,36.1,27.6,36.1s27.6-16.2,27.6-36.1S60.8,0,45.6,0L45.6,0z"/>
+        <path class="st0 ly-3" d="M77.1,13.7c-15.2,0-27.6,16.2-27.6,36.1S61.8,86,77.1,86s27.6-16.2,27.6-36.1S92.3,13.7,77.1,13.7L77.1,13.7z" />
+
+        <path class="st1 rp-1" d="M116.4,33.7c-5.5,0-10,6-10,13.3s4.5,13.3,10,13.3s10-6,10-13.3S121.9,33.7,116.4,33.7z"/>
+        <path class="st1 rp-2" d="M113,33.7c-7.4,0-13.4,8-13.4,17.8s6,17.8,13.4,17.8c7.4,0,13.4-8,13.4-17.8S120.4,33.7,113,33.7z"/>
+        <path class="st1 rp-3" d="M131.1,42.2c-2.8,0-5.1,3-5.1,6.8c0,3.8,2.3,6.8,5.1,6.8c2.8,0,5.1-3,5.1-6.8C136.2,45.2,133.9,42.2,131.1,42.2 z"/>
+
+        
+
+        <path class="st1 lp-1" d="M54.9,33.7c-5.7,0-10.3,6.1-10.3,13.7S49.2,61,54.9,61s10.3-6.1,10.3-13.7S60.6,33.7,54.9,33.7z"/>
+        <path class="st1 lp-2" d="M51.8,33.7c-7.4,0-13.4,8-13.4,17.8s6,17.8,13.4,17.8s13.4-8,13.4-17.8S59.2,33.7,51.8,33.7z"/>
+        <path class="st1 lp-3" d="M85.2,42.4c-2.7,0-5,3-5,6.6c0,3.7,2.2,6.6,5,6.6c2.7,0,5-3,5-6.6C90.2,45.3,87.9,42.4,85.2,42.4z"/>
+
+        <ellipse class="st0 lg-1" cx="60.4" cy="51" rx="1.3" ry="1.7"/>
+        <ellipse class="st0 lg-2" cx="57.7" cy="43.7" rx="2.7" ry="3.6"/>
+        <ellipse class="st0 lg-3" cx="87.4" cy="46.1" rx="1" ry="1.3"/>
+
+        <ellipse class="st0 rg-1" cx="122.1" cy="51" rx="1.3" ry="1.8"/>
+        <ellipse class="st0 rg-2" cx="119.4" cy="43.7" rx="2.7" ry="3.6"/>
+        <ellipse class="st0 rg-3" cx="133.6" cy="46" rx="1" ry="1.4"/>
+
         <g class="st2">
           <path class="st3" d="M155.9,39c0-27.6-17-50-38-50s-38,22.4-38,50c0,3.4,0.3,6.8,0.8,10c0,0-0.8,8,37.2,8s37.2-8,37.2-8 C155.7,45.8,155.9,42.4,155.9,39z"/>
           <path class="st3" d="M72.2,39c0-27.6-17-50-38-50s-38,22.4-38,50c0,3.4,0.3,6.8,0.8,10c0,0-0.8,8,37.2,8s37.2-8,37.2-8 C72,45.8,72.2,42.4,72.2,39z"/>
           <path class="st3" d="M117.9,89c18.4,0,33.7-17.2,37.2-40c0,0,0.8,5-37.2,5s-37.2-5-37.2-5C84.2,71.8,99.6,89,117.9,89z"/>
           <path class="st3" d="M34.2,89C52.6,89,68,71.8,71.5,49c0,0,0.8,5-37.2,5C-4.1,54-3,49-3,49C0.5,71.8,15.8,89,34.2,89z"/>
         </g>
-        <path class="st1" d="M152,42.7h-2.1c-1.6-17.8-16.7-31.8-34.9-31.8c-15.1,0-28,9.6-32.9,23c-3.7-1.5-7.9-1.5-11.7-0.1 c-5-13.4-17.8-22.9-32.9-22.9c-18.2,0-33.3,14-34.9,31.8H0v6.5h2.5C4.2,67,19.2,81,37.4,81c19.3,0,35.1-15.7,35.1-35.1 c0-2-0.2-3.9-0.5-5.8c2.6-1.2,5.7-1.2,8.3,0.1c-0.3,1.9-0.5,3.8-0.5,5.7C79.9,65.3,95.6,81,115,81c18.2,0,33.3-14,34.9-31.8h2.1 V42.7z M37.4,74.5c-15.8,0-28.6-12.8-28.6-28.6s12.8-28.6,28.6-28.6C53.2,17.3,66,30.2,66,45.9S53.2,74.5,37.4,74.5z M115,74.5 c-15.8,0-28.6-12.8-28.6-28.6S99.2,17.3,115,17.3s28.6,12.8,28.6,28.6S130.7,74.5,115,74.5z"/>
+
+        <path class="st1 o-1" d="M152,42.7h-2.1c-1.6-17.8-16.7-31.8-34.9-31.8c-15.1,0-28,9.6-32.9,23c-3.7-1.5-7.9-1.5-11.7-0.1 c-5-13.4-17.8-22.9-32.9-22.9c-18.2,0-33.3,14-34.9,31.8H0v6.5h2.5C4.2,67,19.2,81,37.4,81c19.3,0,35.1-15.7,35.1-35.1 c0-2-0.2-3.9-0.5-5.8c2.6-1.2,5.7-1.2,8.3,0.1c-0.3,1.9-0.5,3.8-0.5,5.7C79.9,65.3,95.6,81,115,81c18.2,0,33.3-14,34.9-31.8h2.1 V42.7z M37.4,74.5c-15.8,0-28.6-12.8-28.6-28.6s12.8-28.6,28.6-28.6C53.2,17.3,66,30.2,66,45.9S53.2,74.5,37.4,74.5z M115,74.5 c-15.8,0-28.6-12.8-28.6-28.6S99.2,17.3,115,17.3s28.6,12.8,28.6,28.6S130.7,74.5,115,74.5z"/>
+        <path class="st1 o-2" d="M152,42.7h-2.1c-1.6-17.8-16.7-31.8-34.9-31.8c-15.1,0-28,9.6-32.9,23c-3.7-1.5-7.9-1.5-11.7-0.1 c-5-13.4-17.8-22.9-32.9-22.9c-18.2,0-33.3,14-34.9,31.8H0v6.5h2.5C4.2,67,19.2,81,37.4,81c19.3,0,35.1-15.7,35.1-35.1 c0-2-0.2-3.9-0.5-5.8c2.6-1.2,5.7-1.2,8.3,0.1c-0.3,1.9-0.5,3.8-0.5,5.7C79.9,65.3,95.6,81,115,81c18.2,0,33.3-14,34.9-31.8h2.1 V42.7z M37.4,74.5c-15.8,0-28.6-12.8-28.6-28.6s12.8-28.6,28.6-28.6C53.2,17.3,66,30.2,66,45.9S53.2,74.5,37.4,74.5z M115,74.5 c-15.8,0-28.6-12.8-28.6-28.6S99.2,17.3,115,17.3s28.6,12.8,28.6,28.6S130.7,74.5,115,74.5z"/>
+        <path class="st1 o-3" d="M214.9,45.4H212c-2.3-25.2-23.6-45-49.4-45C141.2,0.4,123,14,116,32.9c-5.3-2.1-11.2-2.1-16.5-0.1 c-7-18.9-25.2-32.4-46.5-32.4c-25.8,0-47.1,19.8-49.4,45H0v9.2h3.5c2.3,25.2,23.6,45,49.4,45c27.4,0,49.6-22.3,49.6-49.6 c0-2.8-0.2-5.5-0.7-8.2c3.7-1.8,8.1-1.7,11.8,0.1c-0.4,2.6-0.7,5.3-0.7,8.1c0,27.4,22.3,49.6,49.6,49.6c25.8,0,47.1-19.8,49.4-45 h2.9V45.4z M52.9,90.4c-22.3,0-40.4-18.1-40.4-40.4S30.7,9.6,52.9,9.6c22.3,0,40.4,18.1,40.4,40.4S75.2,90.4,52.9,90.4z M162.6,90.4 c-22.3,0-40.4-18.1-40.4-40.4s18.1-40.4,40.4-40.4S203,27.7,203,50S184.9,90.4,162.6,90.4z"/>
       </svg>
     </section>
     <!--============================================== / ======================================================-->
 
     <!-- =========================================== EYE__03 ============================================= -->
-    <section class="eye__03">
+    <section class="eye__03" @mouseenter="eye03Hover" @mouseleave="eye03Hover">
       <svg version="1.1" id="eye__03" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="130px" height="84px" viewBox="0 0 130 84" style="enable-background:new 0 0 130 84;" xml:space="preserve">
         <style type="text/css">
           #eye__03 .st0{fill:#FFFFFF;}
-          #eye__03 .st1{fill:#181919;}
-          #eye__03 .st2{display:none;}
-          #eye__03 .st3{display:inline;fill:#EFEFD8;}
+          #eye__03 .st1{fill:#EFEFD8;}
+          #eye__03 .st2{fill:#181919;}
+          #eye__03 .rty-2,#eye__03 .rty-3,
+          #eye__03 .rby-2,#eye__03 .rby-3,
+          #eye__03 .rp-2,#eye__03 .rp-3,
+          #eye__03 .lp-2,#eye__03 .lp-3,
+          #eye__03 .lty-2,#eye__03 .lty-3,
+          #eye__03 .lby-2,#eye__03 .lby-3,
+          #eye__03 .rg-2,#eye__03 .rg-3,
+          #eye__03 .lg-2,#eye__03 .lg-3 {
+            visibility: hidden;
+          }
         </style>
-        <path class="st0" d="M99.1,0C82,0,68.1,18.8,68.1,42S82,84,99.1,84S130,65.2,130,42S116.2,0,99.1,0L99.1,0z"/>
-        <path class="st1" d="M90.1,18.9c-9.3,0-16.8,10.4-16.8,23.1s7.5,23.1,16.8,23.1s16.8-10.4,16.8-23.1S99.4,18.9,90.1,18.9z"/>
-        <path class="st0" d="M30.9,0C13.8,0,0,18.8,0,42s13.8,42,30.9,42s30.9-18.8,30.9-42S48,0,30.9,0L30.9,0z"/>
-        <path class="st1" d="M50.3,37c-2.8,0-5.1,2.2-5.1,5c0,2.8,2.3,5,5.1,5s5.1-2.2,5.1-5C55.4,39.2,53.1,37,50.3,37z"/>
-        <g class="st2">
-          <path class="st3" d="M61.9,42C61.9,18.8,48,0,30.9,0S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-31.3,30.3-31.3
-            s30.3,31.3,30.3,31.3C61.6,47.7,61.9,44.9,61.9,42z"/>
-          <path class="st3" d="M30.9,84c15,0,27.5-14.4,30.3-33.6c0,0-0.9,21-30.3,21c-29.9,0-30.3-21-30.3-21C3.5,69.6,16,84,30.9,84z"/>
+        <path class="st0" d="M99,0C81.9,0,68.1,18.8,68.1,42S81.9,84,99,84s30.9-18.8,30.9-42S116.1,0,99,0L99,0z"/>
+        <g>
+          <path class="st1 rty-1" d="M130,42c0-23.2-13.9-42-31-42S68.1,18.8,68.1,42c0,2.9,0.2,5.7,0.6,8.4C68.7,50.4,64.6,0,99,0 c36.2,0,30.3,50.4,30.3,50.4C129.7,47.7,130,44.9,130,42z"/>
+          <path class="st1 rty-2" d="M130,42c0-23.2-13.9-42-31-42S68.1,18.8,68.1,42c0,2.9,0.2,5.7,0.6,8.4C68.7,50.4,64.6,0,99,0 c36.2,0,30.3,50.4,30.3,50.4C129.7,47.7,130,44.9,130,42z"/>
+          <path class="st1 rty-3" d="M130,42c0-23.2-13.9-42-31-42S68.1,18.8,68.1,42c0,2.9,0.2,5.7,0.6,8.4c0,0-4.1-32.8,30.3-32.8 c36.2,0,30.3,32.8,30.3,32.8C129.7,47.7,130,44.9,130,42z"/>
+
+
+          <path class="st1 rby-1" d="M99,84c15,0,27.5-14.4,30.3-33.6c0,0-4.1,32.9-30.3,32.9c-25.3,0-30.3-32.9-30.3-32.9C71.6,69.6,84.1,84,99,84"/>
+          <path class="st1 rby-2" d="M99,84c15,0,27.5-14.4,30.3-33.6c0,0-4.1,32.9-30.3,32.9c-25.3,0-30.3-32.9-30.3-32.9C71.6,69.6,84.1,84,99,84 z"/>
+          <path class="st1 rby-3" d="M99,84c15,0,27.5-14.4,30.3-33.6c0,0-4.1,20.3-30.3,20.3c-25.3,0-30.3-20.3-30.3-20.3C71.6,69.6,84.1,84,99,84 z"/>
         </g>
-        <polygon class="st0" points="86.8,28.7 75.3,43.3 82.7,41.6 79.3,52.2 91,36.7 83.9,38.1 "/>
+
+        <path class="st2 rp-1" d="M90.1,18.9c-9.3,0-16.8,10.4-16.8,23.1s7.5,23.1,16.8,23.1s16.8-10.4,16.8-23.1S99.4,18.9,90.1,18.9z"/>
+        <path class="st2 rp-2" d="M90.1,18.9c-9.3,0-16.8,10.4-16.8,23.1s7.5,23.1,16.8,23.1s16.8-10.4,16.8-23.1S99.4,18.9,90.1,18.9z"/>
+        <path class="st2 rp-3" d="M78.4,36.9c-2.8,0-5.1,2.3-5.1,5.1s2.3,5.1,5.1,5.1s5.1-2.3,5.1-5.1C83.5,39.2,81.2,36.9,78.4,36.9z"/>
+
+        <path class="st0" d="M30.9,0C13.8,0,0,18.8,0,42s13.8,42,30.9,42s30.9-18.8,30.9-42S48,0,30.9,0L30.9,0z"/>
+
+        <path class="st2 lp-1" d="M50.3,37c-2.8,0-5.1,2.2-5.1,5s2.3,5,5.1,5s5.1-2.2,5.1-5C55.4,39.2,53.1,37,50.3,37z"/>
+        <path class="st2 lp-2" d="M50.3,37c-2.8,0-5.1,2.2-5.1,5s2.3,5,5.1,5s5.1-2.2,5.1-5C55.4,39.2,53.1,37,50.3,37z"/>
+        <path class="st2 lp-3" d="M38.7,18.9c-9.2,0-16.8,10.2-16.8,23.1s7.6,23.1,16.8,23.1S55.5,54.9,55.5,42C55.5,29.1,48,18.9,38.7,18.9z"/>
+
+        <g>
+          <path class="st1 lty-1" d="M61.9,42c0-23.2-13.9-42-31-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4C0.6,50.4-3.5,0,30.9,0 c36.2,0,30.3,50.4,30.3,50.4C61.6,47.7,61.9,44.9,61.9,42z"/>
+          <path class="st1 lty-2" d="M61.9,42c0-23.2-13.9-42-31-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-4.1-32.8,30.3-32.8 c36.2,0,30.3,32.8,30.3,32.8C61.6,47.7,61.9,44.9,61.9,42z"/>
+          <path class="st1 lty-3" d="M61.9,42c0-23.2-13.9-42-31-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4C0.6,50.4-3.5,0,30.9,0 c36.2,0,30.3,50.4,30.3,50.4C61.6,47.7,61.9,44.9,61.9,42z"/>
+
+          <path class="st1 lby-1" d="M30.9,84c15,0,27.5-14.4,30.3-33.6c0,0-4.1,32.9-30.3,32.9C5.6,83.3,0.6,50.4,0.6,50.4C3.5,69.6,16,84,30.9,84 z"/>
+          <path class="st1 lby-2" d="M30.9,70.7c15,0,27.5-1.1,30.3-20.3c0,0-4.1,32.9-30.3,32.9C5.6,83.3,0.6,50.4,0.6,50.4 C3.5,69.6,16,70.7,30.9,70.7z"/>
+          <path class="st1 lby-3" d="M30.9,84c15,0,27.5-14.4,30.3-33.6c0,0-4.1,32.9-30.3,32.9C5.6,83.3,0.6,50.4,0.6,50.4C3.5,69.6,16,84,30.9,84 z"/>
+        </g>
+        <polygon class="st0 rg-1" points="86.8,28.7 75.3,43.3 82.7,41.6 79.3,52.2 91,36.7 83.9,38.1 "/>
+        <polygon class="st0 rg-2" points="86.8,28.7 75.3,43.3 82.7,41.6 79.3,52.2 91,36.7 83.9,38.1 "/>
+        <polygon class="st0 rg-3" points="76.2,39.6 75.3,40.7 75.9,40.5 75.6,41.3 76.5,40.2 76,40.3 "/>
+
+        <polygon class="st0 lg-1" points="53.6,39.4 52.6,40.7 53.3,40.6 53,41.5 54,40.1 53.4,40.2 "/>
+        <polygon class="st0 lg-2" points="53.6,39.4 52.6,40.7 53.3,40.6 53,41.5 54,40.1 53.4,40.2 "/>
+        <polygon class="st0 lg-3" points="49.8,28.7 38.3,43.3 45.7,41.6 42.3,52.2 54,36.7 46.9,38.1 "/>
       </svg>
     </section>
     <!--============================================== / ======================================================-->
 
     <!-- =========================================== EYE__04 ============================================= -->
-    <section class="eye__04">
+    <section class="eye__04" @mouseenter="eye04Hover" @mouseleave="eye04Hover">
       <svg version="1.1" id="eye__04" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="132px" height="84px" viewBox="0 0 132 84" style="enable-background:new 0 0 132 84;" xml:space="preserve">
         <style type="text/css">
           #eye__04 .st0{fill:#FFFFFF;}
           #eye__04 .st1{fill:#0E0F0F;}
           #eye__04 .st2{display:none;}
           #eye__04 .st3{display:inline;fill:#EEEED7;}
+          #eye__04 .rp-2, #eye__04 .rp-3,
+          #eye__04 .lp-2, #eye__04 .lp-3,
+          #eye__04 .rg-2, #eye__04 .rg-3,
+          #eye__04 .lg-2, #eye__04 .lg-3,
+          #eye__04 .rty-2, #eye__04 .rty-3,
+          #eye__04 .lty-2, #eye__04 .lty-3,
+          #eye__04 .rby-2, #eye__04 .rby-3,
+          #eye__04 .lby-2, #eye__04 .lby-3 {
+            visibility: hidden;
+          }
         </style>
         <path class="st0" d="M100.6,0C83.2,0,69.2,18.8,69.2,42s14.1,42,31.4,42S132,65.2,132,42S117.9,0,100.6,0L100.6,0z"/>
         <path class="st0" d="M31.4,0C14.1,0,0,18.8,0,42s14.1,42,31.4,42s31.4-18.8,31.4-42S48.8,0,31.4,0L31.4,0z"/>
-        <path class="st1" d="M100.6,28.8c-6.7,0-12.2,5.9-12.2,13.2s5.5,13.2,12.2,13.2c6.7,0,12.2-5.9,12.2-13.2S107.3,28.8,100.6,28.8z"/>
-        <path class="st1" d="M31,28.3c-7,0-12.6,6.1-12.6,13.7S24,55.7,31,55.7S43.6,49.6,43.6,42S37.9,28.3,31,28.3z"/>
-        <polygon class="st0" points="106.4,32.7 100.4,40.3 104.2,39.4 102.5,44.9 108.6,36.9 104.9,37.6 "/>
-        <polygon class="st0" points="38.4,32.7 32.4,40.3 36.3,39.4 34.5,44.9 40.6,36.9 36.9,37.6 "/>
+
+        <path class="st1 rp-1" d="M100.6,28.8c-6.7,0-12.2,5.9-12.2,13.2s5.5,13.2,12.2,13.2c6.7,0,12.2-5.9,12.2-13.2S107.3,28.8,100.6,28.8z"/>
+        <path class="st1 rp-2" d="M100.6,28.8c-6.7,0-12.2,5.9-12.2,13.2s5.5,13.2,12.2,13.2c6.7,0,12.2-5.9,12.2-13.2S107.3,28.8,100.6,28.8z"/>
+        <path class="st1 rp-3" d="M100.6,28.8c-6.7,0-12.2,5.9-12.2,13.2s5.5,13.2,12.2,13.2c6.7,0,12.2-5.9,12.2-13.2S107.3,28.8,100.6,28.8z"/>
+
+        <path class="st1 lp-1" d="M31,28.3c-7,0-12.6,6.1-12.6,13.7S24,55.7,31,55.7S43.6,49.6,43.6,42S37.9,28.3,31,28.3z"/>
+        <path class="st1 lp-2" d="M31,28.3c-7,0-12.6,6.1-12.6,13.7S24,55.7,31,55.7S43.6,49.6,43.6,42S37.9,28.3,31,28.3z"/>
+        <path class="st1 lp-3" d="M31,28.3c-7,0-12.6,6.1-12.6,13.7S24,55.7,31,55.7S43.6,49.6,43.6,42S37.9,28.3,31,28.3z"/>
+
+        <polygon class="st0 rg-1" points="106.4,32.7 100.4,40.3 104.2,39.4 102.5,44.9 108.6,36.9 104.9,37.6 "/>
+        <polygon class="st0 rg-2" points="106.4,32.7 100.4,40.3 104.2,39.4 102.5,44.9 108.6,36.9 104.9,37.6 "/>
+        <polygon class="st0 rg-3" points="106.4,32.7 100.4,40.3 104.2,39.4 102.5,44.9 108.6,36.9 104.9,37.6 "/>
+
+        <polygon class="st0 lg-1" points="38.4,32.7 32.4,40.3 36.3,39.4 34.5,44.9 40.6,36.9 36.9,37.6 "/>
+        <polygon class="st0 lg-2" points="38.4,32.7 32.4,40.3 36.3,39.4 34.5,44.9 40.6,36.9 36.9,37.6 "/>
+        <polygon class="st0 lg-3" points="38.4,32.7 32.4,40.3 36.3,39.4 34.5,44.9 40.6,36.9 36.9,37.6 "/>
+
+
         <g class="st2">
-          <path class="st3" d="M145.9,42c0-27.6-17-50-38-50s-38,22.4-38,50c0,3.4,0.3,6.8,0.8,10c0,0-0.8,8,37.2,8s37.2-8,37.2-8 C145.6,48.8,145.9,45.4,145.9,42z"/>
-          <path class="st3" d="M62.1,42c0-27.6-17-50-38-50s-38,22.4-38,50c0,3.4,0.3,6.8,0.8,10c0,0-0.8,8,37.2,8s37.2-8,37.2-8 C61.9,48.8,62.1,45.4,62.1,42z"/>
-          <path class="st3" d="M107.9,92c18.4,0,33.7-17.2,37.2-40c0,0,0.8,5-37.2,5s-37.2-5-37.2-5C74.1,74.8,89.5,92,107.9,92z"/>
-          <path class="st3" d="M24.1,92c18.4,0,33.7-17.2,37.2-40c0,0,0.8,5-37.2,5c-38.3,0-37.2-5-37.2-5C-9.6,74.8,5.8,92,24.1,92z"/>
+          <path class="st3 rty-1" d="M145.9,42c0-27.6-17-50-38-50s-38,22.4-38,50c0,3.4,0.3,6.8,0.8,10c0,0-0.8,8,37.2,8s37.2-8,37.2-8 C145.6,48.8,145.9,45.4,145.9,42z"/>
+          <path class="st3 rty-2" d="M132,42c0-23.2-14.1-42-31.4-42S69.2,18.8,69.2,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-16.2,30.8-16.2 s30.8,16.2,30.8,16.2C131.8,47.7,132,44.9,132,42z"/>
+          <path class="st3 rty-3" d="M132,42c0-23.2-14.1-42-31.4-42S69.2,18.8,69.2,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-16.2,30.8-16.2 s30.8,16.2,30.8,16.2C131.8,47.7,132,44.9,132,42z"/>
+
+
+          <path class="st3 lty-1" d="M62.1,42c0-27.6-17-50-38-50s-38,22.4-38,50c0,3.4,0.3,6.8,0.8,10c0,0-0.8,8,37.2,8s37.2-8,37.2-8 C61.9,48.8,62.1,45.4,62.1,42z"/>
+          <path class="st3 lty-2" d="M62.8,42c0-23.2-14.1-42-31.4-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-16.2,30.8-16.2 s30.8,16.2,30.8,16.2C62.6,47.7,62.8,44.9,62.8,42z"/>
+          <path class="st3 lty-3" d="M62.8,42c0-23.2-14.1-42-31.4-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-16.2,30.8-16.2 s30.8,16.2,30.8,16.2C62.6,47.7,62.8,44.9,62.8,42z"/>
+
+
+          <path class="st3 rby-1" d="M107.9,92c18.4,0,33.7-17.2,37.2-40c0,0,0.8,5-37.2,5s-37.2-5-37.2-5C74.1,74.8,89.5,92,107.9,92z"/>
+          <path class="st3 rby-2" d="M100.6,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,10.3-30.8,10.3S69.8,50.4,69.8,50.4C72.7,69.6,85.4,84,100.6,84 z"/>
+          <path class="st3 rby-3" d="M100.6,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,10.3-30.8,10.3S69.8,50.4,69.8,50.4C72.7,69.6,85.4,84,100.6,84 z"/>          
+
+
+          <path class="st3 lby-1" d="M24.1,92c18.4,0,33.7-17.2,37.2-40c0,0,0.8,5-37.2,5c-38.3,0-37.2-5-37.2-5C-9.6,74.8,5.8,92,24.1,92z"/>
+          <path class="st3 lby-2" d="M31.4,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,10.3-30.8,10.3c-31.6,0-30.8-10.3-30.8-10.3 C3.5,69.6,16.2,84,31.4,84z"/>
+          <path class="st3 lby-3" d="M31.4,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,10.3-30.8,10.3c-31.6,0-30.8-10.3-30.8-10.3 C3.5,69.6,16.2,84,31.4,84z"/>
+
+
         </g>
       </svg>
     </section>
@@ -288,7 +416,254 @@
 
 
 <script>
-  
+  export default {
+    data : function(){
+      return {
+        eye01 : {
+          above : false,
+          enter : false,
+          leave : false          
+        },
+        eye02 : {
+          above : false,
+          enter : false,
+          leave : false          
+        },
+        eye03 : {
+          above : false,
+          enter : false,
+          leave : false          
+        }
+      }
+    },
+    methods : {      
+      eye01Hover : function (e) {
+        var app = this;
+        var time = 0.375;
+        var delay = '-=0.01'
+        if(e.type == 'mouseenter'){
+          if(app.eye01.leave){
+            app.eye01.above = true;
+            return false;
+          }
+          app.eye01.enter = true;
+          new TimelineMax({onComplete : function(){
+              if(app.eye01.leave){
+                new TimelineMax({onComplete : function(){
+                 app.eye01.enter = false;
+                 app.eye01.leave = false;
+                }}).to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-2', ease: Power2.easeIn})
+                .to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-1', ease: Power2.easeOut}, delay);
+                new TimelineMax().to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-2', ease: Power2.easeIn})
+                .to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-1', ease: Power2.easeOut}, delay);
+                new TimelineMax().to('#eye__01 .lg-1', time, {morphSVG: '#eye__01 .lg-2', ease: Power2.easeIn})
+                //.to('#eye__01 .lg-1', time, {morphSVG: '#eye__01 .lg-1'}, delay);
+                new TimelineMax().to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-2', ease: Power2.easeIn})
+                //.to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-1'}, delay);
+              }else{
+                app.eye01.enter = false; 
+              }
+            }
+          }).to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-2', ease: Power2.easeIn})
+          .to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-3', ease: Power2.easeOut}, '-=0.01');
+          new TimelineMax().to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-2', ease: Power2.easeIn})
+          .to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-3', ease: Power3.easeOut}, '-=0.01');
+          new TimelineMax().to('#eye__01 .lg-1', time, {morphSVG: '#eye__01 .lg-2', ease: Power2.easeIn})
+          .to('#eye__01 .lg-1', time, {morphSVG: '#eye__01 .lg-3', ease: Power2.easeOut})
+          new TimelineMax().to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-2', ease: Power2.easeIn})
+          .to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-3', ease: Power2.easeOut})
+        }else if(e.type == 'mouseleave'){
+          app.eye01.leave = true;          
+          if(app.eye01.enter)return false;
+          if(app.eye01.above){
+            app.eye01.above = false;
+            app.eye01.leave = false;
+            return false;
+          }
+          new TimelineMax({onComplete : function(){
+            app.eye01.leave = false;  
+          }}).to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-2', ease: Power2.easeIn})
+          .to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-2', ease: Power2.easeIn})
+          .to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__01 .lg-1', time, {morphSVG: '#eye__01 .lg-2', ease: Power2.easeIn})
+          //.to('#eye__01 .lg-1', time, {morphSVG: '#eye__01 .lg-1'}, delay);
+          new TimelineMax().to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-2', ease: Power2.easeIn})
+          //.to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-1'}, delay);          
+        }
+      },
+      eye02Hover : function(e){
+        var app = this;
+        var time = 0.3;
+        var delay = '-=0.02'
+        if(e.type == 'mouseenter'){
+          if(app.eye02.leave){
+            app.eye02.above = true;
+            return false;
+          }
+          app.eye02.enter = true;
+          new TimelineMax({onComplete : function(){
+            if(app.eye02.leave){
+                new TimelineMax({onComplete : function(){
+                 app.eye02.enter = false;
+                 app.eye02.leave = false;
+                }}).to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-2', ease: Power2.easeIn})
+                  .to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-1', ease: Power2.easeOut}, delay);
+                  new TimelineMax().to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-2', ease: Power2.easeIn})
+                  .to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-1', ease: Power2.easeOut}, delay);
+
+                  new TimelineMax().to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-2', ease: Power2.easeIn})
+                  .to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-1', ease: Power2.easeOut}, delay);
+                  new TimelineMax().to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-2', ease: Power2.easeIn})
+                  .to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-1', ease: Power2.easeOut}, delay);
+                  new TimelineMax().to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-2', ease: Power2.easeIn})
+                  .to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-1', ease: Power2.easeOut}, delay);
+                  new TimelineMax().to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-2', ease: Power2.easeIn})
+                  .to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-1', ease: Power2.easeOut}, delay);
+                  new TimelineMax().to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-2', ease: Power2.easeIn})
+                  .to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-1', ease: Power2.easeOut}, delay);
+              }else{
+                app.eye02.enter = false; 
+              }
+          }}).to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-2', ease: Power2.easeIn})
+          .to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-2', ease: Power2.easeIn})
+          .to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-3', ease: Power2.easeOut}, delay);
+          
+          new TimelineMax().to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-2', ease: Power2.easeIn})
+          .to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-2', ease: Power2.easeIn})
+          .to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-2', ease: Power2.easeIn})
+          .to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-2', ease: Power2.easeIn})
+          .to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-2', ease: Power2.easeIn})
+          .to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-3', ease: Power2.easeOut}, delay);
+        }else if(e.type == 'mouseleave'){
+          app.eye02.leave = true;          
+          if(app.eye02.enter)return false;
+          if(app.eye02.above){
+            app.eye02.above = false;
+            app.eye02.leave = false;
+            return false;
+          }
+          new TimelineMax({onComplete : function(){
+            app.eye02.leave = false;
+          }}).to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-2', ease: Power2.easeIn})
+          .to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-2', ease: Power2.easeIn})
+          .to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-1', ease: Power2.easeOut}, delay);
+          
+          new TimelineMax().to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-2', ease: Power2.easeIn})
+          .to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-2', ease: Power2.easeIn})
+          .to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-2', ease: Power2.easeIn})
+          .to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-2', ease: Power2.easeIn})
+          .to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-2', ease: Power2.easeIn})
+          .to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-1', ease: Power2.easeOut}, delay);
+        }
+      },
+      eye03Hover : function(e){
+        var app = this;
+        var time = 0.4;
+        var delay = '-=0.05'
+        if(e.type == 'mouseenter'){
+          if(app.eye03.leave){
+            app.eye03.above = true;
+            return false;
+          }
+          app.eye03.enter = true;
+          new TimelineMax({onComplete : function(){
+            if(app.eye03.leave){
+                new TimelineMax({onComplete : function(){
+                  app.eye03.enter = false;
+                  app.eye03.leave = false;
+                }}).to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-2', ease: Power3.easeIn})
+                .to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-1', ease: Power3.easeOut}, delay);
+                new TimelineMax().to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power3.easeIn})
+                .to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-1', ease: Power3.easeOut}, delay);
+                new TimelineMax().to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty-2', ease: Power3.easeIn})
+                .to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty13', ease: Power3.easeOut}, delay);
+                new TimelineMax().to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power3.easeIn})
+                .to('#eye__03 .lby-1', time, {morphSVG: '#eye__03 .lby-1', ease: Power3.easeOut}, delay);
+                new TimelineMax().to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-2', ease: Power3.easeIn})
+                .to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-1', ease: Power3.easeOut}, delay);
+                new TimelineMax().to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-2', ease: Power3.easeIn})
+                .to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-1', ease: Power3.easeOut}, delay);
+                new TimelineMax().to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-2', ease: Power3.easeIn})
+                .to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-1', ease: Power3.easeOut}, delay);
+                new TimelineMax().to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-2', ease: Power3.easeIn})
+                .to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-1', ease: Power3.easeOut}, delay);
+            }else{
+              app.eye03.enter = false; 
+            }
+          }}).to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-2', ease: Power3.easeIn})
+          .to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power3.easeIn})
+          .to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty-2', ease: Power3.easeIn})
+          .to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power3.easeIn})
+          .to('#eye__03 .lby-1', time, {morphSVG: '#eye__03 .lby-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-2', ease: Power3.easeIn})
+          .to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-2', ease: Power3.easeIn})
+          .to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-2', ease: Power3.easeIn})
+          .to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-2', ease: Power3.easeIn})
+          .to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-3', ease: Power3.easeOut}, delay);
+        }else if(e.type == 'mouseleave'){
+          app.eye03.leave = true;          
+          if(app.eye03.enter)return false;
+          if(app.eye03.above){
+            app.eye03.above = false;
+            app.eye03.leave = false;
+            return false;
+          }
+          new TimelineMax({onComplete : function(){
+            app.eye03.leave = false;
+          }}).to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-2', ease: Power3.easeIn})
+          .to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-1', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power3.easeIn})
+          .to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-1', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty-2', ease: Power3.easeIn})
+          .to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty13', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power3.easeIn})
+          .to('#eye__03 .lby-1', time, {morphSVG: '#eye__03 .lby-1', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-2', ease: Power3.easeIn})
+          .to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-1', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-2', ease: Power3.easeIn})
+          .to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-1', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-2', ease: Power3.easeIn})
+          .to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-1', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-2', ease: Power3.easeIn})
+          .to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-1', ease: Power3.easeOut}, delay);
+        }
+      },
+      eye04Hover : function(e){        
+        var app = this;
+        var time = 0.4;
+        var delay = '-=0.05'
+        if(e.type == 'mouseenter'){
+          new TimelineMax().to('#eye__04 .rty-1', time, {morphSVG: 'M132,42c0-23.2-14.1-42-31.4-42S69.2,18.8,69.2,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-16.2,30.8-16.2   s30.8,16.2,30.8,16.2C131.8,47.7,132,44.9,132,42z', ease: Power3.easeIn})
+          .to('#eye__04 .rty-1', time, {morphSVG: '#eye__04 .rty-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__04 .rby-1', time, {morphSVG: '#eye__04 .rby-2', ease: Power3.easeIn})
+          .to('#eye__04 .rby-1', time, {morphSVG: '#eye__04 .rby-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__04 .lty-1', time, {morphSVG: '#eye__04 .lty-2', ease: Power3.easeIn})
+          .to('#eye__04 .rty-1', time, {morphSVG: '#eye__04 .rty-3', ease: Power3.easeOut}, delay);
+          new TimelineMax().to('#eye__04 .lby-1', time, {morphSVG: '#eye__04 .lby-2', ease: Power3.easeIn})
+          .to('#eye__04 .rby-1', time, {morphSVG: '#eye__04 .rby-3', ease: Power3.easeOut}, delay);
+        }else if(e.type == 'mouseleave'){
+          
+        }
+      }
+    }
+  };
 </script>
 
 <style>
@@ -314,35 +689,30 @@
 .eye__02 {
   position: fixed;
   top: 35vh;
-  right: 14vw;
+  right: 9vw;
   padding: 2.5vw;
-  width: 17vw;
+  width: 23vw;
 }
 .eye__03 {
   position: fixed;
   top: 55vh;
   right: 27vw;
   padding: 2.5vw;
-  width: 15vw;
-  transform: rotate(12deg);
+  width: 15vw;  
 }
 .eye__04 {
   position: fixed;
   top: 69vh;
   right: 12vw;
   padding: 2.5vw;
-  width: 15vw;
-  -webkit-transform: rotate(12deg);
-  transform: rotate(-15deg);
+  width: 15vw;  
 }
 .eye__05 {
   position: fixed;
   top: 19vh;
   right: 32vw;
   padding: 2.5vw;
-  width: 18vw;
-  -webkit-transform: rotate(12deg);
-  transform: rotate(-11deg);
+  width: 18vw;  
 }
 .eye__06 {
   position: fixed;
@@ -370,8 +740,7 @@
   top: 21vh;
   right: 69vw;
   padding: 2.5vw;
-  width: 17vw;
-  transform: rotate(-13deg);
+  width: 17vw;  
 }
 .eye__10 {
   position: fixed;

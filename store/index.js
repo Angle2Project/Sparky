@@ -6,9 +6,38 @@ Vue.use(Vuex)
 const store = () => new Vuex.Store({
 
   state: {    
-    appStart : false,    
+    appStart : false,
+    appStartAnimation : true,
     pageName : '',
-    loaderLive : true
+    loaderLive : true,
+    navigation : {
+      list : [
+        {
+          name : 'intro',
+          current : true
+        },
+        {
+          name : 'description',
+          current : false
+        },
+        {
+          name : 'expertise',
+          current : false
+        },
+        {
+          name : 'clients',
+          current : false
+        },
+        {
+          name : 'team',
+          current : false
+        },
+        {
+          name : 'contact',
+          current : false
+        }
+      ]
+    }
   },
   getters: {
     
@@ -22,6 +51,9 @@ const store = () => new Vuex.Store({
     },
     loaderLive(state, status){
       state.loaderLive = status;
+    },
+    appStartAnimation(state, status){
+      state.appStartAnimation = status;
     }
   }
 })

@@ -80,13 +80,15 @@
     methods : {
       startProjectHover : function(e){
         if(e.type == 'mouseenter'){
-          TweenMax.to('.start-project__button', 0.1, {scale : 1.2});
-          TweenMax.to('.start-project__button_hover', 0.1, {scale : 1});
-          TweenMax.to('.start-project__button_1, .start-project__button_2', 0.1, {backgroundColor : '#f6c930'})          
+          TweenMax.to('.start-project__button', 0.2, {scale : 1.2});
+          TweenMax.to('.start-project__button_hover', 0.2, {scale : 1});
+          TweenMax.to('.start-project__button_1, .start-project__button_2', 0.2, {backgroundColor : '#f6c930'});
+          TweenMax.to('.start-project__button_2', 0.2, {width : 16});
         }else{
-          TweenMax.to('.start-project__button', 0.1, {scale : 1});
-          TweenMax.to('.start-project__button_hover', 0.1, {scale : 0});
-          TweenMax.to('.start-project__button_1, .start-project__button_2', 0.1, {backgroundColor : '#191919'})
+          TweenMax.to('.start-project__button', 0.2, {scale : 1});
+          TweenMax.to('.start-project__button_hover', 0.2, {scale : 0});
+          TweenMax.to('.start-project__button_1, .start-project__button_2', 0.2, {backgroundColor : '#191919'})
+          TweenMax.to('.start-project__button_2', 0.2, {width : 12});
         }
       }
     },
@@ -126,14 +128,23 @@
     display: flex;
     align-items: center;
     position: fixed;
-    left: 73px;
-    bottom: 70px;
+    left: 62px;
+    bottom: 64px;
     overflow: hidden;
   }
   .app-social a {
-    margin-right: 27px;
+    margin-right: 5px;
+    width: 36px;
+    height: 30px;
+    transition: background-color 300ms ease;
     display: inline-block;
     transform: translateY(100%);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .app-social a:hover {
+    background-color: #ffca04;
   }
   .scroll-down {
     display: flex;
@@ -221,7 +232,7 @@
     height: 1px;
     background-color: #191919;
     position: absolute;
-    left: 20px;
+    right: 18px;
     top: 28px;    
   }  
 </style>

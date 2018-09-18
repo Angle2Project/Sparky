@@ -1,17 +1,19 @@
 <template>
-  <section class="container" id="app-intro">    
-    <h1>
-      <div class="l1">
-        <span>fresh eyes</span>
-      </div>  
-      <span class="l2">fresh eyes</span>
-      <span class="l3">fresh eyes</span>
-      <span class="l4">fresh eyes</span>
-      <span class="l5">fresh eyes</span>
-    </h1>
-    <h2>
-      <span>FOR POWERFUL BRANDS</span>
-    </h2>
+  <section class="container" @mousewheel="mousewheel" id="app-intro">
+    <div class="intro__text">
+      <h1>
+        <div class="l1">
+          <span>fresh eyes</span>
+        </div>  
+        <span class="l2">fresh eyes</span>
+        <span class="l3">fresh eyes</span>
+        <span class="l4">fresh eyes</span>
+        <span class="l5">fresh eyes</span>
+      </h1>
+      <h2>
+        <span>FOR POWERFUL BRANDS</span>
+      </h2>
+    </div>
   </section>
 </template>
 
@@ -23,7 +25,7 @@ export default {
   },
   data : function(){
     return {
-      
+      speed : 0
     }
   },
   transition : {
@@ -63,21 +65,27 @@ export default {
         return this.$store.state.loaderLive;
       }
   },
+  methods : {
+    mousewheel : function(e){
+      this.speed += e.deltaY;
+      console.log(e)
+    }
+  },
   watch : {
     appStart : function(val){
       var app = this;
       if(val){
 
-        TweenMax.fromTo('#app-eyes .eye__01', 0.87, {x : '15vw', y : '-15vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1});
-        TweenMax.fromTo('#app-eyes .eye__02', 0.6, {x : '15vw', y : '-5vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1.2});
-        TweenMax.fromTo('#app-eyes .eye__03', 0.87, {x : '15vw', y : '0vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1.07});
-        TweenMax.fromTo('#app-eyes .eye__04', 0.5, {x : '15vw', y : '2vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1.3});
-        TweenMax.fromTo('#app-eyes .eye__05', 0.4, {x : '5vw', y : '-9vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1.2});
-        TweenMax.fromTo('#app-eyes .eye__06', 0.87, {x : '5vw', y : '-10vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1.1});
-        TweenMax.fromTo('#app-eyes .eye__07', 0.6, {x : '10vw', y : '-20vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1.11});
-        TweenMax.fromTo('#app-eyes .eye__08', 0.7, {x : '10vw', y : '-20vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1.2});
-        TweenMax.fromTo('#app-eyes .eye__09', 0.5, {x : '0vw', y : '-30vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1.13});
-        TweenMax.fromTo('#app-eyes .eye__10', 0.8, {x : '25vw', y : '0vw', opacity : 0}, {x : '0vw', y : '0vw', opacity : 1, ease: Power3.easeOut, delay : 1.125});
+        TweenMax.fromTo('#app-eyes .eye__01', 0.6, {x : '40vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1});
+        TweenMax.fromTo('#app-eyes .eye__02', 0.6, {x : '40vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.2});
+        TweenMax.fromTo('#app-eyes .eye__03', 0.87, {x : '55vw', y : '0', scaleX : 2, scaleY : 0.5, rotation : -13}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : 13, ease: Power3.easeOut, delay : 1.07});
+        TweenMax.fromTo('#app-eyes .eye__04', 0.5, {x : '40vw', y : '0', scaleX : 2, scaleY : 0.5, rotation : 15}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : -15, ease: Power3.easeOut, delay : 1.3});
+        TweenMax.fromTo('#app-eyes .eye__05', 0.4, {x : '60vw', y : '-0', scaleX : 2, scaleY : 0.5, rotation : 12}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : -12, ease: Power3.easeOut, delay : 1.2});
+        TweenMax.fromTo('#app-eyes .eye__06', 0.87, {x : '55vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.1});
+        TweenMax.fromTo('#app-eyes .eye__07', 0.6, {x : '80vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.11});
+        TweenMax.fromTo('#app-eyes .eye__08', 1, {x : '75vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.});
+        TweenMax.fromTo('#app-eyes .eye__09', 0.9, {x : '95vw', y : '-0', scaleX : 2, scaleY : 0.5, rotation : 13}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : -13, ease: Power3.easeOut, delay : 1.1});
+        TweenMax.fromTo('#app-eyes .eye__10', 0.8, {x : '85vw', y : '0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.125});
         
         TweenMax.fromTo('.l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 1.2});
         TweenMax.to('.l2', 0.3, {y:'15%',ease: Power1.easeOut, delay : 1.2});
@@ -89,14 +97,37 @@ export default {
           TweenMax.to('.l4', 0.5, {y:'0%',ease: Power1.easeIn});
           TweenMax.to('.l5', 0.4, {y:'0%',ease: Power1.easeIn});
           TweenMax.to('.l2', 0.7, {y:'0%',ease: Power1.easeIn, onComplete : function(){
-            TweenMax.to('.app.intro h2 span', 0.5, {y : 0, ease: Power1.easeOut, delay : 0.2})
-            TweenMax.to('.scroll-down i', 0.5, {width : '30px', delay : 0.2})
-            TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.2});
-            TweenMax.to('.app-logo img', 0.5, {y : 0, delay : 0.2});            
-            TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.2, onComplete : function(){
+            TweenMax.to('.app.intro h2 span', 0.5, {y : 0, ease: Power1.easeOut, delay : 0.1})
+            TweenMax.to('.scroll-down i', 0.5, {width : '30px', delay : 0.1})
+            TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});
+            TweenMax.to('.app-logo img', 0.5, {y : 0, delay : 0.1});            
+            TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.1, onComplete : function(){
               TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
+              // document.querySelectorAll('#app-navigation li i').forEach( function(el, i) {
+              //   var tl = new TimelineMax();
+              //   var current = el.parentNode.classList.contains('current');
+              //   if(current){
+              //     tl.to(el, 0.5, {x : 0});
+              //   }else{
+              //     tl.to(el, 0.5, {x : 0, delay : 0.5})
+              //     .to(el, 0.5, {width : 7});
+              //   }
+              // });
+
+              var w;
+              var tl = new TimelineMax({onComplete : function(){
+                app.$store.commit('appStartAnimation', false);                         
+              }});
+              tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
+              .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
+                width : function(i, el){                  
+                  return el.parentNode.classList.contains('current') ? 83 : 1;
+                }
+              }}, 0.09, '-=0.47');              
             }});
           }});
+
+
           
         }});
         function titleStart(){
@@ -119,14 +150,17 @@ export default {
 #app-intro {
   
 }
+.intro__text {
+  position: absolute;
+  position: absolute;
+  left: 70px;
+  top: 48%;
+}
 h1 {
   margin: 0;
   padding: 0;
   font: 9.4vw/ 8.5vw "Futura Condensed Extra Italic";  
-  text-transform: uppercase;  
-  position: absolute;
-  left: 70px;
-  bottom: 32%;
+  text-transform: uppercase;    
 }
 h1 span {
   display: inline-block;  
@@ -164,11 +198,10 @@ h1 span {
   z-index: 1;
 }
 h2 {
-  font: 500 italic 3.8vw/1 "Futura";  
-  position: absolute;
-  left: 80px;
-  bottom: 22%;
+  font: 500 italic 3.8vw/1 "Futura";    
   overflow: hidden;
+  margin-left: 10px;
+  margin-top: 2vw;
 }
 h2 span {
   transform: translateY(100%);
