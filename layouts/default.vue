@@ -99,7 +99,7 @@
   };
 </script>
 
-<style scoped>
+<style>
   .app {
     background: #f0f0d9;
     width: 100vw;

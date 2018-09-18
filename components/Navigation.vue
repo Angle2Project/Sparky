@@ -1,10 +1,12 @@
 <template>
   <ul id="app-navigation">
     <li v-for="(item, index) in list" :key="index" :class="item.current ? 'current' : ''" @mouseenter="hover" @mouseleave="hover">
-      <div class="item__name">
-        <span>{{item.name}}</span>
-      </div>
-      <i></i>
+      <nuxt-link :to="item.url">
+        <div class="item__name">
+          <span>{{item.name}}</span>
+        </div>
+        <i></i>
+      </nuxt-link>
     </li>    
   </ul>
 </template>
@@ -44,7 +46,7 @@
           TweenMax.to(t, 0.2, {width : 0});
         }
       }
-    }
+    }    
   };
 </script>
 

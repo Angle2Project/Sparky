@@ -15,7 +15,8 @@ module.exports = {
     ],    
     script: [
       { src: './js/TweenMax.min.js' },
-      { src: './js/MorphSVGPlugin.min.js' }
+      { src: './js/MorphSVGPlugin.min.js' },
+      { src: './js/SplitText.min.js' }
     ],
     plugins: [
       

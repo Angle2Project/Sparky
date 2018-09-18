@@ -14,27 +14,33 @@ const store = () => new Vuex.Store({
       list : [
         {
           name : 'intro',
-          current : true
+          current : true,
+          url : '/'
         },
         {
           name : 'description',
-          current : false
+          current : false,
+          url : '/description'
         },
         {
           name : 'expertise',
-          current : false
+          current : false,
+          url : '/expertise'
         },
         {
           name : 'clients',
-          current : false
+          current : false,
+          url : '/clients'
         },
         {
           name : 'team',
-          current : false
+          current : false,
+          url : '/team'
         },
         {
           name : 'contact',
-          current : false
+          current : false,
+          url : '/contact'
         }
       ]
     }

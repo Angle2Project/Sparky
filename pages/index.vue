@@ -1,5 +1,5 @@
 <template>
-  <section class="container" @mousewheel="mousewheel" id="app-intro">
+  <section class="container" id="app-intro">
     <div class="intro__text">
       <h1>
         <div class="l1">
@@ -25,7 +25,7 @@ export default {
   },
   data : function(){
     return {
-      speed : 0
+      
     }
   },
   transition : {
@@ -47,17 +47,13 @@ export default {
 
 
     },
-    leave : function(el, done){
-      console.log(this.$route);
-      TweenMax.fromTo(el, 1, {y : '0%', opacity : 1}, {y : '100%', opacity : 0, onComplete : function(){
+    leave : function(el, done){      
+      TweenMax.fromTo(el, 2, {y : '0%', opacity : 1}, {y : '100%', opacity : 0, onComplete : function(){
         done();
       }})
     }
   },
-  computed : {
-    appstart : function(){
-      return this.$store.state.appstart;
-    },
+  computed : {    
     appStart : function(){
       return this.$store.state.appStart;
     },
@@ -66,17 +62,14 @@ export default {
       }
   },
   methods : {
-    mousewheel : function(e){
-      this.speed += e.deltaY;
-      console.log(e)
-    }
+
   },
   watch : {
     appStart : function(val){
       var app = this;
       if(val){
 
-        TweenMax.fromTo('#app-eyes .eye__01', 0.6, {x : '40vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1});
+        TweenMax.fromTo('#app-eyes .eye__01', 1, {x : '25vw', y : '-25', scaleX : 2, scaleY : 0.5, rotation : -20}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : 0, ease: Power3.easeOut, delay : 2});
         TweenMax.fromTo('#app-eyes .eye__02', 0.6, {x : '40vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.2});
         TweenMax.fromTo('#app-eyes .eye__03', 0.87, {x : '55vw', y : '0', scaleX : 2, scaleY : 0.5, rotation : -13}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : 13, ease: Power3.easeOut, delay : 1.07});
         TweenMax.fromTo('#app-eyes .eye__04', 0.5, {x : '40vw', y : '0', scaleX : 2, scaleY : 0.5, rotation : 15}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : -15, ease: Power3.easeOut, delay : 1.3});
@@ -146,7 +139,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app-intro {
   
 }

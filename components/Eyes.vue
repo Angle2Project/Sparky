@@ -682,9 +682,9 @@
 .eye__01 {
   position: fixed;
   top: 15vh;
-  right: 12vw;
+  right: 7vw;
   padding: 2.5vw;
-  width: 15vw;
+  width: 19vw;
 }
 .eye__02 {
   position: fixed;
