@@ -18,8 +18,7 @@ export default {
       
     }
   },
-  transition : {
-    name : 'intro',
+  transition : {    
     mode : 'out-in',
     css : false,
     enter : function(el, done){
@@ -45,22 +44,16 @@ export default {
       }})
     }
   },
-  computed : {
-    appstart : function(){
-      return this.$store.state.appstart;
-    },
+  computed : {    
     appStart : function(){
       return this.$store.state.appStart;
     },
-    loaderLive : function(){
-        return this.$store.state.loaderLive;
+    loader : function(){
+        return this.$store.state.loader;
       }
   },
   methods : {
-    mousewheel : function(e){
-      this.speed += e.deltaY;
-      console.log(e)
-    }
+    
   },
   watch : {
     appStart : function(val){
@@ -78,8 +71,8 @@ export default {
         TweenMax.set('#app-description h1 a', {color : '#191919'});
         TweenMax.set('#app-description h1 i', {height : 0});
         tl.staggerFrom(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.7, {opacity:0, rotationX:-80, force3D:true, transformOrigin:"top center -50", delay : 2, ease: Power4.easeOut}, 0.02)
-        .to(document.querySelectorAll('#app-description h1 i'), 0.5, {height : '96%'}, '-=0.1')
-        .to(document.querySelectorAll('#app-description h1 a'), 0.5, {color : '#f8f8eb'}, '-=0.6');
+        .to(document.querySelectorAll('#app-description h1 i'), 0.4, {height : '96%', ease: Power4.easeInOut}, '-=0.1')
+        .to(document.querySelectorAll('#app-description h1 a'), 0.4, {color : '#f8f8eb', ease: Power4.easeInOut}, '-=0.6');
       }
     }    
   }  
@@ -109,7 +102,7 @@ export default {
   position: relative;
   color: #f8f8eb;
   padding-bottom: 3px;
-  transition: all 300ms ease;
+  transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
 }
 #app-description h1 a > div i {
   content: "";
@@ -120,7 +113,7 @@ export default {
   height: 96%;
   z-index: -2;
   background-color: #191919;
-  transition: all 300ms ease;
+  transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
 }
 #app-description h1 a:hover {
   color: #191919;

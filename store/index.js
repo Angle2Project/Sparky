@@ -9,7 +9,7 @@ const store = () => new Vuex.Store({
     appStart : false,
     appStartAnimation : true,
     pageName : '',
-    loaderLive : true,
+    loader : true,
     navigation : {
       list : [
         {
@@ -25,7 +25,7 @@ const store = () => new Vuex.Store({
         {
           name : 'expertise',
           current : false,
-          url : '/expertise'
+          url : '/services'
         },
         {
           name : 'clients',
@@ -55,8 +55,8 @@ const store = () => new Vuex.Store({
     pageName(state, status){
       state.pageName = status;
     },
-    loaderLive(state, status){
-      state.loaderLive = status;
+    loader(state, status){
+      state.loader = status;
     },
     appStartAnimation(state, status){
       state.appStartAnimation = status;
