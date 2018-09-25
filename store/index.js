@@ -10,6 +10,7 @@ const store = () => new Vuex.Store({
     appStartAnimation : true,
     pageName : '',
     loader : true,
+    eyes : true,
     navigation : {
       list : [
         {
@@ -57,6 +58,9 @@ const store = () => new Vuex.Store({
     },
     loader(state, status){
       state.loader = status;
+    },
+    eyes(state, status){
+      state.eyes = status;
     },
     appStartAnimation(state, status){
       state.appStartAnimation = status;

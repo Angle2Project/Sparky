@@ -1,7 +1,7 @@
 <template>
   <div class="app" :class="pageName">
     <loader v-if="loader"/>
-    <eyes/>
+    <eyes v-if="eyes"/>
     <navigation />
 
     <section class="app-logo">
@@ -99,6 +99,9 @@
       },
       loader : function(){
         return this.$store.state.loader;
+      },
+      eyes : function(){
+        return this.$store.state.eyes;
       }
     },
     methods : {

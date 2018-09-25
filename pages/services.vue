@@ -1,5 +1,7 @@
 <template>
-  <section id="app-services">
+  <section id="app-services" @mousemove="cursor">
+    <div class="cursor"><i></i><i></i></div>
+
     <section class="bg__right"></section>
     <section class="bg__bottom">
       <h2 class="mm">
@@ -134,6 +136,9 @@ export default {
           TweenMax.to(el, 0.7, {width : '0vw', ease: Power4.easeInOut});
         });
       }
+    },
+    cursor : function(e){
+      TweenMax.to('.cursor', 0.5, {x : (e.clientX - 25), y : (e.clientY - 25)});
     }
   },
   watch : {
@@ -141,8 +146,10 @@ export default {
       var app = this;
       if(val){
         TweenMax.set(document.querySelectorAll('.app-social .st0'), {fill : '#f8f8eb'});
+        // Background animation //
         TweenMax.to('.bg__right', 0.7, {width : '160px', ease: Power4.easeOut, delay : 1.5});
         TweenMax.to('.bg__bottom', 0.7, {height : '63%', ease: Power4.easeOut, delay : 1.5, onComlete : function(){
+          // H1 Animation //
           TweenMax.fromTo('h1 .l1 span', 1.2, {y:'-130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0});
           TweenMax.to('h1 .l2', 0.3, {y:'-15%',ease: Power1.easeOut, delay : 0});
           TweenMax.to('h1 .l3', 0.4, {y:'-30%',ease: Power1.easeOut, delay : 0});
@@ -156,14 +163,26 @@ export default {
 
             }});
           }});
+          //==//
         }});
+        //==//
       }
+
+
+
+      
+
+
+
+
+
+
     }    
   }  
 };
 </script>
 
-<style>
+<style scoped>
 .app.services {
   background-color: #f8f8eb;
 }
@@ -251,6 +270,7 @@ h2 .l1 {
   margin-top: -0.3vw;
   cursor: pointer;  
   position: relative;
+  overflow: hidden;
 }
 h2 .l1 .start {
   z-index: 5;
@@ -296,6 +316,9 @@ h2.mm {
   position: relative;  
   justify-content: flex-start;
 }
+h2.mm .l1 {
+  padding-right: 2vw;
+}
 h2.mm .l2,
 h2.mm .l3,
 h2.mm .l4,
@@ -306,6 +329,9 @@ h2.mm .l5 {
 h2.ee {
   position: relative;
   justify-content: flex-end;
+}
+h2.ee .l1 {
+  padding-left: 2vw;
 }
 h2.ee .l2,
 h2.ee .l3,
@@ -318,12 +344,43 @@ h2.ii {
   position: relative;
   justify-content: center;
 }
+h2.ii .l1 {
+  padding-right: 2vw;
+}
 h2.ii .l2,
 h2.ii .l3,
 h2.ii .l4,
 h2.ii .l5 {  
   top: 0.3vw;
-  right: 0;  
+  right: 0;
+  padding-right: 2vw;
+}
+
+
+
+.cursor {
+  width: 50px;
+  height: 50px;
+  position: fixed;  
+  z-index: 10;
+  pointer-events: none;
+}
+.cursor i {
+  display: block;
+  background-color: red;
+  position: absolute;
+}
+.cursor i:nth-child(1) {
+  width: 100%;
+  height: 1px;  
+  left: 0;
+  top: calc(50% - 1px);
+}
+.cursor i:nth-child(2) {
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc(50% - 1px);
 }
 </style>
 
