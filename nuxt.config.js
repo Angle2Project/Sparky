@@ -10,20 +10,21 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Sparky Project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: './favicon.ico' },
-      { rel: 'stylesheet', href: './css/global.css'}
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // { rel: 'stylesheet', href: 'http://process.angleto.com/sparky/css/global.css'}
+      { rel: 'stylesheet', href: '/css/global.css'}
     ],    
     script: [
-      { src: './js/TweenMax.min.js' },
-      { src: './js/MorphSVGPlugin.min.js' },
-      { src: './js/SplitText.min.js' }
-    ],
-    plugins: [
-      
+      { src: '/js/TweenMax.min.js' },
+      { src: '/js/MorphSVGPlugin.min.js'},
+      { src: '/js/SplitText.min.js' }
+      // { src: 'http://process.angleto.com/sparky/js/TweenMax.min.js' },
+      // { src: 'http://process.angleto.com/sparky/js/MorphSVGPlugin.min.js' },
+      // { src: 'http://process.angleto.com/sparky/js/SplitText.min.js' }
     ]
-  },
+  },  
   router: {
-    //base: '/sparky/'
+    // base: '/sparky/'
   },
   /*
   ** Customize the progress bar color

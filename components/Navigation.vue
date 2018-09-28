@@ -15,7 +15,7 @@
   export default {
     mounted : function(){
       var app = this;
-      console.log(app.list);
+      
     },
     data : function() {
       return {
@@ -60,6 +60,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  z-index: 5;
 }
 #app-navigation li {
   margin-bottom: 6px;
@@ -78,6 +79,7 @@
   overflow: hidden;  
   width: 0%;
   justify-content: flex-end;
+  text-transform: lowercase;
 }
 #app-navigation li .item__name span {
   display: inline-block;  

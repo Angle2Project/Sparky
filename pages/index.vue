@@ -22,6 +22,7 @@ export default {
   mounted : function(){
     var app = this;
     app.$store.commit('pageName', 'intro');
+    app.$store.commit('navigation', 'intro');
   },
   data : function(){
     return {
@@ -67,6 +68,7 @@ export default {
     appStart : function(val){
       var app = this;
       if(val){
+        TweenMax.set(document.querySelectorAll('#app-eyes section'), {display : 'block'});
         TweenMax.fromTo('#app-eyes .eye__01', 0.9, {x : '100%', y : '-100%', scale: 0, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, delay : 1.1});
         TweenMax.fromTo('#app-eyes .eye__02', 0.7, {x : '100%', y : '-100%', scale: 0, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, delay : 1.05});
         TweenMax.fromTo('#app-eyes .eye__03', 0.8, {x : '100%', y : '-100%', scale: 0, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, delay : 1.15});
@@ -79,16 +81,7 @@ export default {
         
 
 
-        // TweenMax.fromTo('#app-eyes .eye__01', 0.8, {x : '100%', y : '-100%', scaleX : 2, scaleY : 0.5, rotation : -45}, {x : '0%', y : '0%', scaleX : 1, scaleY : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, delay : 1.1});
-        // TweenMax.fromTo('#app-eyes .eye__02', 0.8, {x : '100%', y : '-100%', scaleX : 2, scaleY : 0.5, rotation : -30}, {x : '0%', y : '0%', scaleX : 1, scaleY : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, delay : 1.2});
-        // TweenMax.fromTo('#app-eyes .eye__03', 0.5, {x : '55vw', y : '-35vw', scaleX : 2, scaleY : 0.5, rotation : -45}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : 13, ease: Power3.easeInOut, delay : 1.55});
-        // TweenMax.fromTo('#app-eyes .eye__04', 0.5, {x : '40vw', y : '0', scaleX : 2, scaleY : 0.5, rotation : 15}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : -15, ease: Power3.easeOut, delay : 1.3});
-        // TweenMax.fromTo('#app-eyes .eye__05', 0.4, {x : '60vw', y : '-0', scaleX : 2, scaleY : 0.5, rotation : 12}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : -12, ease: Power3.easeOut, delay : 1.2});
-        // TweenMax.fromTo('#app-eyes .eye__06', 0.87, {x : '55vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.1});
-        // TweenMax.fromTo('#app-eyes .eye__07', 0.6, {x : '80vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.11});
-        // TweenMax.fromTo('#app-eyes .eye__08', 1, {x : '75vw', y : '-0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.});
-        // TweenMax.fromTo('#app-eyes .eye__09', 0.9, {x : '95vw', y : '-0', scaleX : 2, scaleY : 0.5, rotation : 13}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, rotation : -13, ease: Power3.easeOut, delay : 1.1});
-        // TweenMax.fromTo('#app-eyes .eye__10', 0.8, {x : '85vw', y : '0', scaleX : 2, scaleY : 0.5}, {x : '0vw', y : '0vw', scaleX : 1, scaleY : 1, opacity : 1, ease: Power3.easeOut, delay : 1.125});
+        
         
         TweenMax.fromTo('.l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 1.2});
         TweenMax.to('.l2', 0.3, {y:'15%',ease: Power1.easeOut, delay : 1.2});
@@ -101,9 +94,16 @@ export default {
           TweenMax.to('.l5', 0.4, {y:'0%',ease: Power1.easeIn});
           TweenMax.to('.l2', 0.7, {y:'0%',ease: Power1.easeIn, onComplete : function(){
             TweenMax.to('.app.intro h2 span', 0.5, {y : 0, ease: Power1.easeOut, delay : 0.1})
-            TweenMax.to('.scroll-down i', 0.5, {width : '30px', delay : 0.1})
+
+            
+            scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})              
+            .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
+            .addCallback(function(){                
+              if(app.$store.state.scrollDownHover)scrollDownTL.pause();
+            });
+
             TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});
-            TweenMax.to('.app-logo img', 0.5, {y : 0, delay : 0.1});            
+            TweenMax.to('.app-logo img', 0.5, {y : 0, delay : 0.1});
             TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.1, onComplete : function(){
               TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
               var w;

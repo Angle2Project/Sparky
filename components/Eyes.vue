@@ -674,6 +674,7 @@
 }
 #app-eyes section {  
   opacity: 0;
+  display: none;
 }
 #app-eyes svg {
   width: 100%;
