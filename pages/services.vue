@@ -1,6 +1,6 @@
 <template>
-  <section id="app-services">   
-  <section class="bg__top"></section> 
+  <section id="app-services" :class="currentSlide">   
+    <section class="bg__top"></section> 
     <h1>
       <div class="l1">
         <span>our services</span>
@@ -11,146 +11,360 @@
       <span class="l5">our services</span>
     </h1>
     <h2 class="mm" @mouseenter="serviceHover($event, 'mm')" @mouseleave="serviceHover($event, 'mm')" @click="serviceDetails($event, 'mm')">
-        <div class="stroke">
-          <span>MAXIMIZE</span>
-          <span>MOMENTS</span>
-        </div>        
-        <div class="fill">
-          <div class="l1">
-            <div class="bg"></div>
-            <div class="show-more">
-              <span>show more</span>
-            </div>
-            <div class="start">M</div>
-            <div class="end">
-              <div>AXIMIZE</div>
-            </div>
-            <div class="start">M</div>
-            <div class="end">
-              <div>OMENTS</div>
-            </div>          
+      <div class="stroke">
+        <span>MAXIMIZE</span>
+        <span>MOMENTS</span>
+      </div>        
+      <div class="fill">
+        <div class="l1">
+          <div class="bg"></div>
+          <div class="show-more">
+            <span>{{mmShowMore}}</span>
           </div>
-        </div>        
-        <div class="l2">
-            <span>M</span>
+          <div class="start">M</div>
+          <div class="end">
+            <div>AXIMIZE</div>
           </div>
-          <div class="l3">
-            <span>M</span>
-          </div>
-          <div class="l4">
-            <span>M</span>
-          </div>
-          <div class="l5">
-            <span>M</span>
-          </div>
-      </h2>
-
-      <h2 class="ee" @mouseenter="serviceHover($event, 'ee')" @mouseleave="serviceHover($event, 'ee')" @click="serviceDetails($event, 'ee')">
-        <div class="stroke">
-          <span>ELEVATE</span>
-          <span>EXPERIENCES</span>
-        </div>        
-        <div class="fill">
-          <div class="l1">
-            <div class="bg"></div>
-            <div class="show-more">
-              <span>show more</span>
-            </div>
-            <div class="start">E</div>
-            <div class="end">
-              <div>LEVATE</div>
-            </div>
-            <div class="start">E</div>
-            <div class="end">
-              <div>XPERIENCES</div>
-            </div>          
-          </div>
-        </div>        
-        <div class="l2">
-            <span>E</span>
-          </div>
-          <div class="l3">
-            <span>E</span>
-          </div>
-          <div class="l4">
-            <span>E</span>
-          </div>
-          <div class="l5">
-            <span>E</span>
-          </div>
-      </h2>
-
-      <h2 class="ii" @mouseenter="serviceHover($event, 'ii')" @mouseleave="serviceHover($event, 'ii')" @click="serviceDetails($event, 'ii')">
-        <div class="stroke">
-          <span>Ignite</span>
-          <span>Innovation</span>
-        </div>        
-        <div class="fill">
-          <div class="l1">
-            <div class="bg"></div>
-            <div class="show-more">
-              <span>show more</span>
-            </div>
-            <div class="start">I</div>
-            <div class="end">
-              <div>gnite</div>
-            </div>
-            <div class="start">I</div>
-            <div class="end">
-              <div>nnovation</div>
-            </div>          
-          </div>
-        </div>        
-        <div class="l2">
-          <span>I</span>
+          <div class="start">M</div>
+          <div class="end">
+            <div>OMENTS</div>
+          </div>          
+        </div>
+      </div>        
+      <div class="l2">
+          <span>M</span>
         </div>
         <div class="l3">
-          <span>I</span>
+          <span>M</span>
         </div>
         <div class="l4">
-          <span>I</span>
+          <span>M</span>
         </div>
         <div class="l5">
-          <span>I</span>
+          <span>M</span>
         </div>
-      </h2>
+    </h2>
 
-      <section class="slider">
+    <h2 class="ee" @mouseenter="serviceHover($event, 'ee')" @mouseleave="serviceHover($event, 'ee')" @click="serviceDetails($event, 'ee')">
+      <div class="stroke">
+        <span>ELEVATE</span>
+        <span>EXPERIENCES</span>
+      </div>        
+      <div class="fill">
+        <div class="l1">
+          <div class="bg"></div>
+          <div class="show-more">
+            <span>{{eeShowMore}}</span>
+          </div>
+          <div class="start">E</div>
+          <div class="end">
+            <div>LEVATE</div>
+          </div>
+          <div class="start">E</div>
+          <div class="end">
+            <div>XPERIENCES</div>
+          </div>          
+        </div>
+      </div>        
+      <div class="l2">
+          <span>E</span>
+        </div>
+        <div class="l3">
+          <span>E</span>
+        </div>
+        <div class="l4">
+          <span>E</span>
+        </div>
+        <div class="l5">
+          <span>E</span>
+        </div>
+    </h2>
 
-      </section>    
+    <h2 class="ii" @mouseenter="serviceHover($event, 'ii')" @mouseleave="serviceHover($event, 'ii')" @click="serviceDetails($event, 'ii')">
+      <div class="stroke">
+        <span>Ignite</span>
+        <span>Innovation</span>
+      </div>        
+      <div class="fill">
+        <div class="l1">
+          <div class="bg"></div>
+          <div class="show-more">
+            <span>{{iiShowMore}}</span>
+          </div>
+          <div class="start">I</div>
+          <div class="end">
+            <div>gnite</div>
+          </div>
+          <div class="start">I</div>
+          <div class="end">
+            <div>nnovation</div>
+          </div>          
+        </div>
+      </div>        
+      <div class="l2">
+        <span>I</span>
+      </div>
+      <div class="l3">
+        <span>I</span>
+      </div>
+      <div class="l4">
+        <span>I</span>
+      </div>
+      <div class="l5">
+        <span>I</span>
+      </div>
+    </h2>
+
+    <section class="slider">
+      <ul class="slider__list">
+        <li v-for="(item, index) in sliderDescription" :key="index">
+          <h3><span>{{item.title}}</span></h3>
+          <ul class="slider__list_description">
+            <li v-for="(text, index) in item.list" :key="index"><img src="~assets/icon_marker_y.svg">{{text}}</li>
+          </ul>
+        </li>
+      </ul>
+    </section>      
     
-    <section class="bg__right"></section>
-    <section class="bg__bottom"></section>
+    <section class="slider__close" @click="sliderClose"></section>
+    <!-- <section class="bg__right"></section>
+    <section class="bg__bottom"></section> -->
   </section>
 </template>
 
 <script>
 export default {
   mounted : function(){
-    var app = this;
+    var app = this;    
     app.$store.commit('pageName', 'services');
     app.$store.commit('navigation', 'expertise');
+    app.$store.commit('services', app);
+    app.$store.commit('eyes', false);
+    TweenMax.set('.cursor', {x : (window.innerWidth / 2) - 25, y : (window.innerHeight / 2) -25});
+    TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb', onComplete : function(){
+      TweenMax.set('.bg__top, h1', {visibility : 'visible'});
+    }})
     //var split = new SplitText("#app-services h2 .l1", {type:"words, chars"});
-  },
+  },  
   data : function(){
     return {
       slider : false,
-      prev : {
-
+      sliderTransition : false,      
+      servicesStartAnimation : true,
+      sliderDescription : [],
+      sliderData : {
+        mm : [
+          {
+            title : 'CREATIVE DIRECTION',
+            list : [
+              'brand positioning',
+              'narrative development',
+              'photography & video production',
+              'content strategy'
+            ]
+          },
+          {
+            title : 'DEMAND GENERATION',
+            list : [
+              'SEO',
+              'influencer engagement',
+              'p.r.',
+              'inbound marketing',
+              'lead nurturing'
+            ]
+          },
+          {
+            title : 'CAMPAIGN MANAGEMENT',
+            list : [
+              'paid search',
+              'social',
+              'email'
+            ]
+          }
+        ],
+        ee : [
+          {
+            title : 'UX/UI DESIGN',
+            list : [
+              'information architecture',
+              'product roadmapping',
+              'bespoke experiences',
+              'design systems'
+            ]
+          },
+          {
+            title : 'ART & COPY',
+            list : [
+              'graphic design',
+              'illustration',
+              'animation',
+              'copywriting'
+            ]
+          },
+          {
+            title : 'OPTIMIZATION',
+            list : [
+              'A/B/n & multivariate testing',
+              'web analytics',
+              'consumer insights'
+            ]
+          }
+        ],
+        ii : [
+          {
+            title : 'STRATEGIC CONSULTING',
+            list : [
+              'online marketing',
+              'platform architecture',
+              'analytics',
+              'eCom merchandising and technology'
+            ]
+          },
+          {
+            title : 'DESIGN THINKING',
+            list : [
+              'something',
+              'something else'
+            ]
+          },
+          {
+            title : 'NEXT GEN PLATFORM',
+            list : [
+              'hit us up for the deets'
+            ]
+          }
+        ]
       },
-      next : {
-
-      }
+      mmShowMore : 'show more',
+      eeShowMore : 'show more',
+      iiShowMore : 'show more',
+      currentSlide : ''
     }
   },
   transition : {    
     mode : 'out-in',
     css : false,
     enter : function(el, done){
-      
+      var app = this;      
+      //app.$store.commit('appStartAnimation', true);            
+      var h2Delay = 0.7;
+      app.$store.commit('eyes', false);      
+      // Background animation //
+      TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb', delay : 0.4});
+      TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#f8f8eb', delay : 0.4});
+      TweenMax.to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#f8f8eb'});
+      TweenMax.to('.bg__right', 0.7, {width : '160px', ease: Power4.easeInOut});      
+      if(app.$store.state.prevPage == 'index' || app.$store.state.prevPage == 'description'){
+        TweenMax.set('.bg__bottom', {width : '100%', x : '-160px'});
+      }      
+      TweenMax.to('.bg__bottom', 0.7, {height : '63%', ease: Power4.easeInOut, onComplete : function(){
+        // H1 Animation //
+        TweenMax.fromTo('h1 .l1 span', 1.2, {y:'-130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0});
+        TweenMax.to('h1 .l2', 0.3, {y:'-15%',ease: Power1.easeOut, delay : 0});
+        TweenMax.to('h1 .l3', 0.4, {y:'-30%',ease: Power1.easeOut, delay : 0});
+        TweenMax.to('h1 .l4', 0.5, {y:'-45%',ease: Power1.easeOut, delay : 0});
+        TweenMax.to('h1 .l5', 0.6, {y:'-60%',ease: Power1.easeOut, delay : 0, onComplete : function(){
+          app.$store.commit('loader', false);
+          TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
+          TweenMax.to('h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn});
+          TweenMax.to('h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn});
+          TweenMax.to('h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn, onComplete : function(){
+            
+          }});
+        }});
+        //==//
+
+        TweenMax.set(document.querySelectorAll('h2'), {visibility : 'visible'});          
+        // H2 Animation //    
+
+        //MM
+        TweenMax.to(document.querySelectorAll('h2.mm .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+        TweenMax.to('h2.mm .l2', 0.3, {x:'145%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+        TweenMax.to('h2.mm .l3', 0.4, {x:'185%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+        TweenMax.to('h2.mm .l4', 0.5, {x:'220%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+        TweenMax.to('h2.mm .l5', 0.6, {x:'253%',ease: Power1.easeOut, delay : h2Delay,  force3D: false, onComplete : function(){            
+          TweenMax.to('h2.mm .l3', 0.6, {x:'0%',ease: Power1.easeIn,  force3D: false});
+          TweenMax.to('h2.mm .l4', 0.5, {x:'0%',ease: Power1.easeIn,  force3D: false});
+          TweenMax.to('h2.mm .l5', 0.4, {x:'0%',ease: Power1.easeIn,  force3D: false});
+          TweenMax.to('h2.mm .l2', 0.7, {x:'0%',ease: Power1.easeIn,  force3D: false, onComplete : function(){
+            TweenMax.set('h2.mm .l1', {overflow : 'visible'});
+            TweenMax.to('h2.mm .show-more span', 0.5, {y : '0%', delay : 0.1,  force3D: false});
+            TweenMax.set(document.querySelectorAll('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5, h2.mm .bg'), {visibility : 'hidden'});
+            // document.querySelectorAll('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5, h2.mm .bg').forEach( function(el, i) {
+            //   el.remove();
+            // });
+          }});
+        }});
+        //==//
+        //EE          
+        TweenMax.to(document.querySelectorAll('h2.ee .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l2', 0.3, {x:'-170%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l3', 0.4, {x:'-230%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l4', 0.5, {x:'-285%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l5', 0.6, {x:'-335%',ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){                                    
+          TweenMax.to('h2.ee .l3', 0.6, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ee .l4', 0.5, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ee .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ee .l2', 0.7, {x:'0%',ease: Power1.easeIn, force3D: false, onComplete : function(){              
+            TweenMax.set('h2.ee .l1', {overflow : 'visible'});
+            TweenMax.to('h2.ee .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});
+            TweenMax.set(document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg'), {visibility : 'hidden'});
+            // document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg').forEach( function(el, i) {
+            //   el.remove();
+            // });
+          }});
+        }});
+        //==//
+        //II
+        TweenMax.to(document.querySelectorAll('h2.ii .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ii .l2', 0.3, {x:'90%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ii .l3', 0.4, {x:'158%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ii .l4', 0.5, {x:'220%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ii .l5', 0.6, {x:'270%',ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){            
+          TweenMax.to('h2.ii .l3', 0.6, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ii .l4', 0.5, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ii .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ii .l2', 0.7, {x:'0%',ease: Power1.easeIn, force3D: false, onComplete : function(){              
+            TweenMax.set('h2.ii .l1', {overflow : 'visible'});
+            TweenMax.to('h2.ii .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});            
+            TweenMax.set(document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg'), {visibility : 'hidden'});
+            // document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg').forEach( function(el, i) {
+            //   el.remove();
+            // });   
+            app.$store.commit('appStartAnimation', false);
+            app.$store.commit('scroll', true);
+            app.$store.commit('pageTransition', false);
+            app.$store.state.services.servicesStartAnimation = false
+            TweenMax.to(document.querySelectorAll('.cursor i'), 0.3, {scale : 1})
+          }});
+        }});
+        //==//
+      }});
     },
     leave : function(el, done){
-      
+      var app = this;
+      app.$store.commit('scroll', false);
+      app.$store.commit('prevPage', 'services');
+      var next = app.$route.name;
+      console.log(next);
+      var tl = new TimelineMax();
+      tl.to(document.querySelectorAll('.cursor i'), 0.3, {scale : 0}, 'uno')
+      .to('h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeIn, force3D: false}, 'uno')
+      .to(document.querySelectorAll('h2 .fill'), 0.7, {height : '0vw', ease: Power4.easeIn, force3D: false}, 'uno');
+      if(next == 'index' || next == 'description'){        
+        tl.to('.bg__right', 0.7, {width : '0px', ease: Power4.easeInOut}, 'uno+=0.5')
+        .to('.bg__bottom', 0.7, {height : '0%', ease: Power4.easeInOut, onComplete : done}, 'uno+=0.5')
+        .to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919'}, 'uno+=0.9')
+        .to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'}, 'uno+=0.9')
+        .to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#191919'}, 'uno+=0.9');        
+      }
+      if(next == 'clients'){
+        tl.to('.bg__right', 0.7, {width : '0px', ease: Power4.easeInOut}, 'uno+=0.5')
+        .to('.bg__bottom', 0.7, {height : '37%', x : '-160px', ease: Power4.easeInOut, onComplete : done}, 'uno+=0.5')
+        .to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919'}, 'uno+=0.9')
+        .to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'}, 'uno+=0.9')
+        .to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#191919'}, 'uno+=0.9');        
+      }
     }
   },
   computed : {    
@@ -163,69 +377,560 @@ export default {
     appStartAnimation : function(){
       return this.$store.state.appStartAnimation;
     },
-    navigation : function(){
-      return this.$store.state.navigation;
+    servicesSlider : function(){
+      return this.$store.state.servicesSlider;
     }
   },
   methods : {
     serviceHover : function(e, name){
-      if(this.appStartAnimation)return false;            
+      var app = this;
+      if(app.appStartAnimation || app.servicesStartAnimation ||  app.sliderTransition || app.currentSlide == name)return false;
       if(e.type == 'mouseenter'){
-        TweenMax.to(e.target.querySelector('.show-more span'), 0.7, {opacity : 0, force3D: false});
-        if(name == 'mm')TweenMax.to(e.target, 0.7, {paddingLeft : '1vw', ease: Power2.easeInOut});
-        if(name == 'ee')TweenMax.to(e.target, 0.7, {paddingRight : (70 - (window.innerWidth / 100))+'px', ease: Power2.easeInOut});
-        
-
-        e.target.querySelectorAll('.end').forEach( function(el, i) {
-          var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);          
-          TweenMax.to(el, 0.7, {width : w+'vw', ease: Power4.easeInOut, force3D: false});
-        });
-      }else{
-        TweenMax.to(e.target.querySelector('.show-more span'), 0.5, {opacity : 1, force3D: false});
-        if(name == 'mm')TweenMax.to(e.target, 0.7, {paddingLeft : '11vw', ease: Power2.easeInOut});
-        if(name == 'ee')TweenMax.to(e.target, 0.7, {paddingRight : (170 - (window.innerWidth / 100))+'px', ease: Power2.easeInOut});
-        e.target.querySelectorAll('.end').forEach( function(el, i) {          
-          TweenMax.to(el, 0.7, {width : '0vw', ease: Power4.easeInOut, force3D: false});
-        });
+        if(app.servicesSlider){          
+          TweenMax.to('.cursor', 0.5, {rotation : 0, ease: Power4.easeInOut});
+          TweenMax.to(e.target.querySelector('.show-more span'), 0.7, {opacity : 0, force3D: false});
+          if(name == 'mm')TweenMax.to(e.target.querySelector('.l1'), 0.7, {x : '-54%', ease: Power2.easeInOut, force3D: false});
+          if(name == 'ee')TweenMax.to(e.target.querySelector('.l1'), 0.7, {right : '70px', x : '0%', ease: Power1.easeIn, force3D: false});
+          e.target.querySelectorAll('.end').forEach( function(el, i) {
+            var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);          
+            TweenMax.to(el, 0.7, {width : w+'vw', ease: Power4.easeInOut, force3D: false});
+          });
+        }else{
+          TweenMax.to(e.target.querySelector('.show-more span'), 0.7, {opacity : 0, force3D: false});          
+          if(name == 'mm')TweenMax.to(e.target.querySelector('.l1'), 0.7, {left : '1vw', ease: Power2.easeInOut, force3D: false});
+          if(name == 'ee')TweenMax.to(e.target.querySelector('.l1'), 0.7, {right : '70px', ease: Power2.easeInOut, force3D: false});
+          e.target.querySelectorAll('.end').forEach( function(el, i) {
+            var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);          
+            TweenMax.to(el, 0.7, {width : w+'vw', ease: Power4.easeInOut, force3D: false});
+          });
+        }        
+      }else{        
+        if(app.servicesSlider){          
+          TweenMax.to('.cursor', 0.7, {rotation : 45, ease: Power4.easeInOut});
+          TweenMax.to(e.target.querySelector('.show-more span'), 0.5, {opacity : 1, force3D: false});
+          if(name == 'mm')TweenMax.to(e.target.querySelector('.l1'), 0.7, {x : '-50%', ease: Power2.easeInOut, force3D: false});
+          if(name == 'ee')TweenMax.to(e.target.querySelector('.l1'), 0.6, {right : '50vw', x : '50%', ease: Power2.easeInOut, force3D: false});
+          e.target.querySelectorAll('.end').forEach( function(el, i) {          
+            TweenMax.to(el, 0.7, {width : '0vw', ease: Power4.easeInOut, force3D: false});
+          });
+        }else{
+          TweenMax.to(e.target.querySelector('.show-more span'), 0.5, {opacity : 1, force3D: false});
+          if(name == 'mm')TweenMax.to(e.target.querySelector('.l1'), 0.7, {left : '11vw', ease: Power3.easeInOut, force3D: false});
+          if(name == 'ee')TweenMax.to(e.target.querySelector('.l1'), 0.7, {right : '160px', ease: Power3.easeInOut, force3D: false});
+          e.target.querySelectorAll('.end').forEach( function(el, i) {          
+            TweenMax.to(el, 0.7, {width : '0vw', ease: Power4.easeInOut, force3D: false});
+          });
+        }        
       }
     },
-    serviceDetails : function(e, name){
+    sliderClose : function(e){
       var app = this;
+      if(app.servicesSlider && !app.sliderTransition){
+        app.sliderTransition = true;
+        var tl = new TimelineMax({onComplete : function(){          
+          setTimeout(function(){
+            TweenMax.set(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), {backgroundColor : '#f8f8eb'});
+            TweenMax.set(document.querySelectorAll('#app-navigation li .item__name'), {color : '#f8f8eb'});
+            var tl2 = new TimelineMax();
+            tl2.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
+            .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
+              width : function(i, el){                
+                return el.parentNode.classList.contains('current') ? 83 : 1;
+              }
+            }}, 0.09, '-=0.47');
+          }, 100);
+          // Sider render //
+          app.$store.commit('navigationType', {state : 'app', current : 'expertise'});            
+          app.currentSlide = name;
+        }});
+        tl.staggerTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, 0.09)
+        .staggerTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, 0.09, '-=0.2')
 
-      // Slider Init //
-      TweenMax.set('.bg__top, h1', {zIndex : 0})
-      TweenMax.fromTo(e.currentTarget.querySelector('.stroke'), 0.3, {opacity : 0}, {visibility : 'visible', opacity : 0.2});      
-      TweenMax.to(document.querySelectorAll('h2 .fill'), 0.7, {height: '0vw', ease: Power4.easeIn});
-      TweenMax.to(document.querySelectorAll('#app-logo .st2'), 0.2, {fill : '#f0f0d9', delay : 0.5});
-      TweenMax.to('.bg__bottom', 0.7, {height : '100%', ease: Power4.easeIn});
-      var tl = new TimelineMax({onComplete : function(){
-        // Sider render //
+        new TimelineMax().to(document.querySelectorAll('.slider, h2'), 0.4, {opacity : 0}, 'uno')
+        .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#191919', ease: Power4.easeIn}, 'uno')
+        .to('.cursor', 0.7, {rotation : 0, ease: Power4.easeIn}, 'uno')
+        .to('.bg__bottom', 0.7, {height : '63%', ease: Power4.easeIn, onComplete : function(){
+          app.mmShowMore = 'show more';
+          app.eeShowMore = 'show more';
+          app.iiShowMore = 'show more';
+          app.$store.commit('servicesSlider', false);
+          var h2Delay = 0.7;
+          TweenMax.set(document.querySelectorAll('.bg__top, .slider, .slider *, h2, h2 *'), {clearProps : 'all'});
+          TweenMax.set('h1', {clearProps : 'z-index'});
+          TweenMax.set(document.querySelectorAll('h2'), {visibility : 'visible'});          
+          //MM
+          TweenMax.to(document.querySelectorAll('h2.mm .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+          TweenMax.to('h2.mm .l2', 0.3, {x:'145%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+          TweenMax.to('h2.mm .l3', 0.4, {x:'185%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+          TweenMax.to('h2.mm .l4', 0.5, {x:'220%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+          TweenMax.to('h2.mm .l5', 0.6, {x:'253%',ease: Power1.easeOut, delay : h2Delay,  force3D: false, onComplete : function(){            
+            TweenMax.to('h2.mm .l3', 0.6, {x:'0%',ease: Power1.easeIn,  force3D: false});
+            TweenMax.to('h2.mm .l4', 0.5, {x:'0%',ease: Power1.easeIn,  force3D: false});
+            TweenMax.to('h2.mm .l5', 0.4, {x:'0%',ease: Power1.easeIn,  force3D: false});
+            TweenMax.to('h2.mm .l2', 0.7, {x:'0%',ease: Power1.easeIn,  force3D: false, onComplete : function(){
+              TweenMax.set('h2.mm .l1', {overflow : 'visible'});
+              TweenMax.to('h2.mm .show-more span', 0.5, {y : '0%', delay : 0.1,  force3D: false});
+              TweenMax.set(document.querySelectorAll('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5, h2.mm .bg'), {visibility : 'hidden'});
+              // document.querySelectorAll('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5, h2.mm .bg').forEach( function(el, i) {
+              //   el.remove();
+              // });
+            }});
+          }});
+          //==//
+          //EE          
+          TweenMax.to(document.querySelectorAll('h2.ee .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ee .l2', 0.3, {x:'-170%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ee .l3', 0.4, {x:'-230%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ee .l4', 0.5, {x:'-285%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ee .l5', 0.6, {x:'-335%',ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){                                    
+            TweenMax.to('h2.ee .l3', 0.6, {x:'0%',ease: Power1.easeIn, force3D: false});
+            TweenMax.to('h2.ee .l4', 0.5, {x:'0%',ease: Power1.easeIn, force3D: false});
+            TweenMax.to('h2.ee .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
+            TweenMax.to('h2.ee .l2', 0.7, {x:'0%',ease: Power1.easeIn, force3D: false, onComplete : function(){              
+              TweenMax.set('h2.ee .l1', {overflow : 'visible'});
+              TweenMax.to('h2.ee .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});
+              TweenMax.set(document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg'), {visibility : 'hidden'});
+              // document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg').forEach( function(el, i) {
+              //   el.remove();
+              // });
+            }});
+          }});
+          //==//
+          //II
+          TweenMax.to(document.querySelectorAll('h2.ii .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ii .l2', 0.3, {x:'90%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ii .l3', 0.4, {x:'158%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ii .l4', 0.5, {x:'220%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ii .l5', 0.6, {x:'270%',ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){            
+            TweenMax.to('h2.ii .l3', 0.6, {x:'0%',ease: Power1.easeIn, force3D: false});
+            TweenMax.to('h2.ii .l4', 0.5, {x:'0%',ease: Power1.easeIn, force3D: false});
+            TweenMax.to('h2.ii .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
+            TweenMax.to('h2.ii .l2', 0.7, {x:'0%',ease: Power1.easeIn, force3D: false, onComplete : function(){              
+              TweenMax.set('h2.ii .l1', {overflow : 'visible'});
+              TweenMax.to('h2.ii .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});              
+              TweenMax.set(document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg'), {visibility : 'hidden'});
+              app.sliderTransition = false;
+                // document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg').forEach( function(el, i) {
+                //   el.remove();
+                // });                              
+            }});
+          }});
+          //==//
+        }}, 'uno');
+
+
+      }
+      
+    },
+    serviceDetails : function(e, name, nav){
+      var app = this;
+      app.sliderTransition = true;      
+      // RIP Slider 
+      if(!app.servicesSlider){        
+        app.$store.commit('servicesSlider', true);
+        // Slider Init //
+        TweenMax.set('.bg__top, h1', {zIndex : 0, delay : 0.3});
+        TweenMax.fromTo(e.currentTarget.querySelector('.stroke'), 0.3, {opacity : 0}, {visibility : 'visible', opacity : 0.2});      
+        TweenMax.to(document.querySelectorAll('h2 .fill'), 0.7, {height: '0vw', ease: Power4.easeIn});
+        TweenMax.to(document.querySelectorAll('#app-logo .st2'), 0.2, {fill : '#f0f0d9', delay : 0.5});
+        TweenMax.to('.bg__bottom', 0.7, {height : '100%', ease: Power4.easeIn});
+        var tl = new TimelineMax({onComplete : function(){
+          TweenMax.to('.cursor', 0.5, {rotation : 45});
+          setTimeout(function(){
+            TweenMax.set(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), {backgroundColor : '#f8f8eb'});
+            TweenMax.set(document.querySelectorAll('#app-navigation li .item__name'), {color : '#f8f8eb'});
+            var tl2 = new TimelineMax();
+            tl2.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
+            .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
+              width : function(i, el){            
+                return el.parentNode.classList.contains('current') ? 83 : 1;
+              }
+            }}, 0.09, '-=0.47');
+          }, 100);
+          // Sider render //
+          app.$store.commit('navigationType', {state : 'slider', current : name});
+            // MM Logic
+          if(name == 'mm'){          
+            app.sliderDescription = app.sliderData['mm'];
+            setTimeout(app.mmRender, 800);          
+          }
+          // EE Logic
+          if(name == 'ee'){
+            app.sliderDescription = app.sliderData['ee'];
+            setTimeout(app.eeRender, 800);          
+          }
+
+          // II Logic
+          if(name == 'ii'){          
+            app.sliderDescription = app.sliderData['ii'];
+            setTimeout(app.iiRender, 800);          
+          }
+          app.currentSlide = name;
+        }});
+        tl.staggerTo(document.querySelectorAll('#app-navigation li i'), 0.1, {width : 83}, 0.05)
+        .staggerTo(document.querySelectorAll('#app-navigation li i'), 0.1, {x : 83}, 0.05, '-=0.23')  
+      }else{    
+      // LIVE Slider
+        // Navigation        
+        TweenMax.to('#app-navigation li.current i', 0.7, {width : 1, ease: Power4.easeInOut});
+        TweenMax.to('#app-navigation li[data-name="'+name+'"] .item__name', 0.7, {width : 0, ease: Power4.easeInOut});
+        TweenMax.to('#app-navigation li[data-name="'+name+'"] i', 0.7, {width : 83, ease: Power4.easeInOut});
         app.$store.commit('navigationType', {state : 'slider', current : name});
-          // MM Logic
+        TweenMax.to('.cursor', 0.7, {rotation : 45, ease: Power4.easeInOut});
+
+        // MM Transition
         if(name == 'mm'){
-
+          TweenMax.set('h2.mm', {zIndex : 1});
+          if(app.currentSlide == 'ee'){
+            document.querySelectorAll('h2.mm .l1 .end').forEach( function(el, i) {
+              var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);          
+              TweenMax.to(el, (nav ? 0.7 : 0), {width : w+'vw', ease: Power4.easeInOut, force3D: false});
+            });
+            TweenMax.to('h2.mm .l1 .show-more span', 0.7, {opacity : 0});
+            new TimelineMax().to('h2.mm .l1', (nav ? 0.7 : 0), {x : '-54%', ease: Power2.easeInOut, force3D: false})
+            .to(document.querySelectorAll('.slider'), 0.4, {opacity : 0}, 'uno')
+            .to('h2.mm', 0.7, {top : '37%', y : '-0.5vw', translateY : 0, ease: Power4.easeInOut}, 'uno')
+            .to('h2.mm .stroke', 0.7, {opacity : 0.2, visibility : 'visible'}, 'uno')
+            .to('h2.ee', 0.7, {bottom : '80px', y : '3.9vw', visibility : 'visible', ease: Power4.easeInOut}, 'uno')
+            .to('h2.ii .fill', 0.7, {height: '0vw', ease: Power4.easeInOut, onComplete : function(){
+              app.sliderDescription = app.sliderData['mm'];
+              TweenMax.set(document.querySelectorAll('.slider__list h3 span, .slider__list_description li'), {clearProps : 'all'});
+              TweenMax.set('h2.ee .l1', {right : '70px', x : '0%'});            
+            }}, 'uno')
+            .to('h2.mm .fill', 0.7, {height: '0vw', ease: Power4.easeInOut}, 'dos-=0.7')
+            .to('h2.ee .fill', 0.7, {height: '7.8vw', ease: Power4.easeInOut, onComplete : function(){            
+              TweenMax.set('.slider', {clearProps : 'all'});            
+              app.mmRender(true);
+              app.currentSlide = name;
+            }}, 'dos-=0.7')
+            .to('h2.ee .stroke', 0.2, {opacity : 0, visibility : 'hidden'}, 'dos+=0.5')
+            .to(document.querySelectorAll('h2.ee .end'), 0.7, {width : '0vw', ease: Power4.easeInOut, force3D: false}, 'dos+=0.5')
+            .to('h2.ee .l1', 0.6, {right : '50vw', x : '50%', ease: Power2.easeInOut, force3D: false}, 'dos+=0.5')
+            .to('h2.ee .l1 .show-more span', 0.7, {opacity : 1, onComplete : function(){
+              app.sliderTransition = false;
+              app.$store.commit('scroll', true);
+              app.$store.commit('pageTransition', false);
+            }}, 'dos+=0.5')
+            .set('h2.mm', {clearProps : 'all'})
+            .set('h2.ii', {clearProps : 'all'});
+          }
+          if(app.currentSlide == 'ii'){
+            document.querySelectorAll('h2.mm .l1 .end').forEach( function(el, i) {
+              var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);          
+              TweenMax.set(el, {width : w+'vw'});
+            });
+            new TimelineMax().set('h2.mm .l1', {left : '50vw', x : '-54%'})
+            .set('h2.mm', {top : '80px', y : '-3.9vw', visibility : 'visible'})
+            .to(document.querySelectorAll('.slider'), 0.4, {opacity : 0}, 'uno')
+            .to('h2.ii .stroke', 0.4, {opacity : 0}, 'uno')
+            .to('h2.ee', 0.7, {top : window.innerHeight - 80+'px', y : '-3.9vw', visibility : 'visible', ease: Power4.easeInOut}, 'uno')
+            .set('h2.ee', {bottom : '80px', y : '3.9vw', clearProps : 'top'})
+            .to('h2.mm', 0.7, {top : '37%', y : '-0.5vw', translateY : 0, ease: Power4.easeInOut}, 'uno')
+            .to('h2.mm .stroke', 0.7, {opacity : 0.2, visibility : 'visible', onComplete : function(){
+              app.sliderDescription = app.sliderData['mm'];
+              TweenMax.set(document.querySelectorAll('.slider__list h3 span, .slider__list_description li'), {clearProps : 'all'});
+              TweenMax.set('.slider', {clearProps : 'all'});
+              app.mmRender(true);
+              app.currentSlide = name;
+              app.sliderTransition = false;
+              app.$store.commit('scroll', true);
+              app.$store.commit('pageTransition', false);
+            }}, 'uno')            
+            .set('h2.mm, h2.ii , h2.ii .stroke', {clearProps : 'all'});
+          }
+          
         }
-      }});
-      tl.staggerTo(document.querySelectorAll('#app-navigation li i'), 0.1, {width : 83}, 0.05)
-      .staggerTo(document.querySelectorAll('#app-navigation li i'), 0.1, {x : 83}, 0.05, '-=0.23')
+        // EE Transition
+        if(name == 'ee'){
+          if(app.currentSlide == 'mm'){
+            document.querySelectorAll('h2.ee .l1 .end').forEach( function(el, i) {
+              var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);          
+              TweenMax.to(el, (nav ? 0.7 : 0), {width : w+'vw', ease: Power4.easeInOut, force3D: false});
+            });
+            TweenMax.to('h2.ee .l1 .show-more span', 0.7, {opacity : 0});
+            new TimelineMax().to('h2.ee .l1', (nav ? 0.7 : 0), {right : '70px', x : '0%', ease: Power1.easeIn, force3D: false})
+            .to(document.querySelectorAll('.slider'), 0.4, {opacity : 0}, 'uno')            
+            .to('h2.mm', 0.7, {top : '80px', y : '-3.9vw', visibility : 'visible', ease: Power4.easeInOut}, 'uno')            
+            .to('h2.ee .stroke', 0.7, {opacity : 0.2, visibility : 'visible'}, 'uno')
+            .to('h2.ee', 0.7, {bottom : '63%', y : '14.4vw', force3D: false, ease: Power4.easeInOut}, 'uno')
+            .set('h2.ii', {bottom : '80px', y : '3.9vw'}, 'uno')
+            .set(document.querySelectorAll('h2.ii .end'), {width : '0vw'}, 'uno')
+            .to('h2.ii .fill', 0.7, {height: '7.8vw', visibility : 'visible', ease: Power4.easeInOut, onComplete : function(){
+              app.sliderDescription = app.sliderData['ee'];
+              TweenMax.set(document.querySelectorAll('.slider__list h3 span, .slider__list_description li'), {clearProps : 'all'});
+              TweenMax.set('h2.ee .l1', {right : '70px', x : '0%'});            
+            }}, 'uno')            
+            .to('h2.ee .fill', 0.7, {height: '0vw', ease: Power4.easeInOut}, 'dos-=0.7')
+            .to('h2.mm .fill', 0.7, {height: '7.8vw', ease: Power4.easeInOut, onComplete : function(){
+              TweenMax.set('.slider', {clearProps : 'all'});
+              app.eeRender(true);
+              app.currentSlide = name;
+            }}, 'dos-=0.7')
+            .set('h2.mm .l1', {left : '50vw', x : '-54%'})
+            .to('h2.mm .stroke', 0.2, {opacity : 0, visibility : 'hidden'}, 'dos+=0.5')
+            .to(document.querySelectorAll('h2.mm .end'), 0.7, {width : '0vw', ease: Power4.easeInOut, force3D: false}, 'dos+=0.5')
+            .to('h2.mm .l1', 0.6, {x : '-50%', ease: Power3.easeInOut, force3D: false}, 'dos+=0.5')
+            .to('h2.mm .l1 .show-more span', 0.7, {opacity : 1, onComplete : function(){
+              app.sliderTransition = false;
+              app.$store.commit('scroll', true);
+              app.$store.commit('pageTransition', false);
+            }}, 'dos+=0.5')
+            .set('h2.ee', {clearProps : 'all'});
+          }
+          if(app.currentSlide == 'ii'){
+            document.querySelectorAll('h2.ee .l1 .end').forEach( function(el, i) {
+              var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);          
+              TweenMax.to(el, (nav ? 0.7 : 0), {width : w+'vw', ease: Power4.easeInOut, force3D: false});
+            });
+            document.querySelectorAll('h2.ii .l1 .end').forEach( function(el, i) {
+              var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);          
+              TweenMax.set(el, {width : w+'vw'});
+            });
+            TweenMax.to('h2.ee .l1 .show-more span', 0.7, {opacity : 0});
+            new TimelineMax().to('h2.ee .l1', (nav ? 0.7 : 0), {right : '70px', x : '0%', ease: Power1.easeIn, force3D: false})
+            .to(document.querySelectorAll('.slider'), 0.4, {opacity : 0}, 'uno')
+            .set('h2.mm', {top : '80px', y : '-3.9vw', visibility : 'visible'}, 'uno')
+            .set('h2.mm .l1', {left : '50vw', x : '-50%'}, 'uno')
+            .set(document.querySelectorAll('h2.mm .end'), {width : '0vw'}, 'uno')
+            .to('h2.ee .stroke', 0.7, {opacity : 0.2, visibility : 'visible'}, 'uno')
+            .to('h2.ii', 0.7, {bottom : '80px', y : '3.9vw', ease: Power4.easeInOut}, 'uno')            
+            .to('h2.ee', 0.7, {top : '37%', y : '6.6vw', ease: Power4.easeInOut}, 'uno')
+            .to('h2.mm .fill', 0.7, {height: '7.8vw', force3D: true, ease: Power4.easeInOut}, 'uno')
+            .to('h2.ii .fill', 0.7, {height: '0vw', visibility : 'visible', ease: Power4.easeInOut, onComplete : function(){
+              app.sliderDescription = app.sliderData['ee'];
+              TweenMax.set(document.querySelectorAll('.slider__list h3 span, .slider__list_description li'), {clearProps : 'all'});
+            }}, 'uno')
+            .set('h2.ii .show-more', {right : 'auto', left : '-90px'}, 'uno')
+            .to('h2.ee .fill', 0.7, {height: '0vw', ease: Power4.easeInOut}, 'dos-=0.7')
+            .to('h2.ii .fill', 0.7, {height: '7.8vw', ease: Power4.easeInOut, onComplete : function(){
+              TweenMax.set('.slider', {clearProps : 'all'});
+              app.eeRender(true);
+              app.currentSlide = name;
+            }}, 'dos-=0.7')
+            .to('h2.ii .stroke', 0.2, {opacity : 0, visibility : 'hidden'}, 'dos+=0.5')
+            .to(document.querySelectorAll('h2.ii .end'), 0.7, {width : '0vw', ease: Power4.easeInOut, force3D: false}, 'dos+=0.5')            
+            .to('h2.ii .l1 .show-more span', 0.7, {opacity : 1, onComplete : function(){
+              app.sliderTransition = false;
+              app.$store.commit('scroll', true);
+              app.$store.commit('pageTransition', false);
+            }}, 'dos+=0.5')
+            .set('h2.ee', {clearProps : 'all'});
+          }
+        }
+        // II Transition
+        if(name == 'ii'){
+          if(app.currentSlide == 'ee'){
+            document.querySelectorAll('h2.ii .l1 .end').forEach( function(el, i) {
+              var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);          
+              TweenMax.to(el, (nav ? 0.7 : 0), {width : w+'vw', ease: Power4.easeInOut, force3D: false});
+            });
+            TweenMax.to('h2.ii .l1 .show-more span', 0.7, {opacity : 0});
+            new TimelineMax({delay : (nav ? 0.7 : 0)}).to(document.querySelectorAll('.slider'), 0.4, {opacity : 0}, 'uno')
+            .to('h2.ee', 0.7, {top : '80px', y : '-3.9vw', visibility : 'visible', ease: Power4.easeInOut}, 'uno')
+            .to('h2.ii .stroke', 0.7, {opacity : 0.2, visibility : 'visible'}, 'uno')
+            .to('h2.ii', 0.7, {bottom : '63%', y : '21.5vw', force3D: false, ease: Power4.easeInOut}, 'uno')
+            .to('h2.ee .fill', 0.7, {height: '7.8vw', force3D: true, ease: Power4.easeInOut}, 'uno')
+            .to('h2.ii .fill', 0.7, {height: '0vw', force3D: true, ease: Power4.easeInOut}, 'uno')
+            .to('h2.mm .fill', 0.7, {height: '0vw', force3D: true, ease: Power4.easeInOut, onComplete : function(){
+              app.sliderDescription = app.sliderData['ii'];
+              TweenMax.set(document.querySelectorAll('.slider__list h3 span, .slider__list_description li'), {clearProps : 'all'});
+            }}, 'uno')          
+            .to('h2.ii .fill', 0.7, {height: '0vw', ease: Power4.easeInOut, onComplete : function(){            
+              TweenMax.set('.slider', {clearProps : 'all'});            
+              app.iiRender(true);
+              app.currentSlide = name;
+            }}, 'dos-=0.7')
+            // Step 3
+            .to('h2.ee .stroke', 0.2, {opacity : 0, visibility : 'hidden'}, 'dos+=0.5')
+            .to(document.querySelectorAll('h2.ee .end'), 0.7, {width : '0vw', ease: Power4.easeInOut, force3D: false}, 'dos+=0.5')
+            .to('h2.ee .l1', 0.6, {right : '50vw', x : '50%', ease: Power2.easeInOut, force3D: false}, 'dos+=0.5')
+            .to('h2.ee .l1 .show-more span', 0.7, {opacity : 1, onComplete : function(){
+              app.sliderTransition = false;
+              app.$store.commit('scroll', true);
+              app.$store.commit('pageTransition', false);
+            }}, 'dos+=0.5')
+            .set('h2.ii', {clearProps : 'all'});
+          }
+          if(app.currentSlide == 'mm'){
+            new TimelineMax().set('h2.ii', {bottom : '80px', y : '3.9vw', visibility : 'visible'})
+            .to(document.querySelectorAll('.slider'), 0.4, {opacity : 0}, 'uno')
+            .to('h2.mm .stroke', 0.4, {opacity : 0}, 'uno')
+            .to('h2.ee', 0.7, {top : '80px', y : '-3.9vw', visibility : 'visible', ease: Power4.easeInOut}, 'uno')
+            .to('h2.ii .stroke', 0.4, {opacity : 0.2, visibility : 'visible'}, 'uno')
+            .to('h2.ii', 0.7, {bottom : '63%', y : '21.5vw', force3D: false, ease: Power4.easeInOut, onComplete : function(){
+              app.sliderDescription = app.sliderData['ii'];
+              TweenMax.set(document.querySelectorAll('.slider__list h3 span, .slider__list_description li'), {clearProps : 'all'});
+              TweenMax.set('.slider', {clearProps : 'all'});
+              app.iiRender(true);
+              app.currentSlide = name;
+              app.sliderTransition = false;
+              app.$store.commit('scroll', true);
+              app.$store.commit('pageTransition', false);
+            }}, 'uno')
+            .set('h2.mm, h2.mm .stroke', {clearProps : 'all'});
+          }
+        }
+      }          
+    },
+    mmRender : function(transition){
+      var app = this;
+      var h2Delay = 0.6;
+      app.mmShowMore = 'next service';
+      app.eeShowMore = 'next service';
+      app.iiShowMore = 'next service';      
+      TweenMax.fromTo(document.querySelectorAll('.slider h3 span'), 0.5, {y : '100%'}, {y : '0%', force3D:true, onComplete : function(){
+        TweenMax.set(document.querySelectorAll('.slider__list_description li'), {visibility : 'visible'});
+        TweenMax.staggerFrom(document.querySelectorAll('.slider__list_description li'), 0.3, {opacity:0, rotationX:-160, force3D:true, transformOrigin:"top center -20", delay : 0.2, ease: Power4.easeOut}, 0.05)
+        if(transition){          
+          TweenMax.set('h2.ii', {visibility : 'hidden'});
+          return false;          
+        }
 
-      
-      
-    }    
+        //ee next  
+        TweenMax.set('h2.ee', {bottom : '80px', y : '3.9vw'});
+        TweenMax.set('h2.ee .fill', {height : '7.8vw'});
+        TweenMax.set(document.querySelectorAll('h2.ee .fill .start'), {clearProps : 'all'});
+        TweenMax.set('h2.ee .l1', {right : '50vw', x : '50%', overflow : 'hidden'});
+        TweenMax.set('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5', {right : '50%', x : '50%', skew : -9});
+        TweenMax.set('h2.ee .show-more span', {clearProps : 'all'})        
+        TweenMax.set(document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg'), {visibility : 'visible'});
+        TweenMax.to(document.querySelectorAll('h2.ee .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l2', 0.3, {x:'-70%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l3', 0.4, {x:'-130%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l4', 0.5, {x:'-185%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l5', 0.6, {x:'-235%',ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){          
+          TweenMax.to('h2.ee .l3', 0.6, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ee .l4', 0.5, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ee .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ee .l2', 0.7, {x:'0%',ease: Power1.easeIn, force3D: false, onComplete : function(){              
+            TweenMax.set('h2.ee .l1', {overflow : 'visible'});
+            TweenMax.to('h2.ee .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});
+            TweenMax.set(document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg'), {visibility : 'hidden'});
+            TweenMax.set('h2.ii', {visibility : 'hidden'});
+            app.sliderTransition = false;
+          }});
+        }});
+      }})
+    },
+    eeRender : function(transition){
+      var app = this;
+      var h2Delay = 0.6;
+      app.mmShowMore = 'next service';
+      app.eeShowMore = 'next service';
+      app.iiShowMore = 'next service';
+      TweenMax.to(document.querySelectorAll('.slider h3 span'), 0.5, {y : '0%', onComplete : function(){
+        TweenMax.set(document.querySelectorAll('.slider__list_description li'), {visibility : 'visible'});
+        TweenMax.staggerFrom(document.querySelectorAll('.slider__list_description li'), 0.3, {opacity:0, rotationX:-160, force3D:true, transformOrigin:"top center -20", delay : 0.2, ease: Power4.easeOut}, 0.05)
+        if(transition){          
+          TweenMax.set('h2.ii', {visibility : 'hidden'});
+          return false;          
+        }
+        
+        //mm prev
+        TweenMax.set('h2.mm', {top : '80px', y : '-3.9vw'});
+        TweenMax.set('h2.mm .fill', {height : '7.8vw'});
+        TweenMax.set('h2.mm .bg', {bottom : '0'});        
+        TweenMax.set(document.querySelectorAll('h2.mm .fill .start'), {clearProps : 'all'});
+        TweenMax.set('h2.mm .l1', {left : '50vw', x : '-50%', overflow : 'hidden'});
+        TweenMax.set('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5', {left : '50%', x : '-50%', skew : -9});
+        TweenMax.set('h2.mm .li .bg', {bottom : '0'});
+        TweenMax.set('h2.mm .show-more span', {clearProps : 'all'})        
+        TweenMax.set(document.querySelectorAll('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5, h2.mm .bg'), {visibility : 'visible'});
+        TweenMax.to(document.querySelectorAll('h2.mm .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+        TweenMax.to('h2.mm .l2', 0.3, {x:'45%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+        TweenMax.to('h2.mm .l3', 0.4, {x:'85%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+        TweenMax.to('h2.mm .l4', 0.5, {x:'120%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+        TweenMax.to('h2.mm .l5', 0.6, {x:'153%',ease: Power1.easeOut, delay : h2Delay,  force3D: false, onComplete : function(){          
+          TweenMax.to('h2.mm .l3', 0.6, {x:'0%',ease: Power1.easeIn,  force3D: false});
+          TweenMax.to('h2.mm .l4', 0.5, {x:'0%',ease: Power1.easeIn,  force3D: false});
+          TweenMax.to('h2.mm .l5', 0.4, {x:'0%',ease: Power1.easeIn,  force3D: false});
+          TweenMax.to('h2.mm .l2', 0.7, {x:'0%',ease: Power1.easeIn,  force3D: false, onComplete : function(){
+            TweenMax.set('h2.mm .l1', {overflow : 'visible'});
+            TweenMax.to('h2.mm .show-more span', 0.5, {y : '0%', delay : 0.1,  force3D: false});
+            TweenMax.set(document.querySelectorAll('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5, h2.mm .bg'), {visibility : 'hidden'});
+            app.sliderTransition = false;
+          }});
+        }});
+
+        //ii next
+        TweenMax.set('h2.ii', {bottom : '80px', y : '3.9vw'});
+        TweenMax.set('h2.ii .fill', {height : '7.8vw'});
+        TweenMax.set(document.querySelectorAll('h2.ii .fill .start'), {clearProps : 'all'});
+        TweenMax.set('h2.ii .l1', {overflow : 'hidden'});
+        TweenMax.set('h2.ii .show-more', {right : 'auto', left : '-90px'});
+        TweenMax.set('h2.ii .show-more span', {clearProps : 'all'})        
+        TweenMax.set(document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg'), {visibility : 'visible'});
+        TweenMax.to(document.querySelectorAll('h2.ii .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ii .l2', 0.3, {x:'90%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ii .l3', 0.4, {x:'158%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ii .l4', 0.5, {x:'220%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ii .l5', 0.6, {x:'270%',ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){            
+          TweenMax.to('h2.ii .l3', 0.6, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ii .l4', 0.5, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ii .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ii .l2', 0.7, {x:'0%',ease: Power1.easeIn, force3D: false, onComplete : function(){
+            TweenMax.set('h2.ii .l1', {overflow : 'visible'});
+            TweenMax.to('h2.ii .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});            
+            TweenMax.set(document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg'), {visibility : 'hidden'});                  
+          }});
+        }});
+
+      }});
+    },
+    iiRender : function(transition){
+      var app = this;
+      var h2Delay = 0.6;
+      app.mmShowMore = 'next service';
+      app.eeShowMore = 'next service';
+      app.iiShowMore = 'next service';
+      TweenMax.to(document.querySelectorAll('.slider h3 span'), 0.5, {y : '0%', force3D:true, onComplete : function(){
+        TweenMax.set(document.querySelectorAll('.slider__list_description li'), {visibility : 'visible'});
+        TweenMax.staggerFrom(document.querySelectorAll('.slider__list_description li'), 0.3, {opacity:0, rotationX:-160, force3D:true, transformOrigin:"top center -20", delay : 0.2, ease: Power4.easeOut}, 0.05)
+        if(transition){          
+          TweenMax.set('h2.ii', {visibility : 'hidden'});
+          return false;          
+        }
+        
+        TweenMax.set('h2.ee', {top : '80px', y : '-3.9vw'});
+        TweenMax.set('h2.ee .fill', {height : '7.8vw'});
+        TweenMax.set(document.querySelectorAll('h2.ee .fill .start'), {clearProps : 'all'});
+        TweenMax.set('h2.ee .l1', {right : '50%', x : '50%', overflow : 'hidden'});
+        TweenMax.set('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5', {right : '50%', x : '50%', skew : -9});              
+        TweenMax.set('h2.ee .show-more span', {clearProps : 'all'})
+        app.eeShowMore = 'prev service';              
+        TweenMax.set(document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg'), {visibility : 'visible'});
+
+        TweenMax.to(document.querySelectorAll('h2.ee .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l2', 0.3, {x:'-70%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l3', 0.4, {x:'-130%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l4', 0.5, {x:'-185%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
+        TweenMax.to('h2.ee .l5', 0.6, {x:'-235%',ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){                
+          TweenMax.to('h2.ee .l3', 0.6, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ee .l4', 0.5, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ee .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
+          TweenMax.to('h2.ee .l2', 0.7, {x:'0%',ease: Power1.easeIn, force3D: false, onComplete : function(){              
+            TweenMax.set('h2.ee .l1', {overflow : 'visible'});
+            TweenMax.to('h2.ee .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});
+            TweenMax.set(document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg'), {visibility : 'hidden'});
+            TweenMax.set('h2.mm', {visibility : 'hidden'});
+            app.sliderTransition = false;
+          }});
+        }});
+
+      }})
+    }
   },
   watch : {
     appStart : function(val){
       var app = this;
       var h2Delay = 0.7;
-      if(val){
-        app.$store.commit('eyes', false);
-        TweenMax.set('.app', {backgroundColor : '#f8f8eb'});
-        TweenMax.set(document.querySelectorAll('.app-social .st0'), {fill : '#f8f8eb'});
-        TweenMax.set(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), {backgroundColor : '#f8f8eb'});
-        TweenMax.set(document.querySelectorAll('#app-navigation li .item__name'), {color : '#f8f8eb'});
-        TweenMax.set('.cursor', {x : (window.innerWidth / 2) - 25, y : (window.innerHeight / 2) -25});
+      if(val){                
         // Background animation //
+        TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});
+        TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#f8f8eb'});
+        TweenMax.to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#f8f8eb'});
         TweenMax.to('.bg__right', 0.7, {width : '160px', ease: Power4.easeOut, delay : 1.5});
+        TweenMax.set('.bg__bottom', {width : '100%'});
         TweenMax.to('.bg__bottom', 0.7, {height : '63%', ease: Power4.easeOut, delay : 1.5, onComplete : function(){
           // H1 Animation //
           TweenMax.fromTo('h1 .l1 span', 1.2, {y:'-130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0});
@@ -258,13 +963,14 @@ export default {
             TweenMax.to('h2.mm .l2', 0.7, {x:'0%',ease: Power1.easeIn,  force3D: false, onComplete : function(){
               TweenMax.set('h2.mm .l1', {overflow : 'visible'});
               TweenMax.to('h2.mm .show-more span', 0.5, {y : '0%', delay : 0.1,  force3D: false});
-              document.querySelectorAll('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5, h2.mm .bg').forEach( function(el, i) {
-                el.remove();
-              });
+              TweenMax.set(document.querySelectorAll('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5, h2.mm .bg'), {visibility : 'hidden'});
+              // document.querySelectorAll('h2.mm .l2, h2.mm .l3, h2.mm .l4, h2.mm .l5, h2.mm .bg').forEach( function(el, i) {
+              //   el.remove();
+              // });
             }});
           }});
           //==//
-          //EE
+          //EE          
           TweenMax.to(document.querySelectorAll('h2.ee .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
           TweenMax.to('h2.ee .l2', 0.3, {x:'-170%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
           TweenMax.to('h2.ee .l3', 0.4, {x:'-230%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
@@ -276,9 +982,10 @@ export default {
             TweenMax.to('h2.ee .l2', 0.7, {x:'0%',ease: Power1.easeIn, force3D: false, onComplete : function(){              
               TweenMax.set('h2.ee .l1', {overflow : 'visible'});
               TweenMax.to('h2.ee .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});
-              document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg').forEach( function(el, i) {
-                el.remove();
-              });
+              TweenMax.set(document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg'), {visibility : 'hidden'});
+              // document.querySelectorAll('h2.ee .l2, h2.ee .l3, h2.ee .l4, h2.ee .l5, h2.ee .bg').forEach( function(el, i) {
+              //   el.remove();
+              // });
             }});
           }});
           //==//
@@ -293,10 +1000,11 @@ export default {
             TweenMax.to('h2.ii .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
             TweenMax.to('h2.ii .l2', 0.7, {x:'0%',ease: Power1.easeIn, force3D: false, onComplete : function(){              
               TweenMax.set('h2.ii .l1', {overflow : 'visible'});
-              TweenMax.to('h2.ii .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});
-              document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg').forEach( function(el, i) {
-                el.remove();
-              });              
+              TweenMax.to('h2.ii .show-more span', 0.5, {y : '0%', delay : 0.1, force3D: false});              
+              TweenMax.set(document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg'), {visibility : 'hidden'});
+              // document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg').forEach( function(el, i) {
+              //   el.remove();
+              // });              
               scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})              
               .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
               .addCallback(function(){                
@@ -305,41 +1013,28 @@ export default {
 
 
               TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});
-              TweenMax.to('.app-logo img', 0.5, {y : 0, delay : 0.1});
-              TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.1, onComplete : function(){
-              TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
+              TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.1});
+              TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.1, onComplete : function(){              
               TweenMax.to(document.querySelectorAll('.cursor i'), 0.3, {scale : 1})
-              var w;
-              var tl = new TimelineMax({onComplete : function(){
-                app.$store.commit('appStartAnimation', false);
+                var w;
+                var tl = new TimelineMax({onComplete : function(){
+                  app.$store.commit('appStartAnimation', false);
+                  app.$store.commit('scroll', true);
+                  app.$store.commit('pageTransition', false);
+                }});
+                tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
+                .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
+                  width : function(i, el){                  
+                    return el.parentNode.classList.contains('current') ? 83 : 1;
+                  }
+                }}, 0.09, '-=0.47');              
               }});
-              tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
-              .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
-                width : function(i, el){                  
-                  return el.parentNode.parentNode.classList.contains('current') ? 83 : 1;
-                }
-              }}, 0.09, '-=0.47');              
-            }});
             }});
           }});
           //==//
         }});
         //==//
       }
-    },
-    navigation : {
-      handler: function (val, oldVal) {
-        var tl2 = new TimelineMax({onComplete : function(){
-          TweenMax.to('.cursor', 0.5, {rotation : 45});
-        }});
-        tl2.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
-        .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
-          width : function(i, el){            
-            return el.parentNode.parentNode.classList.contains('current') ? 83 : 1;
-          }
-        }}, 0.09, '-=0.47');
-      },
-      deep: true
     }
   }  
 };
@@ -347,7 +1042,7 @@ export default {
 
 <style scoped>
 .app.services {
-  background-color: #f8f8eb;
+  /*background-color: #f8f8eb;*/
 }
 #app-services {
     width: 100vw;
@@ -360,7 +1055,8 @@ export default {
   background-color: #f8f8eb;
   bottom: 63%;
   left: 0;
-  z-index: 2;  
+  z-index: 3;
+  visibility: hidden;
 }
 #app-services .bg__right {
   position: fixed;
@@ -388,7 +1084,8 @@ h1 {
   right: 160px;
   bottom: 63%; 
   letter-spacing: -0.5vw;
-  z-index: 2;
+  z-index: 3;
+  visibility: hidden;
 }
 h1 span {
   display: inline-block;  
@@ -435,10 +1132,11 @@ h2 {
   color: #f8f8eb;
   white-space: nowrap;    
   display: flex;
-  width: 100vw;  
+  width: 100vw;
+  height: 7.8vw;
   visibility: hidden;
   cursor: pointer;  
-  z-index: 1;
+  z-index: 2;
 }
 h2 .stroke {
   position: absolute;
@@ -448,6 +1146,7 @@ h2 .stroke {
   text-shadow:-1px -1px 0 #f8f8eb, 1px -1px 0 #f8f8eb, -1px 1px 0 #f8f8eb, 1px 1px 0 #f8f8eb;
   opacity: 0.1;
   visibility: hidden;
+  cursor: default;
 }
 h2 .stroke span:first-child {
   margin-right: 2vw;
@@ -458,6 +1157,8 @@ h2 .show-more {
   position: absolute;
   text-transform: lowercase;
   overflow: hidden;
+  z-index: 1;
+  transform: skew(9deg);
 }
 h2 .show-more span {
   display: inline-block;
@@ -531,7 +1232,10 @@ h2.mm {
   position: fixed;
   justify-content: flex-start;  
   bottom: calc(63% - 7.3vw);
-  padding-left: 11vw;
+  /*padding-left: 11vw;*/
+}
+.mm h2.mm {
+  z-index: 1;
 }
 h2.mm .stroke {
   left: 1vw;  
@@ -540,13 +1244,15 @@ h2.mm .show-more {
   right: -90px;
   bottom: 3.1vw;
 }
-h2.mm .fill {
-  padding-left: 1vw;
-  margin-left: -1vw;
+h2.mm .fill {  
+  left: 0;
 }
 h2.mm .l1 {
   position: absolute;
   bottom: 0;
+  left: 11vw;
+  padding-left: 2vw;
+  margin-left: -2vw;
 }
 h2.mm .start {
   transform: translateX(calc(200% + 2vw));
@@ -564,9 +1270,16 @@ h2.mm .l5 {
 }
 h2.ee {  
   justify-content: flex-end;
-  padding-right: calc(170px - 1vw);
+  /*padding-right: calc(170px - 1vw);*/
   position: fixed;
   bottom: calc(63% - 14.4vw);
+}
+.ee h2.ee {
+  z-index: 1;
+}
+h2.ee.next {
+  bottom: 80px;
+  transform: translateY(50%);
 }
 h2.ee .stroke {
   right: calc(70px + 2vw);
@@ -576,11 +1289,8 @@ h2.ee .show-more {
   bottom: 3.5vw;
 }
 h2.ee .fill {
-  text-align: right;
-  padding-left: 1vw;
-  margin-left: -1vw;
-  /*right: calc(170px - 1vw);*/
-
+  text-align: right;  
+  right: 0;
 }
 h2.ee .start {
   transform: translateX(calc(-200% - 1vw));
@@ -591,7 +1301,11 @@ h2.ee .bg {
 h2.ee .l1 {
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 160px;
+}
+h2.ee.next .l1 {
+  right: 50%;
+  transform: translateX(50%);
 }
 h2.ee .l2,
 h2.ee .l3,
@@ -604,6 +1318,9 @@ h2.ii {
   position: fixed;
   justify-content: center;
   bottom: calc(63% - 21.5vw);
+}
+.ii h2.ii {
+  z-index: 1;
 }
 h2.ii .stroke {
   transform: translateX(-1vw) skew(-9deg);
@@ -634,7 +1351,61 @@ h2.ii .l5 {
 }
 
 
-
+.slider {  
+  position: fixed;
+  top: 50%;
+  left: 160px;  
+  z-index: 1;
+  padding-bottom: 36px;
+  transform: translateY(-50%);
+}
+.slider__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #f8f8eb;  
+}
+.slider__list h3 {
+  margin: 0 0 30px 0;
+  padding: 0;
+  font: bold 36px/1 'Futura Bold';
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+  /*font: bold 2.8vw/1 'Futura Bold';*/
+}
+.slider__list h3 span {
+  display: inline-block;
+  transform: translateY(100%);
+}
+.slider__list_description {
+  margin: 0 0 31px 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.slider__list_description li {
+  font: 500 14px/1 'Futura';  
+  margin-right: 36px;
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: 0.5px;
+  visibility: hidden;
+  /*background: url('/img/icon_marker_y.svg') no-repeat left center / auto 11px;*/
+}
+.slider__list_description li img {
+  height: 11px;  
+  margin-right: 15px;
+}
+.slider__close {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;  
+  z-index: 1;
+}
 
 </style>
 

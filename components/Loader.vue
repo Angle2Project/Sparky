@@ -5,9 +5,9 @@
       <svg version="1.1" id="eyes" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          width="160px" height="100px" viewBox="0 0 160 100" style="enable-background:new 0 0 160 100;" xml:space="preserve">
       <style type="text/css">
-        .st0{fill:#EFEFD8;}
-        .st1{fill:#181919;}
-        .st2{fill:#FFFFFF;}
+        #eyes .st0{fill:#EFEFD8;}
+        #eyes .st1{fill:#181919;}
+        #eyes .st2{fill:#FFFFFF;}
         .rt-15, .rb-15, .lt-15, .lb-15,
         .rt-30, .rb-30, .lt-30, .lb-30,
         .rt-50, .rb-50, .lt-50, .lb-50, .rp-50, .lp-50,
@@ -126,7 +126,7 @@
          TweenMax.to('#eyes .rt-0', 0.5, {morphSVG: '#eyes .rt-15', ease: Power3.easeOut});
          TweenMax.to('#eyes .rb-0', 0.5, {morphSVG: '#eyes .rb-15', ease: Power3.easeOut});
          TweenMax.to('#eyes .lt-0', 0.5, {morphSVG: '#eyes .lt-15', ease: Power3.easeOut});
-         TweenMax.to('#eyes .lb-0', 0.5, {morphSVG: '#eyes .lb-15', ease: Power3.easeOut});
+         TweenMax.to('#eyes .lb-0', 0.5, {morphSVG: '#eyes .lb-15', ease: Power3.easeOut});         
          TweenMax.to(app.$data, 0.5, {percent: 30, ease: Power0.easeNone, onComplete : function(){
             TweenMax.to('#eyes .rt-0', 0.5, {morphSVG: '#eyes .rt-30', ease: Power3.easeOut});
             TweenMax.to('#eyes .rb-0', 0.5, {morphSVG: '#eyes .rb-30', ease: Power3.easeOut});
@@ -144,7 +144,7 @@
                 TweenMax.to('#eyes .rb-0', 0.5, {morphSVG: '#eyes .rb-70', ease: Power3.easeOut});
                 TweenMax.to('#eyes .lt-0', 0.5, {morphSVG: '#eyes .lt-70', ease: Power3.easeOut});
                 TweenMax.to('#eyes .lb-0', 0.5, {morphSVG: '#eyes .lb-70', ease: Power3.easeOut});
-                TweenMax.to('.loader__performance', 1, {opacity : 2});
+                TweenMax.to('.loader__performance', 1, {opacity : 2});                
                 TweenMax.to(app.$data, 0.5, {percent: 100, ease: Power0.easeNone, onComplete : function(){
                   TweenMax.to('#eyes .rt-0', 0.5, {morphSVG: '#eyes .rt-100', ease: Power3.easeOut});
                   TweenMax.to('#eyes .rb-0', 0.5, {morphSVG: '#eyes .rb-100', ease: Power3.easeOut});

@@ -10,26 +10,32 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Sparky Project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      // { rel: 'stylesheet', href: 'http://process.angleto.com/sparky/css/global.css'}
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },      
       { rel: 'stylesheet', href: '/css/global.css'}
+      // { rel: 'icon', type: 'image/x-icon', href: '/sparky/favicon.ico' },
+      // { rel: 'stylesheet', href: '/sparky/css/global.css'}
     ],    
     script: [
       { src: '/js/TweenMax.min.js' },
       { src: '/js/MorphSVGPlugin.min.js'},
       { src: '/js/SplitText.min.js' }
-      // { src: 'http://process.angleto.com/sparky/js/TweenMax.min.js' },
-      // { src: 'http://process.angleto.com/sparky/js/MorphSVGPlugin.min.js' },
-      // { src: 'http://process.angleto.com/sparky/js/SplitText.min.js' }
+      // { src: '/sparky/js/TweenMax.min.js' },
+      // { src: '/sparky/js/MorphSVGPlugin.min.js'},
+      // { src: '/sparky/js/SplitText.min.js' }
+      
     ]
   },  
+  css: [
+    // Загрузить модуль node.js
+    'swiper/dist/css/swiper.min.css'
+  ],
   router: {
-    // base: '/sparky/'
+     // base: '/sparky/'
   },
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  loading: { color: '#f6c930' },
   /*
   ** Build configuration
   */

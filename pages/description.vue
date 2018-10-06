@@ -11,6 +11,11 @@ export default {
     var app = this;
     app.$store.commit('pageName', 'description');
     app.$store.commit('navigation', 'description');
+    app.$store.commit('eyes', true);
+    TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919'});
+    TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'});
+    TweenMax.to(document.querySelectorAll('#app-navigation li .item__name'), 0.4, {color : '#191919'});
+    TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb'})
     var split = new SplitText("#app-description h1", {type:"words"});
     
     
@@ -24,26 +29,39 @@ export default {
     mode : 'out-in',
     css : false,
     enter : function(el, done){
-      var tl = new TimelineMax({onComplete : function(){
-          TweenMax.set('#app-description h1 a', {clearProps : 'all'})
-          TweenMax.set(document.querySelectorAll('#app-description h1 i'), {clearProps : 'all'});
-        }});        
-        document.querySelectorAll('#app-description h1 a > div').forEach( function(el, i) {
-          var h = document.createElement('i');
-          el.append(h)
-        });
-        TweenMax.set('#app-description h1', {visibility: 'visible'});
-        TweenMax.set('#app-description h1', {visibility: 'visible'});
-        TweenMax.set('#app-description h1 a', {color : '#191919'});
-        TweenMax.set('#app-description h1 i', {height : 0});
-        tl.staggerFrom(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.7, {opacity:0, rotationX:-80, force3D:true, transformOrigin:"top center -50", delay : 0.5, ease: Power4.easeOut}, 0.02)
-        .to(document.querySelectorAll('#app-description h1 i'), 0.5, {height : '96%'}, '-=0.1')
-        .to(document.querySelectorAll('#app-description h1 a'), 0.5, {color : '#f8f8eb'}, '-=0.6');
+      var app = this;
+      var tl = new TimelineMax({delay : 0.4, onComplete : function(){
+        TweenMax.set('#app-description h1 a', {clearProps : 'all'})
+        TweenMax.set(document.querySelectorAll('#app-description h1 i'), {clearProps : 'all'});
+        app.$store.commit('scroll', true);
+        app.$store.commit('pageTransition', false);
+      }});        
+      document.querySelectorAll('#app-description h1 a > div').forEach( function(el, i) {
+        var h = document.createElement('i');
+        el.append(h)
+      });
+      TweenMax.set('#app-description h1', {visibility: 'visible'});
+      TweenMax.set('#app-description h1', {visibility: 'visible'});
+      TweenMax.set('#app-description h1 a', {color : '#191919'});
+      TweenMax.set('#app-description h1 i', {height : 0});
+      tl.staggerTo(document.querySelectorAll('.eye__02, .eye__07'), 0.6, {y : '0%', opacity : 1, scaleY : 1, ease: Back.easeOut.config(1.7)}, 0.1, 'uno')
+      .staggerFrom(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.7, {opacity:0, rotationX:-80, force3D:true, transformOrigin:"top center -50", ease: Power4.easeOut}, 0.02, 'uno+=0.2')
+      .to(document.querySelectorAll('#app-description h1 i'), 0.5, {height : '96%'}, '-=0.1')
+      .to(document.querySelectorAll('#app-description h1 a'), 0.5, {color : '#f8f8eb'}, '-=0.6');
     },
     leave : function(el, done){
-      TweenMax.fromTo(el, 2, {opacity : 1, scale : 1}, {opacity : 0, scale : 0.5, onComplete : function(){
-        done();
-      }})
+      var app = this;
+      app.$store.commit('scroll', false);
+      app.$store.commit('prevPage', 'description');
+      var next = app.$route.name;
+      if(next == 'index'){
+        new TimelineMax().staggerTo(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.6, {opacity:0, scaleY:0, force3D:true, ease: Power4.easeOut}, 0.02, 'uno');
+        setTimeout(done, 700)  
+      }else{
+        new TimelineMax().staggerTo(document.querySelectorAll('.eye__02, .eye__07'), 0.3, {opacity : 0, scaleY : 0.5, ease: Power4.easeIn, force3D : true}, 0.1, 'uno')
+        .staggerTo(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.6, {opacity:0, scaleY:0, force3D:true, ease: Power4.easeOut}, 0.02, 'uno');
+        setTimeout(done, 700)
+      }      
     }
   },
   computed : {    
@@ -69,8 +87,9 @@ export default {
 
         
         var tl = new TimelineMax({onComplete : function(){
-          app.$store.commit('loader', false);          
-          
+          app.$store.commit('loader', false);  
+          app.$store.commit('scroll', true);     
+          app.$store.commit('pageTransition', false);     
           scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})
           .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
           .addCallback(function(){                
@@ -78,9 +97,9 @@ export default {
           });
 
           TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.5});
-          TweenMax.to('.app-logo img', 0.5, {y : 0, delay : 0.5});
+          TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.5});
           TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.5, onComplete : function(){
-            TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
+            //TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
             var w;
             var tl = new TimelineMax({onComplete : function(){
               app.$store.commit('appStartAnimation', false);
@@ -88,7 +107,7 @@ export default {
             tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
             .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
               width : function(i, el){                  
-                return el.parentNode.parentNode.classList.contains('current') ? 83 : 1;
+                return el.parentNode.classList.contains('current') ? 83 : 1;
               }
             }}, 0.09, '-=0.47');              
           }});
@@ -114,7 +133,7 @@ export default {
 
 <style>
 .app.description {
-  background-color: #f8f8eb;
+  /*background-color: #f8f8eb;*/
 }
 #app-description {
     

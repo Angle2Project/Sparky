@@ -1,13 +1,17 @@
 <template>
   <ul id="app-navigation">
-    <li v-for="(item, index) in list" :key="index" :class="item.current ? 'current' : ''" @mouseenter="hover" @mouseleave="hover">
-      <nuxt-link :to="item.url">
-        <div class="item__name">
-          <span>{{item.name}}</span>
-        </div>
-        <i></i>
-      </nuxt-link>
-    </li>    
+    <li v-if="state == 'app'" v-for="(item, index) in list" :data-url="item.url" :data-name="item.name" :key="index" :class="item.current ? 'current' : ''" @mouseenter="hover" @mouseleave="hover" @click="app">      
+      <div class="item__name">
+        <span>{{item.name}}</span>
+      </div>
+      <i></i>      
+    </li>
+    <li v-if="state == 'slider'" v-for="(item, index) in list" :data-name="item.sn" :key="index" :class="item.current ? 'current' : ''" @mouseenter="hover" @mouseleave="hover" @click="slider($event, item.sn)">
+      <div class="item__name">
+        <span>{{item.name}}</span>
+      </div>      
+      <i></i>      
+    </li>
   </ul>
 </template>
 
@@ -19,7 +23,7 @@
     },
     data : function() {
       return {
-
+        
       }
     },
     computed : {
@@ -28,24 +32,52 @@
       },
       appStartAnimation : function(){
         return this.$store.state.appStartAnimation;
-      }
+      },
+      state : function(){
+        return this.$store.state.navigation.state;
+      },
+      pageTransition : function(){
+        return this.$store.state.pageTransition;
+      }      
     },
     methods : {
       hover : function(e){
-        if(this.appStartAnimation)return false;
+        var app = this; 
+        if(this.appStartAnimation || (app.state == 'slider' && app.$store.state.services.sliderTransition))return false;
         if(e.currentTarget.classList.contains('current'))return false;        
         var s = e.currentTarget.querySelector('span')
         var i = e.currentTarget.querySelector('i');
         var t = e.currentTarget.querySelector('.item__name');
-        if(e.type == 'mouseenter'){          
+        if(e.type == 'mouseenter'){
+          if(app.$store.state.pageName == 'services' && app.$store.state.services.slider)TweenMax.to('.cursor', 0.7, {rotation : 0, ease: Power4.easeInOut});
           var w = s.clientWidth;          
           TweenMax.to(i, 0.2, {width : '7px'});
           TweenMax.to(t, 0.2, {width : w});
-        }else{
+        }else{          
+          if(app.$store.state.pageName == 'services' && app.$store.state.services.slider)TweenMax.to('.cursor', 0.7, {rotation : 45, ease: Power4.easeInOut});
           TweenMax.to(i, 0.2, {width : '1px'});
           TweenMax.to(t, 0.2, {width : 0});
         }
-      }
+      },
+      slider : function(e, name){
+        var app = this;        
+        if(app.$store.state.services.sliderTransition)return false;
+        app.$store.state.services.serviceDetails(e, name, true);
+      },
+      app : function(e){
+        var app = this;        
+        if(app.$store.state.pageTransition)return false;
+        app.$store.commit('pageTransition', true);
+        var name = e.currentTarget.getAttribute('data-name');
+        var url = e.currentTarget.getAttribute('data-url');
+        app.$router.push({path : url});
+        e.currentTarget.classList.add('current')        
+        TweenMax.to('#app-navigation li.current i', 0.7, {width : 1, ease: Power4.easeInOut});
+        TweenMax.to(e.currentTarget.querySelector('.item__name'), 0.7, {width : 0, ease: Power4.easeInOut});
+        TweenMax.to(e.currentTarget.querySelector('i'), 0.7, {width : 83, ease: Power4.easeInOut, onComplete : function(){
+          app.$store.commit('navigation', name);
+        }});
+      }      
     }    
   };
 </script>
