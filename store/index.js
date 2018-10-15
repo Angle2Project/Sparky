@@ -14,10 +14,13 @@ const store = () => new Vuex.Store({
     scrollDownHover : false,
     scrollDownTL : null,
     scroll : false,
+    mouseMove : null,
     services : null,
     servicesSlider : false,
     prevPage : '',
     pageTransition : false,
+    teamSlider : true,
+    startProject : false,
     navigation : {
       state : 'app',
       list : [
@@ -29,27 +32,27 @@ const store = () => new Vuex.Store({
         {
           name : 'description',
           current : false,
-          url : 'description'
+          url : '/description'
         },
         {
           name : 'expertise',
           current : false,
-          url : 'services'
+          url : '/services'
         },
         {
           name : 'clients',
           current : false,
-          url : 'clients'
+          url : '/clients'
         },
         {
           name : 'team',
           current : false,
-          url : 'team'
+          url : '/team'
         },
         {
-          name : 'contact',
+          name : 'contacts',
           current : false,
-          url : 'contact'
+          url : '/contacts'
         }
       ]
     }
@@ -116,7 +119,7 @@ const store = () => new Vuex.Store({
           {
             name : 'description',
             current : false,
-            url : '/description/'
+            url : '/description'
           },
           {
             name : 'expertise',
@@ -134,9 +137,9 @@ const store = () => new Vuex.Store({
             url : '/team'
           },
           {
-            name : 'contact',
+            name : 'contacts',
             current : false,
-            url : '/contact'
+            url : '/contacts'
           }
         ]
         for(var i in state.navigation.list){
@@ -172,6 +175,15 @@ const store = () => new Vuex.Store({
     },
     pageTransition(state, status){
       state.pageTransition = status;
+    },
+    mouseMove(state, e){
+      state.mouseMove = e;
+    },
+    teamSlider(state, status){
+      state.teamSlider = status;
+    },
+    startProject(state, status){
+      state.startProject = status;
     }
   }
 })

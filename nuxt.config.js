@@ -18,10 +18,13 @@ module.exports = {
     script: [
       { src: '/js/TweenMax.min.js' },
       { src: '/js/MorphSVGPlugin.min.js'},
-      { src: '/js/SplitText.min.js' }
+      { src: '/js/SplitText.min.js' },
+      { src: '/js/ModifiersPlugin.min.js' }
+      
       // { src: '/sparky/js/TweenMax.min.js' },
       // { src: '/sparky/js/MorphSVGPlugin.min.js'},
-      // { src: '/sparky/js/SplitText.min.js' }
+      // { src: '/sparky/js/SplitText.min.js' },
+      // { src: '/sparky/js/ModifiersPlugin.min.js' }
       
     ]
   },  
@@ -29,8 +32,9 @@ module.exports = {
     // Загрузить модуль node.js
     'swiper/dist/css/swiper.min.css'
   ],
+  plugins: ['~/plugins/vue-js-modal.js'], 
   router: {
-     // base: '/sparky/'
+      //base: '/sparky/'
   },
   /*
   ** Customize the progress bar color

@@ -65,20 +65,44 @@
         app.$store.state.services.serviceDetails(e, name, true);
       },
       app : function(e){
-        var app = this;        
+        var app = this;
         if(app.$store.state.pageTransition)return false;
-        app.$store.commit('pageTransition', true);
-        var name = e.currentTarget.getAttribute('data-name');
-        var url = e.currentTarget.getAttribute('data-url');
+        app.$store.commit('pageTransition', true);        
+        var url = e.currentTarget.getAttribute('data-url');        
+        console.log(url);        
         app.$router.push({path : url});
-        e.currentTarget.classList.add('current')        
-        TweenMax.to('#app-navigation li.current i', 0.7, {width : 1, ease: Power4.easeInOut});
-        TweenMax.to(e.currentTarget.querySelector('.item__name'), 0.7, {width : 0, ease: Power4.easeInOut});
-        TweenMax.to(e.currentTarget.querySelector('i'), 0.7, {width : 83, ease: Power4.easeInOut, onComplete : function(){
-          app.$store.commit('navigation', name);
-        }});
+        // e.currentTarget.classList.add('current')
+        // TweenMax.to('#app-navigation li.current i', 0.7, {width : 1, ease: Power4.easeInOut});
+        // TweenMax.to(e.currentTarget.querySelector('.item__name'), 0.7, {width : 0, ease: Power4.easeInOut});
+        // TweenMax.to(e.currentTarget.querySelector('i'), 0.7, {width : 83, ease: Power4.easeInOut, onComplete : function(){
+        //   app.$store.commit('navigation', name);
+        // }});
       }      
-    }    
+    },
+    watch : {
+      $route : function(rout){
+        var app = this;
+        var name;
+        //app.$store.commit('navigation', name);
+        if(rout.name == 'index'){
+          name = 'intro'; 
+        }else if(rout.name == 'services'){
+          name = 'expertise';
+        }else{
+          name = rout.name
+        }        
+        var cuurent = document.querySelector('#app-navigation li[data-name="'+name+'"]');
+        document.querySelector('#app-navigation li.current').classList.remove('current');
+        document.querySelector('#app-navigation li[data-name="'+name+'"]').classList.add('current');
+        TweenMax.to(document.querySelectorAll('#app-navigation li:not([data-name="'+name+'"]) i'), 0.7, {width : 1, ease: Power4.easeInOut});
+        TweenMax.to(cuurent.querySelector('.item__name'), 0.7, {width : 0, ease: Power4.easeInOut});
+        TweenMax.to(cuurent.querySelector('i'), 0.7, {width : 83, ease: Power4.easeInOut, onComplete : function(){
+          
+        }});
+        console.log(name);
+        console.log(document.querySelector('#app-navigation li:not([data-name="'+name+'"]) i'));
+      }
+    }
   };
 </script>
 

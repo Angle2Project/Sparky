@@ -36,7 +36,7 @@ export default {
     css : false,
     enter : function(el, done){
       var app = this;
-      var eyes = ['.eye__01', '.eye__09', '.eye__03', '.eye__05', '.eye__04', '.eye__08', '.eye__10', '.eye__02', '.eye__07'];      
+      var eyes = ['.eye__01', '.eye__09', '.eye__06', '.eye__03', '.eye__05', '.eye__04', '.eye__08', '.eye__10', '.eye__02', '.eye__07', '.eye__11'];      
       new TimelineMax().staggerTo(eyes, 0.6, {y : '0%', opacity : 1, scaleY : 1, ease: Back.easeOut.config(1.7)}, 0.1, 'uno')
       .set('.intro__text', {visibility : 'visible'}, 'uno+=0.5')
       .fromTo('.l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0}, 'uno+=0.5')
@@ -47,8 +47,9 @@ export default {
       .to('.l3', 0.6, {y:'0%',ease: Power1.easeIn}, 'uno+=1.1')
       .to('.l4', 0.5, {y:'0%',ease: Power1.easeIn}, 'uno+=1.1')
       .to('.l5', 0.4, {y:'0%',ease: Power1.easeIn}, 'uno+=1.1')
+      .to('.scroll-down__text span, .start-project__text span', 0.5, {y : '0%'}, 'uno+=1.5')
       .to('.l2', 0.7, {y:'0%',ease: Power1.easeIn, onComplete : function(){
-        TweenMax.to('.app.intro h2 span', 0.5, {y : 0, ease: Power1.easeOut, delay : 0.1});
+        TweenMax.to('.app.intro h2 span', 0.5, {y : 0, ease: Power1.easeOut, delay : 0.1});        
         app.$store.commit('scroll', true);
         app.$store.commit('pageTransition', false);
       }}, 'uno+=1.1');     
@@ -62,7 +63,9 @@ export default {
       var next = app.$route.name;
       var eyes;
       if(next == 'description'){
-        eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__04, .eye__05, .eye__06, .eye__08, .eye__09, .eye__10');
+        eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__04, .eye__05, .eye__06, .eye__08, .eye__09, .eye__10, .eye__11');
+      }else if(next == 'contacts'){
+        eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__02, .eye__05, .eye__06, .eye__08, .eye__07, .eye__10, .eye__11');
       }else{
         eyes = document.querySelectorAll('#app-eyes section');
       }
@@ -99,6 +102,8 @@ export default {
         TweenMax.fromTo('#app-eyes .eye__07', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.17});
         TweenMax.fromTo('#app-eyes .eye__08', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.09});
         TweenMax.fromTo('#app-eyes .eye__09', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.15});
+        TweenMax.fromTo('#app-eyes .eye__10', 0.8, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.2});
+        TweenMax.fromTo('#app-eyes .eye__11', 0.7, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.15});
         
 
 
@@ -126,7 +131,7 @@ export default {
             TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});
             TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.1});
             TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.1, onComplete : function(){
-              //TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
+              TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
               app.$store.commit('scroll', true);
               app.$store.commit('pageTransition', false);
               var w;
@@ -162,11 +167,16 @@ export default {
   left: 70px;
   top: 48%;
   visibility: hidden;
+  z-index: 1;
 }
 h1 {
   margin: 0;
   padding: 0;
-  font: 9.4vw/ 8.5vw "Futura Condensed Extra Italic";  
+  font-family: "Futura Condensed Extra Italic";
+  font-size: 9.4vw;
+  line-height: 8.5vw;
+  font-weight: 100;
+  font-style: italic;
   text-transform: uppercase;    
 }
 h1 span {
@@ -205,7 +215,11 @@ h1 span {
   z-index: 1;
 }
 h2 {
-  font: 500 italic 3.8vw/1 "Futura";    
+  font-family: "Futura";
+  font-weight: 500;
+  font-style: italic;
+  font-size: 3.8vw;
+  line-height: 1;
   overflow: hidden;
   margin-left: 10px;
   margin-top: 2vw;

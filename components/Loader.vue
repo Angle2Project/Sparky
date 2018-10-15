@@ -165,6 +165,8 @@
                     TweenMax.to('#eyes .rg-0', 0.5, {morphSVG: '#eyes .rg-120', ease: Power3.easeOut});
                     TweenMax.to('.loader__bg', 1, {scale : 0, delay : 1, ease: Power3.easeInOut});
                     TweenMax.to('.wrapper', 0.3, {scale : 0, ease: Power2.easeInOut, delay : 0.9});
+                    TweenMax.set([document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')], {height : '0vw'});
+                    app.$store.commit('teamSlider', false);
                     app.$store.commit('appStart', true);
                   }});
                 }});
@@ -192,13 +194,19 @@
   position: relative;
 }
 .loader__percent {
-  font: bold 14px/1 'Futura Condensed Extra';
+  font-family: 'Futura Condensed Extra';
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1;
   text-align: center;
   margin: 35px 0 0 0;
   padding: 0;  
 } 
 .loader__performance {
-  font: 500 14px/1 'Futura';
+  font-family: 'Futura';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
   position: fixed;
   bottom: calc(((100vh / 2) - 77px) / 2);
   left: 50%;

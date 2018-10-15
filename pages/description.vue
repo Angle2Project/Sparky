@@ -1,6 +1,6 @@
 <template>
   <section class="container" id="app-description">
-    <h1>We provide a fresh set of eyes for powerful brands looking to <a href="">maximize moments, elevate experiences, and ignite innovation.</a></h1>
+    <h1>We provide a fresh set of eyes for powerful brands looking to <nuxt-link to="/services">maximize moments, elevate experiences, and ignite innovation.</nuxt-link></h1>
   </section>
 </template>
 
@@ -47,7 +47,8 @@ export default {
       tl.staggerTo(document.querySelectorAll('.eye__02, .eye__07'), 0.6, {y : '0%', opacity : 1, scaleY : 1, ease: Back.easeOut.config(1.7)}, 0.1, 'uno')
       .staggerFrom(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.7, {opacity:0, rotationX:-80, force3D:true, transformOrigin:"top center -50", ease: Power4.easeOut}, 0.02, 'uno+=0.2')
       .to(document.querySelectorAll('#app-description h1 i'), 0.5, {height : '96%'}, '-=0.1')
-      .to(document.querySelectorAll('#app-description h1 a'), 0.5, {color : '#f8f8eb'}, '-=0.6');
+      .to(document.querySelectorAll('#app-description h1 a'), 0.5, {color : '#f8f8eb'}, '-=0.6')
+      .to('.scroll-down__text span, .start-project__text span', 0.5, {y : '0%'}, 'uno+=0.6')
     },
     leave : function(el, done){
       var app = this;
@@ -99,7 +100,7 @@ export default {
           TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.5});
           TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.5});
           TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.5, onComplete : function(){
-            //TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
+            TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
             var w;
             var tl = new TimelineMax({onComplete : function(){
               app.$store.commit('appStartAnimation', false);
@@ -141,7 +142,10 @@ export default {
 #app-description h1 {
   margin: 0;
   padding: 0;
-  font: bold 2.81vw/3.8vw 'Futura Bold';
+  font-family: 'Futura Bold';
+  font-weight: bold;
+  font-size: 2.81vw;
+  line-height: 3.8vw;
   width: 58vw;
   visibility: hidden;
   color: #191919;
@@ -171,7 +175,7 @@ export default {
   color: #191919;
 }
 #app-description h1 a:hover div i {
-  height: 3%;
+  height: 1%;
 }
 </style>
 

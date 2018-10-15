@@ -71,25 +71,25 @@ export default {
     css : false,
     enter : function(el, done){
       var app = this;
-      var prev = (app.$store.state.prevPage == 'services')
-      console.log(prev);      
+      var prev = (app.$store.state.prevPage == 'services')      
       TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});      
-      TweenMax.to('.bg__bottom', (prev ? 0 : 0.7), {height : '37%', ease: Power4.easeOut, onComplete : function(){
+      TweenMax.to('.bg__bottom', 0.7, {height : '37%', ease: Power4.easeInOut, onComplete : function(){
 
         // H1 Animation //
         TweenMax.set('h1', {visibility : 'visible'});
-        TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0});
+        TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0, force3D : false});
           TweenMax.to('h1 .l2', 0.3, {y:'15%',ease: Power1.easeOut, delay : 0});
           TweenMax.to('h1 .l3', 0.4, {y:'30%',ease: Power1.easeOut, delay : 0});
           TweenMax.to('h1 .l4', 0.5, {y:'45%',ease: Power1.easeOut, delay : 0});
           TweenMax.to('h1 .l5', 0.6, {y:'60%',ease: Power1.easeOut, delay : 0, onComplete : function(){
+            TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : '100%'});
             app.$store.commit('loader', false);
             new TimelineMax().staggerTo(document.querySelectorAll('.swiper-container .swiper-slide'), 0.5, {opacity : 1, y : '0', ease: Back.easeOut.config(1.5), force3D : true}, 0.1, 'uno')
             .to(document.querySelectorAll('.swiper-container .swiper-slide'), 0.5, {borderColor : '#191919'}, 'uno+=0.7');            
             TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn});
-            TweenMax.to('h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn, onComplete : function(){
+            TweenMax.to('h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn, onComplete : function(){              
               TweenMax.set('.swiper-navigation .prev i', {left : 'auto', right : 'calc(100% - 30px)'})
               TweenMax.set('.swiper-navigation .next i', {right : 'auto', left : 'calc(100% - 30px)'})
               TweenMax.to(document.querySelectorAll('.swiper-navigation span'), 0.5, {y : '0', onComplete : function(){
@@ -116,13 +116,17 @@ export default {
       TweenMax.set(document.querySelectorAll('h1 .l1, h1 span'), {backgroundColor : 'transparent'})
       var next = app.$route.name;
       var tl = new TimelineMax();
-      if(next == 'index' || next == 'description'){
-        tl.to('.bg__bottom', 0.7, {height : '0%', ease: Power4.easeInOut}, 'uno')
-        .to(document.querySelectorAll('.swiper-navigation .prev, .swiper-navigation .next'), 0.7, {opacity : 0, scaleY : 0, ease: Power4.easeOut}, 'uno+=0.3')
-        .to('.swiper-container', 0.7, {scaleY : 0.5, opacity : 0, ease: Power4.easeOut, onComplete : function(){
-          done();  
-        }}, 'uno+=0.6')
-      }      
+      var slides = document.querySelectorAll('.swiper-slide-active, .swiper-slide-active+.swiper-slide, .swiper-slide-active+.swiper-slide+.swiper-slide');            
+      tl.to('h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeInOut}, 'uno')
+      .to(document.querySelectorAll('.swiper-slide'), 0.7, {borderColor : 'transparent'}, 'uno')
+      .to(document.querySelectorAll('.swiper-navigation .prev, .swiper-navigation .next'), 0.7, {opacity : 0}, 'uno')
+      .staggerTo(slides, 0.15, {scaleY : 0.5, opacity : 0}, 0.15, 'dos')
+      .to('.bg__bottom', 0.7, {height : '0%', ease: Power4.easeInOut, onComplete : function(){
+        TweenMax.set('.bg__bottom', {x : '0%'});
+        done();
+      }}, 'dos');        
+      
+      
     }
   },
   computed : {    
@@ -167,10 +171,10 @@ export default {
     appStart : function(val){
       var app = this;      
       TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});      
-      TweenMax.to('.bg__bottom', 0.7, {height : '37%', ease: Power4.easeOut, delay : 1.5, onComplete : function(){
+      TweenMax.to('.bg__bottom', 0.7, {height : '37%', ease: Power4.easeInOut, delay : 1.5, onComplete : function(){
         // H1 Animation //
         TweenMax.set('h1', {visibility : 'visible'});
-        TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0});
+        TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0, force3D : false});
           TweenMax.to('h1 .l2', 0.3, {y:'15%',ease: Power1.easeOut, delay : 0});
           TweenMax.to('h1 .l3', 0.4, {y:'30%',ease: Power1.easeOut, delay : 0});
           TweenMax.to('h1 .l4', 0.5, {y:'45%',ease: Power1.easeOut, delay : 0});
@@ -255,7 +259,11 @@ export default {
 h1 {
   margin: 0;
     padding: 0;
-    font: 9.4vw/ 8.5vw "Futura Condensed Extra Italic";
+    font-family: "Futura Condensed Extra Italic";
+    font-size: 9.4vw;
+    line-height: 8.5vw;
+    font-weight: 100;
+    font-style: italic;
     text-transform: uppercase;
     position: absolute;
     right: 160px;

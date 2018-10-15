@@ -1,11 +1,14 @@
 <template>
-  <div class="app" :class="pageName" @mousemove="cursor" @mousewheel="mousewheel">
+  <div class="app" :class="[pageName, startProject ? 'sp-active' : '']" @mousewheel="mousewheel" @mousemove="cursor">
+    <img class="logo-preview" src="~assets/sparky_preview.png" alt="">
     <div class="cursor"><i></i><i></i></div>
     <loader v-if="loader"/>
     <eyes v-show="eyes"/>
-    <navigation />
+    <navigation />    
+    <team v-show="teamSlider" />
+    <StartProject/>
 
-    <section class="app-logo">
+    <section class="app-logo" @click="logoClick">
       <nuxt-link to="/">
         <!-- <img src="/img/logo_sparky_black_bg.svg" alt=""> -->
         <svg version="1.1" id="app-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -317,19 +320,12 @@
       </span>
     </section>
 
-    <section class="start-project">      
-      <span class="start-project__text">
-        <span>start a project</span>
-      </span>
-      <div class="start-project__button" @mouseenter="startProjectHover" @mouseleave="startProjectHover">
-        <i class="start-project__button_hover"></i>
-        <i class="start-project__button_1"></i>
-        <i class="start-project__button_2"></i>
-      </div>
-    </section>    
     <nuxt :class="pageName"/>
     <section class="bg__right"></section>
     <section class="bg__bottom"></section>
+    <modal name="foo" class="modal" :width="300" :height="140">
+      <h4>Not yet :(</h4>
+    </modal>
   </div>
 </template>
 
@@ -338,13 +334,21 @@
   import loader from '~/components/Loader.vue';
   import eyes from '~/components/Eyes.vue';
   import navigation from '~/components/Navigation.vue';
+  import team from '~/components/Team.vue';
+  import StartProject from '~/components/StartProject.vue';  
+  
+ 
+  
+  //Vue.use(VModal)
 
   
   export default {
     components: {
       loader,
       eyes,
-      navigation
+      navigation,
+      team,
+      StartProject
     },
     data : function(){
       return {
@@ -353,7 +357,7 @@
     },    
     mounted : function(){
       var app = this;
-      console.log(this);      
+      console.log(app);
     },
     computed : {
       appStart : function(){
@@ -373,37 +377,29 @@
       },
       servicesSlider : function(){
         return this.$store.state.servicesSlider;
+      },
+      teamSlider : function(){
+        return this.$store.state.teamSlider;
+      },
+      startProject : function(){
+        return this.$store.state.startProject;
       }
     },
-    methods : {
-      startProjectHover : function(e){
-        if(e.type == 'mouseenter'){
-          TweenMax.to('.start-project__text span', 0.3, {y : '0%', ease: Power2.easeIn, force3D : false});
-          TweenMax.to('.start-project__button', 0.25, {scale : 1.2, ease: Power2.easeIn});
-          TweenMax.to('.start-project__button_hover', 0.25, {scale : 1, ease: Power2.easeIn});
-          TweenMax.to('.start-project__button_1, .start-project__button_2', 0.25, {backgroundColor : '#f6c930', ease: Power2.easeIn});
-          TweenMax.to('.start-project__button_2', 0.25, {width : 16, ease: Power2.easeIn});
-        }else{
-          TweenMax.to('.start-project__text span', 0.3, {y : '100%', ease: Power2.easeIn, force3D : false});
-          TweenMax.to('.start-project__button', 0.25, {scale : 1, ease: Power2.easeIn});
-          TweenMax.to('.start-project__button_hover', 0.25, {scale : 0, ease: Power2.easeIn});
-          TweenMax.to('.start-project__button_1, .start-project__button_2', 0.25, {backgroundColor : '#191919', ease: Power2.easeIt});
-          TweenMax.to('.start-project__button_2', 0.25, {width : 12, ease: Power2.easeIn});
-        }
-      },
+    methods : {      
       scrollDownHover : function(e){
         var app = this;
         if(e.type == 'mouseenter'){
-          TweenMax.to('.scroll-down__text span', 0.3, {y : '0%', ease: Power2.easeIn, force3D : false});
+          if(app.$store.state.pageName == 'services' || app.$store.state.pageName == 'clients' || app.$store.state.pageName == 'team' || app.$store.state.pageName == 'contacts')TweenMax.to('.scroll-down__text span', 0.3, {y : '0%', ease: Power2.easeIn, force3D : false});          
           app.$store.commit('scrollDownHover', true);
         }else{
-          TweenMax.to('.scroll-down__text span', 0.3, {y : '100%', ease: Power2.easeIn, force3D : false});
+          if(app.$store.state.pageName == 'services' || app.$store.state.pageName == 'clients' || app.$store.state.pageName == 'team' || app.$store.state.pageName == 'contacts')TweenMax.to('.scroll-down__text span', 0.3, {y : '100%', ease: Power2.easeIn, force3D : false});
           app.$store.commit('scrollDownHover', false);
           scrollDownTL.play();
         }
       },
       cursor : function(e){
         var app = this;
+        app.$store.commit('mouseMove', e);
         if(app.$store.state.pageName == 'services')TweenMax.to('.cursor', 0.5, {x : (e.clientX - 25), y : (e.clientY - 25)});
       },
       goNext : function(e){
@@ -413,13 +409,28 @@
           case 'index':
             app.$store.commit('scroll', false);
             document.querySelector('#app-navigation [data-name="description"]').click();
-            app.$router.push({path : 'description'});
+            app.$router.push({path : '/description'});
             break;
           case 'description':
             app.$store.commit('scroll', false);
             document.querySelector('#app-navigation [data-name="expertise"]').click();
-            app.$router.push({path : 'services'});
+            app.$router.push({path : '/services'});
             break;
+          case 'services':
+            app.$store.commit('scroll', false);
+            document.querySelector('#app-navigation [data-name="clients"]').click();
+            app.$router.push({path : '/clients'});
+            break;
+            case 'clients':
+              app.$store.commit('scroll', false);
+              document.querySelector('#app-navigation [data-name="team"]').click();
+              app.$router.push({path : '/team'});
+              break;
+            case 'team':
+              app.$store.commit('scroll', false);
+              document.querySelector('#app-navigation [data-name="contacts"]').click();
+              app.$router.push({path : '/contacts'});
+              break;
           default:
             // statements_def
             break;
@@ -427,6 +438,7 @@
       },
       mousewheel : function(e){
         var app = this;
+        console.log(e);
         var name;        
         if(app.scroll){
           if(e.deltaY > 0){
@@ -458,16 +470,30 @@
                 case 'index':
                   app.$store.commit('scroll', false);
                   document.querySelector('#app-navigation [data-name="description"]').click();
-                  app.$router.push({path : 'description'});
+                  app.$router.push({path : '/description'});
                   break;
                 case 'description':
                   app.$store.commit('scroll', false);
                   document.querySelector('#app-navigation [data-name="expertise"]').click();
-                  app.$router.push({path : 'services'});
+                  app.$router.push({path : '/services'});
                   break;
-                default:
+                case 'services':
+                  app.$store.commit('scroll', false);
+                  document.querySelector('#app-navigation [data-name="clients"]').click();
+                  app.$router.push({path : '/clients'});
+                  break;                
+                case 'clients':
+                  app.$store.commit('scroll', false);
+                  document.querySelector('#app-navigation [data-name="team"]').click();
+                  app.$router.push({path : '/team'});
+                  break;
+                case 'team':
+                  app.$store.commit('scroll', false);
+                  document.querySelector('#app-navigation [data-name="contacts"]').click();
+                  app.$router.push({path : '/contacts'});
+                  break;
                   // statements_def
-                  break;
+                default:
               } 
             }            
           }else{
@@ -503,7 +529,22 @@
                 case 'services':
                   app.$store.commit('scroll', false);
                   document.querySelector('#app-navigation [data-name="description"]').click();
-                  app.$router.push({path : 'description'});
+                  app.$router.push({path : '/description'});
+                  break;
+                case 'clients':
+                  app.$store.commit('scroll', false);
+                  document.querySelector('#app-navigation [data-name="expertise"]').click();
+                  app.$router.push({path : '/services'});
+                  break;
+                case 'team':
+                  app.$store.commit('scroll', false);
+                  document.querySelector('#app-navigation [data-name="clients"]').click();
+                  app.$router.push({path : '/clients'});
+                  break;
+                  case 'contacts':
+                  app.$store.commit('scroll', false);
+                  document.querySelector('#app-navigation [data-name="team"]').click();
+                  app.$router.push({path : '/team'});
                   break;
                 default:
                   // statements_def
@@ -516,8 +557,11 @@
           return false;
         }
         e.preventDefault();
-      }
-    },
+      },      
+      logoClick : function(e){
+        document.querySelector('#app-navigation [data-name="intro"]').click();
+      }      
+    },    
     watch : {      
       
     }    
@@ -623,45 +667,7 @@
     transform: translateY(100%);
     display: inline-block;
   }
-  .start-project {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 102px;
-    right: 11px;
-    transform: rotate(-90deg);
-    z-index: 3;
-  }
-  .start-project .start-project__text {
-    font: 500 14px/1 'Futura';
-    margin-right: 13px;
-    overflow: hidden;
-  }
-  .start-project .start-project__text span {
-    display: inline-block;
-    transform: translateY(100%);
-  }
-  .start-project__button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #f6c930;
-    position: relative;
-    cursor: pointer;    
-    transform: scale(0);
-  }
-  .start-project__button_hover {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 1px solid #f6c930;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: scale(0);     
-  }
+  
   .intro .start-project__button_hover {
     background-color: #f0f0d9;
   }
@@ -674,23 +680,11 @@
   .clients .start-project__button_hover {
     background-color: #f8f8eb;
   }
-  .start-project__button_1 {
-    display: block;
-    width: 16px;
-    height: 1px;
-    background-color: #191919;
-    position: absolute;
-    left: 16px;
-    top: 22px;    
+  .contacts .start-project__button_hover {
+    background-color: #f8f8eb;
   }
-  .start-project__button_2 {
-    display: block;
-    width: 12px;
-    height: 1px;
+  .team .start-project__button_hover {
     background-color: #191919;
-    position: absolute;
-    right: 18px;
-    top: 28px;    
   }  
   .cursor {
   width: 50px;
@@ -728,11 +722,31 @@
 }
 .bg__bottom {
   position: fixed;
-  width: 0%;
+  width: 100%;
   height: 0%;
   background-color: #191919;
   bottom: 0;
-  left: 0;
+  right: 0;
+}
+.logo-preview {
+  position: absolute;
+  top: -10000px;
+  left: -10000px;
+  display: none;
+}
+.v--modal {
+  background-color: #f6c930;
+  font: 500 55px/1.3 'Futura';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+.sp-active #app-navigation {
+  z-index: 1;
+}
+.sp-active .scroll-down {
+  z-index: 1;
 }
 </style>
 

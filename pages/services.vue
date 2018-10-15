@@ -142,7 +142,7 @@ export default {
     app.$store.commit('eyes', false);
     TweenMax.set('.cursor', {x : (window.innerWidth / 2) - 25, y : (window.innerHeight / 2) -25});
     TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb', onComplete : function(){
-      TweenMax.set('.bg__top, h1', {visibility : 'visible'});
+      
     }})
     //var split = new SplitText("#app-services h2 .l1", {type:"words, chars"});
   },  
@@ -253,17 +253,19 @@ export default {
       TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb', delay : 0.4});
       TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#f8f8eb', delay : 0.4});
       TweenMax.to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#f8f8eb'});
-      TweenMax.to('.bg__right', 0.7, {width : '160px', ease: Power4.easeInOut});      
-      if(app.$store.state.prevPage == 'index' || app.$store.state.prevPage == 'description'){
-        TweenMax.set('.bg__bottom', {width : '100%', x : '-160px'});
-      }      
-      TweenMax.to('.bg__bottom', 0.7, {height : '63%', ease: Power4.easeInOut, onComplete : function(){
+      TweenMax.to('.bg__right', 0.7, {width : '160px', ease: Power4.easeInOut});
+      // if(app.$store.state.prevPage == 'index' || app.$store.state.prevPage == 'description'){
+      //   TweenMax.set('.bg__bottom', {width : '100%', x : '-160px'});
+      // }      
+      TweenMax.to('.bg__bottom', 0.7, {height : '63%', ease: Power4.easeInOut, onComplete : function(){        
+        TweenMax.set('.bg__top, h1', {visibility : 'visible'});        
         // H1 Animation //
         TweenMax.fromTo('h1 .l1 span', 1.2, {y:'-130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0});
         TweenMax.to('h1 .l2', 0.3, {y:'-15%',ease: Power1.easeOut, delay : 0});
         TweenMax.to('h1 .l3', 0.4, {y:'-30%',ease: Power1.easeOut, delay : 0});
         TweenMax.to('h1 .l4', 0.5, {y:'-45%',ease: Power1.easeOut, delay : 0});
         TweenMax.to('h1 .l5', 0.6, {y:'-60%',ease: Power1.easeOut, delay : 0, onComplete : function(){
+          TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : '100%'});
           app.$store.commit('loader', false);
           TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
           TweenMax.to('h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn});
@@ -330,7 +332,7 @@ export default {
             TweenMax.set(document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg'), {visibility : 'hidden'});
             // document.querySelectorAll('h2.ii .l2, h2.ii .l3, h2.ii .l4, h2.ii .l5, h2.ii .bg').forEach( function(el, i) {
             //   el.remove();
-            // });   
+            // });               
             app.$store.commit('appStartAnimation', false);
             app.$store.commit('scroll', true);
             app.$store.commit('pageTransition', false);
@@ -345,25 +347,22 @@ export default {
       var app = this;
       app.$store.commit('scroll', false);
       app.$store.commit('prevPage', 'services');
-      var next = app.$route.name;
-      console.log(next);
+      var next = app.$route.name;      
       var tl = new TimelineMax();
       tl.to(document.querySelectorAll('.cursor i'), 0.3, {scale : 0}, 'uno')
       .to('h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeIn, force3D: false}, 'uno')
       .to(document.querySelectorAll('h2 .fill'), 0.7, {height : '0vw', ease: Power4.easeIn, force3D: false}, 'uno');
-      if(next == 'index' || next == 'description'){        
+      if(next == 'index' || next == 'description' || next == 'contacts' || next == 'clients'){
         tl.to('.bg__right', 0.7, {width : '0px', ease: Power4.easeInOut}, 'uno+=0.5')
-        .to('.bg__bottom', 0.7, {height : '0%', ease: Power4.easeInOut, onComplete : done}, 'uno+=0.5')
+        .to('.bg__bottom', 0.7, {width : '100%', height : '0%', ease: Power4.easeInOut, onComplete : done}, 'uno+=0.5')
         .to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919'}, 'uno+=0.9')
         .to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'}, 'uno+=0.9')
         .to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#191919'}, 'uno+=0.9');        
-      }
-      if(next == 'clients'){
-        tl.to('.bg__right', 0.7, {width : '0px', ease: Power4.easeInOut}, 'uno+=0.5')
-        .to('.bg__bottom', 0.7, {height : '37%', x : '-160px', ease: Power4.easeInOut, onComplete : done}, 'uno+=0.5')
-        .to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919'}, 'uno+=0.9')
-        .to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'}, 'uno+=0.9')
-        .to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#191919'}, 'uno+=0.9');        
+      }      
+      if(next == 'team'){
+        setTimeout(function(){
+          done();
+        }, 700)
       }
     }
   },
@@ -383,7 +382,7 @@ export default {
   },
   methods : {
     serviceHover : function(e, name){
-      var app = this;
+      var app = this;      
       if(app.appStartAnimation || app.servicesStartAnimation ||  app.sliderTransition || app.currentSlide == name)return false;
       if(e.type == 'mouseenter'){
         if(app.servicesSlider){          
@@ -932,6 +931,7 @@ export default {
         TweenMax.to('.bg__right', 0.7, {width : '160px', ease: Power4.easeOut, delay : 1.5});
         TweenMax.set('.bg__bottom', {width : '100%'});
         TweenMax.to('.bg__bottom', 0.7, {height : '63%', ease: Power4.easeOut, delay : 1.5, onComplete : function(){
+          TweenMax.set('.bg__top, h1', {visibility : 'visible'});
           // H1 Animation //
           TweenMax.fromTo('h1 .l1 span', 1.2, {y:'-130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0});
           TweenMax.to('h1 .l2', 0.3, {y:'-15%',ease: Power1.easeOut, delay : 0});
@@ -1021,6 +1021,7 @@ export default {
                   app.$store.commit('appStartAnimation', false);
                   app.$store.commit('scroll', true);
                   app.$store.commit('pageTransition', false);
+                  app.$store.state.services.servicesStartAnimation = false;
                 }});
                 tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
                 .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
@@ -1055,7 +1056,7 @@ export default {
   background-color: #f8f8eb;
   bottom: 63%;
   left: 0;
-  z-index: 3;
+  z-index: 2;
   visibility: hidden;
 }
 #app-services .bg__right {
@@ -1078,13 +1079,17 @@ export default {
 h1 {
   margin: 0;
   padding: 0;
-  font: 9.4vw/ 7.5vw "Futura Condensed Extra Italic";
+  font-family: "Futura Condensed Extra Italic";
+  font-size: 9.4vw;
+  line-height: 7.5vw;
+  font-weight: 100;
+  font-style: italic;
   text-transform: uppercase;   
   position: fixed;
   right: 160px;
   bottom: 63%; 
   letter-spacing: -0.5vw;
-  z-index: 3;
+  z-index: 2;
   visibility: hidden;
 }
 h1 span {
@@ -1127,7 +1132,9 @@ h1 .l5 {
 h2 {
   margin: 0;
   padding: 0;
-  font: 9.4vw/ 7.8vw "Futura Condensed Extra";
+  font-family: "Futura Condensed Extra";
+  font-size: 9.4vw;
+  line-height: 7.8vw;
   text-transform: uppercase;
   color: #f8f8eb;
   white-space: nowrap;    
