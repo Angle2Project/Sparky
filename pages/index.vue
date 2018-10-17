@@ -36,7 +36,7 @@ export default {
     css : false,
     enter : function(el, done){
       var app = this;
-      var eyes = ['.eye__01', '.eye__09', '.eye__06', '.eye__03', '.eye__05', '.eye__04', '.eye__08', '.eye__10', '.eye__02', '.eye__07', '.eye__11'];      
+      var eyes = ['.eye__01', '.eye__09', '.eye__06', '.eye__03', '.eye__05', '.eye__04', '.eye__08', '.eye__10', '.eye__02', '.eye__07', '.eye__11', '.eye__12'];
       new TimelineMax().staggerTo(eyes, 0.6, {y : '0%', opacity : 1, scaleY : 1, ease: Back.easeOut.config(1.7)}, 0.1, 'uno')
       .set('.intro__text', {visibility : 'visible'}, 'uno+=0.5')
       .fromTo('.l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0}, 'uno+=0.5')
@@ -63,9 +63,9 @@ export default {
       var next = app.$route.name;
       var eyes;
       if(next == 'description'){
-        eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__04, .eye__05, .eye__06, .eye__08, .eye__09, .eye__10, .eye__11');
+        eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__04, .eye__05, .eye__06, .eye__08, .eye__09, .eye__10, .eye__11, .eye__12');
       }else if(next == 'contacts'){
-        eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__02, .eye__05, .eye__06, .eye__08, .eye__07, .eye__10, .eye__11');
+        eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__02, .eye__05, .eye__06, .eye__08, .eye__07, .eye__10, .eye__11, .eye__12');
       }else{
         eyes = document.querySelectorAll('#app-eyes section');
       }
@@ -95,15 +95,16 @@ export default {
         TweenMax.set(document.querySelectorAll('#app-eyes section'), {display : 'block'});
         TweenMax.fromTo('#app-eyes .eye__01', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.1});
         TweenMax.fromTo('#app-eyes .eye__02', 0.7, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.05});
-        TweenMax.fromTo('#app-eyes .eye__03', 0.8, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.15});
-        TweenMax.fromTo('#app-eyes .eye__04', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.2});
-        TweenMax.fromTo('#app-eyes .eye__05', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.2});
+        TweenMax.fromTo('#app-eyes .eye__03', 0.8, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 10, ease: Power3.easeInOut, force3D : true, delay : 1.15});
+        TweenMax.fromTo('#app-eyes .eye__04', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -25, ease: Power3.easeInOut, force3D : true, delay : 1.2});
+        TweenMax.fromTo('#app-eyes .eye__05', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -8, ease: Power3.easeInOut, force3D : true, delay : 1.2});
         TweenMax.fromTo('#app-eyes .eye__06', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.3});
         TweenMax.fromTo('#app-eyes .eye__07', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.17});
         TweenMax.fromTo('#app-eyes .eye__08', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.09});
-        TweenMax.fromTo('#app-eyes .eye__09', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.15});
+        TweenMax.fromTo('#app-eyes .eye__09', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -14, ease: Power3.easeInOut, force3D : true, delay : 1.15});
         TweenMax.fromTo('#app-eyes .eye__10', 0.8, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.2});
-        TweenMax.fromTo('#app-eyes .eye__11', 0.7, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.15});
+        TweenMax.fromTo('#app-eyes .eye__11', 0.7, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -8, ease: Power3.easeInOut, force3D : true, delay : 1.15});
+        TweenMax.fromTo('#app-eyes .eye__12', 0.7, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -26, ease: Power3.easeInOut, force3D : true, delay : 1.15});
         
 
 

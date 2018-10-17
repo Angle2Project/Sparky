@@ -323,6 +323,9 @@
     <nuxt :class="pageName"/>
     <section class="bg__right"></section>
     <section class="bg__bottom"></section>
+    <div class="copyright">
+        <span>© 2018 SPARKY</span>
+      </div>
     <modal name="foo" class="modal" :width="300" :height="140">
       <h4>Not yet :(</h4>
     </modal>
@@ -615,9 +618,25 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
-  .app-social a:hover {
+  .app-social a::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
     background-color: #ffca04;
+    z-index: 0;
+    transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  .app-social a:hover::after {
+    width: 100%;
+  }
+  .app-social svg {
+    z-index: 1;
   }
   .app-social #icon-twitter .st0,
   .app-social #icon-facebook .st0,
@@ -662,6 +681,8 @@
     color: #191919;
     display: inline-block;
     overflow: hidden;
+    position: relative;
+    top: 1px;
   }
   .scroll-down .scroll-down__text span {
     transform: translateY(100%);
@@ -747,6 +768,23 @@
 }
 .sp-active .scroll-down {
   z-index: 1;
+}
+.copyright {
+  font-family: "Futura";
+  font-weight: 500;
+  font-size: 14px;  
+  line-height: 1;
+  color: #191919;
+  text-transform: uppercase;
+  position: fixed;
+  right: 80px;
+  bottom: calc(80px - 8px);
+  overflow: hidden;
+  z-index: 5;
+}
+.copyright span {
+  display: inline-block;
+  transform: translateY(100%);
 }
 </style>
 

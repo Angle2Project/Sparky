@@ -13,6 +13,7 @@ export default {
     app.$store.commit('navigation', 'description');
     app.$store.commit('eyes', true);
     TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919'});
+    TweenMax.to('#eye__07 .st2', 0.4, {fill : '#f8f8eb'});
     TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'});
     TweenMax.to(document.querySelectorAll('#app-navigation li .item__name'), 0.4, {color : '#191919'});
     TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb'})
@@ -29,7 +30,7 @@ export default {
     mode : 'out-in',
     css : false,
     enter : function(el, done){
-      var app = this;
+      var app = this;      
       var tl = new TimelineMax({delay : 0.4, onComplete : function(){
         TweenMax.set('#app-description h1 a', {clearProps : 'all'})
         TweenMax.set(document.querySelectorAll('#app-description h1 i'), {clearProps : 'all'});
@@ -56,12 +57,18 @@ export default {
       app.$store.commit('prevPage', 'description');
       var next = app.$route.name;
       if(next == 'index'){
-        new TimelineMax().staggerTo(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.6, {opacity:0, scaleY:0, force3D:true, ease: Power4.easeOut}, 0.02, 'uno');
-        setTimeout(done, 700)  
+        new TimelineMax().staggerTo(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.6, {opacity:0, scaleY:0, force3D:true, ease: Power4.easeOut}, 0.02, 'uno');        
+        setTimeout(function(){
+          TweenMax.to('#eye__07 .st2', 0.4, {fill : '#f0f0d9'});
+          done();
+        }, 700);
       }else{
         new TimelineMax().staggerTo(document.querySelectorAll('.eye__02, .eye__07'), 0.3, {opacity : 0, scaleY : 0.5, ease: Power4.easeIn, force3D : true}, 0.1, 'uno')
         .staggerTo(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.6, {opacity:0, scaleY:0, force3D:true, ease: Power4.easeOut}, 0.02, 'uno');
-        setTimeout(done, 700)
+        setTimeout(function(){
+          TweenMax.to('#eye__07 .st2', 0.4, {fill : '#f0f0d9'});
+          done();
+        }, 700);
       }      
     }
   },
@@ -80,7 +87,7 @@ export default {
     appStart : function(val){
       var app = this;
       if(val){
-        TweenMax.set(document.querySelectorAll('#app-eyes .eye__02, #app-eyes .eye__07'), {display : 'block'});
+        TweenMax.set(document.querySelectorAll('#app-eyes .eye__02, #app-eyes .eye__07'), {display : 'block'});        
         TweenMax.fromTo('#app-eyes .eye__02', 0.7, {x : '100%', y : '-100%', scale: 0, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, delay : 1.05});
         TweenMax.fromTo('#app-eyes .eye__07', 0.9, {x : '100%', y : '-100', scale: 0, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, delay : 1.17});
 
@@ -175,7 +182,7 @@ export default {
   color: #191919;
 }
 #app-description h1 a:hover div i {
-  height: 1%;
+  height: 1px;
 }
 </style>
 

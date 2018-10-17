@@ -250,7 +250,7 @@ export default {
       var h2Delay = 0.7;
       app.$store.commit('eyes', false);      
       // Background animation //
-      TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb', delay : 0.4});
+      TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb', ease: Power4.easeInOut, delay : 0});
       TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#f8f8eb', delay : 0.4});
       TweenMax.to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#f8f8eb'});
       TweenMax.to('.bg__right', 0.7, {width : '160px', ease: Power4.easeInOut});
@@ -355,7 +355,7 @@ export default {
       if(next == 'index' || next == 'description' || next == 'contacts' || next == 'clients'){
         tl.to('.bg__right', 0.7, {width : '0px', ease: Power4.easeInOut}, 'uno+=0.5')
         .to('.bg__bottom', 0.7, {width : '100%', height : '0%', ease: Power4.easeInOut, onComplete : done}, 'uno+=0.5')
-        .to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919'}, 'uno+=0.9')
+        .to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919', ease: Power4.easeInOut}, 'uno+=0.5')
         .to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'}, 'uno+=0.9')
         .to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#191919'}, 'uno+=0.9');        
       }      
@@ -532,7 +532,9 @@ export default {
         TweenMax.fromTo(e.currentTarget.querySelector('.stroke'), 0.3, {opacity : 0}, {visibility : 'visible', opacity : 0.2});      
         TweenMax.to(document.querySelectorAll('h2 .fill'), 0.7, {height: '0vw', ease: Power4.easeIn});
         TweenMax.to(document.querySelectorAll('#app-logo .st2'), 0.2, {fill : '#f0f0d9', delay : 0.5});
-        TweenMax.to('.bg__bottom', 0.7, {height : '100%', ease: Power4.easeIn});
+        TweenMax.to('.bg__bottom', 0.7, {height : '100%', ease: Power4.easeIn, onComplete : function(){
+          TweenMax.set('.slider', {display : 'block'});
+        }});
         var tl = new TimelineMax({onComplete : function(){
           TweenMax.to('.cursor', 0.5, {rotation : 45});
           setTimeout(function(){
@@ -1056,7 +1058,7 @@ export default {
   background-color: #f8f8eb;
   bottom: 63%;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   visibility: hidden;
 }
 #app-services .bg__right {
@@ -1089,7 +1091,7 @@ h1 {
   right: 160px;
   bottom: 63%; 
   letter-spacing: -0.5vw;
-  z-index: 2;
+  z-index: 3;
   visibility: hidden;
 }
 h1 span {
@@ -1365,6 +1367,7 @@ h2.ii .l5 {
   z-index: 1;
   padding-bottom: 36px;
   transform: translateY(-50%);
+  display: none;
 }
 .slider__list {
   margin: 0;

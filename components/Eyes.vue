@@ -168,12 +168,10 @@
     <!-- =========================================== EYE__04 ============================================= -->
     <section class="eye__04" @mouseenter="eye04Hover" @mouseleave="eye04Hover">
       <svg version="1.1" id="eye__04" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="132px" height="84px" viewBox="0 0 132 84" style="enable-background:new 0 0 132 84;" xml:space="preserve">
-<style type="text/css">
-  #eye__04 .st0{fill:#FFFFFF;}
+        <style type="text/css">
+          #eye__04 .st0{fill:#FFFFFF;}
           #eye__04 .st1{fill:#0E0F0F;}
-          /*#eye__04 .st2{display:none;}*/
-          #eye__04 .st2 {fill:#EEEED7;}
-          #eye__04 .st3{display:inline;fill:#EEEED7;}
+          #eye__04 .st2{fill:#EEEED7;}          
           #eye__04 .rp-2, #eye__04 .rp-3,
           #eye__04 .lp-2, #eye__04 .lp-3,
           #eye__04 .rg-2, #eye__04 .rg-3,
@@ -193,40 +191,42 @@
 <path class="st1 rp-3" d="M100.6,29.2c-6.5,0-11.8,5.7-11.8,12.8s5.3,12.8,11.8,12.8s11.8-5.7,11.8-12.8S107.1,29.2,100.6,29.2z"/>
 
 
-<path class="st1 lp-1" d="M31,28.3c-7,0-12.6,6.1-12.6,13.7S24,55.7,31,55.7S43.6,49.6,43.6,42S37.9,28.3,31,28.3z"/>
+
+
+<path class="st1 lp-1" d="M31,29.7c-6.3,0-11.3,5.5-11.3,12.3s5,12.3,11.3,12.3S42.3,48.8,42.3,42S37.2,29.7,31,29.7z"/>
 <path class="st1 lp-2" d="M31,23.6c-9.4,0-16.9,8.2-16.9,18.4S21.6,60.4,31,60.4S47.9,52.2,47.9,42S40.3,23.6,31,23.6z"/>
-<path class="st1 lp-3" d="M31,29.2c-6.5,0-11.7,5.7-11.7,12.8S24.5,54.8,31,54.8S42.7,49.1,42.7,42S37.4,29.2,31,29.2z"/>
+<path class="st1 lp-3" d="M31,29.7c-6.3,0-11.3,5.5-11.3,12.3s5,12.3,11.3,12.3S42.3,48.8,42.3,42S37.2,29.7,31,29.7z"/>
 
 
-<polygon class="st0 rg-1" points="106.4,32.7 100.4,40.3 104.2,39.4 102.5,44.9 108.6,36.9 104.9,37.6 "/>
+
+<polygon class="st0 rg-1" points="106.5,33 102.2,38.5 105,37.8 103.7,41.8 108.1,36 105.4,36.5 "/>
 <polygon class="st0 rg-2" points="113,24.6 100.4,40.5 108.4,38.6 104.8,50.2 117.6,33.4 109.8,34.9 "/>
-<polygon class="st0 rg-3" points="106.4,33.1 102.2,38.4 104.9,37.8 103.7,41.6 107.9,36 105.4,36.5 "/>
+<polygon class="st0 rg-3" points="106.5,33 102.2,38.5 105,37.8 103.7,41.8 108.1,36 105.4,36.5 "/>
 
 
-
-<polygon class="st0 lg-1" points="38.4,32.7 32.4,40.3 36.3,39.4 34.5,44.9 40.6,36.9 36.9,37.6 "/>
+<polygon class="st0 lg-1" points="37.1,33.1 32.8,38.4 35.6,37.8 34.3,41.7 38.7,36 36,36.5 "/>
 <polygon class="st0 lg-2" points="43.2,25 31,40.4 38.9,38.6 35.3,49.8 47.7,33.5 40.2,34.9 "/>
-<polygon class="st0 lg-3" points="37.1,33.1 32.9,38.4 35.6,37.8 34.4,41.6 38.7,36 36.1,36.5 "/>
+<polygon class="st0 lg-3" points="37.1,33.1 32.8,38.4 35.6,37.8 34.3,41.7 38.7,36 36,36.5 "/>
 
 <g>
-  <path class="st2 rty-1" d="M132,42c0-23.2-14.1-42-31.4-42S69.2,18.8,69.2,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-49.6,30.8-49.6 s30.8,49.6,30.8,49.6C131.8,47.7,132,44.9,132,42z"/>
-  <path class="st2 rty-2" d="M132,42c0-23.2-14.1-42-31.4-42S69.2,18.8,69.2,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-17.7,30.8-17.7 s30.8,17.7,30.8,17.7C131.8,47.7,132,44.9,132,42z"/>
-  <path class="st2 rty-3" d="M132,42c0-23.2-14.1-42-31.4-42S69.2,18.8,69.2,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-49.5,30.8-49.5 s30.8,49.5,30.8,49.5C131.8,47.7,132,44.9,132,42z"/>
+  <path class="st2 rty-1" d="M132,42c0-23.2-14.1-42-31.4-42S69.2,18.8,69.2,42c0,2.9,0.2,5.7,0.6,8.4c0,0-9.6-51.5,30.8-51.5 c39.2,0,30.8,51.5,30.8,51.5C131.8,47.7,132,44.9,132,42z"/>  
+  <path class="st2 rty-2" d="M132,42c0-23.2-14.1-42-31.4-42S69.2,18.8,69.2,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-17.7,30.8-17.7 s30.8,17.7,30.8,17.7C131.8,47.7,132,44.9,132,42z"/>  
+  <path class="st2 rty-3" d="M132,42c0-23.2-14.1-42-31.4-42S69.2,18.8,69.2,42c0,2.9,0.2,5.7,0.6,8.4c0,0-9.6-51.5,30.8-51.5 c39.2,0,30.8,51.5,30.8,51.5C131.8,47.7,132,44.9,132,42z"/>
 
 
-  <path class="st2 lty-1" d="M62.8,42c0-23.2-14.1-42-31.4-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-49.6,30.8-49.6 s30.8,49.6,30.8,49.6C62.6,47.7,62.8,44.9,62.8,42z"/>
-  <path class="st2 lty-2" d="M62.8,42c0-23.2-14.1-42-31.4-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-17.7,30.8-17.7 s30.8,17.7,30.8,17.7C62.6,47.7,62.8,44.9,62.8,42z"/>
-  <path class="st2 lty-3" d="M62.8,42c0-23.2-14.1-42-31.4-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-49.5,30.8-49.5 s30.8,49.5,30.8,49.5C62.6,47.7,62.8,44.9,62.8,42z"/>
+  <path class="st2 lty-1" d="M62.8,42c0-23.2-14.1-42-31.4-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-9.9-51.5,30.8-51.5 c40.3,0,30.8,51.5,30.8,51.5C62.6,47.7,62.8,44.9,62.8,42z"/>  
+  <path class="st2 lty-2" d="M62.8,42c0-23.2-14.1-42-31.4-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-0.6-17.7,30.8-17.7 s30.8,17.7,30.8,17.7C62.6,47.7,62.8,44.9,62.8,42z"/>  
+  <path class="st2 lty-3" d="M62.8,42c0-23.2-14.1-42-31.4-42S0,18.8,0,42c0,2.9,0.2,5.7,0.6,8.4c0,0-9.9-51.5,30.8-51.5 c40.3,0,30.8,51.5,30.8,51.5C62.6,47.7,62.8,44.9,62.8,42z"/>
 
 
-  <path class="st2 rby-1" d="M100.6,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,32.5-30.8,32.5S69.8,50.4,69.8,50.4C72.7,69.6,85.4,84,100.6,84 z"/>
-  <path class="st2 rby-2" d="M100.6,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,8.9-30.8,8.9s-30.8-8.9-30.8-8.9C72.7,69.6,85.4,84,100.6,84z"/>
-  <path class="st2 rby-3" d="M100.6,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,32.5-30.8,32.5S69.8,50.4,69.8,50.4C72.7,69.6,85.4,84,100.6,84 z"/>
+  <path class="st2 rby-1" d="M100.6,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,35-30.8,35s-30.8-35-30.8-35C72.7,69.6,85.4,84,100.6,84z"/>  
+  <path class="st2 rby-2" d="M100.6,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,8.9-30.8,8.9s-30.8-8.9-30.8-8.9C72.7,69.6,85.4,84,100.6,84z"/>  
+  <path class="st2 rby-3" d="M100.6,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,35-30.8,35s-30.8-35-30.8-35C72.7,69.6,85.4,84,100.6,84z"/>
 
 
-  <path class="st2 lby-1" d="M31.4,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,32.5-30.8,32.5c-31.6,0-30.8-32.5-30.8-32.5 C3.5,69.6,16.2,84,31.4,84z"/>
-  <path class="st2 lby-2" d="M31.4,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,8.9-30.8,8.9c-31.6,0-30.8-8.9-30.8-8.9 C3.5,69.6,16.2,84,31.4,84z"/>
-  <path class="st2 lby-3" d="M31.4,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,32.5-30.8,32.5c-31.6,0-30.8-32.5-30.8-32.5 C3.5,69.6,16.2,84,31.4,84z"/>
+  <path class="st2 lby-1" d="M31.4,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,35-30.8,35c-31.6,0-30.8-35-30.8-35C3.5,69.6,16.2,84,31.4,84z"/>  
+  <path class="st2 lby-2" d="M31.4,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,8.9-30.8,8.9c-31.6,0-30.8-8.9-30.8-8.9 C3.5,69.6,16.2,84,31.4,84z"/>  
+  <path class="st2 lby-3" d="M31.4,84c15.2,0,27.9-14.4,30.8-33.6c0,0,0.6,35-30.8,35c-31.6,0-30.8-35-30.8-35C3.5,69.6,16.2,84,31.4,84z"/>
 </g>
 </svg>
 
@@ -646,7 +646,7 @@
     <!--============================================== / ======================================================-->
     <!--============================================== / ======================================================-->
 
-    <!-- =========================================== EYE__10 ============================================= -->  
+    <!-- =========================================== EYE__11 ============================================= -->  
     <section class="eye__11" @mouseenter="eye11Hover" @mouseleave="eye11Hover">
       <svg version="1.1" id="eye__11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="88px" height="58px" viewBox="0 0 88 58" style="enable-background:new 0 0 88 58;" xml:space="preserve">
         <style type="text/css">
@@ -688,6 +688,71 @@
       </svg>
     </section>
     <!--============================================== / ======================================================-->
+    <!-- =========================================== EYE__12 ============================================= -->      
+    <section class="eye__12" @mouseenter="eye12Hover" @mouseleave="eye12Hover">
+      <svg version="1.1" id="eye__12" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="88px" height="58px" viewBox="0 0 88 58" style="enable-background:new 0 0 88 58;" xml:space="preserve">
+        <style type="text/css">
+          #eye__12 .st0{fill:#FFFFFF;}
+          #eye__12 .st1{fill:#0E0F0F;}
+          #eye__12 .st2{fill:#F0F0D9;}
+          #eye__12 .rp-2, #eye__12 .rp-3,#eye__12 .lp-2, #eye__12 .lp-3,
+          #eye__12 .lg-2, #eye__12 .lg-3,#eye__12 .rg-2, #eye__12 .rg-3,
+          #eye__12 .rty-2, #eye__12 .rty-3 ,#eye__12 .lty-2, #eye__12 .lty-3,
+          #eye__12 .rby-2, #eye__12 .rby-3 ,#eye__12 .lby-2, #eye__12 .lby-3 {
+            visibility: hidden;
+          }
+        </style>
+        <path class="st0" d="M69.7,0C57.7,0,48.1,13,48.1,29.2s9.7,29.2,21.6,29.2s21.6-13,21.6-29.2S81.6,0,69.7,0L69.7,0z"/>
+        <path class="st0" d="M22.1,0C10.2,0,0.5,13,0.5,29.2s9.7,29.2,21.6,29.2s21.6-13,21.6-29.2S34.1,0,22.1,0L22.1,0z"/>
+
+
+        <path class="st1 rp-1" d="M78.8,18.1c-5.5,0-10,5.8-10,12.9s4.5,12.9,10,12.9s10-5.8,10-12.9S84.3,18.1,78.8,18.1z"/>
+        <path class="st1 rp-2" d="M70,18.1c-5.5,0-10,5.8-10,12.9s4.5,12.9,10,12.9S80,38.1,80,31S75.5,18.1,70,18.1z"/>
+        <path class="st1 rp-3" d="M61,18.1c-5.5,0-10,5.8-10,12.9s4.5,12.9,10,12.9S71,38.1,71,31S66.5,18.1,61,18.1z"/>
+
+
+
+        <path class="st1 lp-1" d="M30.6,18.1c-5.5,0-10,5.8-10,12.8s4.4,12.9,10,12.9s10-5.8,10-12.8S36.1,18.1,30.6,18.1z"/>
+        <path class="st1 lp-2" d="M22.1,18.1c-5.5,0-10,5.8-10,12.8s4.4,12.9,10,12.9s10-5.8,10-12.8S27.6,18.1,22.1,18.1z"/>
+        <path class="st1 lp-3" d="M13.1,18.1c-5.5,0-10,5.8-10,12.8s4.4,12.9,10,12.9s10-5.8,10-12.8S18.6,18.1,13.1,18.1z"/>
+
+
+
+        <path class="st0 lg-1" d="M37.2,25.4c0.6,1.5,0.3,3.2-0.9,3.6c-1.2,0.4-1.2-1-1.9-2.5c-0.6-1.5-1.5-2.7-0.4-3.1 C35.2,23,36.5,23.9,37.2,25.4z"/>
+        <path class="st0 lg-2" d="M29.4,25.4c0.6,1.5,0.3,3.2-0.9,3.6c-1.2,0.4-1.2-1-1.9-2.5c-0.6-1.5-1.5-2.7-0.4-3.1 C27.4,23,28.7,23.9,29.4,25.4z"/>
+        <path class="st0 lg-3" d="M20.4,25.4c0.6,1.5,0.3,3.2-0.9,3.6c-1.2,0.4-1.2-1-1.9-2.5c-0.6-1.5-1.5-2.7-0.4-3.1 C18.4,23,19.7,23.9,20.4,25.4z"/>
+
+
+        <path class="st0 rg-1" d="M85.8,25.3c0.6,1.6,0.3,3.3-0.9,3.8c-1.2,0.5-1.3-1-1.9-2.6s-1.6-2.8-0.4-3.2C83.7,22.7,85.1,23.6,85.8,25.3z"/>
+        <path class="st0 rg-2" d="M77,25.3c0.6,1.6,0.3,3.3-0.9,3.8c-1.2,0.5-1.3-1-1.9-2.6s-1.6-2.8-0.4-3.2C74.9,22.7,76.3,23.6,77,25.3z"/>
+        <path class="st0 rg-3" d="M68,25.3c0.6,1.6,0.3,3.3-0.9,3.8c-1.2,0.5-1.3-1-1.9-2.6s-1.6-2.8-0.4-3.2C65.9,22.7,67.3,23.6,68,25.3z"/>
+
+
+        <g>
+          <path class="st2 rty-1" d="M91.8,29.2C91.8,13.3,82,0.5,70,0.5S48.1,13.3,48.1,29.2c0,2,0.2,3.9,0.5,5.7c0,0-0.5-11.6,21.4-11.6 s21.4,11.6,21.4,11.6C91.6,33.1,91.8,31.2,91.8,29.2z"/>
+          <path class="st2 rty-2" d="M91.8,29.2C91.8,13.3,82,0.5,70,0.5S48.1,13.3,48.1,29.2c0,2,0.2,3.9,0.5,5.7c0,0-0.5-14.4,21.4-14.4 s21.4,14.4,21.4,14.4C91.6,33.1,91.8,31.2,91.8,29.2z"/>
+          <path class="st2 rty-3" d="M91.8,29.2C91.8,13.3,82,0.5,70,0.5S48.1,13.3,48.1,29.2c0,2,0.2,3.9,0.5,5.7c0,0-0.5-10.3,21.4-10.3 s21.4,10.3,21.4,10.3C91.6,33.1,91.8,31.2,91.8,29.2z"/>
+
+
+
+          <path class="st2 lty-1" d="M43.7,29.2c0-15.9-9.8-28.7-21.8-28.7S0,13.3,0,29.2c0,2,0.2,3.9,0.5,5.7c0,0-0.5-12.8,21.4-12.8 s21.4,12.8,21.4,12.8C43.5,33.1,43.7,31.2,43.7,29.2z"/>
+          <path class="st2 lty-2" d="M43.7,29.2c0-15.9-9.8-28.7-21.8-28.7S0,13.3,0,29.2c0,2,0.2,3.9,0.5,5.7c0,0-0.6-14.9,21.3-14.9 s21.5,14.9,21.5,14.9C43.5,33.1,43.7,31.2,43.7,29.2z"/>
+          <path class="st2 lty-3" d="M43.7,29.2c0-15.9-9.8-28.7-21.8-28.7S0,13.3,0,29.2c0,2,0.2,3.9,0.5,5.7c0,0-0.6-10.8,21.3-10.8 s21.5,10.8,21.5,10.8C43.5,33.1,43.7,31.2,43.7,29.2z"/>
+
+
+
+          <path class="st2 rby-1" d="M70,57.9c10.6,0,19.4-9.9,21.4-23c0,0-2.1-4.8-21.4-4.8c-19.6,0-21.4,4.8-21.4,4.8C50.6,48,59.4,57.9,70,57.9z"/>
+          <path class="st2 rby-2" d="M70,57.9c10.6,0,19.4-9.9,21.4-23c0,0-2.1-2.9-21.4-2.9c-19.6,0-21.4,2.9-21.4,2.9C50.6,48,59.4,57.9,70,57.9z"/>
+          <path class="st2 rby-3" d="M70,57.9c10.6,0,19.4-9.9,21.4-23c0,0-2.1-4.8-21.4-4.8c-19.6,0-21.4,4.8-21.4,4.8C50.6,48,59.4,57.9,70,57.9z"/>
+
+
+          <path class="st2 lby-1" d="M21.8,57.9c10.6,0,19.4-9.9,21.4-23c0,0-3.6-4.8-21.4-4.8S0.4,34.9,0.4,34.9C2.5,48,11.3,57.9,21.8,57.9z"/>
+          <path class="st2 lby-2" d="M21.8,57.9c10.6,0,19.4-9.9,21.4-23c0,0-3.6-2.9-21.4-2.9S0.4,34.9,0.4,34.9C2.5,48,11.3,57.9,21.8,57.9z"/>
+          <path class="st2 lby-3" d="M21.8,57.9c10.6,0,19.4-9.9,21.4-23c0,0-3.6-4.8-21.4-4.8S0.4,34.9,0.4,34.9C2.5,48,11.3,57.9,21.8,57.9z"/>
+        </g>
+      </svg>
+    </section>
+    <!--============================================== / ======================================================-->
 
   </div>
 </template>
@@ -695,6 +760,14 @@
 
 <script>
   export default {
+    mounted : function(){     
+      TweenMax.set('#app-eyes .eye__03', {rotation : 10});
+      TweenMax.set('#app-eyes .eye__04', {rotation : -25});
+      TweenMax.set('#app-eyes .eye__05', {rotation : -8});      
+      TweenMax.set('#app-eyes .eye__09', {rotation : -14});      
+      TweenMax.set('#app-eyes .eye__11', {rotation : -8});
+      TweenMax.set('#app-eyes .eye__12', {rotation : -26});
+    },
     data : function(){
       return {
         eye01 : {
@@ -748,6 +821,11 @@
           leave : false          
         },
         eye11 : {
+          above : false,
+          enter : false,
+          leave : false          
+        },
+        eye12 : {
           above : false,
           enter : false,
           leave : false          
@@ -1592,6 +1670,85 @@
           .to('#eye__11 .lg-1', time, {morphSVG: '#eye__11 .lg-1', ease: Power1.easeOut}, delay);
         }
       },
+      eye12Hover : function(e){
+        var app = this;
+        var time = 0.3;
+        var delay = '-=0'
+        if(e.type == 'mouseenter'){
+          if(app.eye12.leave){
+            app.eye12.above = true;
+            return false;
+          }
+          app.eye12.enter = true;
+          new TimelineMax({onComplete : function(){
+            if(app.eye12.leave){
+                new TimelineMax({onComplete : function(){
+                  app.eye12.enter = false;
+                  app.eye12.leave = false;
+                }}).to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-2', ease: Power2.easeIn})
+                .to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-1', ease: Power2.easeOut}, delay);
+                new TimelineMax().to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-2', ease: Power2.easeIn})
+                .to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-1', ease: Power2.easeOut}, delay);
+                new TimelineMax().to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-2', ease: Power2.easeIn})
+                .to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-1', ease: Power2.easeOut}, delay);
+                new TimelineMax().to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-2', ease: Power2.easeIn})
+                .to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-1', ease: Power2.easeOut}, delay);
+                new TimelineMax().to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-2', ease: Power2.easeIn})
+                .to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-1', ease: Power2.easeOut}, delay);
+                new TimelineMax().to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-2', ease: Power2.easeIn})
+                .to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-1', ease: Power2.easeOut}, delay);
+                new TimelineMax().to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-2', ease: Power2.easeIn})
+                .to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-1', ease: Power2.easeOut}, delay);
+                new TimelineMax().to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-2', ease: Power2.easeIn})
+                .to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-1', ease: Power2.easeOut}, delay);
+            }else{
+              app.eye12.enter = false; 
+            }
+          }}).to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-2', ease: Power2.easeIn})
+          .to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-2', ease: Power2.easeIn})
+          .to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-2', ease: Power2.easeIn})
+          .to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-2', ease: Power2.easeIn})
+          .to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-2', ease: Power2.easeIn})
+          .to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-2', ease: Power2.easeIn})
+          .to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-2', ease: Power2.easeIn})
+          .to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-3', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-2', ease: Power2.easeIn})
+          .to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-3', ease: Power2.easeOut}, delay);
+          
+        }else if(e.type == 'mouseleave'){
+          app.eye12.leave = true;          
+          if(app.eye12.enter)return false;
+          if(app.eye12.above){
+            app.eye12.above = false;
+            app.eye12.leave = false;
+            return false;
+          }
+          new TimelineMax({onComplete : function(){
+            app.eye12.leave = false;
+          }}).to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-2', ease: Power2.easeIn})
+          .to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-2', ease: Power2.easeIn})
+          .to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-2', ease: Power2.easeIn})
+          .to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-2', ease: Power2.easeIn})
+          .to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-2', ease: Power2.easeIn})
+          .to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-2', ease: Power2.easeIn})
+          .to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-2', ease: Power2.easeIn})
+          .to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-1', ease: Power2.easeOut}, delay);
+          new TimelineMax().to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-2', ease: Power2.easeIn})
+          .to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-1', ease: Power2.easeOut}, delay);
+        }
+      },
     }
   };
 </script>
@@ -1614,21 +1771,21 @@
 }
 .eye__01 {
   position: fixed;
-  top: 15vh;
-  right: 7vw;  
-  width: 19vw;
+  top: 10vh;
+  right: 5vw;
+  width: 20vw;
 }
 .eye__02 {
   position: fixed;
   top: 35vh;
   right: 9vw;  
-  width: 23vw;
+  width: 22vw;
 }
 .eye__03 {
   position: fixed;
   top: 55vh;
   right: 27vw;  
-  width: 15vw;  
+  width: 15vw;
 }
 .eye__04 {
   position: fixed;
@@ -1646,19 +1803,19 @@
   position: fixed;
   top: 3vh;
   right: 31vw;  
-  width: 13vw; 
+  width: 12vw; 
 }
 .eye__07 {
   position: fixed;
-  top: 29vh;
+  top: 30vh;
   right: 55vw;  
   width: 14vw;
 }
 .eye__08 {
   position: fixed;
-  top: 9vh;
-  right: 51vw;  
-  width: 15vw;
+  top: 7vh;
+  right: 52vw;
+  width: 14vw;
 }
 .eye__09 {
   position: fixed;
@@ -1668,15 +1825,21 @@
 }
 .eye__10 {
   position: fixed;
-  top: 75vh;
-  right: 60vw;  
+  top: 76vh;
+  right: 62vw;
   width: 14vw;
 }
 .eye__11 {
   position: fixed;
-  top: 80vh;
-  right: 35vw;
-  width: 14vw;
+  top: 79vh;
+  right: 40vw;
+  width: 12vw;
+}
+.eye__12 {
+  position: fixed;
+  top: 14vh;
+  right: 84vw;
+  width: 11vw;
 }
 </style>
 

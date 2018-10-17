@@ -11,7 +11,7 @@
       </div>
     </div>      
       <div class="start-project__bg"></div>
-      <h1>
+      <div class="start-project__h1">
         <div class="l1">
           <span>get in touch</span>
         </div>  
@@ -19,24 +19,25 @@
         <span class="l3">get in touch</span>
         <span class="l4">get in touch</span>
         <span class="l5">get in touch</span>
-      </h1>
+      </div>
       <div class="start-project__form">
         <form action="">
           <div class="start-project__form_row">
             <div class="start-project__form_coll">
               <div class="start-project__form_input">
-                <input type="text" placeholder="Your Name Company">
+                <input type="text" placeholder="Your Name Company" autocomplete="off">
                 <div class="start-project__form_input--bg"></div>
+                <div class="start-project__form_error"></div>
               </div>
             </div>
             <div class="start-project__form_coll">
               <div class="start-project__form_input">
-                <input type="text" placeholder="Your E-mail">
+                <input type="text" placeholder="Your E-mail" autocomplete="off">
                 <div class="start-project__form_input--bg"></div>
               </div>
             </div>
           </div>
-          <div class="start-project__form_row">
+          <div class="start-project__form_row select">
             <div class="start-project__form_select">
               <span @click="selectClick">
                 <b>Select Subject</b>
@@ -51,7 +52,7 @@
           </div>
           <div class="start-project__form_row">
             <div class="start-project__form_textarea">
-              <textarea name="" id="" placeholder="Start typing message here ..."></textarea>
+              <textarea name="" id="" placeholder="Start typing message here ..." autocomplete="off"></textarea>
               <div class="start-project__form_textarea--bg"></div>
             </div>
           </div>
@@ -62,8 +63,7 @@
             </div>
           </div>
         </form>
-      </div>
-      <div class="start-project__copyright">© 2018 SPARKY</div>
+      </div>      
     </section>
   </template>
 
@@ -71,19 +71,23 @@
   export default {
     data : function(){
       return {
-
+        hover : false
       }
     },
     computed : {
       startProject : function(){
         return this.$store.state.startProject;
-      }
+      },
+      pageName : function(){
+        return this.$store.state.pageName;
+      }      
     },
     methods : {
       startProjectHover : function(e){
         var app = this;
         var name = app.$store.state.pageName;        
         if(e.type == 'mouseenter'){
+          app.hover = true;
           TweenMax.to('.start-project__button', 0.25, {scale : 1.2, ease: Power2.easeIn});
           TweenMax.to('.start-project__button_hover', 0.25, {scale : 1, ease: Power2.easeIn});
           TweenMax.to('.start-project__button_1, .start-project__button_2', 0.25, {backgroundColor : (app.startProject ? '#191919':'#f6c930'), ease: Power2.easeIn});
@@ -91,31 +95,114 @@
           if(name == 'intro' || name == 'description')return false;
           TweenMax.to('.start-project__text span', 0.3, {y : '0%', ease: Power2.easeIn, force3D : false});
         }else{
+          app.hover = false;
           TweenMax.to('.start-project__button', 0.25, {scale : 1, ease: Power2.easeIn});
           TweenMax.to('.start-project__button_hover', 0.25, {scale : 0, ease: Power2.easeIn});
           TweenMax.to('.start-project__button_1, .start-project__button_2', 0.25, {backgroundColor : '#191919', ease: Power2.easeIt});
-          TweenMax.to('.start-project__button_2', 0.25, {width : (app.startProject ? 16 : 12), ease: Power2.easeIn});
+          TweenMax.to('.start-project__button_2', 0.25, {width : (app.startProject ? 16 : 12), ease: Power2.easeIn, onComplete : function(){
+            if(!app.startProject)TweenMax.set('.start-project__button_hover', {clearProps : 'all'});            
+          }});
           if(name == 'intro' || name == 'description' || app.startProject)return false;
           TweenMax.to('.start-project__text span', 0.3, {y : '100%', ease: Power2.easeIn, force3D : false});
         }        
       },
       startProjectClick : function(e){        
-        var app = this;
+        var app = this;        
         if(app.startProject){
-          app.$store.commit('startProject', false);
-        }else{
+          var tlEnd = new TimelineMax({onComplete : function(){
+            TweenMax.set('.start-project__form_row', {clearProps : 'all'});
+            app.$store.commit('startProject', false);
+          }}).staggerTo(document.querySelectorAll('.start-project__form_row'), 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, ease: Power4.easeOut}, 0.05, 'uno')
+          .to('.start-project__h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeInOut, onComplete : function(){
+            TweenMax.set('.start-project__h1, .start-project__form', {display : 'none'})
+          }}, 'uno+=0.2')
+          .to('.copyright span', 0.4, {y : '100%', ease: Power2.easeOut}, 'uno+=0.2')
+          .to('.start-project__text span', 0.4, {y : '100%', ease: Power4.easeIn, onComplete : function(){
+            document.querySelector('.start-project__text span').innerText = 'start a project';
+          }}, 'uno')
+          if(app.pageName == 'intro' || app.pageName == 'description'){
+            tlEnd.to('.start-project__text span', 0.4, {y : '0%', color : '#191919', ease: Power4.easeOut})          
+          }          
+          tlEnd.to('.start-project__bg', 0.6, {scale : 0, ease: Power3.easeIn}, 'uno+=0.7')
+          .to('#app-logo .st1', 0.4, {fill : '#f6c930'}, 'uno+=0.9')
+          .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : function(){
+            var color;
+            if(app.pageName == 'team'){
+              color = '#f8f8eb';
+            }else{
+              color = '#191919';
+            }            
+            return color;
+          }}, 'uno+=0.9')
+          .to('.start-project__button', 0.4, {backgroundColor : '#f6c930', ease: Power2.easeIn}, 'uno+=0.7')
+          .to('.start-project__button_hover', 0.4, {backgroundColor : function(){
+            var color;            
+            switch (app.pageName) {
+                case 'intro':
+                  color = '#f0f0d9';
+                  break;
+                case 'description':
+                  color = '#f8f8eb';
+                  break;
+                case 'services':
+                  color = '#191919';
+                  break;
+                case 'clients':
+                  color = '#f8f8eb';
+                  break;
+                case 'team':
+                  color = '#191919';
+                  break;
+                case 'contacts':
+                  color = '#f8f8eb';
+                  break;
+                default:
+                  // statements_def
+                  break;
+              }
+            return color;
+          }, borderColor : '#f6c930', ease: Power3.easeIn, onComplete : function(){
+            if(!app.hover)TweenMax.set('.start-project__button_hover', {clearProps : 'all'});
+          }}, 'uno+=0.7')
+          .to('.start-project__button_1, .start-project__button_2', 0.7, {backgroundColor : function(){
+            return app.hover ? '#f6c930' : '#191919';            
+          }, ease: Power4.easeInOut}, 'uno+=0.7')
+          .to('.start-project__button_2', 0.7, {width : function(){
+            return app.hover ? 16 : 12;
+          }, ease: Power4.easeInOut}, 'uno+=0.7')
+          .to('.start-project__button_1', 0.4, {rotation : 0, x : 0, y : 0, ease: Power4.easeInOut}, 'uno+=0.7')
+          .to('.start-project__button_2', 0.4, {rotation : 0, x : 0, y : 0, ease: Power4.easeInOut}, 'uno+=0.7')
+
+          
+        }else{        
           app.$store.commit('startProject', true);
-          TweenMax.to('.start-project__button', 0.4, {backgroundColor : '#f8f8eb', ease: Power2.easeIn})
-          TweenMax.to('.start-project__button_hover', 0.4, {backgroundColor : '#f6c930', borderColor : '#f8f8eb', ease: Power3.easeIn});
-          TweenMax.to('.start-project__button_1, .start-project__button_2', 0.7, {backgroundColor : '#191919', ease: Power4.easeInOut});
-          TweenMax.to('.start-project__button_1', 0.4, {rotation : 45, x : 1, y : 3, ease: Power4.easeInOut});
-          TweenMax.to('.start-project__button_2', 0.4, {rotation : -45, x : 1, y : -3, ease: Power4.easeInOut});        
-          var scale = (window.innerWidth / 50) * 2.55;
-          TweenMax.to('.start-project__bg', 0.4, {scale : scale, ease: Power3.easeIn});
-          new TimelineMax().to('.start-project__text span', 0.4, {y : '100%', ease: Power4.easeIn, onComplete : function(){
+          var scale = (window.innerWidth / 50) * 2.55;          
+          var tlStart = new TimelineMax().to('.start-project__button', 0.4, {backgroundColor : '#f8f8eb', ease: Power2.easeIn}, 'uno')
+          .to('#app-logo .st1', 0.4, {fill : '#f8f8eb'}, 'uno+=0.3')
+          .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#191919'}, 'uno+=0.3')
+          .to('.start-project__button_hover', 0.4, {backgroundColor : '#f6c930', borderColor : '#f8f8eb', ease: Power3.easeIn}, 'uno')
+          .to('.start-project__button_1, .start-project__button_2', 0.7, {backgroundColor : '#191919', ease: Power4.easeInOut}, 'uno')
+          .to('.start-project__button_1', 0.4, {rotation : 45, x : 1, y : 3, ease: Power4.easeInOut}, 'uno')
+          .to('.start-project__button_2', 0.4, {rotation : -45, x : 1, y : -3, ease: Power4.easeInOut}, 'uno')
+          .to('.start-project__bg', 0.6, {scale : scale, ease: Power3.easeIn}, 'uno')
+          .to('.start-project__text span', 0.4, {y : '100%', ease: Power4.easeIn, onComplete : function(){
             document.querySelector('.start-project__text span').innerText = 'close';
-          }})
+          }}, 'uno')          
           .to('.start-project__text span', 0.4, {y : '0%', color : '#191919', ease: Power4.easeOut})
+          .set('.start-project__h1 ', {display : 'block'}, 'uno+=0.6')
+          .fromTo('.start-project__h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5)}, 'uno+=0.6')
+          .to('.start-project__h1 .l2', 0.3, {y:'15%',ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l3', 0.4, {y:'30%',ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l4', 0.5, {y:'45%',ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l5', 0.6, {y:'60%',ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
+          .to('.start-project__h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
+          .to('.start-project__h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
+          .to('.start-project__h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
+          .to('.copyright span', 0.4, {y : '0%', color : '#191919', ease: Power2.easeOut}, 'uno+=1.3')
+          .set('.start-project__form', {display : 'block'}, 'uno+=1.7')
+          .staggerFrom(document.querySelectorAll('.start-project__form_row'), 0.6, {opacity:0, y : '100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.1, 'uno+=1.7')
+          .set('.start-project__form_row', {clearProps : 'all'});         
         }        
       },
       selectClick : function(e){
@@ -214,9 +301,9 @@
     height: 50px;
     border-radius: 50%;
     background-color: #f6c930;    
-    transform: scale(0);
+    /*transform: scale(0);*/
     position: absolute;
-    right: 58px;    
+    right: 55px;    
     top: 55px;
   }
   .start-project__button {
@@ -226,7 +313,7 @@
     background-color: #f6c930;
     position: relative;
     cursor: pointer;    
-    transform: scale(0);
+    /*transform: scale(0);*/
   }
   .start-project__button_hover {
     content: "";
@@ -238,7 +325,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    transform: scale(0);     
+    transform: scale(0);
   }
   .start-project__button_1 {
     display: block;
@@ -258,7 +345,7 @@
     right: 18px;
     top: 28px;    
   }
-  h1 {
+  .start-project__h1 {
   margin: 0;
   padding: 0;
   font-family: "Futura Condensed Extra Italic";
@@ -274,7 +361,7 @@
   z-index: 1;
   display: none;
 }
-h1 span {
+.start-project__h1 span {
   display: inline-block;  
   padding: 0px 1vw;
   position: absolute;
@@ -285,7 +372,7 @@ h1 span {
   background-color: #f6c930;
   overflow: visible;
 }
-h1 .l1 {
+.start-project__h1 .l1 {
   overflow:hidden;
   z-index: 5;  
   position: relative;
@@ -293,21 +380,21 @@ h1 .l1 {
   overflow: hidden;
   background-color: #f6c930;
 }
-h1 .l1 span {    
+.start-project__h1 .l1 span {    
   position: static; 
   display: inline-block; 
   transform: translateY(-102%);
 }
-h1 .l2 {
+.start-project__h1 .l2 {
   z-index: 4;
 }
-h1 .l3 {
+.start-project__h1 .l3 {
   z-index: 3;
 }
-h1 .l4 {
+.start-project__h1 .l4 {
   z-index: 2;
 }
-h1 .l5 {
+.start-project__h1 .l5 {
   z-index: 1;
 }
 .start-project__form {
@@ -388,6 +475,9 @@ h1 .l5 {
   background-color: #191919;
   opacity: 0.5;
   transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.error .start-project__form_input--bg {
+  background-color: #fff;
 }
 .start-project__form_input input:focus+.start-project__form_input--bg {
   height: 100%;
@@ -600,15 +690,34 @@ h1 .l5 {
 .start-project__form_button:hover button+.start-project__form_button--bg {
   transform: scaleY(0.1);
 }
-.start-project__copyright {
-  font-family: "Futura";
-  font-weight: 500;
-  font-size: 14px;  
-  line-height: 1;
-  color: #191919;
-  text-transform: uppercase;
-  position: fixed;
-  right: 80px;
-  bottom: calc(80px - 8px);
+.start-project .start-project__form_error {
+  position: absolute;
+  top: calc(50% - 6px);
+  right: 15px;
+  width: 1px;
+  height: 12px;
+  opacity: 0;
+  transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.start-project .error .start-project__form_error {
+  opacity: 1;
+}
+.start-project .start-project__form_error::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 8px;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+}
+.start-project .start-project__form_error::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 1px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
 }
 </style>

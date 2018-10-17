@@ -14,11 +14,15 @@
     </div>
     <div class="swiper-navigation">
       <div class="prev" @mouseenter="hoverPrev" @mouseleave="hoverPrev">
-        <span>prev</span>
+        <div>
+          <span>prev</span>
+        </div>        
         <i></i>
       </div>
       <div class="next" @mouseenter="hoverNext" @mouseleave="hoverNext">
-        <span>next</span>
+        <div>
+          <span>next</span>
+        </div>        
         <i></i>
       </div>
     </div>          
@@ -72,7 +76,7 @@ export default {
     enter : function(el, done){
       var app = this;
       var prev = (app.$store.state.prevPage == 'services')      
-      TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});      
+      TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});
       TweenMax.to('.bg__bottom', 0.7, {height : '37%', ease: Power4.easeInOut, onComplete : function(){
 
         // H1 Animation //
@@ -121,10 +125,11 @@ export default {
       .to(document.querySelectorAll('.swiper-slide'), 0.7, {borderColor : 'transparent'}, 'uno')
       .to(document.querySelectorAll('.swiper-navigation .prev, .swiper-navigation .next'), 0.7, {opacity : 0}, 'uno')
       .staggerTo(slides, 0.15, {scaleY : 0.5, opacity : 0}, 0.15, 'dos')
-      .to('.bg__bottom', 0.7, {height : '0%', ease: Power4.easeInOut, onComplete : function(){
+      .to('.bg__bottom', 0.7, {height : '0%', ease: Power4.easeInOut, onComplete : function(){        
         TweenMax.set('.bg__bottom', {x : '0%'});
         done();
-      }}, 'dos');        
+      }}, 'dos')
+      .to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919', ease: Power4.easeInOut}, 'dos');
       
       
     }
@@ -318,15 +323,15 @@ h1 .l4 {
 h1 .l5 {
   z-index: 1;
 }
-.swiper-container {
-    width: 84vw;
+.swiper-container {    
     position: fixed;
     right: calc(160px - 5.5vw);
-    bottom: 57%;
+    left: calc(160px - 5.5vw);
+    bottom: 57%;    
 }
 .swiper-container::before {
   content: "";
-  width: 5.5vw;
+  width: 4vw;
   height: 100%;
   background-color: #f8f8eb;
   position: absolute;
@@ -336,7 +341,7 @@ h1 .l5 {
 }
 .swiper-container::after {
   content: "";
-  width: 5.5vw;
+  width: 4vw;
   height: 100%;
   background-color: #f8f8eb;
   position: absolute;
@@ -351,7 +356,7 @@ h1 .l5 {
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transform: translateY(50%);
+  transform: translateY(50%);  
 }
 .swiper-wrapper .swiper-slide:last-child {
   border-right: none;
@@ -361,11 +366,13 @@ h1 .l5 {
 }
 .swiper-navigation {
   position: fixed;
-  width: 100%;
+  right: 160px;
+  left: 160px;
   bottom: 45.5%;
   display: flex;
   justify-content: center;
   overflow: hidden;
+  height: 40px;
 }
 .swiper-navigation span {
   font: 500 14px/1 'Futura';
@@ -388,7 +395,7 @@ h1 .l5 {
 .swiper-navigation .prev {
   position: relative;
   padding-left: 44px;
-  display: flex;
+  display: flex;  
   align-items: center;
   margin-right: 30px;
   cursor: pointer;
@@ -417,6 +424,10 @@ h1 .l5 {
 }
 .swiper-button-disabled i {
   opacity: 0.1;
+}
+.swiper-navigation .prev > div,
+.swiper-navigation .next > div {
+  overflow: hidden;
 }
 .swiper-button-disabled span {
   opacity: 0.5;

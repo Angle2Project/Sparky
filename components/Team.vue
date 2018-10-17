@@ -130,7 +130,7 @@
   position: fixed;
   z-index: 2;
   display: flex;
-  left: 25vw;
+  right: 160px;
   top: 0;
   height: 100%;
 }

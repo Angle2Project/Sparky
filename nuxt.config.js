@@ -12,6 +12,7 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },      
       { rel: 'stylesheet', href: '/css/global.css'}
+      
       // { rel: 'icon', type: 'image/x-icon', href: '/sparky/favicon.ico' },
       // { rel: 'stylesheet', href: '/sparky/css/global.css'}
     ],    
