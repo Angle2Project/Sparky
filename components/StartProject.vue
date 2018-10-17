@@ -13,34 +13,41 @@
       <div class="start-project__bg"></div>
       <div class="start-project__h1">
         <div class="l1">
-          <span>get in touch</span>
+          <span>{{h1Text}}</span>
         </div>  
-        <span class="l2">get in touch</span>
-        <span class="l3">get in touch</span>
-        <span class="l4">get in touch</span>
-        <span class="l5">get in touch</span>
+        <span class="l2">{{h1Text}}</span>
+        <span class="l3">{{h1Text}}</span>
+        <span class="l4">{{h1Text}}</span>
+        <span class="l5">{{h1Text}}</span>
       </div>
       <div class="start-project__form">
-        <form action="">
+        <form action="" @submit="formSubmit">
           <div class="start-project__form_row">
             <div class="start-project__form_coll">
-              <div class="start-project__form_input">
-                <input type="text" placeholder="Your Name Company" autocomplete="off">
+              <div class="start-project__form_input" :class="formErrors.name ? 'error' : ''">
+                <input type="text" placeholder="Your Name Company" name="name" autocomplete="off" @focus="focusError">
                 <div class="start-project__form_input--bg"></div>
                 <div class="start-project__form_error"></div>
+                <div class="start-project__form_error--text">
+                  <span>Please enter your name</span>
+                </div>
               </div>
             </div>
             <div class="start-project__form_coll">
-              <div class="start-project__form_input">
-                <input type="text" placeholder="Your E-mail" autocomplete="off">
+              <div class="start-project__form_input" :class="formErrors.email ? 'error' : ''">
+                <input type="text" placeholder="Your E-mail" name="email" autocomplete="off" @focus="focusError">
                 <div class="start-project__form_input--bg"></div>
+                <div class="start-project__form_error"></div>
+                <div class="start-project__form_error--text">
+                  <span>Please enter your email</span>
+                </div>
               </div>
             </div>
           </div>
           <div class="start-project__form_row select">
-            <div class="start-project__form_select">
+            <div class="start-project__form_select" :class="[formErrors.select ? 'error' : '', selectActive ? 'active' : '']">
               <span @click="selectClick">
-                <b>Select Subject</b>
+                <b data-name="subject">Select Subject</b>
               </span>
               <i></i>
               <ul>
@@ -48,12 +55,19 @@
                 <li @click="selectListClick">New business</li>
                 <li @click="selectListClick">General inquiry</li>
               </ul>
+              <div class="start-project__form_error--text">
+                <span>Please Select Subject</span>
+              </div>
             </div>
           </div>
           <div class="start-project__form_row">
-            <div class="start-project__form_textarea">
-              <textarea name="" id="" placeholder="Start typing message here ..." autocomplete="off"></textarea>
+            <div class="start-project__form_textarea" :class="formErrors.msg ? 'error' : ''">
+              <textarea name="msg" id="" placeholder="Start typing message here ..." autocomplete="off" @focus="focusError"></textarea>
               <div class="start-project__form_textarea--bg"></div>
+              <div class="start-project__form_error"></div>
+                <div class="start-project__form_error--text">
+                  <span>Please enter your email</span>
+                </div>
             </div>
           </div>
           <div class="start-project__form_row">
@@ -71,7 +85,15 @@
   export default {
     data : function(){
       return {
-        hover : false
+        hover : false,
+        selectActive : false,
+        h1Text : 'get in touch',
+        formErrors : {
+          name : false,
+          email : false,
+          select : false,
+          msg : false
+        }
       }
     },
     computed : {
@@ -83,6 +105,22 @@
       }      
     },
     methods : {
+      reset : function(){
+        var app = this;
+        app.h1Text = 'get in touch'
+        app.formErrors.name = false;
+        app.formErrors.email = false;
+        app.formErrors.select = false;
+        app.formErrors.msg = false;        
+        document.querySelector('.start-project input[name="name"]').value = '';
+        document.querySelector('.start-project input[name="email"]').value = '';        
+        document.querySelector('.start-project textarea').value = '';
+        document.querySelector('.start-project__form_select b').innerText = 'Select Subject';
+        document.querySelectorAll('.start-project__form_select ul li').forEach( function(el, i) {
+          el.classList.remove('current');
+        });
+        document.querySelector('.start-project__form_select ul li:first-child').classList.add('current');
+      },
       startProjectHover : function(e){
         var app = this;
         var name = app.$store.state.pageName;        
@@ -174,9 +212,10 @@
           .to('.start-project__button_2', 0.4, {rotation : 0, x : 0, y : 0, ease: Power4.easeInOut}, 'uno+=0.7')
 
           
-        }else{        
+        }else{
+          app.reset();
           app.$store.commit('startProject', true);
-          var scale = (window.innerWidth / 50) * 2.55;          
+          var scale = (window.innerWidth / 50) * 2.55;
           var tlStart = new TimelineMax().to('.start-project__button', 0.4, {backgroundColor : '#f8f8eb', ease: Power2.easeIn}, 'uno')
           .to('#app-logo .st1', 0.4, {fill : '#f8f8eb'}, 'uno+=0.3')
           .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#191919'}, 'uno+=0.3')
@@ -206,20 +245,21 @@
         }        
       },
       selectClick : function(e){
-        var app = this;
-        if(!document.querySelector('.start-project__form_select').classList.contains('active')){
-          document.querySelector('.start-project__form_select').classList.add('active');
+        var app = this;        
+        app.formErrors.select = false;        
+        if(!app.selectActive){          
+          app.selectActive = true;
           var h = (document.querySelectorAll('.start-project__form_select ul li').length * 40) + 40;
           TweenMax.to('.start-project__form_select ul', 0.4, {height : h, opacity : 1, ease: Power3.easeInOut});
         }else{
           TweenMax.to('.start-project__form_select ul', 0.4, {height : 1, opacity : 0.5, ease: Power4.easeInOut, onComplete : function(){
-            document.querySelector('.start-project__form_select').classList.remove('active');
+            app.selectActive = false;
           }});
-        }
+        }        
       },
-      selectListClick : function(e){        
-        var val = e.target.innerText;
-        console.log(val);
+      selectListClick : function(e){ 
+      var app = this;       
+        var val = e.target.innerText;        
         new TimelineMax().to('.start-project__form_select b', 0.2, {scaleY : 0, onComplete : function(){
           document.querySelector('.start-project__form_select b').innerText = val;  
         }})
@@ -229,14 +269,14 @@
         });
         e.currentTarget.classList.add('current');
         TweenMax.to('.start-project__form_select ul', 0.4, {height : 1, opacity : 1, delay : 0.2, ease: Power3.easeInOut, onComplete : function(){
-          document.querySelector('.start-project__form_select').classList.remove('active');
+          app.selectActive = false;
         }});
       },
       documentClick : function(e){
         var app = this;
-        if(document.querySelector('.start-project__form_select').classList.contains('active') && app.closest(e.target, '.start-project__form_select') == null){
+        if(app.selectActive && app.closest(e.target, '.start-project__form_select') == null){
           TweenMax.to('.start-project__form_select ul', 0.4, {height : 1, opacity : 0.5, ease: Power4.easeInOut, onComplete : function(){
-            document.querySelector('.start-project__form_select').classList.remove('active');
+            app.selectActive = false;
           }});
         }        
       },
@@ -263,6 +303,46 @@
         }
 
         return null;
+      },
+      formSubmit : function(e){
+        var app = this;
+        e.preventDefault();
+        var name = e.target.querySelector('input[name="name"]').value.trim();
+        var email = e.target.querySelector('input[name="email"]').value.trim();
+        var subject = e.target.querySelector('[data-name="subject"]').innerText;
+        var msg = e.target.querySelector('textarea').value.trim();
+        if(!name.length){
+          app.formErrors.name = true;
+        }
+        if(!email.length){
+          app.formErrors.email = true;
+        }
+        if(subject == 'Select Subject'){
+          app.formErrors.select = true;
+        }
+        if(!msg.length){
+          app.formErrors.msg = true;
+        }
+        //if(!email.length || !email.length || subject == 'Select Subject' || !msg.length)return false;
+        var tl = new TimelineMax().to('.start-project__h1 .l1 span', 0.7, {y : '130%', ease: Power4.easeInOut, onComplete : function(){          
+          app.h1Text = 'thank you';
+        }}, 'uno')
+        .staggerTo(document.querySelectorAll('.start-project__form_row'), 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, ease: Power4.easeOut}, 0.05, 'uno')
+        .to('.start-project__h1 .l1 span', 1.2, {y:'0%',ease: Back.easeOut.config(1.5)}, 'dos')
+        .to('.start-project__h1 .l2', 0.3, {y:'15%',ease: Power1.easeOut}, 'dos')
+        .to('.start-project__h1 .l3', 0.4, {y:'30%',ease: Power1.easeOut}, 'dos')
+        .to('.start-project__h1 .l4', 0.5, {y:'45%',ease: Power1.easeOut}, 'dos')
+        .to('.start-project__h1 .l5', 0.6, {y:'60%',ease: Power1.easeOut}, 'dos')
+        .to('.start-project__h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
+        .to('.start-project__h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
+        .to('.start-project__h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
+        .to('.start-project__h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
+        
+      },
+      focusError : function(e){
+        var app = this;
+        var name = e.target.name;        
+        if(app.formErrors[name])app.formErrors[name] = false;        
       }
     }
   };
@@ -454,6 +534,7 @@
   color: #191919;
   transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
 }
+
 .start-project__form_input input:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #f8f8eb;
 }
@@ -465,6 +546,19 @@
 }
 .start-project__form_input input:focus:-moz-placeholder { /* Firefox 18- */
   color: #f8f8eb;
+}
+
+.start-project__form_input.error input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  transform: scaleY(0); 
+}
+.start-project__form_input.error input::-moz-placeholder { /* Firefox 19+ */
+  transform: scaleY(0); 
+}
+.start-project__form_input.error input:-ms-input-placeholder { /* IE 10+ */
+  transform: scaleY(0); 
+}
+.start-project__form_input.error input:-moz-placeholder { /* Firefox 18- */
+  transform: scaleY(0); 
 }
 .start-project__form_input--bg {
   position: absolute;
@@ -478,6 +572,7 @@
 }
 .error .start-project__form_input--bg {
   background-color: #fff;
+  opacity: 1;
 }
 .start-project__form_input input:focus+.start-project__form_input--bg {
   height: 100%;
@@ -488,6 +583,7 @@
   width: 100%;
   height: 40px;
   position: relative;
+  z-index: 5;
 }
 .start-project__form_select span {
   font-family: "Futura";
@@ -499,10 +595,16 @@
   align-items: center;
   transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
   cursor: default;
+  position: relative;
+  z-index: 1;
 }
 .start-project__form_select  b {
   display: inline-block;
   font-weight: 500;
+  transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.start-project__form_select.error  b {
+  transform: scaleY(0)!important;
 }
 .start-project__form_select i {
   display: block;
@@ -515,6 +617,9 @@
   right: 0;
   top: calc(50% - 2px);
   transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.start-project__form_select.active i {
+  transform: rotate(180deg);
 }
 .start-project__form_select.active {
   z-index: 3;
@@ -538,7 +643,15 @@
   width: 100%;
   height: 1px;
   opacity: 0.5;
-  overflow: hidden;  
+  overflow: hidden;
+  transition: background-color 400ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.start-project__form_select.error ul {
+  background-color: #fff;
+  opacity: 1!important;
+}
+.start-project__form_select.error i {
+  border-top-color: #fff;
 }
 .start-project__form_select ul li {
   height: 40px;
@@ -629,6 +742,20 @@
   color: #191919;
   transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
 }
+
+.start-project__form_textarea.error textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  transform: scaleY(0);
+}
+.start-project__form_textarea.error textarea::-moz-placeholder { /* Firefox 19+ */
+  transform: scaleY(0);
+}
+.start-project__form_textarea.error textarea:-ms-input-placeholder { /* IE 10+ */
+  transform: scaleY(0);
+}
+.start-project__form_textarea.error textarea:-moz-placeholder { /* Firefox 18- */
+  transform: scaleY(0);
+}
+
 .start-project__form_textarea textarea:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #f8f8eb;
 }
@@ -651,6 +778,10 @@
   opacity: 0.5;
   transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
   z-index: 0.5;
+}
+.error .start-project__form_textarea--bg {
+  background-color: #fff;
+  opacity: 1;
 }
 .start-project__form_textarea textarea:focus+.start-project__form_textarea--bg {
   height: 100%;
@@ -719,5 +850,38 @@
   background-color: #fff;
   position: absolute;
   bottom: 0;
+}
+.start-project__form_error--text {
+  font-family: "Futura";
+  font-weight: 500;
+  font-size: 14px;  
+  line-height: 18px;
+  color: #191919;
+  position: absolute;
+  top: calc(50% - 9px);
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.start-project__form_textarea .start-project__form_error--text {
+  top: 2px;
+}
+.start-project__form_textarea .start-project__form_error {
+  top: 5px;
+}
+.start-project__form_textarea:hover .start-project__form_error--text span {
+  padding: 0 20px;
+}
+.start-project__form_error--text span {
+  transform: translateY(100%);
+  display: inline-block;
+  transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
+  background-color: #f6c930;
+}
+.error .start-project__form_error--text span {
+  transform: translateY(0%);
+}
+.start-project__form_input:hover .start-project__form_error--text span {
+  padding: 0 20px;
 }
 </style>

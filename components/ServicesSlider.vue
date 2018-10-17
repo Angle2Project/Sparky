@@ -136,8 +136,12 @@
 }
 h2 {
   margin: 0;
-  padding: 0;
-  font: 9.4vw/ 7.8vw "Futura Condensed Extra";
+  padding: 0;  
+  font-family:  "Futura Condensed Extra";
+  font-size: 9.4vw;
+  line-height: 7.8vw;
+  font-weight: 800;
+  font-style: italic;
   text-transform: uppercase;
   color: #f8f8eb;
   white-space: nowrap;    

@@ -441,7 +441,7 @@
       },
       mousewheel : function(e){
         var app = this;
-        console.log(e);
+        if(app.startProject)return false;
         var name;        
         if(app.scroll){
           if(e.deltaY > 0){

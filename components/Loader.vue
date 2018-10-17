@@ -195,7 +195,8 @@
 }
 .loader__percent {
   font-family: 'Futura Condensed Extra';
-  font-weight: bold;
+  font-weight: 800;
+  font-style: italic;
   font-size: 14px;
   line-height: 1;
   text-align: center;
