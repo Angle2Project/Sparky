@@ -454,7 +454,8 @@ export default {
           app.iiShowMore = 'show more';
           app.$store.commit('servicesSlider', false);
           var h2Delay = 0.7;
-          TweenMax.set(document.querySelectorAll('.bg__top, .slider, .slider *, h2, h2 *'), {clearProps : 'all'});
+          TweenMax.set(document.querySelectorAll('.slider, .slider *, h2, h2 *'), {clearProps : 'all'});
+          TweenMax.set('.bg__top', {clearProps : 'z-index'});
           TweenMax.set('h1', {clearProps : 'z-index'});
           TweenMax.set(document.querySelectorAll('h2'), {visibility : 'visible'});          
           //MM
@@ -532,9 +533,7 @@ export default {
         TweenMax.fromTo(e.currentTarget.querySelector('.stroke'), 0.3, {opacity : 0}, {visibility : 'visible', opacity : 0.2});      
         TweenMax.to(document.querySelectorAll('h2 .fill'), 0.7, {height: '0vw', ease: Power4.easeIn});
         TweenMax.to(document.querySelectorAll('#app-logo .st2'), 0.2, {fill : '#f0f0d9', delay : 0.5});
-        TweenMax.to('.bg__bottom', 0.7, {height : '100%', ease: Power4.easeIn, onComplete : function(){
-          TweenMax.set('.slider', {display : 'block'});
-        }});
+        TweenMax.to('.bg__bottom', 0.7, {height : '100%', ease: Power4.easeIn});
         var tl = new TimelineMax({onComplete : function(){
           TweenMax.to('.cursor', 0.5, {rotation : 45});
           setTimeout(function(){
@@ -1368,8 +1367,7 @@ h2.ii .l5 {
   left: 160px;  
   z-index: 1;
   padding-bottom: 36px;
-  transform: translateY(-50%);
-  display: none;
+  transform: translateY(-50%);  
 }
 .slider__list {
   margin: 0;
@@ -1388,7 +1386,7 @@ h2.ii .l5 {
 }
 .slider__list h3 span {
   display: inline-block;
-  transform: translateY(100%);
+  transform: translateY(110%);
 }
 .slider__list_description {
   margin: 0 0 31px 0;

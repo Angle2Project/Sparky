@@ -23,6 +23,7 @@ module.exports = {
       { src: '/js/SplitText.min.js' },
       { src: '/js/ModifiersPlugin.min.js' }
       
+      // { src: '/sparky/js/global.js' },
       // { src: '/sparky/js/TweenMax.min.js' },
       // { src: '/sparky/js/MorphSVGPlugin.min.js'},
       // { src: '/sparky/js/SplitText.min.js' },
