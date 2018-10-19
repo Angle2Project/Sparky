@@ -39,6 +39,13 @@ module.exports = {
   router: {
       //base: '/sparky/'
   },
+  modules: [
+   '@nuxtjs/sitemap'
+  ],
+  sitemap: {
+    generate: true,
+    hostname: 'http://process.angleto.com/sparky/',    
+  },
   /*
   ** Customize the progress bar color
   */

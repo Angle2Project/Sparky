@@ -524,6 +524,7 @@ export default {
     },
     serviceDetails : function(e, name, nav){
       var app = this;
+      if(app.sliderTransition || app.servicesStartAnimation)return false;
       app.sliderTransition = true;      
       // RIP Slider 
       if(!app.servicesSlider){        
@@ -1188,6 +1189,7 @@ h2 .l1 {
   position: relative;
   overflow: hidden;
   transform: skew(-9deg);
+  height: 7.8vw;
 }
 h2 .l1 .bg {  
   display: block;

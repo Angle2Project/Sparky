@@ -23,7 +23,7 @@ export default {
   },
   data : function(){
     return {
-      
+      title: 'Hello World!'
     }
   },
   transition : {    

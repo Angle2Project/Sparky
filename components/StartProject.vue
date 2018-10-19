@@ -77,7 +77,18 @@
             </div>
           </div>
         </form>
-      </div>      
+      </div>
+      <ul class="start-project__thank">
+        <li>
+          <span>We will contact you shortly!</span>
+        </li>
+        <li>
+          <div class="start-project__form_button">
+            <button @click="startProjectClick">Close</button>
+            <div class="start-project__form_button--bg"></div>
+          </div>
+        </li>
+      </ul>
     </section>
   </template>
 
@@ -102,6 +113,9 @@
       },
       pageName : function(){
         return this.$store.state.pageName;
+      },
+      servicesSlider : function(){
+        return this.$store.state.servicesSlider;
       }      
     },
     methods : {
@@ -120,6 +134,7 @@
           el.classList.remove('current');
         });
         document.querySelector('.start-project__form_select ul li:first-child').classList.add('current');
+        TweenMax.set('.start-project__thank li', {clearProps : 'all'});
       },
       startProjectHover : function(e){
         var app = this;
@@ -149,10 +164,11 @@
         if(app.startProject){
           var tlEnd = new TimelineMax({onComplete : function(){
             TweenMax.set('.start-project__form_row', {clearProps : 'all'});
+            if(app.pageName == 'services' && !app.servicesSlider)TweenMax.set('h1, .bg__top', {clearProps : 'zIndex'});
             app.$store.commit('startProject', false);
-          }}).staggerTo(document.querySelectorAll('.start-project__form_row'), 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, ease: Power4.easeOut}, 0.05, 'uno')
+          }}).staggerTo(document.querySelectorAll('.start-project__form_row, .start-project__thank li'), 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, ease: Power4.easeOut}, 0.05, 'uno')
           .to('.start-project__h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeInOut, onComplete : function(){
-            TweenMax.set('.start-project__h1, .start-project__form', {display : 'none'})
+            TweenMax.set('.start-project__h1, .start-project__form, .start-project__thank', {display : 'none'})
           }}, 'uno+=0.2')
           .to('.copyright span', 0.4, {y : '100%', ease: Power2.easeOut}, 'uno+=0.2')
           .to('.start-project__text span', 0.4, {y : '100%', ease: Power4.easeIn, onComplete : function(){
@@ -216,7 +232,8 @@
           app.reset();
           app.$store.commit('startProject', true);
           var scale = (window.innerWidth / 50) * 2.55;
-          var tlStart = new TimelineMax().to('.start-project__button', 0.4, {backgroundColor : '#f8f8eb', ease: Power2.easeIn}, 'uno')
+          if(app.pageName == 'services' && !app.servicesSlider)TweenMax.set('h1, .bg__top', {zIndex : 0})
+          var tlStart = new TimelineMax().to('.start-project__button', 0.4, {backgroundColor : '#f8f8eb', ease: Power2.easeIn}, 'uno')          
           .to('#app-logo .st1', 0.4, {fill : '#f8f8eb'}, 'uno+=0.3')
           .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#191919'}, 'uno+=0.3')
           .to('.start-project__button_hover', 0.4, {backgroundColor : '#f6c930', borderColor : '#f8f8eb', ease: Power3.easeIn}, 'uno')
@@ -323,7 +340,7 @@
         if(!msg.length){
           app.formErrors.msg = true;
         }
-        //if(!email.length || !email.length || subject == 'Select Subject' || !msg.length)return false;
+        if(!email.length || !email.length || subject == 'Select Subject' || !msg.length)return false;
         var tl = new TimelineMax().to('.start-project__h1 .l1 span', 0.7, {y : '130%', ease: Power4.easeInOut, onComplete : function(){          
           app.h1Text = 'thank you';
         }}, 'uno')
@@ -337,6 +354,8 @@
         .to('.start-project__h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
         .to('.start-project__h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
         .to('.start-project__h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
+        .set('.start-project__thank', {display : 'block'}, 'dos+=0.2')
+        .staggerFrom(document.querySelectorAll('.start-project__thank li'), 0.6, {opacity:0, y : '100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.1, 'dos+=0.2')
         
       },
       focusError : function(e){
@@ -381,7 +400,7 @@
     height: 50px;
     border-radius: 50%;
     background-color: #f6c930;    
-    /*transform: scale(0);*/
+    transform: scale(0);
     position: absolute;
     right: 55px;    
     top: 55px;
@@ -393,7 +412,7 @@
     background-color: #f6c930;
     position: relative;
     cursor: pointer;    
-    /*transform: scale(0);*/
+    transform: scale(0);
   }
   .start-project__button_hover {
     content: "";
@@ -883,5 +902,21 @@
 }
 .start-project__form_input:hover .start-project__form_error--text span {
   padding: 0 20px;
+}
+.start-project__thank {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 37.5vw;
+  position: fixed;
+  left: 50vw;
+  top: 305px;
+  display: none;
+}
+.start-project__thank li {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center;
+  margin-bottom: 17px;
 }
 </style>
