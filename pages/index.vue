@@ -80,10 +80,7 @@ export default {
   computed : {    
     appStart : function(){
       return this.$store.state.appStart;
-    },
-    loaderLive : function(){
-        return this.$store.state.loaderLive;
-      }
+    }
   },
   methods : {
 

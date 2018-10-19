@@ -689,6 +689,9 @@
     display: inline-block;
   }
   
+  .error-page .start-project__button_hover {
+    background-color: #f0f0d9;
+  }
   .intro .start-project__button_hover {
     background-color: #f0f0d9;
   }

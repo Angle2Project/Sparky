@@ -32,7 +32,7 @@ const store = () => new Vuex.Store({
         {
           name : 'description',
           current : false,
-          url : '/description'
+          url : '/descriptionn'
         },
         {
           name : 'expertise',
