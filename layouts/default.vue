@@ -324,11 +324,8 @@
     <section class="bg__right"></section>
     <section class="bg__bottom"></section>
     <div class="copyright">
-        <span>© 2018 SPARKY</span>
-      </div>
-    <modal name="foo" class="modal" :width="300" :height="140">
-      <h4>Not yet :(</h4>
-    </modal>
+      <span>© 2018 SPARKY</span>
+    </div>    
   </div>
 </template>
 
@@ -357,10 +354,15 @@
       return {
         
       }
-    },    
+    },
+    beforeMount : function(){
+      var app = this;      
+      app.$store.commit('mobile', window.innerWidth <= 480 ? true : false);
+    },
     mounted : function(){
       var app = this;
-      console.log(app);
+      // alert(window.innerWidth);
+      // alert(window.innerHeight);
     },
     computed : {
       appStart : function(){
@@ -575,9 +577,10 @@
 <style>
   .app {
     background: #f0f0d9;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     color: #191919;
+    position: fixed;
   }
   #app-loader {
     position: fixed;
@@ -602,7 +605,7 @@
   .app-social {
     display: flex;
     align-items: center;
-    position: fixed;
+    position: absolute;
     left: 62px;
     bottom: 64px;
     overflow: hidden;
@@ -788,6 +791,36 @@
 .copyright span {
   display: inline-block;
   transform: translateY(100%);
+}
+
+@media screen and (max-width: 480px) {
+  .app {
+    min-height: 513px;
+  }
+  .app-logo {    
+    top: 13px;
+    left: 17px;    
+  }
+  .app-social {
+    display: none;
+  }
+  .scroll-down .scroll-down__text {
+    display: none;
+  }
+  .scroll-down {    
+    right: 38px;
+    bottom: 84px;    
+  }
+  .copyright {    
+    right: 42px;
+    bottom: 42px;    
+    transform: translateY(50%);
+  }
+  .app-social {    
+    left: 31px;
+    bottom: 42px;    
+    transform: translateY(50%);
+  }
 }
 </style>
 

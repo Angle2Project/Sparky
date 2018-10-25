@@ -10,87 +10,87 @@
         <i class="start-project__button_2"></i>
       </div>
     </div>      
-      <div class="start-project__bg"></div>
-      <div class="start-project__h1">
-        <div class="l1">
-          <span>{{h1Text}}</span>
-        </div>  
-        <span class="l2">{{h1Text}}</span>
-        <span class="l3">{{h1Text}}</span>
-        <span class="l4">{{h1Text}}</span>
-        <span class="l5">{{h1Text}}</span>
-      </div>
-      <div class="start-project__form">
-        <form action="" @submit="formSubmit">
-          <div class="start-project__form_row">
-            <div class="start-project__form_coll">
-              <div class="start-project__form_input" :class="formErrors.name ? 'error' : ''">
-                <input type="text" placeholder="Your Name Company" name="name" autocomplete="off" @focus="focusError">
-                <div class="start-project__form_input--bg"></div>
-                <div class="start-project__form_error"></div>
-                <div class="start-project__form_error--text">
-                  <span>Please enter your name</span>
-                </div>
-              </div>
-            </div>
-            <div class="start-project__form_coll">
-              <div class="start-project__form_input" :class="formErrors.email ? 'error' : ''">
-                <input type="text" placeholder="Your E-mail" name="email" autocomplete="off" @focus="focusError">
-                <div class="start-project__form_input--bg"></div>
-                <div class="start-project__form_error"></div>
-                <div class="start-project__form_error--text">
-                  <span>Please enter your email</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="start-project__form_row select">
-            <div class="start-project__form_select" :class="[formErrors.select ? 'error' : '', selectActive ? 'active' : '']">
-              <span @click="selectClick">
-                <b data-name="subject">Select Subject</b>
-              </span>
-              <i></i>
-              <ul>
-                <li class="current" @click="selectListClick">Select Subject</li>
-                <li @click="selectListClick">New business</li>
-                <li @click="selectListClick">General inquiry</li>
-              </ul>
-              <div class="start-project__form_error--text">
-                <span>Please Select Subject</span>
-              </div>
-            </div>
-          </div>
-          <div class="start-project__form_row">
-            <div class="start-project__form_textarea" :class="formErrors.msg ? 'error' : ''">
-              <textarea name="msg" id="" placeholder="Start typing message here ..." autocomplete="off" @focus="focusError"></textarea>
-              <div class="start-project__form_textarea--bg"></div>
+    <div class="start-project__bg"></div>    
+    <div class="start-project__form">          
+      <form action="" @submit="formSubmit">
+        <div class="start-project__form_row">
+          <div class="start-project__form_coll">
+            <div class="start-project__form_input" :class="formErrors.name ? 'error' : ''">
+              <input type="text" placeholder="Your Name Company" name="name" autocomplete="off" @focus="focusError">
+              <div class="start-project__form_input--bg"></div>
               <div class="start-project__form_error"></div>
-                <div class="start-project__form_error--text">
-                  <span>Please enter your email</span>
-                </div>
+              <div class="start-project__form_error--text">
+                <span>Please enter your name</span>
+              </div>
             </div>
           </div>
-          <div class="start-project__form_row">
-            <div class="start-project__form_button">
-              <button>Send Request</button>
-              <div class="start-project__form_button--bg"></div>
+          <div class="start-project__form_coll">
+            <div class="start-project__form_input" :class="formErrors.email ? 'error' : ''">
+              <input type="text" placeholder="Your E-mail" name="email" autocomplete="off" @focus="focusError">
+              <div class="start-project__form_input--bg"></div>
+              <div class="start-project__form_error"></div>
+              <div class="start-project__form_error--text">
+                <span>Please enter your email</span>
+              </div>
             </div>
           </div>
-        </form>
-      </div>
-      <ul class="start-project__thank">
-        <li>
-          <span>We will contact you shortly!</span>
-        </li>
-        <li>
+        </div>
+        <div class="start-project__form_row select">
+          <div class="start-project__form_select" :class="[formErrors.select ? 'error' : '', selectActive ? 'active' : '']">
+            <span @click="selectClick">
+              <b data-name="subject">Select Subject</b>
+            </span>
+            <i></i>
+            <ul>
+              <li class="current" @click="selectListClick">Select Subject</li>
+              <li @click="selectListClick">New business</li>
+              <li @click="selectListClick">General inquiry</li>
+            </ul>
+            <div class="start-project__form_error--text">
+              <span>Please Select Subject</span>
+            </div>
+          </div>
+        </div>
+        <div class="start-project__form_row">
+          <div class="start-project__form_textarea" :class="formErrors.msg ? 'error' : ''">
+            <textarea name="msg" id="" placeholder="Start typing message here ..." autocomplete="off" @focus="focusError"></textarea>
+            <div class="start-project__form_textarea--bg"></div>
+            <div class="start-project__form_error"></div>
+              <div class="start-project__form_error--text">
+                <span>Please enter your email</span>
+              </div>
+          </div>
+        </div>
+        <div class="start-project__form_row">
           <div class="start-project__form_button">
-            <button @click="startProjectClick">Close</button>
+            <button>Send Request</button>
             <div class="start-project__form_button--bg"></div>
           </div>
-        </li>
-      </ul>
-    </section>
-  </template>
+        </div>
+      </form>
+    </div>
+    <div class="start-project__h1">
+      <div class="l1">
+        <span v-html="h1Text"></span>
+      </div>  
+      <span class="l2" v-html="h1Text"></span>
+      <span class="l3" v-html="h1Text"></span>
+      <span class="l4" v-html="h1Text"></span>
+      <span class="l5" v-html="h1Text"></span>
+    </div>
+    <ul class="start-project__thank">
+      <li>
+        <span>We will contact you shortly!</span>
+      </li>
+      <li>
+        <div class="start-project__form_button">
+          <button @click="startProjectClick">Close</button>
+          <div class="start-project__form_button--bg"></div>
+        </div>
+      </li>
+    </ul>
+  </section>
+</template>
 
 <script>
   export default {
@@ -98,7 +98,7 @@
       return {
         hover : false,
         selectActive : false,
-        h1Text : 'get in touch',
+        h1Text : 'start a project',
         formErrors : {
           name : false,
           email : false,
@@ -116,18 +116,22 @@
       },
       servicesSlider : function(){
         return this.$store.state.servicesSlider;
-      }      
+      },
+      mobile : function(){
+        return this.$store.state.mobile;
+      }
     },
     methods : {
       reset : function(){
         var app = this;
-        app.h1Text = 'get in touch'
+        console.log(window.innerWidth > 768);
+        app.h1Text = window.innerWidth > 768 ? 'start a project' : 'start <br/> a project';
         app.formErrors.name = false;
         app.formErrors.email = false;
         app.formErrors.select = false;
         app.formErrors.msg = false;        
         document.querySelector('.start-project input[name="name"]').value = '';
-        document.querySelector('.start-project input[name="email"]').value = '';        
+        document.querySelector('.start-project input[name="email"]').value = '';
         document.querySelector('.start-project textarea').value = '';
         document.querySelector('.start-project__form_select b').innerText = 'Select Subject';
         document.querySelectorAll('.start-project__form_select ul li').forEach( function(el, i) {
@@ -138,7 +142,7 @@
       },
       startProjectHover : function(e){
         var app = this;
-        var name = app.$store.state.pageName;        
+        var name = app.$store.state.pageName;
         if(e.type == 'mouseenter'){
           app.hover = true;
           TweenMax.to('.start-project__button', 0.25, {scale : 1.2, ease: Power2.easeIn});
@@ -171,14 +175,20 @@
             TweenMax.set('.start-project__h1, .start-project__form, .start-project__thank', {display : 'none'})
           }}, 'uno+=0.2')
           .to('.copyright span', 0.4, {y : '100%', ease: Power2.easeOut}, 'uno+=0.2')
-          .to('.start-project__text span', 0.4, {y : '100%', ease: Power4.easeIn, onComplete : function(){
+          if(app.mobile){
+            tlEnd.to('.app-social a', 0.4, {y : '100%', color : '#191919', ease: Power2.easeOut}, 'uno+=0.2')
+            .set('.app-social a', {y : '0%'})
+            .set('.app-social', {clearProps : 'all'})
+          }
+          tlEnd.to('.start-project__text span', 0.4, {y : '100%', ease: Power4.easeIn, onComplete : function(){
             document.querySelector('.start-project__text span').innerText = 'start a project';
           }}, 'uno')
           if(app.pageName == 'intro' || app.pageName == 'description'){
             tlEnd.to('.start-project__text span', 0.4, {y : '0%', color : '#191919', ease: Power4.easeOut})          
           }          
           tlEnd.to('.start-project__bg', 0.6, {scale : 0, ease: Power3.easeIn}, 'uno+=0.7')
-          .to('#app-logo .st1', 0.4, {fill : '#f6c930'}, 'uno+=0.9')
+          if(app.pageName == 'services' || app.pageName == 'clients' ||app.pageName == 'team')tlEnd.to('.app-social .st0', 0.4, {fill : '#f9f9ed', ease: Power4.easeInOut}, 'uno+=0.7')
+          tlEnd.to('#app-logo .st1', 0.4, {fill : '#f6c930'}, 'uno+=0.9')
           .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : function(){
             var color;
             if(app.pageName == 'team'){
@@ -192,7 +202,7 @@
           .to('.start-project__button_hover', 0.4, {backgroundColor : function(){
             var color;            
             switch (app.pageName) {
-                case 'intro':
+                case 'intro' || 'errorPage':
                   color = '#f0f0d9';
                   break;
                 case 'description':
@@ -230,9 +240,11 @@
         }else{
           app.reset();
           app.$store.commit('startProject', true);
-          var scale = (window.innerWidth / 50) * 2.55;
+          var width = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;
+          var scale = (width / 50) * 2.55;
+          var dobbleTitle = window.innerWidth <= 768;
           if(app.pageName == 'services' && !app.servicesSlider)TweenMax.set('h1, .bg__top', {zIndex : 0})
-          var tlStart = new TimelineMax().to('.start-project__button', 0.4, {backgroundColor : '#f8f8eb', ease: Power2.easeIn}, 'uno')          
+          var tlStart = new TimelineMax().to('.start-project__button', 0.4, {backgroundColor : '#f8f8eb', ease: Power2.easeIn}, 'uno')
           .to('#app-logo .st1', 0.4, {fill : '#f8f8eb'}, 'uno+=0.3')
           .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#191919'}, 'uno+=0.3')
           .to('.start-project__button_hover', 0.4, {backgroundColor : '#f6c930', borderColor : '#f8f8eb', ease: Power3.easeIn}, 'uno')
@@ -240,22 +252,30 @@
           .to('.start-project__button_1', 0.4, {rotation : 45, x : 1, y : 3, ease: Power4.easeInOut}, 'uno')
           .to('.start-project__button_2', 0.4, {rotation : -45, x : 1, y : -3, ease: Power4.easeInOut}, 'uno')
           .to('.start-project__bg', 0.6, {scale : scale, ease: Power3.easeIn}, 'uno')
-          .to('.start-project__text span', 0.4, {y : '100%', ease: Power4.easeIn, onComplete : function(){
+
+          if(app.pageName == 'services' || app.pageName == 'clients' ||app.pageName == 'team')tlStart.to('.app-social .st0', 0.4, {fill : '#191919', ease: Power4.easeInOut}, 'uno')
+
+          tlStart.to('.start-project__text span', 0.4, {y : '100%', ease: Power4.easeIn, onComplete : function(){
             document.querySelector('.start-project__text span').innerText = 'close';
           }}, 'uno')          
           .to('.start-project__text span', 0.4, {y : '0%', color : '#191919', ease: Power4.easeOut})
           .set('.start-project__h1 ', {display : 'block'}, 'uno+=0.6')
-          .fromTo('.start-project__h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5)}, 'uno+=0.6')
-          .to('.start-project__h1 .l2', 0.3, {y:'15%',ease: Power1.easeOut}, 'uno+=0.6')
-          .to('.start-project__h1 .l3', 0.4, {y:'30%',ease: Power1.easeOut}, 'uno+=0.6')
-          .to('.start-project__h1 .l4', 0.5, {y:'45%',ease: Power1.easeOut}, 'uno+=0.6')
-          .to('.start-project__h1 .l5', 0.6, {y:'60%',ease: Power1.easeOut}, 'uno+=0.6')
+          .fromTo('.start-project__h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(dobbleTitle ? 1.1 : 1.5)}, 'uno+=0.6')
+          .to('.start-project__h1 .l2', 0.3, {y:(dobbleTitle ? '10%' : '15%'),ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l3', 0.4, {y:(dobbleTitle ? '20%' : '30%'),ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l4', 0.5, {y:(dobbleTitle ? '30%' : '45%'),ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l5', 0.6, {y:(dobbleTitle ? '40%' : '60%'),ease: Power1.easeOut}, 'uno+=0.6')
           .to('.start-project__h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
           .to('.start-project__h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
           .to('.start-project__h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
           .to('.start-project__h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
-          .to('.copyright span', 0.4, {y : '0%', color : '#191919', ease: Power2.easeOut}, 'uno+=1.3')
-          .set('.start-project__form', {display : 'block'}, 'uno+=1.7')
+          .to('.copyright span', 0.4, {y : '0%', color : '#191919', ease: Power2.easeOut}, 'uno+=2.3')
+          if(app.mobile){
+            tlStart.set('.app-social a', {y : '100%'}, 'uno+=2.3')
+            .set('.app-social', {display : 'block'}, 'uno+=2.3')
+            .to('.app-social a', 0.4, {y : '0%', color : '#191919', ease: Power2.easeOut}, 'uno+=2.3')
+          }
+          tlStart.set('.start-project__form', {display : 'block'}, 'uno+=1.7')          
           .staggerFrom(document.querySelectorAll('.start-project__form_row'), 0.6, {opacity:0, y : '100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.1, 'uno+=1.7')
           .set('.start-project__form_row', {clearProps : 'all'});         
         }        
@@ -320,6 +340,7 @@
       formSubmit : function(e){
         var app = this;
         e.preventDefault();
+        console.log(e.target.querySelector('input[name]'));
         var name = e.target.querySelector('input[name="name"]').value.trim();
         var email = e.target.querySelector('input[name="email"]').value.trim();
         var subject = e.target.querySelector('[data-name="subject"]').innerText;
@@ -504,6 +525,9 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 17px;
+}
+.start-project__form_row:last-child {
+  margin-bottom: 0;
 }
 .start-project__form_coll {
   width: 46%;
@@ -910,5 +934,61 @@
   justify-content: space-between;  
   align-items: center;
   margin-bottom: 17px;
+}
+
+@media screen and (max-width: 768px) {
+  .start-project__form {
+    width: 58.8vw;
+    top: auto;
+    bottom: 50%;
+    transform: translateX(-50%);
+  }
+  .start-project__h1 {
+    font-size: 15.6vw;
+    line-height: 12vw;
+    letter-spacing: -1.0vw;
+    top: auto;
+    bottom: 160px
+  }
+  .start-project__h1 span {
+    padding: 3vw 2.3vw 0.5vw 0vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sp-active.start-project {
+    min-height: 513px;
+  }
+  .start-project__bg {
+    top: 17px;
+    right: 17px;
+  }
+  .start-project__nav {
+    top: 17px;
+    right: 17px;    
+  }
+  .start-project .start-project__text {
+    display: none;
+  }
+  .start-project__h1 {
+    font-size: 15.6vw;
+    line-height: 12vw;
+    letter-spacing: -1.0vw;
+    top: auto;
+    bottom: 84px;
+    left: 42px;
+  }
+  .start-project__form {
+    width: calc(100% - 84px);
+    /*left: 42px;*/
+    transform: translate(0%, 0%);
+    /*bottom: auto;*/
+    /*top: calc((100vh - 84px - 84px + 12vw) / 2);*/
+    position: static;
+    margin: 84px 0 0 42px;
+  }
+  * {
+    cursor: default;
+  }
 }
 </style>

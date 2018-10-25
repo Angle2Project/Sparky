@@ -153,5 +153,10 @@
   left: 0;
   transform: translateX(100%);
 }
+@media screen and (max-width: 480px) {
+  #app-navigation {
+    display: none;
+  }
+}
 </style>
 

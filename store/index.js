@@ -11,6 +11,7 @@ const store = () => new Vuex.Store({
     pageName : '',
     loader : true,
     eyes : true,
+    mobile : null,
     scrollDownHover : false,
     scrollDownTL : null,
     scroll : false,
@@ -32,7 +33,7 @@ const store = () => new Vuex.Store({
         {
           name : 'description',
           current : false,
-          url : '/descriptionn'
+          url : '/description'
         },
         {
           name : 'expertise',
@@ -184,7 +185,10 @@ const store = () => new Vuex.Store({
     },
     startProject(state, status){
       state.startProject = status;
-    }
+    },
+    mobile(state, status){
+      state.mobile = status;
+    },    
   }
 })
 

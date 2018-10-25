@@ -3,12 +3,27 @@
     <section class="bg__top"></section> 
     <h1>
       <div class="l1">
-        <span>our services</span>
+        <span>
+          <i>our </i>
+          <i>services</i>
+        </span>
       </div>  
-      <span class="l2">our services</span>
-      <span class="l3">our services</span>
-      <span class="l4">our services</span>
-      <span class="l5">our services</span>
+      <span class="l2">
+        <i>our </i>
+          <i>services</i>
+      </span>
+      <span class="l3">
+        <i>our </i>
+          <i>services</i>
+      </span>
+      <span class="l4">
+        <i>our </i>
+          <i>services</i>
+      </span>
+      <span class="l5">
+        <i>our </i>
+          <i>services</i>
+      </span>
     </h1>
     <h2 class="mm" @mouseenter="serviceHover($event, 'mm')" @mouseleave="serviceHover($event, 'mm')" @click="serviceDetails($event, 'mm')">
       <div class="stroke">
@@ -21,28 +36,36 @@
           <div class="show-more">
             <span>{{mmShowMore}}</span>
           </div>
-          <div class="start">M</div>
-          <div class="end">
-            <div>AXIMIZE</div>
+          <div class="row">
+            <div class="start">M</div>
+            <div class="end">
+              <div>AXIMIZE</div>
+            </div>
           </div>
-          <div class="start">M</div>
-          <div class="end">
-            <div>OMENTS</div>
+          <div class="row dos">
+            <div class="start">M</div>
+            <div class="end">
+              <div>OMENTS</div>
+            </div>
           </div>          
         </div>
       </div>        
       <div class="l2">
-          <span>M</span>
-        </div>
-        <div class="l3">
-          <span>M</span>
-        </div>
-        <div class="l4">
-          <span>M</span>
-        </div>
-        <div class="l5">
-          <span>M</span>
-        </div>
+        <span>M</span>
+        <span>M</span>
+      </div>
+      <div class="l3">
+        <span>M</span>
+        <span>M</span>
+      </div>
+      <div class="l4">
+        <span>M</span>
+        <span>M</span>
+      </div>
+      <div class="l5">
+        <span>M</span>
+        <span>M</span>
+      </div>
     </h2>
 
     <h2 class="ee" @mouseenter="serviceHover($event, 'ee')" @mouseleave="serviceHover($event, 'ee')" @click="serviceDetails($event, 'ee')">
@@ -56,26 +79,34 @@
           <div class="show-more">
             <span>{{eeShowMore}}</span>
           </div>
-          <div class="start">E</div>
-          <div class="end">
-            <div>LEVATE</div>
+          <div class="row">
+            <div class="start">E</div>
+            <div class="end">
+              <div>LEVATE</div>
+            </div>
           </div>
-          <div class="start">E</div>
-          <div class="end">
-            <div>XPERIENCES</div>
+          <div class="row dos">
+            <div class="start">E</div>
+            <div class="end">
+              <div>XPERIENCES</div>
+            </div>
           </div>          
         </div>
       </div>        
       <div class="l2">
           <span>E</span>
+          <span>E</span>
         </div>
         <div class="l3">
+          <span>E</span>
           <span>E</span>
         </div>
         <div class="l4">
           <span>E</span>
+          <span>E</span>
         </div>
         <div class="l5">
+          <span>E</span>
           <span>E</span>
         </div>
     </h2>
@@ -91,26 +122,34 @@
           <div class="show-more">
             <span>{{iiShowMore}}</span>
           </div>
-          <div class="start">I</div>
-          <div class="end">
-            <div>gnite</div>
+          <div class="row">
+            <div class="start">I</div>
+            <div class="end">
+              <div>gnite</div>
+            </div>
           </div>
-          <div class="start">I</div>
-          <div class="end">
-            <div>nnovation</div>
-          </div>          
+          <div class="row dos">
+            <div class="start">I</div>
+            <div class="end">
+              <div>nnovation</div>
+            </div>
+          </div>
         </div>
       </div>        
       <div class="l2">
         <span>I</span>
+        <span>I</span>
       </div>
       <div class="l3">
+        <span>I</span>
         <span>I</span>
       </div>
       <div class="l4">
         <span>I</span>
+        <span>I</span>
       </div>
       <div class="l5">
+        <span>I</span>
         <span>I</span>
       </div>
     </h2>
@@ -378,6 +417,9 @@ export default {
     },
     servicesSlider : function(){
       return this.$store.state.servicesSlider;
+    },
+    mobile : function(){
+      return this.$store.state.mobile;
     }
   },
   methods : {
@@ -925,6 +967,7 @@ export default {
     appStart : function(val){
       var app = this;
       var h2Delay = 0.7;
+      var dobbleTitle = window.innerWidth <= 768;
       if(val){                
         // Background animation //
         TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});
@@ -935,11 +978,11 @@ export default {
         TweenMax.to('.bg__bottom', 0.7, {height : '63%', ease: Power4.easeOut, delay : 1.5, onComplete : function(){
           TweenMax.set('.bg__top, h1', {visibility : 'visible'});
           // H1 Animation //
-          TweenMax.fromTo('h1 .l1 span', 1.2, {y:'-130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0});
-          TweenMax.to('h1 .l2', 0.3, {y:'-15%',ease: Power1.easeOut, delay : 0});
-          TweenMax.to('h1 .l3', 0.4, {y:'-30%',ease: Power1.easeOut, delay : 0});
-          TweenMax.to('h1 .l4', 0.5, {y:'-45%',ease: Power1.easeOut, delay : 0});
-          TweenMax.to('h1 .l5', 0.6, {y:'-60%',ease: Power1.easeOut, delay : 0, onComplete : function(){
+          TweenMax.fromTo('h1 .l1 span', 1.2, {y:'-130%'}, {y:'0%',ease: Back.easeOut.config(dobbleTitle ? 1.1 : 1.5), delay : 0});
+          TweenMax.to('h1 .l2', 0.3, {y:(dobbleTitle ? '-15%' : '-15%'),ease: Power1.easeOut, delay : 0});
+          TweenMax.to('h1 .l3', 0.4, {y:(dobbleTitle ? '-25%' : '-30%'),ease: Power1.easeOut, delay : 0});
+          TweenMax.to('h1 .l4', 0.5, {y:(dobbleTitle ? '-33%' : '-45%'),ease: Power1.easeOut, delay : 0});
+          TweenMax.to('h1 .l5', 0.6, {y:(dobbleTitle ? '-39%' : '-45%'),ease: Power1.easeOut, delay : 0, onComplete : function(){            
             app.$store.commit('loader', false);
             TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn});
@@ -951,14 +994,13 @@ export default {
           //==//
 
           TweenMax.set(document.querySelectorAll('h2'), {visibility : 'visible'});          
-          // H2 Animation //    
-
+          // H2 Animation //          
           //MM
           TweenMax.to(document.querySelectorAll('h2.mm .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
-          TweenMax.to('h2.mm .l2', 0.3, {x:'145%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
-          TweenMax.to('h2.mm .l3', 0.4, {x:'185%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
-          TweenMax.to('h2.mm .l4', 0.5, {x:'220%',ease: Power1.easeOut, delay : h2Delay,  force3D: false});
-          TweenMax.to('h2.mm .l5', 0.6, {x:'253%',ease: Power1.easeOut, delay : h2Delay,  force3D: false, onComplete : function(){            
+          TweenMax.to('h2.mm .l2', 0.3, {x:(dobbleTitle ? '65%':'145%'),ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+          TweenMax.to('h2.mm .l3', 0.4, {x:(dobbleTitle ? '115%':'185%'),ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+          TweenMax.to('h2.mm .l4', 0.5, {x:(dobbleTitle ? '155%':'220%'),ease: Power1.easeOut, delay : h2Delay,  force3D: false});
+          TweenMax.to('h2.mm .l5', 0.6, {x:(dobbleTitle ? '185%':'253%'),ease: Power1.easeOut, delay : h2Delay,  force3D: false, onComplete : function(){            
             TweenMax.to('h2.mm .l3', 0.6, {x:'0%',ease: Power1.easeIn,  force3D: false});
             TweenMax.to('h2.mm .l4', 0.5, {x:'0%',ease: Power1.easeIn,  force3D: false});
             TweenMax.to('h2.mm .l5', 0.4, {x:'0%',ease: Power1.easeIn,  force3D: false});
@@ -972,12 +1014,12 @@ export default {
             }});
           }});
           //==//
-          //EE          
+          //EE                    
           TweenMax.to(document.querySelectorAll('h2.ee .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
-          TweenMax.to('h2.ee .l2', 0.3, {x:'-170%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
-          TweenMax.to('h2.ee .l3', 0.4, {x:'-230%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
-          TweenMax.to('h2.ee .l4', 0.5, {x:'-285%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
-          TweenMax.to('h2.ee .l5', 0.6, {x:'-335%',ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){                                    
+          TweenMax.to('h2.ee .l2', 0.3, {x:(dobbleTitle ? '-60%':'-170%'),ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ee .l3', 0.4, {x:(dobbleTitle ? '-110%':'-230%'),ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ee .l4', 0.5, {x:(dobbleTitle ? '-155%':'-285%'),ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ee .l5', 0.6, {x:(dobbleTitle ? '-195%':'-335%'),ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){
             TweenMax.to('h2.ee .l3', 0.6, {x:'0%',ease: Power1.easeIn, force3D: false});
             TweenMax.to('h2.ee .l4', 0.5, {x:'0%',ease: Power1.easeIn, force3D: false});
             TweenMax.to('h2.ee .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
@@ -993,10 +1035,10 @@ export default {
           //==//
           //II
           TweenMax.to(document.querySelectorAll('h2.ii .start'), 1.2, {x : 0,ease: Back.easeOut.config(1), delay : h2Delay, force3D: false});
-          TweenMax.to('h2.ii .l2', 0.3, {x:'90%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
-          TweenMax.to('h2.ii .l3', 0.4, {x:'158%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
-          TweenMax.to('h2.ii .l4', 0.5, {x:'220%',ease: Power1.easeOut, delay : h2Delay, force3D: false});
-          TweenMax.to('h2.ii .l5', 0.6, {x:'270%',ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){            
+          TweenMax.to('h2.ii .l2', 0.3, {x:(dobbleTitle ? '15%' : '90%'),ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ii .l3', 0.4, {x:(dobbleTitle ? '70%' : '158%'),ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ii .l4', 0.5, {x:(dobbleTitle ? '117%' : '220%'),ease: Power1.easeOut, delay : h2Delay, force3D: false});
+          TweenMax.to('h2.ii .l5', 0.6, {x:(dobbleTitle ? '157%' : '270%'),ease: Power1.easeOut, delay : h2Delay, force3D: false, onComplete : function(){            
             TweenMax.to('h2.ii .l3', 0.6, {x:'0%',ease: Power1.easeIn, force3D: false});
             TweenMax.to('h2.ii .l4', 0.5, {x:'0%',ease: Power1.easeIn, force3D: false});
             TweenMax.to('h2.ii .l5', 0.4, {x:'0%',ease: Power1.easeIn, force3D: false});
@@ -1183,6 +1225,9 @@ h2 .fill {
   overflow: hidden;  
   z-index: 5;
 }
+h2 .row {
+  display: inline-flex;
+}
 h2 .l1 {
   display: inline-flex;
   margin-top: 0;  
@@ -1238,6 +1283,18 @@ h2 .l4 {
 }
 h2 .l5 {
   z-index: 1;
+}
+h2 .l2 span:last-child {
+  display: none;
+}
+h2 .l3 span:last-child {
+  display: none;
+}
+h2 .l4 span:last-child {
+  display: none;
+}
+h2 .l5 span:last-child {
+  display: none;
 }
 
 h2.mm {
@@ -1419,5 +1476,153 @@ h2.ii .l5 {
   z-index: 1;
 }
 
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 15.6vw;
+    line-height: 12vw; 
+  }
+  h1 i {
+    display: block;
+  }
+  h2 {
+    font-size: 15.6vw;
+    line-height: 11.8vw;
+    height: 24vw;
+  }
+  h2 .fill {    
+    height: 24vw;    
+  }
+  h2 .l1 {
+    height: 24vw;
+    flex-direction: column;
+  }
+  h2 .row.dos {
+    margin-left: 2vw;
+  }
+  h2 span {
+    margin-top: 0;
+  }
+  h2.mm {
+    bottom: calc(63% - 24vw);
+  }
+  h2.ee {
+    bottom: calc(63% - 48vw + 0.48vw);
+  }
+  h2.ii {
+    bottom: calc(63% - 70vw - 0.96vw);
+  }
+  h2.mm .show-more,
+  h2.ee .show-more,
+  h2.ii .show-more {
+    bottom: calc(11.8vw - 4px);
+  }
+  h2.mm .l2,
+  h2.mm .l3,
+  h2.mm .l4,
+  h2.mm .l5 {    
+    line-height: 11.8vw;
+    left: calc(98vw - 160px - 58vw);
+  }
+  h2.ee .l2,
+  h2.ee .l3,
+  h2.ee .l4,
+  h2.ee .l5 {    
+    line-height: 11.8vw;
+    bottom: auto;
+    right: 160px;
+    background-color: transparent;
+  }
+  h2.ii .l2,
+  h2.ii .l3,
+  h2.ii .l4,
+  h2.ii .l5 {    
+    line-height: 11.8vw;
+    left: calc(98vw - 160px - 58vw);
+    bottom: auto;
+    background-color: transparent;
+    padding-right: 0.7vw;
+  }
+  h2.ee .l2 span,
+  h2.ee .l3 span,
+  h2.ee .l4 span,
+  h2.ee .l5 span {
+    background-color: #191919;    
+  }
+  h2.ii .l2 span,
+  h2.ii .l3 span,
+  h2.ii .l4 span,
+  h2.ii .l5 span {
+    background-color: #191919;
+    width: 80%;
+  }
+  h2 .l2 span:last-child {
+    display: block;
+    margin-left: 2vw;
+  }
+  h2 .l3 span:last-child {
+    display: block;
+    margin-left: 2vw;
+  }
+  h2 .l4 span:last-child {
+    display: block;
+    margin-left: 2vw;
+  }
+  h2 .l5 span:last-child {
+    display: block;
+    margin-left: 2vw;
+  }
+  h2 .l2 {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  h2 .l3 {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  h2 .l4 {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  h2 .l5 {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  h2.mm .bg {
+    bottom: 0;
+  }
+  h2.mm .l1 {
+    left: calc(98vw - 160px - 58vw);
+  }
+  h2.ii .l1 {
+    left: calc(98vw - 160px - 58vw);
+  }
+  h2.ee .bg {
+    height: 51%;
+    top: 0;        
+  }
+  h2.ee .bg::before {
+    content: "";
+    width: 100%;
+    height: 110%;
+    background-color: #191919;
+    position: absolute;
+    bottom: -100%;
+    left: 2vw;
+  }
+  h2.ii .bg {
+    height: 51%;
+    top: 0;
+    width: 80%;
+  }
+  h2.ii .bg::before {
+    content: "";
+    width: 100%;
+    height: 105%;
+    background-color: #191919;
+    position: absolute;
+    bottom: -100%;
+    left: 2vw;
+  }
+}
 </style>
 

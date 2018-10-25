@@ -2,12 +2,27 @@
   <section class="container" id="app-contacts">
     <h1>
       <div class="l1">
-        <span>get in touch</span>
+        <span>
+          <i>get </i>
+          <i>in touch</i>
+        </span>
       </div>  
-      <span class="l2">get in touch</span>
-      <span class="l3">get in touch</span>
-      <span class="l4">get in touch</span>
-      <span class="l5">get in touch</span>
+      <span class="l2">
+        <i>get </i>
+        <i>in touch</i>
+      </span>
+      <span class="l3">
+        <i>get </i>
+        <i>in touch</i>
+      </span>
+      <span class="l4">
+        <i>get </i>
+        <i>in touch</i>
+      </span>
+      <span class="l5">
+        <i>get </i>
+        <i>in touch</i>
+      </span>
     </h1>  
     <div class="contacts__information">
       <div class="contacts__information_address">
@@ -144,8 +159,11 @@ export default {
       return this.$store.state.appStart;
     },
     loader : function(){
-        return this.$store.state.loader;
-      }
+      return this.$store.state.loader;
+    },
+    mobile : function(){
+      return this.$store.state.mobile;
+    }
   },
   methods : {
     mailHover : function(e){
@@ -160,6 +178,7 @@ export default {
   watch : {
     appStart : function(val){
       var app = this;
+      var dobbleTitle = window.innerWidth <= 768;
       if(val){
         TweenMax.set(document.querySelectorAll('#app-eyes .eye__02, #app-eyes .eye__07'), {display : 'block'});
         TweenMax.fromTo('#app-eyes .eye__09', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -14, ease: Power3.easeInOut, force3D : true, delay : 1.15});        
@@ -167,11 +186,11 @@ export default {
         // H1 Animation //
         TweenMax.set('h1', {visibility : 'visible'});
         TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 1.2});
-          TweenMax.to('h1 .l2', 0.3, {y:'15%',ease: Power1.easeOut, delay : 1.2});
-          TweenMax.to('h1 .l3', 0.4, {y:'30%',ease: Power1.easeOut, delay : 1.2});
-          TweenMax.to('h1 .l4', 0.5, {y:'45%',ease: Power1.easeOut, delay : 1.2});
-          TweenMax.to('h1 .l5', 0.6, {y:'60%',ease: Power1.easeOut, delay : 1.2, onComplete : function(){
-            app.$store.commit('loader', false);            
+          TweenMax.to('h1 .l2', 0.3, {y:dobbleTitle ? '15%' : '15%',ease: Power1.easeOut, delay : 1.2});
+          TweenMax.to('h1 .l3', 0.4, {y:dobbleTitle ? '27%' : '30%',ease: Power1.easeOut, delay : 1.2});
+          TweenMax.to('h1 .l4', 0.5, {y:dobbleTitle ? '38%' : '45%',ease: Power1.easeOut, delay : 1.2});
+          TweenMax.to('h1 .l5', 0.6, {y:dobbleTitle ? '46%' : '60%',ease: Power1.easeOut, delay : 1.2, onComplete : function(){            
+            app.$store.commit('loader', false);
             TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn});
@@ -183,7 +202,8 @@ export default {
               .to('.contacts__information_mail a i', 0.4, {scaleY : 1, ease: Power4.easeIn}, 'line')
               .to('.follow-us span', 0.7, {y : '0%', ease: Power4.easeOut}, 'line')
               .to('.follow-us i', 0.7, {width : '82px', ease: Power4.easeOut}, 'line')
-              .to('.copyright span', 0.7, {y : '0%', ease: Power4.easeOut}, 'line')
+              .to('.copyright span', 0.7, {y : '0%', ease: Power4.easeOut}, 'line');
+
 
               
               // scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})
@@ -192,6 +212,8 @@ export default {
               //   if(app.$store.state.scrollDownHover)scrollDownTL.pause();
               // });
 
+              console.log(app.mobile);
+              if(app.mobile)TweenMax.set('.app-social', {display : 'flex'})
               TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});
               TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.1});
               TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.1, onComplete : function(){
@@ -242,9 +264,9 @@ h1 {
 }
 h1 span {
   display: inline-block;  
-  padding: 0px 1vw;
+  padding: 0px 2vw 0 0;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   color: #191919;  
   white-space: nowrap;
@@ -258,6 +280,7 @@ h1 .l1 {
   padding-bottom: 0;
   overflow: hidden;
   background-color: #f8f8eb;
+  padding-top: 2vw;
 }
 h1 .l1 span {    
   position: static; 
@@ -333,5 +356,45 @@ h1 .l5 {
   top: 50%;
   transform: translateY(-50%);
 }
-</style>
 
+@media screen and (max-width: 768px) {
+  h1 i {
+    display: block;
+  }
+  h1 {
+    font-size: 15.6vw;
+    line-height: 12vw;
+    bottom: 160px;
+  }
+  h1 .l1 {
+    /*padding-top: 2vw;    */
+  }
+  h1 span {
+    /*padding: 1vw 1vw 1vw 0;*/
+    padding: 0px 2vw 1.3vw 0;
+  }
+  .contacts__information {
+    top: auto;
+    bottom: calc(50% + 7px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .follow-us {
+    display: none;
+  }
+  h1 {
+    font-size: 12.8vw;
+    left: calc(42px - 1vw);
+    bottom: 84px;
+  }
+  h1 i {
+    display: inline;
+  }
+  .contacts__information {
+    left: 42px;
+    bottom: auto;
+    top: 28%;
+  }  
+}
+</style>

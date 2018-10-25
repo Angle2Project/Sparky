@@ -1755,9 +1755,10 @@
 
 <style>
 #app-eyes {
-  position: fixed;  
+  position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;  
 }
 #app-eyes section {  
   opacity: 0;
@@ -1840,6 +1841,148 @@
   top: 14vh;
   right: 84vw;
   width: 11vw;
+}
+@media screen and (max-width: 768px) {  
+  .eye__06 {
+    position: fixed;
+    top: 3%;
+    right: 25vw;
+    width: 15vw;
+  }
+  .eye__12 {
+    position: fixed;
+    top: 13%;
+    right: 79vw;
+    width: 15vw;
+  }
+  .eye__01 {
+    position: fixed;
+    top: 10%;
+    right: 28vw;
+    width: 32vw;
+  }
+  .eye__09 {
+    position: fixed;
+    top: 24%;
+    right: 65vw;
+    width: 23vw;
+  }
+  .eye__04 {
+    position: fixed;
+    top: 18%;
+    right: 12vw;
+    width: 21vw;
+  }
+  .eye__02 {
+    position: fixed;
+    top: auto;
+    right: 35vw;
+    width: 30vw;
+    bottom: 59%;
+  }
+  .eye__08 {
+    position: fixed;
+    top: auto;
+    right: 66vw;
+    width: 20vw;
+    bottom: 34vh;
+  }
+  .eye__03 {
+    position: fixed;
+    top: auto;
+    right: 12vw;
+    width: 21vw;
+    bottom: 54%;
+  }
+  .eye__07 {
+    position: fixed;
+    top: 39%;
+    right: 73vw;
+    width: 19vw;
+  }
+  .eye__05 {
+    position: fixed;
+    top: auto;
+    right: 36vw;
+    width: 26vw;
+    bottom: 39%;
+  }
+  .eye__11 {
+    position: fixed;
+    top: auto;
+    right: 12vw;
+    width: 17vw;
+    bottom: 35vh;
+  }
+  .eye__10 {
+    position: fixed;
+    top: auto;
+    right: 41vw;
+    width: 21vw;
+    bottom: 3%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .eye__12 {    
+    width: 24vw;
+  }
+  .eye__01 {    
+    right: 6vw;
+    width: 50vw;
+  }
+  .eye__04 {
+    right: -12vw;
+    width: 27vw;
+    bottom: 66vh;
+  }
+  .eye__09 {
+    top: auto;
+    right: 57vw;
+    width: 41vw;
+    bottom: 58vh;
+  }
+  .eye__02 {
+    position: fixed;    
+    right: -1vw;
+    width: 47vw;
+    bottom: 51vh;
+  }
+  .eye__08 {
+    position: fixed;
+    bottom: 24vh;
+    right: 53vw;
+    width: 26vw;
+  }
+  .eye__05 {
+    position: fixed;
+    top: auto;
+    right: 11vw;
+    width: 37vw;
+    bottom: 29vh;
+  }
+  .eye__07 {
+    position: fixed;
+    top: auto;
+    right: 68vw;
+    width: 25vw;
+    bottom: 44vh;
+  }
+  .eye__03 {
+    position: fixed;
+    top: auto;
+    bottom: 17vh;
+    right: -1vw;
+    width: 22vw;
+  }
+  .eye__06,
+  .eye__10,
+  .eye__11 {    
+    visibility: hidden;
+  }
+  .contacts .eye__09 {
+    display: none;
+  }
+
 }
 </style>
 

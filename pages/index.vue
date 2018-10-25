@@ -80,6 +80,9 @@ export default {
   computed : {    
     appStart : function(){
       return this.$store.state.appStart;
+    },
+    mobile : function(){
+      return this.$store.state.mobile;
     }
   },
   methods : {
@@ -87,13 +90,13 @@ export default {
   },
   watch : {
     appStart : function(val){
-      var app = this;
+      var app = this;      
       if(val){
         TweenMax.set(document.querySelectorAll('#app-eyes section'), {display : 'block'});
         TweenMax.fromTo('#app-eyes .eye__01', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.1});
         TweenMax.fromTo('#app-eyes .eye__02', 0.7, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.05});
-        TweenMax.fromTo('#app-eyes .eye__03', 0.8, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 10, ease: Power3.easeInOut, force3D : true, delay : 1.15});
-        TweenMax.fromTo('#app-eyes .eye__04', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -25, ease: Power3.easeInOut, force3D : true, delay : 1.2});
+        TweenMax.fromTo('#app-eyes .eye__03', 0.8, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : (app.mobile ? 0 : 10), ease: Power3.easeInOut, force3D : true, delay : 1.15});
+        TweenMax.fromTo('#app-eyes .eye__04', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : (app.mobile ? -8 : -25), ease: Power3.easeInOut, force3D : true, delay : 1.2});
         TweenMax.fromTo('#app-eyes .eye__05', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -8, ease: Power3.easeInOut, force3D : true, delay : 1.2});
         TweenMax.fromTo('#app-eyes .eye__06', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : 15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.3});
         TweenMax.fromTo('#app-eyes .eye__07', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.17});
@@ -158,7 +161,7 @@ export default {
 
 <style scoped>
 #app-intro {
-  
+
 }
 .intro__text {  
   position: absolute;
@@ -225,6 +228,48 @@ h2 {
 h2 span {
   transform: translateY(100%);
   display: inline-block;
+}
+
+@media screen and (max-width: 768px) {
+  #app-intro {
+    position: fixed;
+    bottom: 0;
+  }
+  .intro__text {
+    top: auto;
+    bottom: 25vh;
+    transform: translateY(50%);    
+  }
+  h1 {    
+    font-size: 15.6vw;
+    line-height: 14.5vw;    
+  }
+  h2 {    
+    font-size: 6.3vw;
+    margin-top: 3vw;
+  }  
+}
+
+@media screen and (max-width: 480px) {
+  #app-intro {    
+    position: fixed;
+    bottom: 0;
+  }
+  .intro__text {
+    top: auto;
+    left: auto;
+    bottom: 42px;    
+    transform: translateY(0%);
+  }
+  h1 {    
+    font-size: 12.8vw;
+    line-height: 11.7vw;
+  }
+  h2 {    
+    font-size: 6.3vw;
+    margin-top: 3vw;
+    width: 50vw;
+  }  
 }
 </style>
 

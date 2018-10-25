@@ -1,15 +1,33 @@
 <template>
   <section class="container" id="app-clients">
     <!-- Slider main container -->
-    <div class="swiper-container">        
+    <div class="swiper-container clients-slider">        
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide"><img src="~assets/converse.svg"></div>
-            <div class="swiper-slide"><img src="~assets/footjoy.svg"></div>
-            <div class="swiper-slide"><img src="~assets/talbots.svg"></div>
-            <div class="swiper-slide"><img src="~assets/converse.svg"></div>
-            <div class="swiper-slide"><img src="~assets/footjoy.svg"></div>
-            <div class="swiper-slide"><img src="~assets/talbots.svg"></div>
+            <div class="swiper-slide">              
+              <img src="~assets/converse.svg">
+              <i></i>
+            </div>
+            <div class="swiper-slide">              
+              <img src="~assets/footjoy.svg">
+              <i></i>
+            </div>
+            <div class="swiper-slide">              
+              <img src="~assets/talbots.svg">
+              <i></i>
+            </div>
+            <div class="swiper-slide">              
+              <img src="~assets/converse.svg">
+              <i></i>
+            </div>
+            <div class="swiper-slide">              
+              <img src="~assets/footjoy.svg">
+              <i></i>
+            </div>
+            <div class="swiper-slide">              
+              <img src="~assets/talbots.svg">
+              <i></i>
+            </div>
         </div>        
     </div>
     <div class="swiper-navigation">
@@ -28,12 +46,27 @@
     </div>          
     <h1>
       <div class="l1">
-        <span>powerful brands</span>
+        <span>
+          <i>powerful </i>
+          <i>brands</i>
+         </span>
       </div>  
-      <span class="l2">powerful brands</span>
-      <span class="l3">powerful brands</span>
-      <span class="l4">powerful brands</span>
-      <span class="l5">powerful brands</span>
+      <span class="l2">
+        <i>powerful </i>
+        <i>brands</i>
+      </span>
+      <span class="l3">
+        <i>powerful </i>
+        <i>brands</i>
+      </span>
+      <span class="l4">
+        <i>powerful </i>
+        <i>brands</i>
+      </span>
+      <span class="l5">
+        <i>powerful </i>
+        <i>brands</i>
+      </span>
     </h1>    
   </section>
 </template>
@@ -43,29 +76,39 @@
 import Swiper from 'swiper';
 export default {
   mounted : function(){
-    var app = this;
+    var app = this;    
+    var dobbleTitle;
+    if(window.innerWidth <= 768 && window.innerWidth > 480){
+      dobbleTitle = '33.3%';
+    }else if(window.innerWidth <= 480){
+      dobbleTitle = '23.4%';
+    }else{
+      dobbleTitle = '37%';
+    }
     app.$store.commit('pageName', 'clients');
     app.$store.commit('navigation', 'clients');
     app.$store.commit('eyes', false);
-    TweenMax.set(document.querySelectorAll('.swiper-container, h1'), {visibility : 'hidden'});
+    TweenMax.set(document.querySelectorAll('.clients-slider.swiper-container, h1'), {visibility : 'hidden'});
     TweenMax.set('.swiper-navigation i', {width : '0'});
-    TweenMax.set('.bg__bottom', {width : '100%', x : '-160px'});
+    TweenMax.set('.bg__bottom', {width : '100%', x : app.mobile ? '-84px' : '-160px'});
     TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb', onComplete : function(){
-      TweenMax.set('.swiper-container', {visibility : 'visible'});
-    }});
-    var mySwiper = new Swiper('.swiper-container', {
+      TweenMax.set('.clients-slider.swiper-container', {visibility : 'visible'});
+    }});    
+    app.mySwiper = new Swiper('.clients-slider.swiper-container', {
       navigation: {
         nextEl: '.swiper-navigation .next',
         prevEl: '.swiper-navigation .prev',
       },
-        slidesPerView: 3,
-        speed: 700,
-        watchOverflow : true
-        //spaceBetween: 1
+      direction: dobbleTitle == '37%' ? 'horizontal' : 'vertical',
+      slidesPerView: 3,
+      speed: 700,
+      watchOverflow : true
+      //spaceBetween: 1
     });
   },
   data : function(){
     return {
+      mySwiper : null,
       prevAnimation : false,
       nextAnimation : false
     }
@@ -75,9 +118,17 @@ export default {
     css : false,
     enter : function(el, done){
       var app = this;
-      var prev = (app.$store.state.prevPage == 'services')      
+      var prev = (app.$store.state.prevPage == 'services');
+      var dobbleTitle;
+      if(window.innerWidth <= 768 && window.innerWidth > 480){
+        dobbleTitle = '33.3%';
+      }else if(window.innerWidth <= 480){
+        dobbleTitle = '23.4%';
+      }else{
+        dobbleTitle = '37%';
+      }      
       TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});
-      TweenMax.to('.bg__bottom', 0.7, {height : '37%', ease: Power4.easeInOut, onComplete : function(){
+      TweenMax.to('.bg__bottom', 0.7, {height : dobbleTitle, ease: Power4.easeInOut, onComplete : function(){
 
         // H1 Animation //
         TweenMax.set('h1', {visibility : 'visible'});
@@ -88,8 +139,8 @@ export default {
           TweenMax.to('h1 .l5', 0.6, {y:'60%',ease: Power1.easeOut, delay : 0, onComplete : function(){
             TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : '100%'});
             app.$store.commit('loader', false);
-            new TimelineMax().staggerTo(document.querySelectorAll('.swiper-container .swiper-slide'), 0.5, {opacity : 1, y : '0', ease: Back.easeOut.config(1.5), force3D : true}, 0.1, 'uno')
-            .to(document.querySelectorAll('.swiper-container .swiper-slide'), 0.5, {borderColor : '#191919'}, 'uno+=0.7');            
+            new TimelineMax().staggerTo(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {opacity : 1, y : '0', ease: Back.easeOut.config(1.5), force3D : true}, 0.1, 'uno')
+            .to(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {borderColor : dobbleTitle ? 'transparent' : '#191919'}, 'uno+=0.7');            
             TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn});
@@ -120,9 +171,9 @@ export default {
       TweenMax.set(document.querySelectorAll('h1 .l1, h1 span'), {backgroundColor : 'transparent'})
       var next = app.$route.name;
       var tl = new TimelineMax();
-      var slides = document.querySelectorAll('.swiper-slide-active, .swiper-slide-active+.swiper-slide, .swiper-slide-active+.swiper-slide+.swiper-slide');            
+      var slides = document.querySelectorAll('.clients-slider .swiper-slide-active, .clients-slider .swiper-slide-active+.swiper-slide, .clients-slider .swiper-slide-active+.swiper-slide+.swiper-slide');
       tl.to('h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeInOut}, 'uno')
-      .to(document.querySelectorAll('.swiper-slide'), 0.7, {borderColor : 'transparent'}, 'uno')
+      .to(document.querySelectorAll('.clients-slider .swiper-slide'), 0.7, {borderColor : 'transparent'}, 'uno')
       .to(document.querySelectorAll('.swiper-navigation .prev, .swiper-navigation .next'), 0.7, {opacity : 0}, 'uno')
       .staggerTo(slides, 0.15, {scaleY : 0.5, opacity : 0}, 0.15, 'dos')
       .to('.bg__bottom', 0.7, {height : '0%', ease: Power4.easeInOut, onComplete : function(){        
@@ -140,9 +191,12 @@ export default {
     },
     loader : function(){
       return this.$store.state.loader;
+    },
+    mobile : function(){
+      return this.$store.state.mobile;
     }
   },
-  methods : {
+  methods : {    
     hoverPrev : function(e){
       var app = this;
       if(e.type == 'mouseenter'){
@@ -174,19 +228,28 @@ export default {
   },
   watch : {
     appStart : function(val){
-      var app = this;      
+      var app = this;
+      var dobbleTitle = window.innerWidth <= 768;
+      var bgBottomHeigth;
+      if(window.innerWidth <= 768 && window.innerWidth > 480){
+        bgBottomHeigth = '33.3%';
+      }else if(window.innerWidth <= 480){
+        bgBottomHeigth = '23.4%';
+      }else{
+        bgBottomHeigth = '37%';
+      }
       TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});      
-      TweenMax.to('.bg__bottom', 0.7, {height : '37%', ease: Power4.easeInOut, delay : 1.5, onComplete : function(){
+      TweenMax.to('.bg__bottom', 0.7, {height : bgBottomHeigth, ease: Power4.easeInOut, delay : 1.5, onComplete : function(){
         // H1 Animation //
         TweenMax.set('h1', {visibility : 'visible'});
         TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0, force3D : false});
-          TweenMax.to('h1 .l2', 0.3, {y:'15%',ease: Power1.easeOut, delay : 0});
-          TweenMax.to('h1 .l3', 0.4, {y:'30%',ease: Power1.easeOut, delay : 0});
-          TweenMax.to('h1 .l4', 0.5, {y:'45%',ease: Power1.easeOut, delay : 0});
-          TweenMax.to('h1 .l5', 0.6, {y:'60%',ease: Power1.easeOut, delay : 0, onComplete : function(){
+          TweenMax.to('h1 .l2', 0.3, {y:dobbleTitle ? '15%' : '15%',ease: Power1.easeOut, delay : 0});
+          TweenMax.to('h1 .l3', 0.4, {y:dobbleTitle ? '27%' : '30%',ease: Power1.easeOut, delay : 0});
+          TweenMax.to('h1 .l4', 0.5, {y:dobbleTitle ? '38%' : '45%',ease: Power1.easeOut, delay : 0});
+          TweenMax.to('h1 .l5', 0.6, {y:dobbleTitle ? '46%' : '60%',ease: Power1.easeOut, delay : 0, onComplete : function(){            
             app.$store.commit('loader', false);
-            new TimelineMax().staggerTo(document.querySelectorAll('.swiper-container .swiper-slide'), 0.5, {opacity : 1, y : '0', ease: Back.easeOut.config(1.5), force3D : true}, 0.1, 'uno')
-            .to(document.querySelectorAll('.swiper-container .swiper-slide'), 0.5, {borderColor : '#191919'}, 'uno+=0.7');            
+            new TimelineMax().staggerTo(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {opacity : 1, y : '0', ease: Back.easeOut.config(1.5), force3D : true}, 0.1, 'uno')            
+            .to(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {borderColor : dobbleTitle ? 'transparent' : '#191919'}, 'uno+=0.7');
             TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn});
@@ -349,7 +412,7 @@ h1 .l5 {
   right: 0;
   z-index: 1;
 }
-.swiper-slide {  
+.swiper-slide {
   height: 11.7vh;
   border-right: 1px solid transparent;
   display: flex;
@@ -357,6 +420,9 @@ h1 .l5 {
   align-items: center;
   opacity: 0;
   transform: translateY(50%);  
+}
+.swiper-slide i {
+  display: none;
 }
 .swiper-wrapper .swiper-slide:last-child {
   border-right: none;
@@ -436,5 +502,94 @@ h1 .l5 {
   transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
   z-index: 0;
 }
-</style>
 
+@media screen and (max-width: 768px) {
+  h1 .l1 span {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  h1  span {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-bottom: 1.3vw;
+  }
+  h1 {
+    font-size: 15.6vw;
+    line-height: 12vw;
+    top: calc(66.7% - 0.85vw);
+  }
+  .swiper-container-vertical {
+    left: 160px;
+    right: 160px;
+    top: calc(160px - 5.5vh);
+    bottom: calc(50% - 5.5vh);
+  }
+  .swiper-container-vertical .swiper-slide {
+    height: auto;
+  }
+  .swiper-navigation {    
+    bottom: calc(33.3% + ((50% - 33.3%) / 2) - 20px);    
+  }
+  .swiper-container::before {    
+    width: 100%;
+    height: 4vw;
+  }
+  .swiper-container[data-v-2af04cc2]::after {    
+    width: 100%;
+    height: 4vw;        
+    bottom: 0;
+    top: auto;    
+  }
+  .swiper-slide {
+    height: auto;
+    border-bottom: 1px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(50%);  
+  }
+  .swiper-slide-active {
+    position: relative;
+  }
+  .swiper-slide i {
+    display: block;    
+    height: 1px;
+    width: 10.4vw;
+    background-color: #191919;
+    position: absolute;
+    bottom: 1px;
+    left: calc(50% - (10.4vw / 2));    
+  }
+  .swiper-slide:last-child i {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    right: 84px;
+    font-size: 12.8vw;
+    line-height: 10.0vw;
+    top: calc(76.6% - 0.85vw);
+  }
+  .swiper-container-vertical {
+    left: 84px;
+    right: 84px;
+    top: 84px;
+    bottom: 33%;
+  }
+  .swiper-slide img {
+    width: 100%;
+  }
+  .swiper-navigation {
+    display: none;
+  }
+  .swiper-container .swiper-wrapper {
+    transition-timing-function: ease;
+    z-index: 0;
+  }
+}
+</style>

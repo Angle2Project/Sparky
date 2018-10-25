@@ -2,12 +2,27 @@
   <section class="container" id="app-team">
     <h1>
       <div class="l1">
-        <span>sparkling minds</span>
+        <span>
+          <i>sparkling </i>
+          <i>minds</i>
+        </span>
       </div>  
-      <span class="l2">sparkling minds</span>
-      <span class="l3">sparkling minds</span>
-      <span class="l4">sparkling minds</span>
-      <span class="l5">sparkling minds</span>
+      <span class="l2">
+        <i>sparkling </i>
+        <i>minds</i>
+      </span>
+      <span class="l3">
+        <i>sparkling </i>
+        <i>minds</i>
+      </span>
+      <span class="l4">
+        <i>sparkling </i>
+        <i>minds</i>
+      </span>
+      <span class="l5">
+        <i>sparkling </i>
+        <i>minds</i>
+      </span>
     </h1>   
   </section>
 </template>
@@ -19,7 +34,7 @@ export default {
     app.$store.commit('pageName', 'team');
     app.$store.commit('navigation', 'team');
     app.$store.commit('eyes', false);
-    TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb'});    
+    TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb'});
   },
   data : function(){
     return {
@@ -33,7 +48,8 @@ export default {
     mode : 'out-in',
     css : false,
     enter : function(el, done){
-      var app = this;        
+        var app = this;
+        var mobile = app.$store.state.mobile;
         var prev = (app.$store.state.prevPage == 'clients')
         TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});
         TweenMax.to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#f8f8eb'});
@@ -61,20 +77,33 @@ export default {
           }});
         //==//   
             app.$store.commit('teamSlider', true);
-            TweenMax.staggerTo([document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')], 0.9, {height : '27.8vw', delay : 1.2, ease: Power4.easeOut}, 0.14);   
+            var list;
+            if(mobile){
+              list = document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom, .team__list .dos .top, .team__list .dos .bottom, .team__list .tres .top, .team__list .tres .bottom');
+            }else{
+              list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];              
+            }
+            TweenMax.staggerTo(list, 0.9, {height : mobile ? '100%' : '27.8vw', delay : 1.2, ease: Power4.easeOut}, 0.14);   
         
     },
     leave : function(el, done){
       var app = this;
+      var mobile = app.$store.state.mobile;
       app.$store.commit('scroll', false);
       app.$store.commit('prevPage', 'team');
       var next = app.$route.name;
       TweenMax.set('h1 .l1, h1 .l1 span', {backgroundColor : 'transparent'})
-      TweenMax.set('h1 .l2, h1 .l3, h1 .l4, h1 .l5', {visibility : 'hidden'});      
+      TweenMax.set('h1 .l2, h1 .l3, h1 .l4, h1 .l5', {visibility : 'hidden'});
+      var list;
+      if(mobile){
+        list = document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom, .team__list .dos .top, .team__list .dos .bottom, .team__list .tres .top, .team__list .tres .bottom');
+      }else{
+        list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];              
+      }
       var tl = new TimelineMax({onComplete : function(){
         app.$store.commit('teamSlider', false);
         TweenMax.set(document.querySelectorAll('.team__list .item'), {clearProps : 'all'});
-      }}).to([document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')], 0.6, {height : '0vw', ease: Power3.easeIn}, 'uno')
+      }}).to(list, 0.6, {height : '0vw', ease: Power3.easeIn}, 'uno')
       .to('h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeInOut}, 'uno+=0.5')      
       if(next == 'index' || next == 'description' || next == 'contacts' || next == 'clients'){
         tl.to('.bg__right', 0.7, {width : '0%', ease: Power3.easeInOut}, 'uno+=0.7')
@@ -97,7 +126,10 @@ export default {
     },
     loader : function(){
       return this.$store.state.loader;
-    }    
+    },
+    mobile : function(){
+      return this.$store.state.mobile;
+    }
   },
   methods : {
     startParallax : function(leader, el){
@@ -141,7 +173,13 @@ export default {
           TweenMax.to('h1 .l5', 0.6, {y:'60%',ease: Power1.easeOut, delay : 1.5, onComplete : function(){
             app.$store.commit('teamSlider', true);
             app.$store.commit('loader', false);
-            TweenMax.staggerTo([document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')], 0.8, {height : '27.8vw', delay : 0.35, ease: Power4.easeOut}, 0.14);
+            var list;
+            if(app.mobile){
+              list = document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom, .team__list .dos .top, .team__list .dos .bottom, .team__list .tres .top, .team__list .tres .bottom');
+            }else{
+              list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];              
+            }
+            TweenMax.staggerTo(list, 0.8, {height : app.mobile ? '100%' : '27.8vw', delay : 0.35, ease: Power4.easeOut}, 0.14);
             TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn});
             TweenMax.to('h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn});
@@ -240,5 +278,30 @@ h1 .l4 {
 h1 .l5 {
   z-index: 1;
 }
-</style>
 
+@media screen and (max-width: 768px) {
+  h1 i {
+    display: block;
+  }
+  h1 {
+    font-size: 15.6vw;
+    line-height: 12vw;
+  }
+  h1 .l1 {
+    padding-top: 2vw;    
+  }
+  h1 span {
+    padding: 1vw 1vw 1vw 0;
+  }  
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 12.8vw;
+    line-height: 10.0vw;
+    top: calc(84px - 2vw);
+    left: 42px;
+    transform: translateY(0);
+  }
+}
+</style>

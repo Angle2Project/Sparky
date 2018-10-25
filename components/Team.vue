@@ -1,7 +1,8 @@
 <template>
   <div class="container" id="app-teamslider">
-    <div class="team__list">
-      <div class="item uno">
+    <div class="team__list swiper-container">
+      <div class="swiper-wrapper">
+      <div class="item uno swiper-slide">
         <div class="top">
           <div class="item__wrapper">
             <div class="item__info">
@@ -19,7 +20,7 @@
           </div>          
         </div>
       </div>
-      <div class="item dos">
+      <div class="item dos swiper-slide">
         <div class="top">
           <div class="item__wrapper">
             <div class="item__info">
@@ -37,7 +38,7 @@
           </div>          
         </div>
       </div>
-      <div class="item tres">
+      <div class="item tres swiper-slide">
         <div class="top">
           <div class="item__wrapper">
             <div class="item__info">
@@ -57,12 +58,15 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
+  import Swiper from 'swiper';
   export default {
     data : function(){
       return {
+        swiper : null,
         ease : 0.1, 
         pointer : {
           y : 0
@@ -78,19 +82,33 @@
       },
       teamSlider : function(){
         return this.$store.state.teamSlider;
-      }
+      },
+      mobile : function(){
+        return this.$store.state.mobile;
+      }      
     },
     mounted : function(){
       var app = this;
       var leader = app.pointer;
       var list = document.querySelectorAll('.team__list .item');
-      list.forEach( function(el, i) {
-        leader = app.startParallax(leader, el);
-      });
+      // list.forEach( function(el, i) {
+      //   leader = app.startParallax(leader, el);
+      // });
+      console.log(app.mobile)
+      if(app.mobile){
+        app.swiper = new Swiper('.team__list.swiper-container', {          
+          direction: 'horizontal',          
+          slidesPerView: 'auto',
+          freeMode : true,
+          speed: 700,
+          watchOverflow : true
+          //spaceBetween: 1
+        });
+      }
     },
     methods : {
       startParallax : function(leader, el){
-        var app = this;                
+        var app = this;
         TweenMax.set(el, {y : 0});
         var pos = el._gsTransform;
         TweenMax.to(el, 10, {
@@ -144,7 +162,7 @@
 }
 .team__list .item .item__wrapper {
   width: 100%;
-  height: 27.8vw;
+  height: 100%;
   position: relative;
 }
 .team__list .item .top {
@@ -213,5 +231,55 @@
   /*background: #ccc;*/
   transform: translateY(5vw);
 }
-</style>
 
+@media screen and (max-width: 768px) {
+  .team__list {
+    left: 80px;
+    height: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .team__list .item {
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .team__list {
+    width: calc(100% - 42px);
+    right: auto;
+    top: calc(100px + 25vw);
+    bottom: 114px;
+    left: 42px;
+    height: auto;
+    transform: translateY(0);
+    overflow: hidden;
+    display: block;
+  }
+  .team__list .item {    
+    display: flex;
+    width: auto;
+    margin: 0;
+  }
+  .team__list .item .top,
+  .team__list .item .bottom {
+    width: calc((90vh - 25vw - 100px - 114px) / 1.3);
+    height: 91vw;
+    position: relative!important;
+    transform: translateY(0)!important;
+    margin-right: 10px;
+  }
+  .team__list .item.tres .bottom {
+    background-size: 4vw auto;
+    background-position: center top;
+  }
+  .team__list .item.tres .bottom[data-v-20c76db8] {
+      background-position: center;
+  }
+  .team__list .item .top .item__info,
+  .team__list .item .bottom .item__info {
+    top: auto;
+    bottom: 2.5vw;
+  }
+}
+</style>

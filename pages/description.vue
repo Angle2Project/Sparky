@@ -167,8 +167,7 @@ export default {
   padding-bottom: 3px;
   transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
 }
-#app-description h1 a > div i {
-  content: "";
+#app-description h1 a > div i {  
   position: absolute;
   bottom: 0;
   left: 0;
@@ -183,6 +182,33 @@ export default {
 }
 #app-description h1 a:hover div i {
   height: 1px;
+}
+
+@media screen and (max-width: 768px) {
+  #app-description h1 {
+    font-size: 4.7vw;
+    line-height: 5.7vw;
+    width: 65vw;    
+    left: 80px;
+    top: auto;
+    bottom:  calc(25vh + 80px);
+    transform: translateY(50%);
+  }
+  #app-description h1 a > div i {        
+    left: -1vw;
+    width: calc(100% + 2vw);    
+  }
+}
+@media screen and (max-width: 480px) {
+  #app-description h1 {
+    font-size: 6.4vw;
+    line-height: 7.8vw;
+    width: 65vw;
+    left: 42px;
+    top: auto;
+    bottom: 42px;    
+    transform: translateY(0);
+  }
 }
 </style>
 

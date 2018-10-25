@@ -91,7 +91,7 @@
       </svg>
       <div class="loader__percent">{{percentFixed}}%</div>      
     </div>
-    <div class="loader__performance">Hover on eyes for performance</div>
+    <div class="loader__performance">{{performance}}</div>
     </div>
     <div class="loader__bg"></div>
   </div>
@@ -101,16 +101,28 @@
   export default {
     data : function(){
       return {
-        percent : 0
+        percent : 0,
+        performance : '',
+        performanceDesck : 'Hover on eyes for performance',
+        performanceMobile : 'Tap on eyes for performance'
       }
     },
     computed : {
       percentFixed : function() {
           return this.percent.toFixed(0);
+      },
+      mobile : function(){
+        return this.$store.state.mobile;
       }
     },
     mounted : function(){
-      var app = this;      
+      var app = this;
+      console.log(app.mobile)
+      if(app.mobile){
+        app.performance = app.performanceMobile;
+      }else{
+        app.performance = app.performanceDesck;
+      }
       var ww = Math.pow(window.innerWidth, 2)
       var wh = Math.pow(window.innerHeight, 2)      
       var r = Math.sqrt(ww + wh) * 2;
@@ -162,7 +174,7 @@
                     TweenMax.to('#eyes .lb-0', 0.5, {morphSVG: '#eyes .lb-70', ease: Power3.easeOut});
                     TweenMax.to('#eyes .lp-0', 0.5, {morphSVG: '#eyes .lp-120', ease: Power3.easeOut});
                     TweenMax.to('#eyes .rp-0', 0.5, {morphSVG: '#eyes .rp-120', ease: Power3.easeOut});
-                    TweenMax.to('#eyes .rg-0', 0.5, {morphSVG: '#eyes .rg-120', ease: Power3.easeOut});
+                    TweenMax.to('#eyes .rg-0', 0.5, {morphSVG: '#eyes .rg-120', ease: Power3.easeOut});                    
                     TweenMax.to('.loader__bg', 1, {scale : 0, delay : 1, ease: Power3.easeInOut});
                     TweenMax.to('.wrapper', 0.3, {scale : 0, ease: Power2.easeInOut, delay : 0.9});
                     TweenMax.set([document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')], {height : '0vw'});
@@ -213,6 +225,7 @@
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
+  white-space: nowrap;
 }
 .loader__bg {
   background-color: #fff;
@@ -222,6 +235,14 @@
   position: fixed;
   bottom: -2500px;
   left: -2500px;  
+}
+@media screen and (max-width: 768px) {
+  
+}
+@media screen and (max-width: 480px) {
+  .loader__performance {
+    bottom: calc(25vh - 25.5px);
+  }
 }
 </style>
 
