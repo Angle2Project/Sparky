@@ -129,6 +129,9 @@ export default {
     },
     mobile : function(){
       return this.$store.state.mobile;
+    },
+    resize : function(){
+      return this.$store.state.resize;
     }
   },
   methods : {
@@ -212,7 +215,7 @@ export default {
           }});
         //==//
       }
-    }
+    }    
   }  
 };
 </script>

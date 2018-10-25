@@ -113,6 +113,9 @@
       },
       mobile : function(){
         return this.$store.state.mobile;
+      },
+      resize : function(){
+        return this.$store.state.resize;
       }
     },
     mounted : function(){
@@ -174,11 +177,11 @@
                     TweenMax.to('#eyes .lb-0', 0.5, {morphSVG: '#eyes .lb-70', ease: Power3.easeOut});
                     TweenMax.to('#eyes .lp-0', 0.5, {morphSVG: '#eyes .lp-120', ease: Power3.easeOut});
                     TweenMax.to('#eyes .rp-0', 0.5, {morphSVG: '#eyes .rp-120', ease: Power3.easeOut});
-                    TweenMax.to('#eyes .rg-0', 0.5, {morphSVG: '#eyes .rg-120', ease: Power3.easeOut});                    
+                    TweenMax.to('#eyes .rg-0', 0.5, {morphSVG: '#eyes .rg-120', ease: Power3.easeOut});
                     TweenMax.to('.loader__bg', 1, {scale : 0, delay : 1, ease: Power3.easeInOut});
                     TweenMax.to('.wrapper', 0.3, {scale : 0, ease: Power2.easeInOut, delay : 0.9});
                     TweenMax.set([document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')], {height : '0vw'});
-                    app.$store.commit('teamSlider', false);
+                    app.$store.commit('teamSlider', false);                    
                     app.$store.commit('appStart', true);
                   }});
                 }});
@@ -187,6 +190,14 @@
          }});
         }});
       }});
+    },
+    watch : {
+      resize : function(e){        
+        var ww = Math.pow(window.innerWidth, 2);
+        var wh = Math.pow(window.innerHeight, 2);      
+        var r = Math.sqrt(ww + wh) * 2;
+        TweenMax.set('.loader__bg', {width : r, height : r, bottom : -(r/2), left : -(r/2)});
+      }
     }
   };
 </script>

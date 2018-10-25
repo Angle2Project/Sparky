@@ -66,7 +66,7 @@
   export default {
     data : function(){
       return {
-        swiper : null,
+        swiper : null,        
         ease : 0.1, 
         pointer : {
           y : 0
@@ -85,15 +85,18 @@
       },
       mobile : function(){
         return this.$store.state.mobile;
-      }      
+      },
+      resize : function(){
+        return this.$store.state.resize;
+      }
     },
     mounted : function(){
       var app = this;
       var leader = app.pointer;
       var list = document.querySelectorAll('.team__list .item');
-      // list.forEach( function(el, i) {
-      //   leader = app.startParallax(leader, el);
-      // });
+      list.forEach( function(el, i) {
+        leader = app.startParallax(leader, el);
+      });
       console.log(app.mobile)
       if(app.mobile){
         app.swiper = new Swiper('.team__list.swiper-container', {          
@@ -116,6 +119,7 @@
           repeat: -1,
           modifiers: {
             y: function x() {
+              if(app.mobile)return false;
               return pos.y + (leader.y - pos.y) * app.ease;
               // if(dos){
               //   return -(pos.y + (leader.y - pos.y) * app.ease);
@@ -138,12 +142,39 @@
           var y = (window.innerWidth / 100) * moveY;                
           app.pointer.y = -y;          
         }        
-      }
+      },
+      mobile : function(val){
+        var app = this;
+        if(app.teamSlider){
+          var w = window.innerWidth;
+          if(val){
+            app.swiper = new Swiper('.team__list.swiper-container', {
+              direction: 'horizontal',
+              slidesPerView: 'auto',
+              freeMode : true,
+              speed: 700,
+              watchOverflow : true
+              //spaceBetween: 1
+            });
+            TweenMax.set('.team__list .item', {clearProps : 'all'});
+            var list = document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom, .team__list .dos .top, .team__list .dos .bottom, .team__list .tres .top, .team__list .tres .bottom');            
+            TweenMax.staggerTo(list, 0.8, {height : '100%', ease: Power4.easeOut}, 0.14);
+          }else{
+            app.swiper.destroy(false);
+            var list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];
+            TweenMax.staggerTo(list, 0.8, {height : '27.8vw', ease: Power4.easeOut}, 0.14);
+          }
+        }        
+        
+      }      
     }
   };
 </script>
 
 <style scoped>
+.swiper-container {
+  overflow: visible;
+}
 .team__list {
   position: fixed;
   z-index: 2;
@@ -245,6 +276,9 @@
 }
 
 @media screen and (max-width: 480px) {
+  .swiper-container {
+    overflow: hidden;
+  } 
   .team__list {
     width: calc(100% - 42px);
     right: auto;

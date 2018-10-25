@@ -110,7 +110,8 @@ export default {
     return {
       mySwiper : null,
       prevAnimation : false,
-      nextAnimation : false
+      nextAnimation : false,
+      screen : 'descktop'
     }
   },
   transition : {    
@@ -119,16 +120,17 @@ export default {
     enter : function(el, done){
       var app = this;
       var prev = (app.$store.state.prevPage == 'services');
-      var dobbleTitle;
+      var dobbleTitle = window.innerWidth <= 768;
+      var bgBottomHeigth;
       if(window.innerWidth <= 768 && window.innerWidth > 480){
-        dobbleTitle = '33.3%';
+        bgBottomHeigth = '33.3%';
       }else if(window.innerWidth <= 480){
-        dobbleTitle = '23.4%';
+        bgBottomHeigth = '23.4%';
       }else{
-        dobbleTitle = '37%';
-      }      
+        bgBottomHeigth = '37%';
+      }
       TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});
-      TweenMax.to('.bg__bottom', 0.7, {height : dobbleTitle, ease: Power4.easeInOut, onComplete : function(){
+      TweenMax.to('.bg__bottom', 0.7, {height : bgBottomHeigth, ease: Power4.easeInOut, onComplete : function(){
 
         // H1 Animation //
         TweenMax.set('h1', {visibility : 'visible'});
@@ -194,6 +196,9 @@ export default {
     },
     mobile : function(){
       return this.$store.state.mobile;
+    },
+    resize : function(){
+      return this.$store.state.resize;
     }
   },
   methods : {    
@@ -291,7 +296,105 @@ export default {
           }});
         //==//
       }})
-    }    
+    },
+    resize : function(e){
+      var app = this;
+      var w = e.target.innerWidth;
+      var h = e.target.innerHeight;
+      if(w > 768){
+        app.screen = 'descktop';
+      }else if(w <= 768 && w > 480){
+        app.screen = 'tablet';
+      }else if(w <= 480){
+        app.screen = 'mobile';        
+      }
+    },
+    screen : function(screen){
+      var app = this;
+      switch (screen) {
+        case 'descktop':
+          TweenMax.set('.bg__bottom', {height : '37%', x : -160});
+          app.mySwiper.destroy(false);
+          app.mySwiper = new Swiper('.clients-slider.swiper-container', {
+            navigation: {
+              nextEl: '.swiper-navigation .next',
+              prevEl: '.swiper-navigation .prev',
+            },
+            direction: 'horizontal',
+            slidesPerView: 3,
+            speed: 700,
+            watchOverflow : true
+            //spaceBetween: 1
+          });
+          new TimelineMax().staggerTo(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {opacity : 1, y : '0', ease: Back.easeOut.config(1.5), force3D : true}, 0.1, 'uno')
+          .to(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {borderColor : '#191919'}, 'uno+=0.1');
+          TweenMax.set('.swiper-navigation .prev i', {left : 'auto', right : 'calc(100% - 30px)'})
+          TweenMax.set('.swiper-navigation .next i', {right : 'auto', left : 'calc(100% - 30px)'})
+          TweenMax.to(document.querySelectorAll('.swiper-navigation span'), 0.5, {y : '0', onComplete : function(){
+            TweenMax.to('.swiper-navigation i', 0.6, {width : '30px', ease: Power4.easeIn, onComplete : function(){
+              TweenMax.set('.swiper-navigation .prev i', {left : '0', right : 'auto'})
+              TweenMax.set('.swiper-navigation .next i', {right : '0', left : 'auto'})
+              TweenMax.set(document.querySelectorAll('.swiper-navigation i', {clearProps : 'all'}));
+            }});
+          }})
+          break;
+        case 'tablet':
+          TweenMax.set('.bg__bottom', {height : '33.3%', x : -160});
+          app.mySwiper.destroy(false);
+          app.mySwiper = new Swiper('.clients-slider.swiper-container', {
+            navigation: {
+              nextEl: '.swiper-navigation .next',
+              prevEl: '.swiper-navigation .prev',
+            },
+            direction: 'vertical',
+            slidesPerView: 3,
+            speed: 700,
+            watchOverflow : true
+            //spaceBetween: 1
+          });
+          new TimelineMax().staggerTo(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {opacity : 1, y : '0', ease: Back.easeOut.config(1.5), force3D : true}, 0.1, 'uno')
+          .to(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {borderColor : 'transparent'}, 'uno+=0.7');
+          TweenMax.set('.swiper-navigation .prev i', {left : 'auto', right : 'calc(100% - 30px)'})
+          TweenMax.set('.swiper-navigation .next i', {right : 'auto', left : 'calc(100% - 30px)'})
+          TweenMax.to(document.querySelectorAll('.swiper-navigation span'), 0.5, {y : '0', onComplete : function(){
+            TweenMax.to('.swiper-navigation i', 0.6, {width : '30px', ease: Power4.easeIn, onComplete : function(){
+              TweenMax.set('.swiper-navigation .prev i', {left : '0', right : 'auto'})
+              TweenMax.set('.swiper-navigation .next i', {right : '0', left : 'auto'})
+              TweenMax.set(document.querySelectorAll('.swiper-navigation i', {clearProps : 'all'}));
+            }});
+          }})
+          break;
+        case 'mobile':
+          TweenMax.set('.bg__bottom', {height : '23.4%', x : -84});
+          app.mySwiper.destroy(false);
+          app.mySwiper = new Swiper('.clients-slider.swiper-container', {
+            navigation: {
+              nextEl: '.swiper-navigation .next',
+              prevEl: '.swiper-navigation .prev',
+            },
+            direction: 'vertical',
+            slidesPerView: 3,
+            speed: 700,
+            watchOverflow : true
+            //spaceBetween: 1
+          });
+          new TimelineMax().staggerTo(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {opacity : 1, y : '0', ease: Back.easeOut.config(1.5), force3D : true}, 0.1, 'uno')
+          .to(document.querySelectorAll('.clients-slider.swiper-container .swiper-slide'), 0.5, {borderColor : 'transparent'}, 'uno+=0.7');
+          TweenMax.set('.swiper-navigation .prev i', {left : 'auto', right : 'calc(100% - 30px)'})
+          TweenMax.set('.swiper-navigation .next i', {right : 'auto', left : 'calc(100% - 30px)'})
+          TweenMax.to(document.querySelectorAll('.swiper-navigation span'), 0.5, {y : '0', onComplete : function(){
+            TweenMax.to('.swiper-navigation i', 0.6, {width : '30px', ease: Power4.easeIn, onComplete : function(){
+              TweenMax.set('.swiper-navigation .prev i', {left : '0', right : 'auto'})
+              TweenMax.set('.swiper-navigation .next i', {right : '0', left : 'auto'})
+              TweenMax.set(document.querySelectorAll('.swiper-navigation i', {clearProps : 'all'}));
+            }});
+          }})
+          break;        
+        default:
+          // statements_def
+          break;
+      }
+    }
   }  
 };
 </script>

@@ -75,6 +75,7 @@ export default {
     css : false,
     enter : function(el, done){
       var app = this;
+      var dobbleTitle = (window.innerWidth <= 768 && window.innerWidth > 480);
       app.$store.state.scrollDownHover = true;
       TweenMax.staggerTo(document.querySelectorAll('.eye__04, .eye__09'), 0.6, {y : '0%', opacity : 1, delay : 0.4, scaleY : 1, ease: Back.easeOut.config(1.7)}, 0.25)        
         // H1 Animation //        
@@ -86,6 +87,11 @@ export default {
         .to('.contacts__information_mail a i', 0.4, {scaleY : 1, ease: Power4.easeIn}, 'line')
         .to('.follow-us span', 0.7, {y : '0%', ease: Power4.easeOut}, 'line')
         .to('.copyright span', 0.7, {y : '0%', ease: Power4.easeOut}, 'line')
+        if(app.$store.state.mobile){
+          TweenMax.set('.app-social', {display : 'flex'})
+          TweenMax.set('.app-social a', {y : '100%'});
+        }
+        uno.to(document.querySelectorAll('.app-social a'), 0.5, {y : '0%'}, 'line')
         .to('.follow-us i', 0.7, {width : '82px', ease: Power4.easeOut, onComplete : function(){
             app.$store.commit('scroll', true);
             app.$store.commit('pageTransition', false);
@@ -93,11 +99,11 @@ export default {
             done();
         }}, 'line');
         TweenMax.set('h1', {visibility : 'visible', delay : 0.4});
-        TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 0.4});
-          TweenMax.to('h1 .l2', 0.3, {y:'15%',ease: Power1.easeOut, delay : 0.4});
-          TweenMax.to('h1 .l3', 0.4, {y:'30%',ease: Power1.easeOut, delay : 0.4});
-          TweenMax.to('h1 .l4', 0.5, {y:'45%',ease: Power1.easeOut, delay : 0.4});
-          TweenMax.to('h1 .l5', 0.6, {y:'60%',ease: Power1.easeOut, delay : 0.4, onComplete : function(){
+        TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(dobbleTitle ? 1.1 : 1.5), delay : 0.4});
+          TweenMax.to('h1 .l2', 0.3, {y:dobbleTitle ? '15%' : '15%',ease: Power1.easeOut, delay : 0.4});
+          TweenMax.to('h1 .l3', 0.4, {y:dobbleTitle ? '27%' : '30%',ease: Power1.easeOut, delay : 0.4});
+          TweenMax.to('h1 .l4', 0.5, {y:dobbleTitle ? '38%' : '45%',ease: Power1.easeOut, delay : 0.4});
+          TweenMax.to('h1 .l5', 0.6, {y:dobbleTitle ? '46%' : '60%',ease: Power1.easeOut, delay : 0.4, onComplete : function(){            
             TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : '100%'});
             app.$store.commit('loader', false);
             TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
@@ -116,7 +122,7 @@ export default {
       var next = app.$route.name;
       var textList = document.querySelectorAll('.contacts__information_address > div, .contacts__information_map, .contacts__information_mail');
       if(next == 'index'){        
-        new TimelineMax().staggerTo(textList, 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.05, 'uno')
+        var uno = new TimelineMax().staggerTo(textList, 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.05, 'uno')
         .to('h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeInOut, onComplete : function(){
           TweenMax.set('.scroll-down', {display : 'flex'});
           scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})
@@ -127,10 +133,16 @@ export default {
           app.$store.state.scrollDownHover = false;
           TweenMax.to('#eye__04 .st2', 0.4, {fill : '#f0f0d9'});
           done();
-        }}, 'uno+=0.2')
+        }}, 'uno+=0.2')        
         .to('.follow-us span', 0.7, {y : '100%', ease: Power4.easeOut}, 'uno+=0.2')
         .to('.copyright span', 0.7, {y : '100%', ease: Power4.easeOut}, 'uno+=0.2')
         .to('.follow-us i', 0.7, {width : '0px', ease: Power4.easeOut}, 'uno+=0.2')
+        if(app.$store.state.mobile){
+          uno.to('.app-social a', 0.7, {y : '100%', ease: Power4.easeOut, onComplete : function(){
+            TweenMax.set('.app-social', {clearProps : 'all'})
+            TweenMax.set('.app-social a', {y : '0%'});
+          }}, 'uno+=0.2')
+        }
       }else{
         new TimelineMax().staggerTo(document.querySelectorAll('.eye__09, .eye__04'), 0.6, {opacity : 0, scaleY : 0.5, ease: Power4.easeIn, force3D : true}, 0.25, 'uno')
         .staggerTo(textList, 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.05, 'uno')
@@ -178,14 +190,14 @@ export default {
   watch : {
     appStart : function(val){
       var app = this;
-      var dobbleTitle = window.innerWidth <= 768;
+      var dobbleTitle = (window.innerWidth <= 768 && window.innerWidth > 480);
       if(val){
         TweenMax.set(document.querySelectorAll('#app-eyes .eye__02, #app-eyes .eye__07'), {display : 'block'});
         TweenMax.fromTo('#app-eyes .eye__09', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -14, ease: Power3.easeInOut, force3D : true, delay : 1.15});        
         TweenMax.fromTo('#app-eyes .eye__04', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -25, ease: Power3.easeInOut, force3D : true, delay : 1.2});
         // H1 Animation //
         TweenMax.set('h1', {visibility : 'visible'});
-        TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 1.2});
+        TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(dobbleTitle ? 1.1 : 1.5), delay : 1.2});
           TweenMax.to('h1 .l2', 0.3, {y:dobbleTitle ? '15%' : '15%',ease: Power1.easeOut, delay : 1.2});
           TweenMax.to('h1 .l3', 0.4, {y:dobbleTitle ? '27%' : '30%',ease: Power1.easeOut, delay : 1.2});
           TweenMax.to('h1 .l4', 0.5, {y:dobbleTitle ? '38%' : '45%',ease: Power1.easeOut, delay : 1.2});
@@ -212,7 +224,7 @@ export default {
               //   if(app.$store.state.scrollDownHover)scrollDownTL.pause();
               // });
 
-              console.log(app.mobile);
+              
               if(app.mobile)TweenMax.set('.app-social', {display : 'flex'})
               TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});
               TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.1});
@@ -395,6 +407,10 @@ h1 .l5 {
     left: 42px;
     bottom: auto;
     top: 28%;
+  }
+  h1 span {
+    /*padding: 1vw 1vw 1vw 0;*/
+    padding: 0px 2vw 0vw 0;
   }  
 }
 </style>

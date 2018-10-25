@@ -83,6 +83,9 @@ export default {
     },
     mobile : function(){
       return this.$store.state.mobile;
+    },
+    resize : function(){
+      return this.$store.state.resize;
     }
   },
   methods : {
@@ -146,15 +149,10 @@ export default {
                 }
               }}, 0.09, '-=0.47');              
             }});
-          }});
-
-
-          
+          }});          
         }});        
-      }
-      
-      
-    }    
+      }      
+    }
   }  
 };
 </script>
@@ -182,7 +180,7 @@ h1 {
 }
 h1 span {
   display: inline-block;  
-  padding: 0px 10px;
+  padding: 0px 10px 0 0;
   position: absolute;
   top: 20px;
   left: 0;
@@ -221,8 +219,7 @@ h2 {
   font-style: italic;
   font-size: 3.8vw;
   line-height: 1;
-  overflow: hidden;
-  margin-left: 10px;
+  overflow: hidden;  
   margin-top: 2vw;
 }
 h2 span {
@@ -244,9 +241,12 @@ h2 span {
     font-size: 15.6vw;
     line-height: 14.5vw;    
   }
+  h1 span {
+    padding-left: 0;
+  }
   h2 {    
     font-size: 6.3vw;
-    margin-top: 3vw;
+    margin-top: 3vw;    
   }  
 }
 
@@ -257,17 +257,17 @@ h2 span {
   }
   .intro__text {
     top: auto;
-    left: auto;
+    left: 42px;
     bottom: 42px;    
     transform: translateY(0%);
   }
-  h1 {    
+  h1 {
     font-size: 12.8vw;
     line-height: 11.7vw;
-  }
+  }  
   h2 {    
     font-size: 6.3vw;
-    margin-top: 3vw;
+    margin-top: 3vw;    
     width: 50vw;
   }  
 }

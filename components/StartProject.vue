@@ -99,6 +99,7 @@
         hover : false,
         selectActive : false,
         h1Text : 'start a project',
+        submit : false,
         formErrors : {
           name : false,
           email : false,
@@ -119,13 +120,16 @@
       },
       mobile : function(){
         return this.$store.state.mobile;
+      },
+      resize : function(){
+        return this.$store.state.resize;
       }
     },
     methods : {
       reset : function(){
-        var app = this;
-        console.log(window.innerWidth > 768);
+        var app = this;        
         app.h1Text = window.innerWidth > 768 ? 'start a project' : 'start <br/> a project';
+        app.submit = false;
         app.formErrors.name = false;
         app.formErrors.email = false;
         app.formErrors.select = false;
@@ -360,6 +364,7 @@
         if(!email.length || !email.length || subject == 'Select Subject' || !msg.length)return false;
         var tl = new TimelineMax().to('.start-project__h1 .l1 span', 0.7, {y : '130%', ease: Power4.easeInOut, onComplete : function(){          
           app.h1Text = 'thank you';
+          app.submit = true;
         }}, 'uno')
         .staggerTo(document.querySelectorAll('.start-project__form_row'), 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, ease: Power4.easeOut}, 0.05, 'uno')
         .to('.start-project__h1 .l1 span', 1.2, {y:'0%',ease: Back.easeOut.config(1.5)}, 'dos')
@@ -379,6 +384,21 @@
         var app = this;
         var name = e.target.name;        
         if(app.formErrors[name])app.formErrors[name] = false;        
+      }
+    },
+    watch : {
+      resize : function(e){
+        var app = this;
+        if(app.startProject){
+          var width = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;
+          var scale = (width / 50) * 2.55;
+          TweenMax.set('.start-project__bg', {scale : scale});
+          if(app.submit){
+            app.h1Text = 'thank you';
+          }else{
+            app.h1Text = window.innerWidth > 768 ? 'start a project' : 'start <br/> a project';
+          }          
+        }        
       }
     }
   };

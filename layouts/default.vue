@@ -361,9 +361,10 @@
     },
     mounted : function(){
       var app = this;
+      window.addEventListener('resize', app.resizeEvent);
       // alert(window.innerWidth);
       // alert(window.innerHeight);
-    },
+    },    
     computed : {
       appStart : function(){
         return this.$store.state.appStart;
@@ -388,6 +389,12 @@
       },
       startProject : function(){
         return this.$store.state.startProject;
+      },
+      resize : function(){
+        return this.$store.state.resize;
+      },
+      mobile : function(){
+        return this.$store.state.mobile;
       }
     },
     methods : {      
@@ -565,10 +572,20 @@
       },      
       logoClick : function(e){
         document.querySelector('#app-navigation [data-name="intro"]').click();
-      }      
+      },
+      resizeEvent : function(e){
+        var app = this;
+        app.$store.commit('resize', e);
+      }
     },    
     watch : {      
-      
+      resize : function(e){
+        var app = this;        
+        app.$store.commit('mobile', window.innerWidth <= 480 ? true : false);
+      },
+      mobile : function(val){
+        console.log('Mobile '+val);
+      }
     }    
     
   };
@@ -800,10 +817,10 @@
   .app-logo {    
     top: 13px;
     left: 17px;    
-  }
-  .app-social {
+  }  
+  .app:not(.contacts) .app-social {
     display: none;
-  }
+  }  
   .scroll-down .scroll-down__text {
     display: none;
   }
@@ -816,7 +833,7 @@
     bottom: 42px;    
     transform: translateY(50%);
   }
-  .app-social {    
+  .app-social {
     left: 31px;
     bottom: 42px;    
     transform: translateY(50%);

@@ -16,6 +16,7 @@ const store = () => new Vuex.Store({
     scrollDownTL : null,
     scroll : false,
     mouseMove : null,
+    resize : null,
     services : null,
     servicesSlider : false,
     prevPage : '',
@@ -179,6 +180,9 @@ const store = () => new Vuex.Store({
     },
     mouseMove(state, e){
       state.mouseMove = e;
+    },
+    resize(state, e){
+      state.resize = e;
     },
     teamSlider(state, status){
       state.teamSlider = status;
