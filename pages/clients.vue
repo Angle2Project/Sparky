@@ -80,10 +80,16 @@ export default {
     var dobbleTitle;
     if(window.innerWidth <= 768 && window.innerWidth > 480){
       dobbleTitle = '33.3%';
+      app.screen = 'tablet';
     }else if(window.innerWidth <= 480){
       dobbleTitle = '23.4%';
+      app.screen = 'mobile';
+      if(window.innerWidth <= 480){           
+        TweenMax.to('#app-logo .st2', 0.4, {opacity : 0});
+      }
     }else{
       dobbleTitle = '37%';
+      app.screen = 'descktop';
     }
     app.$store.commit('pageName', 'clients');
     app.$store.commit('navigation', 'clients');
@@ -111,7 +117,7 @@ export default {
       mySwiper : null,
       prevAnimation : false,
       nextAnimation : false,
-      screen : 'descktop'
+      screen : null
     }
   },
   transition : {    
@@ -199,6 +205,9 @@ export default {
     },
     resize : function(){
       return this.$store.state.resize;
+    },
+    servicesSlider : function(){
+      return this.$store.state.servicesSlider;
     }
   },
   methods : {    
@@ -272,7 +281,7 @@ export default {
               scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})
               .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
               .addCallback(function(){                
-                if(app.$store.state.scrollDownHover)scrollDownTL.pause();
+                if(app.$store.state.scrollDownHover || (app.$store.state.servicesSlider && app.mobile))scrollDownTL.pause();
               });
 
               TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});
@@ -284,12 +293,19 @@ export default {
                   app.$store.commit('scroll', true);
                   app.$store.commit('pageTransition', false);
                 }});
+                TweenMax.set('#app-navigation li.current .item__name span', {y : '100%'});
+                TweenMax.set('#app-navigation li.current .item__name', {width : 'auto', x : function(i, el){
+                  return el.querySelector('span').clientWidth + 16;
+                }});
                 tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
                 .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
                   width : function(i, el){                  
                     return el.parentNode.classList.contains('current') ? 83 : 1;
                   }
-                }}, 0.09, '-=0.47');              
+                }}, 0.09, '-=0.47')
+                .to('#app-navigation li.current .item__name span', 0.2, {y : '0%'})
+                .to('.cursor', 0.3, {opacity : 1}, 'cursor')
+                .to('#cursor-svg .state-0', 0.4, {morphSVG: '#cursor-svg .state-1', ease: Power4.easeIn}, 'cursor+=0.1');
               }});
 
             }});
@@ -299,20 +315,24 @@ export default {
     },
     resize : function(e){
       var app = this;
-      var w = e.target.innerWidth;
-      var h = e.target.innerHeight;
-      if(w > 768){
-        app.screen = 'descktop';
-      }else if(w <= 768 && w > 480){
-        app.screen = 'tablet';
-      }else if(w <= 480){
-        app.screen = 'mobile';        
-      }
+      setTimeout(function(){
+        var w = e.target.innerWidth;
+        var h = e.target.innerHeight;
+        if(w > 768){
+          app.screen = 'descktop';
+        }else if(w <= 768 && w > 480){
+          app.screen = 'tablet';
+        }else if(w <= 480){
+          app.screen = 'mobile';        
+        }
+      }, 100);
     },
-    screen : function(screen){
+    screen : function(screen, prev){
+      if(prev === null)return false;
       var app = this;
       switch (screen) {
         case 'descktop':
+          TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
           TweenMax.set('.bg__bottom', {height : '37%', x : -160});
           app.mySwiper.destroy(false);
           app.mySwiper = new Swiper('.clients-slider.swiper-container', {
@@ -339,6 +359,7 @@ export default {
           }})
           break;
         case 'tablet':
+          TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
           TweenMax.set('.bg__bottom', {height : '33.3%', x : -160});
           app.mySwiper.destroy(false);
           app.mySwiper = new Swiper('.clients-slider.swiper-container', {
@@ -365,6 +386,7 @@ export default {
           }})
           break;
         case 'mobile':
+          TweenMax.to('#app-logo .st2', 0.4, {opacity : 0});
           TweenMax.set('.bg__bottom', {height : '23.4%', x : -84});
           app.mySwiper.destroy(false);
           app.mySwiper = new Swiper('.clients-slider.swiper-container', {
@@ -616,6 +638,7 @@ h1 .l5 {
     display: inline-flex;
     flex-direction: column;
     align-items: flex-end;
+    padding-right: 1vw;
     padding-bottom: 1.3vw;
   }
   h1 {
@@ -677,6 +700,9 @@ h1 .l5 {
     font-size: 12.8vw;
     line-height: 10.0vw;
     top: calc(76.6% - 0.85vw);
+  }
+  h1 span {
+    padding-right: 1vw;
   }
   .swiper-container-vertical {
     left: 84px;

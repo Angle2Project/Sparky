@@ -760,16 +760,21 @@
 
 <script>
   export default {
-    mounted : function(){     
-      TweenMax.set('#app-eyes .eye__03', {rotation : 10});
-      TweenMax.set('#app-eyes .eye__04', {rotation : -25});
-      TweenMax.set('#app-eyes .eye__05', {rotation : -8});      
-      TweenMax.set('#app-eyes .eye__09', {rotation : -14});      
-      TweenMax.set('#app-eyes .eye__11', {rotation : -8});
-      TweenMax.set('#app-eyes .eye__12', {rotation : -26});
+    mounted : function(){
+      var app = this;
+      // TweenMax.set('#app-eyes .eye__03', {rotation : 10});
+      // TweenMax.set('#app-eyes .eye__04', {rotation : -25});
+      // TweenMax.set('#app-eyes .eye__05', {rotation : -8});      
+      // TweenMax.set('#app-eyes .eye__09', {rotation : -14});      
+      // TweenMax.set('#app-eyes .eye__11', {rotation : -8});
+      // TweenMax.set('#app-eyes .eye__12', {rotation : -26});
+      setInterval(function(){
+        app.randomEye();
+      }, 4000);
     },
     data : function(){
       return {
+        random : 0,        
         eye01 : {
           above : false,
           enter : false,
@@ -832,9 +837,33 @@
         }
       }
     },
-    methods : {      
-      eye01Hover : function (e) {
+    computed : {
+      appStart : function(){
+        return this.$store.state.appStart;
+      },
+      pageName : function(){
+        return this.$store.state.pageName;
+      },      
+      eyes : function(){
+        return this.$store.state.eyes;
+      },
+      loader : function(){
+        return this.$store.state.loader;
+      }
+    },
+    methods : {
+      randomEye : function(){
         var app = this;
+        var min = 1;
+        var max = 12;
+        var r = Math.floor(Math.random() * (max - min + 1)) + min;
+        if(r == app.random){
+          r = r < max ? (r+1) : (r -1);
+        }
+        app.random = r
+      },
+      eye01Hover : function (e) {
+        var app = this;        
         var time = 0.375;
         var delay = '-=0.01'
         if(e.type == 'mouseenter'){
@@ -1749,6 +1778,442 @@
           .to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-1', ease: Power2.easeOut}, delay);
         }
       },
+    },
+    watch : {
+      random : function(eye){
+        var app = this;        
+        if(app.loader || !app.eyes)return false;
+        switch (eye) {
+          case 1:
+            var time = 0.375;
+            var delay = '-=0.01'
+            new TimelineMax({onComplete : function(){
+              new TimelineMax().to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-2', ease: Power2.easeIn})
+              .to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax().to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-2', ease: Power2.easeIn})
+              .to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax().to('#eye__01 .lg-1', time, {morphSVG: '#eye__01 .lg-2', ease: Power2.easeIn})              
+              new TimelineMax().to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-2', ease: Power2.easeIn})              
+            }
+            }).to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-2', ease: Power2.easeIn})
+            .to('#eye__01 .rp-1', time, {morphSVG: '#eye__01 .rp-3', ease: Power2.easeOut}, '-=0.01');
+            new TimelineMax().to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-2', ease: Power2.easeIn})
+            .to('#eye__01 .lp-1', time, {morphSVG: '#eye__01 .lp-3', ease: Power3.easeOut}, '-=0.01');
+            new TimelineMax().to('#eye__01 .lg-1', time, {morphSVG: '#eye__01 .lg-2', ease: Power2.easeIn})
+            .to('#eye__01 .lg-1', time, {morphSVG: '#eye__01 .lg-3', ease: Power2.easeOut})
+            new TimelineMax().to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-2', ease: Power2.easeIn})
+            .to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-3', ease: Power2.easeOut})
+            break;
+          case 2:
+            var time = 0.3;
+            var delay = '-=0.02';
+            new TimelineMax({onComplete : function(){
+              new TimelineMax().to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-2', ease: Power2.easeIn})
+              .to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-1', ease: Power2.easeOut}, delay);
+              new TimelineMax().to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-2', ease: Power2.easeIn})
+              .to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-1', ease: Power2.easeOut}, delay);
+              
+              new TimelineMax().to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-2', ease: Power2.easeIn})
+              .to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax().to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-2', ease: Power2.easeIn})
+              .to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax().to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-2', ease: Power2.easeIn})
+              .to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-1', ease: Power2.easeOut}, delay);
+              new TimelineMax().to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-2', ease: Power2.easeIn})
+              .to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-1', ease: Power2.easeOut}, delay);
+              new TimelineMax().to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-2', ease: Power2.easeIn})
+              .to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-1', ease: Power2.easeOut}, delay);
+            }}).to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-2', ease: Power2.easeIn})
+            .to('#eye__02 .ry-1', time, {morphSVG: '#eye__02 .ry-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-2', ease: Power2.easeIn})
+            .to('#eye__02 .ly-1', time, {morphSVG: '#eye__02 .ly-3', ease: Power2.easeOut}, delay);
+            
+            new TimelineMax().to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-2', ease: Power2.easeIn})
+            .to('#eye__02 .rp-1', time, {morphSVG: '#eye__02 .rp-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-2', ease: Power2.easeIn})
+            .to('#eye__02 .lp-1', time, {morphSVG: '#eye__02 .lp-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-2', ease: Power2.easeIn})
+            .to('#eye__02 .lg-1', time, {morphSVG: '#eye__02 .lg-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-2', ease: Power2.easeIn})
+            .to('#eye__02 .rg-1', time, {morphSVG: '#eye__02 .rg-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-2', ease: Power2.easeIn})
+            .to('#eye__02 .o-1', time, {morphSVG: '#eye__02 .o-3', ease: Power2.easeOut}, delay);            
+            break;
+          case 3:
+            var time = 0.3;
+            var delay = '-=0.02';              
+            new TimelineMax({onComplete : function(){
+              new TimelineMax({delay : 0.8}).to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-2', ease: Power2.easeIn})
+              .to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.8}).to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power2.easeIn})
+              .to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.8}).to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty-2', ease: Power2.easeIn})
+              .to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.8}).to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power2.easeIn})
+              .to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.8}).to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-2', ease: Power2.easeIn})
+              .to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.8}).to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-2', ease: Power2.easeIn})
+              .to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.8}).to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-2', ease: Power2.easeIn})
+              .to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.8}).to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-2', ease: Power2.easeIn})
+              .to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-1', ease: Power2.easeOut}, delay);
+            }}).to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-2', ease: Power2.easeIn})
+            .to('#eye__03 .rty-1', time, {morphSVG: '#eye__03 .rty-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power2.easeIn})
+            .to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty-2', ease: Power2.easeIn})
+            .to('#eye__03 .lty-1', time, {morphSVG: '#eye__03 .lty-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__03 .rby-1', time, {morphSVG: '#eye__03 .rby-2', ease: Power2.easeIn})
+            .to('#eye__03 .lby-1', time, {morphSVG: '#eye__03 .lby-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-2', ease: Power2.easeIn})
+            .to('#eye__03 .rp-1', time, {morphSVG: '#eye__03 .rp-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-2', ease: Power2.easeIn})
+            .to('#eye__03 .lp-1', time, {morphSVG: '#eye__03 .lp-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-2', ease: Power2.easeIn})
+            .to('#eye__03 .rg-1', time, {morphSVG: '#eye__03 .rg-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-2', ease: Power2.easeIn})
+            .to('#eye__03 .lg-1', time, {morphSVG: '#eye__03 .lg-3', ease: Power2.easeOut}, delay);            
+            break;
+          case 4:
+            var time = 0.3;
+            var delay = '-=0.005';              
+            new TimelineMax({onComplete : function(){
+              new TimelineMax().to('#eye__04 .rty-1', time, {morphSVG: '#eye__04 .rty-2', ease: Power3.easeIn})
+              .to('#eye__04 .rty-1', time, {morphSVG: '#eye__04 .rty-1', ease: Power3.easeOut}, delay);
+              new TimelineMax().to('#eye__04 .rby-1', time, {morphSVG: '#eye__04 .rby-2', ease: Power3.easeIn})
+              .to('#eye__04 .rby-1', time, {morphSVG: '#eye__04 .rby-1', ease: Power3.easeOut}, delay);
+              new TimelineMax().to('#eye__04 .lty-1', time, {morphSVG: '#eye__04 .lty-2', ease: Power3.easeIn})
+              .to('#eye__04 .lty-1', time, {morphSVG: '#eye__04 .lty-1', ease: Power3.easeOut}, delay);
+              new TimelineMax().to('#eye__04 .lby-1', time, {morphSVG: '#eye__04 .lby-2', ease: Power3.easeIn})
+              .to('#eye__04 .lby-1', time, {morphSVG: '#eye__04 .lby-1', ease: Power3.easeOut}, delay);
+              new TimelineMax().to('#eye__04 .rp-1', time, {morphSVG: '#eye__04 .rp-2', ease: Power3.easeIn})
+              .to('#eye__04 .rp-1', time, {morphSVG: '#eye__04 .rp-1', ease: Power3.easeOut}, delay);
+              new TimelineMax().to('#eye__04 .lp-1', time, {morphSVG: '#eye__04 .lp-2', ease: Power3.easeIn})
+              .to('#eye__04 .lp-1', time, {morphSVG: '#eye__04 .lp-1', ease: Power3.easeOut}, delay);
+              new TimelineMax().to('#eye__04 .rg-1', time, {morphSVG: '#eye__04 .rg-2', ease: Power3.easeIn})
+              .to('#eye__04 .rg-1', time, {morphSVG: '#eye__04 .rg-1', ease: Power3.easeOut}, delay);
+              new TimelineMax().to('#eye__04 .lg-1', time, {morphSVG: '#eye__04 .lg-2', ease: Power3.easeIn})
+              .to('#eye__04 .lg-1', time, {morphSVG: '#eye__04 .lg-1', ease: Power3.easeOut}, delay);
+            }}).to('#eye__04 .rty-1', time, {morphSVG: '#eye__04 .rty-2', ease: Power3.easeIn})
+            .to('#eye__04 .rty-1', time, {morphSVG: '#eye__04 .rty-3', ease: Power3.easeOut}, delay);
+            new TimelineMax().to('#eye__04 .rby-1', time, {morphSVG: '#eye__04 .rby-2', ease: Power3.easeIn})
+            .to('#eye__04 .rby-1', time, {morphSVG: '#eye__04 .rby-3', ease: Power3.easeOut}, delay);
+            new TimelineMax().to('#eye__04 .lty-1', time, {morphSVG: '#eye__04 .lty-2', ease: Power3.easeIn})
+            .to('#eye__04 .lty-1', time, {morphSVG: '#eye__04 .lty-3', ease: Power3.easeOut}, delay);
+            new TimelineMax().to('#eye__04 .lby-1', time, {morphSVG: '#eye__04 .lby-2', ease: Power3.easeIn})
+            .to('#eye__04 .lby-1', time, {morphSVG: '#eye__04 .lby-3', ease: Power3.easeOut}, delay);
+            new TimelineMax().to('#eye__04 .rp-1', time, {morphSVG: '#eye__04 .rp-2', ease: Power3.easeIn})
+            .to('#eye__04 .rp-1', time, {morphSVG: '#eye__04 .rp-3', ease: Power3.easeOut}, delay);
+            new TimelineMax().to('#eye__04 .lp-1', time, {morphSVG: '#eye__04 .lp-2', ease: Power3.easeIn})
+            .to('#eye__04 .lp-1', time, {morphSVG: '#eye__04 .lp-3', ease: Power3.easeOut}, delay);
+            new TimelineMax().to('#eye__04 .rg-1', time, {morphSVG: '#eye__04 .rg-2', ease: Power3.easeIn})
+            .to('#eye__04 .rg-1', time, {morphSVG: '#eye__04 .rg-3', ease: Power3.easeOut}, delay);
+            new TimelineMax().to('#eye__04 .lg-1', time, {morphSVG: '#eye__04 .lg-2', ease: Power3.easeIn})
+            .to('#eye__04 .lg-1', time, {morphSVG: '#eye__04 .lg-3', ease: Power3.easeOut}, delay);
+            break;
+          case 5:
+            var time = 0.35;
+            var delay = '-=0.02';
+            new TimelineMax({onComplete : function(){
+              new TimelineMax({delay : 0.5}).to('#eye__05 .re-1', time, {morphSVG: '#eye__05 .re-2', ease: Power1.easeIn})
+              .to('#eye__05 .re-1', time, {morphSVG: '#eye__05 .re-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .le-1', time, {morphSVG: '#eye__05 .le-2', ease: Power1.easeIn})
+              .to('#eye__05 .le-1', time, {morphSVG: '#eye__05 .le-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .le-1', time, {morphSVG: '#eye__05 .le-2', ease: Power1.easeIn})
+              .to('#eye__05 .le-1', time, {morphSVG: '#eye__05 .le-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .rp-1', time, {morphSVG: '#eye__05 .rp-2', ease: Power1.easeIn})
+              .to('#eye__05 .rp-1', time, {morphSVG: '#eye__05 .rp-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .lp-1', time, {morphSVG: '#eye__05 .lp-2', ease: Power1.easeIn})
+              .to('#eye__05 .lp-1', time, {morphSVG: '#eye__05 .lp-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .rty-1', time, {morphSVG: '#eye__05 .rty-2', ease: Power1.easeIn})
+              .to('#eye__05 .rty-1', time, {morphSVG: '#eye__05 .rty-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .lty-1', time, {morphSVG: '#eye__05 .lty-2', ease: Power1.easeIn})
+              .to('#eye__05 .lty-1', time, {morphSVG: '#eye__05 .lty-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .rby-1', time, {morphSVG: '#eye__05 .rby-2', ease: Power1.easeIn})
+              .to('#eye__05 .rby-1', time, {morphSVG: '#eye__05 .rby-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .lby-1', time, {morphSVG: '#eye__05 .lby-2', ease: Power1.easeIn})
+              .to('#eye__05 .lby-1', time, {morphSVG: '#eye__05 .lby-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .rgt-1', time, {morphSVG: '#eye__05 .rgt-2', ease: Power1.easeIn})
+              .to('#eye__05 .rgt-1', time, {morphSVG: '#eye__05 .rgt-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .rgb-1', time, {morphSVG: '#eye__05 .rgb-2', ease: Power1.easeIn})
+              .to('#eye__05 .rgb-1', time, {morphSVG: '#eye__05 .rgb-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .lgt-1', time, {morphSVG: '#eye__05 .lgt-2', ease: Power1.easeIn})
+              .to('#eye__05 .lgt-1', time, {morphSVG: '#eye__05 .lgt-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 0.5}).to('#eye__05 .lgb-1', time, {morphSVG: '#eye__05 .lgb-2', ease: Power1.easeIn})
+              .to('#eye__05 .lgb-1', time, {morphSVG: '#eye__05 .lgb-1', ease: Power1.easeOut}, delay);        
+            }}).to('#eye__05 .re-1', time, {morphSVG: '#eye__05 .re-2', ease: Power1.easeIn})
+            .to('#eye__05 .re-1', time, {morphSVG: '#eye__05 .re-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .le-1', time, {morphSVG: '#eye__05 .le-2', ease: Power1.easeIn})
+            .to('#eye__05 .le-1', time, {morphSVG: '#eye__05 .le-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .le-1', time, {morphSVG: '#eye__05 .le-2', ease: Power1.easeIn})
+            .to('#eye__05 .le-1', time, {morphSVG: '#eye__05 .le-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .rp-1', time, {morphSVG: '#eye__05 .rp-2', ease: Power1.easeIn})
+            .to('#eye__05 .rp-1', time, {morphSVG: '#eye__05 .rp-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .lp-1', time, {morphSVG: '#eye__05 .lp-2', ease: Power1.easeIn})
+            .to('#eye__05 .lp-1', time, {morphSVG: '#eye__05 .lp-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .rty-1', time, {morphSVG: '#eye__05 .rty-2', ease: Power1.easeIn})
+            .to('#eye__05 .rty-1', time, {morphSVG: '#eye__05 .rty-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .lty-1', time, {morphSVG: '#eye__05 .lty-2', ease: Power1.easeIn})
+            .to('#eye__05 .lty-1', time, {morphSVG: '#eye__05 .lty-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .rby-1', time, {morphSVG: '#eye__05 .rby-2', ease: Power1.easeIn})
+            .to('#eye__05 .rby-1', time, {morphSVG: '#eye__05 .rby-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .lby-1', time, {morphSVG: '#eye__05 .lby-2', ease: Power1.easeIn})
+            .to('#eye__05 .lby-1', time, {morphSVG: '#eye__05 .lby-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .rgt-1', time, {morphSVG: '#eye__05 .rgt-2', ease: Power1.easeIn})
+            .to('#eye__05 .rgt-1', time, {morphSVG: '#eye__05 .rgt-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .rgb-1', time, {morphSVG: '#eye__05 .rgb-2', ease: Power1.easeIn})
+            .to('#eye__05 .rgb-1', time, {morphSVG: '#eye__05 .rgb-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .lgt-1', time, {morphSVG: '#eye__05 .lgt-2', ease: Power1.easeIn})
+            .to('#eye__05 .lgt-1', time, {morphSVG: '#eye__05 .lgt-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__05 .lgb-1', time, {morphSVG: '#eye__05 .lgb-2', ease: Power1.easeIn})
+            .to('#eye__05 .lgb-1', time, {morphSVG: '#eye__05 .lgb-3', ease: Power1.easeOut}, delay);
+            break;
+          case 6:
+            var time = 0.35;
+            var delay = '-=0.02'          
+            new TimelineMax({onComplete : function(){
+              new TimelineMax({delay : 0.4}).to('#eye__06 .rp-1', time, {morphSVG: '#eye__06 .rp-2', ease: Power2.easeIn})
+              .to('#eye__06 .rp-1', time, {morphSVG: '#eye__06 .rp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.4}).to('#eye__06 .lp-1', time, {morphSVG: '#eye__06 .lp-2', ease: Power2.easeIn})
+              .to('#eye__06 .lp-1', time, {morphSVG: '#eye__06 .lp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.4}).to('#eye__06 .rg-1', time, {morphSVG: '#eye__06 .rg-2', ease: Power2.easeIn})
+              .to('#eye__06 .rg-1', time, {morphSVG: '#eye__06 .rg-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.4}).to('#eye__06 .lg-1', time, {morphSVG: '#eye__06 .lg-2', ease: Power2.easeIn})
+              .to('#eye__06 .lg-1', time, {morphSVG: '#eye__06 .lg-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.4}).to('#eye__06 .rty-1', time, {morphSVG: '#eye__06 .rty-2', ease: Power2.easeIn})
+              .to('#eye__06 .rty-1', time, {morphSVG: '#eye__06 .rty-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.4}).to('#eye__06 .lty-1', time, {morphSVG: '#eye__06 .lty-2', ease: Power2.easeIn})
+              .to('#eye__06 .lty-1', time, {morphSVG: '#eye__06 .lty-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.4}).to('#eye__06 .rby-1', time, {morphSVG: '#eye__06 .rby-2', ease: Power2.easeIn})
+              .to('#eye__06 .rby-1', time, {morphSVG: '#eye__06 .rby-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 0.4}).to('#eye__06 .lby-1', time, {morphSVG: '#eye__06 .lby-2', ease: Power2.easeIn})
+              .to('#eye__06 .lby-1', time, {morphSVG: '#eye__06 .lby-1', ease: Power2.easeOut}, delay);
+            }}).to('#eye__06 .rp-1', time, {morphSVG: '#eye__06 .rp-2', ease: Power2.easeIn})
+            .to('#eye__06 .rp-1', time, {morphSVG: '#eye__06 .rp-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__06 .lp-1', time, {morphSVG: '#eye__06 .lp-2', ease: Power2.easeIn})
+            .to('#eye__06 .lp-1', time, {morphSVG: '#eye__06 .lp-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__06 .rg-1', time, {morphSVG: '#eye__06 .rg-2', ease: Power2.easeIn})
+            .to('#eye__06 .rg-1', time, {morphSVG: '#eye__06 .rg-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__06 .lg-1', time, {morphSVG: '#eye__06 .lg-2', ease: Power2.easeIn})
+            .to('#eye__06 .lg-1', time, {morphSVG: '#eye__06 .lg-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__06 .rty-1', time, {morphSVG: '#eye__06 .rty-2', ease: Power2.easeIn})
+            .to('#eye__06 .rty-1', time, {morphSVG: '#eye__06 .rty-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__06 .lty-1', time, {morphSVG: '#eye__06 .lty-2', ease: Power2.easeIn})
+            .to('#eye__06 .lty-1', time, {morphSVG: '#eye__06 .lty-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__06 .rby-1', time, {morphSVG: '#eye__06 .rby-2', ease: Power2.easeIn})
+            .to('#eye__06 .rby-1', time, {morphSVG: '#eye__06 .rby-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__06 .lby-1', time, {morphSVG: '#eye__06 .lby-2', ease: Power2.easeIn})
+            .to('#eye__06 .lby-1', time, {morphSVG: '#eye__06 .lby-3', ease: Power2.easeOut}, delay);
+            break;
+          case 7:
+            var time = 0.3;
+            var delay = '-=0';
+            new TimelineMax({onComplete : function(){
+              new TimelineMax().to('#eye__07 .rp-1', time, {morphSVG: '#eye__07 .rp-2', ease: Power1.easeIn})
+              .to('#eye__07 .rp-1', time, {morphSVG: '#eye__07 .rp-1', ease: Power1.easeOut}, delay);
+              new TimelineMax().to('#eye__07 .lp-1', time, {morphSVG: '#eye__07 .lp-2', ease: Power1.easeIn})
+              .to('#eye__07 .lp-1', time, {morphSVG: '#eye__07 .lp-1', ease: Power1.easeOut}, delay);
+              new TimelineMax().to('#eye__07 .rg-1', time, {morphSVG: '#eye__07 .rg-2', ease: Power1.easeIn})
+              .to('#eye__07 .rg-1', time, {morphSVG: '#eye__07 .rg-1', ease: Power1.easeOut}, delay);
+              new TimelineMax().to('#eye__07 .lg-1', time, {morphSVG: '#eye__07 .lg-2', ease: Power1.easeIn})
+              .to('#eye__07 .lg-1', time, {morphSVG: '#eye__07 .lg-1', ease: Power1.easeOut}, delay);
+              new TimelineMax().to('#eye__07 .rty-1', time, {morphSVG: '#eye__07 .rty-2', ease: Power1.easeIn})
+              .to('#eye__07 .rty-1', time, {morphSVG: '#eye__07 .rty-1', ease: Power1.easeOut}, delay);
+              new TimelineMax().to('#eye__07 .lty-1', time, {morphSVG: '#eye__07 .lty-2', ease: Power1.easeIn})
+              .to('#eye__07 .lty-1', time, {morphSVG: '#eye__07 .lty-1', ease: Power1.easeOut}, delay);
+              new TimelineMax().to('#eye__07 .rby-1', time, {morphSVG: '#eye__07 .rby-2', ease: Power1.easeIn})
+              .to('#eye__07 .rby-1', time, {morphSVG: '#eye__07 .rby-1', ease: Power1.easeOut}, delay);
+              new TimelineMax().to('#eye__07 .lby-1', time, {morphSVG: '#eye__07 .lby-2', ease: Power1.easeIn})
+              .to('#eye__07 .lby-1', time, {morphSVG: '#eye__07 .lby-1', ease: Power1.easeOut}, delay);
+            }}).to('#eye__07 .rp-1', time, {morphSVG: '#eye__07 .rp-2', ease: Power1.easeIn})
+            .to('#eye__07 .rp-1', time, {morphSVG: '#eye__07 .rp-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__07 .lp-1', time, {morphSVG: '#eye__07 .lp-2', ease: Power1.easeIn})
+            .to('#eye__07 .lp-1', time, {morphSVG: '#eye__07 .lp-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__07 .rg-1', time, {morphSVG: '#eye__07 .rg-2', ease: Power1.easeIn})
+            .to('#eye__07 .rg-1', time, {morphSVG: '#eye__07 .rg-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__07 .lg-1', time, {morphSVG: '#eye__07 .lg-2', ease: Power1.easeIn})
+            .to('#eye__07 .lg-1', time, {morphSVG: '#eye__07 .lg-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__07 .rty-1', time, {morphSVG: '#eye__07 .rty-2', ease: Power1.easeIn})
+            .to('#eye__07 .rty-1', time, {morphSVG: '#eye__07 .rty-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__07 .lty-1', time, {morphSVG: '#eye__07 .lty-2', ease: Power1.easeIn})
+            .to('#eye__07 .lty-1', time, {morphSVG: '#eye__07 .lty-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__07 .rby-1', time, {morphSVG: '#eye__07 .rby-2', ease: Power1.easeIn})
+            .to('#eye__07 .rby-1', time, {morphSVG: '#eye__07 .rby-3', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__07 .lby-1', time, {morphSVG: '#eye__07 .lby-2', ease: Power1.easeIn})
+            .to('#eye__07 .lby-1', time, {morphSVG: '#eye__07 .lby-3', ease: Power1.easeOut}, delay);
+            break;
+          case 8:
+            var time = 0.14;
+            var delay = '-=0.06'              
+            new TimelineMax({onComplete : function(){
+              new TimelineMax({delay : 1}).to('#eye__08 .rp-1', time, {morphSVG: '#eye__08 .rp-4', ease: Power1.easeIn})
+              .to('#eye__08 .rp-1', time, {morphSVG: '#eye__08 .rp-3', ease: Power0.easeInOut}, delay)
+              .to('#eye__08 .rp-1', time, {morphSVG: '#eye__08 .rp-2', ease: Power0.easeInOut}, delay)
+              .to('#eye__08 .rp-1', time, {morphSVG: '#eye__08 .rp-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__08 .lp-1', time, {morphSVG: '#eye__08 .lp-4', ease: Power1.easeIn})
+              .to('#eye__08 .lp-1', time, {morphSVG: '#eye__08 .lp-3', ease: Power0.easeInOut}, delay)
+              .to('#eye__08 .lp-1', time, {morphSVG: '#eye__08 .lp-2', ease: Power0.easeInOut}, delay)
+              .to('#eye__08 .lp-1', time, {morphSVG: '#eye__08 .lp-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__08 .rg-1', time, {morphSVG: '#eye__08 .rg-4', ease: Power1.easeIn})
+              .to('#eye__08 .rg-1', time, {morphSVG: '#eye__08 .rg-3', ease: Power0.easeInOut}, delay)
+              .to('#eye__08 .rg-1', time, {morphSVG: '#eye__08 .rg-2', ease: Power0.easeInOut}, delay)
+              .to('#eye__08 .rg-1', time, {morphSVG: '#eye__08 .rg-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__08 .lg-1', time, {morphSVG: '#eye__08 .lg-4', ease: Power1.easeIn})
+              .to('#eye__08 .lg-1', time, {morphSVG: '#eye__08 .lg-3', ease: Power0.easeInOut}, delay)
+              .to('#eye__08 .lg-1', time, {morphSVG: '#eye__08 .lg-2', ease: Power0.easeInOut}, delay)
+              .to('#eye__08 .lg-1', time, {morphSVG: '#eye__08 .lg-1', ease: Power1.easeOut}, delay);
+            }}).to('#eye__08 .rp-1', time, {morphSVG: '#eye__08 .rp-2', ease: Power1.easeIn})
+            .to('#eye__08 .rp-1', time, {morphSVG: '#eye__08 .rp-3', ease: Power0.easeInOut}, delay)
+            .to('#eye__08 .rp-1', time, {morphSVG: '#eye__08 .rp-4', ease: Power0.easeInOut}, delay)
+            .to('#eye__08 .rp-1', time, {morphSVG: '#eye__08 .rp-5', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__08 .lp-1', time, {morphSVG: '#eye__08 .lp-2', ease: Power1.easeIn})
+            .to('#eye__08 .lp-1', time, {morphSVG: '#eye__08 .lp-3', ease: Power0.easeInOut}, delay)
+            .to('#eye__08 .lp-1', time, {morphSVG: '#eye__08 .lp-4', ease: Power0.easeInOut}, delay)
+            .to('#eye__08 .lp-1', time, {morphSVG: '#eye__08 .lp-5', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__08 .rg-1', time, {morphSVG: '#eye__08 .rg-2', ease: Power1.easeIn})
+            .to('#eye__08 .rg-1', time, {morphSVG: '#eye__08 .rg-3', ease: Power0.easeInOut}, delay)
+            .to('#eye__08 .rg-1', time, {morphSVG: '#eye__08 .rg-4', ease: Power0.easeInOut}, delay)
+            .to('#eye__08 .rg-1', time, {morphSVG: '#eye__08 .rg-5', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__08 .lg-1', time, {morphSVG: '#eye__08 .lg-2', ease: Power1.easeIn})
+            .to('#eye__08 .lg-1', time, {morphSVG: '#eye__08 .lg-3', ease: Power0.easeInOut}, delay)
+            .to('#eye__08 .lg-1', time, {morphSVG: '#eye__08 .lg-4', ease: Power0.easeInOut}, delay)
+            .to('#eye__08 .lg-1', time, {morphSVG: '#eye__08 .lg-5', ease: Power1.easeOut}, delay);
+            break;
+          case 9:
+            var time = 0.6;
+            var delay = '-=0.05';              
+            new TimelineMax({onComplete : function(){
+              new TimelineMax().to('#eye__09 .gls-1', time, {morphSVG: '#eye__09 .gls-1', ease: Power3.easeInOut})          
+              new TimelineMax().to('#eye__09 .rtg-1', time, {morphSVG: '#eye__09 .rtg-1', opacity : 1, ease: Power3.easeInOut})          
+              new TimelineMax().to('#eye__09 .rbg-1', time, {morphSVG: '#eye__09 .rbg-1', opacity : 0, ease: Power3.easeInOut})          
+              new TimelineMax().to('#eye__09 .ltg-1', time, {morphSVG: '#eye__09 .ltg-1', opacity : 1, ease: Power3.easeInOut})
+              new TimelineMax().to('#eye__09 .lbg-1', time, {morphSVG: '#eye__09 .lbg-1', opacity : 0, ease: Power3.easeInOut})
+            }}).to('#eye__09 .gls-1', time, {morphSVG: '#eye__09 .gls-2', ease: Power2.easeInOut})
+            .to('#eye__09 .gls-1', time-0.2, {morphSVG: '#eye__09 .gls-3', ease: Power3.easeIn}, '-=0.1')
+            .to('#eye__09 .gls-1', time, {morphSVG: '#eye__09 .gls-4', ease: Power3.easeOut});
+            new TimelineMax().to('#eye__09 .rtg-1', time, {morphSVG: '#eye__09 .rtg-2', opacity : 0, ease: Power2.easeInOut})
+            .to('#eye__09 .rtg-1', time-0.2, {morphSVG: '#eye__09 .rtg-3', opacity : 1, ease: Power3.easeIn}, '-=0.1')
+            .to('#eye__09 .rtg-1', time-0.2, {morphSVG: '#eye__09 .rtg-4', opacity : 0, ease: Power3.easeOut});
+            new TimelineMax().to('#eye__09 .rbg-1', time, {morphSVG: '#eye__09 .rbg-2', opacity : 1, ease: Power2.easeInOut})
+            .to('#eye__09 .rbg-1', time-0.2, {morphSVG: '#eye__09 .rbg-3', opacity : 0, ease: Power3.easeIn}, '-=0.1')
+            .to('#eye__09 .rbg-1', time-0.2, {morphSVG: '#eye__09 .rbg-4', opacity : 1, ease: Power3.easeOut});
+            new TimelineMax().to('#eye__09 .ltg-1', time, {morphSVG: '#eye__09 .ltg-2', opacity : 0, ease: Power2.easeInOut})
+            .to('#eye__09 .ltg-1', time-0.2, {morphSVG: '#eye__09 .ltg-3', opacity : 1, ease: Power3.easeIn}, '-=0.1')
+            .to('#eye__09 .ltg-1', time-0.2, {morphSVG: '#eye__09 .ltg-4', opacity : 0, ease: Power3.easeOut});
+            new TimelineMax().to('#eye__09 .lbg-1', time, {morphSVG: '#eye__09 .lbg-2', opacity : 1, ease: Power2.easeInOut})
+            .to('#eye__09 .lbg-1', time-0.2, {morphSVG: '#eye__09 .lbg-3', opacity : 0, ease: Power3.easeIn}, '-=0.1')
+            .to('#eye__09 .lbg-1', time-0.2, {morphSVG: '#eye__09 .lbg-4', opacity : 1, ease: Power3.easeOut});
+            break;
+          case 10:
+            var time = 0.4;
+            var delay = '-=0.005';              
+            new TimelineMax({onComplete : function(){
+              new TimelineMax().to('#eye__10 .rtg-1', time, {morphSVG: '#eye__10 .rtg-1', ease: Power2.easeInOut})
+              new TimelineMax().to('#eye__10 .ltg-1', time, {morphSVG: '#eye__10 .ltg-1', ease: Power2.easeInOut})
+              new TimelineMax().to('#eye__10 .rbg-1', time, {morphSVG: '#eye__10 .rbg-1', ease: Power2.easeInOut})
+              new TimelineMax().to('#eye__10 .lbg-1', time, {morphSVG: '#eye__10 .lbg-1', ease: Power2.easeInOut})
+              new TimelineMax().to('#eye__10 .re-1', time, {morphSVG: '#eye__10 .re-1', ease: Power2.easeInOut})
+              new TimelineMax().to('#eye__10 .le-1', time, {morphSVG: '#eye__10 .le-1', ease: Power2.easeInOut})
+            }}).to('#eye__10 .rtg-1', time, {morphSVG: '#eye__10 .rtg-2', ease: Power2.easeIn})
+            .to('#eye__10 .rtg-1', time, {morphSVG: '#eye__10 .rtg-3', ease: Power2.easeOut}, '+=0')
+            .to('#eye__10 .rtg-1', time-0.1, {morphSVG: '#eye__10 .rtg-4', ease: Power3.easeInOut}, '-=0.08');
+            new TimelineMax().to('#eye__10 .ltg-1', time, {morphSVG: '#eye__10 .ltg-2', ease: Power2.easeIn})
+            .to('#eye__10 .ltg-1', time, {morphSVG: '#eye__10 .ltg-3', ease: Power2.easeOut}, '+=0')
+            .to('#eye__10 .ltg-1', time-0.1, {morphSVG: '#eye__10 .ltg-4', ease: Power3.easeInOut}, '-=0.08');
+            new TimelineMax().to('#eye__10 .rbg-1', time, {morphSVG: '#eye__10 .rbg-2', ease: Power2.easeIn})
+            .to('#eye__10 .rbg-1', time, {morphSVG: '#eye__10 .rbg-3', ease: Power2.easeOut}, '+=0')
+            .to('#eye__10 .rbg-1', time-0.1, {morphSVG: '#eye__10 .rbg-4', ease: Power3.easeInOut}, '-=0.08');
+            new TimelineMax().to('#eye__10 .lbg-1', time, {morphSVG: '#eye__10 .lbg-2', ease: Power2.easeIn})
+            .to('#eye__10 .lbg-1', time, {morphSVG: '#eye__10 .lbg-3', ease: Power2.easeOut}, '+=0')
+            .to('#eye__10 .lbg-1', time-0.1, {morphSVG: '#eye__10 .lbg-4', ease: Power3.easeInOut}, '-=0.08');
+            new TimelineMax().to('#eye__10 .re-1', time, {morphSVG: '#eye__10 .re-2', ease: Power2.easeIn})
+            .to('#eye__10 .re-1', time, {morphSVG: '#eye__10 .re-3', ease: Power2.easeOut}, '+=0')
+            .to('#eye__10 .re-1', time-0.1, {morphSVG: '#eye__10 .re-4', ease: Power3.easeInOut}, '-=0.08');
+            new TimelineMax().to('#eye__10 .le-1', time, {morphSVG: '#eye__10 .le-2', ease: Power2.easeIn})
+            .to('#eye__10 .le-1', time, {morphSVG: '#eye__10 .le-3', ease: Power2.easeOut}, '+=0')
+            .to('#eye__10 .le-1', time-0.1, {morphSVG: '#eye__10 .le-4', ease: Power3.easeInOut}, '-=0.08');            
+            break;
+          case 11:
+            var time = 0.14;
+            var delay = '-=0.06';
+            new TimelineMax({onComplete : function(){
+              new TimelineMax({delay : 1}).to('#eye__11 .rp-1', time, {morphSVG: '#eye__11 .rp-4', ease: Power1.easeIn})
+              .to('#eye__11 .rp-1', time, {morphSVG: '#eye__11 .rp-3', ease: Power0.easeInOut}, delay)
+              .to('#eye__11 .rp-1', time, {morphSVG: '#eye__11 .rp-2', ease: Power0.easeInOut}, delay)
+              .to('#eye__11 .rp-1', time, {morphSVG: '#eye__11 .rp-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__11 .lp-1', time, {morphSVG: '#eye__11 .lp-4', ease: Power1.easeIn})
+              .to('#eye__11 .lp-1', time, {morphSVG: '#eye__11 .lp-3', ease: Power0.easeInOut}, delay)
+              .to('#eye__11 .lp-1', time, {morphSVG: '#eye__11 .lp-2', ease: Power0.easeInOut}, delay)
+              .to('#eye__11 .lp-1', time, {morphSVG: '#eye__11 .lp-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__11 .rg-1', time, {morphSVG: '#eye__11 .rg-4', ease: Power1.easeIn})
+              .to('#eye__11 .rg-1', time, {morphSVG: '#eye__11 .rg-3', ease: Power0.easeInOut}, delay)
+              .to('#eye__11 .rg-1', time, {morphSVG: '#eye__11 .rg-2', ease: Power0.easeInOut}, delay)
+              .to('#eye__11 .rg-1', time, {morphSVG: '#eye__11 .rg-1', ease: Power1.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__11 .lg-1', time, {morphSVG: '#eye__11 .lg-4', ease: Power1.easeIn})
+              .to('#eye__11 .lg-1', time, {morphSVG: '#eye__11 .lg-3', ease: Power0.easeInOut}, delay)
+              .to('#eye__11 .lg-1', time, {morphSVG: '#eye__11 .lg-2', ease: Power0.easeInOut}, delay)
+              .to('#eye__11 .lg-1', time, {morphSVG: '#eye__11 .lg-1', ease: Power1.easeOut}, delay);
+            }}).to('#eye__11 .rp-1', time, {morphSVG: '#eye__11 .rp-2', ease: Power1.easeIn})
+            .to('#eye__11 .rp-1', time, {morphSVG: '#eye__11 .rp-3', ease: Power0.easeInOut}, delay)
+            .to('#eye__11 .rp-1', time, {morphSVG: '#eye__11 .rp-4', ease: Power0.easeInOut}, delay)
+            .to('#eye__11 .rp-1', time, {morphSVG: '#eye__11 .rp-5', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__11 .lp-1', time, {morphSVG: '#eye__11 .lp-2', ease: Power1.easeIn})
+            .to('#eye__11 .lp-1', time, {morphSVG: '#eye__11 .lp-3', ease: Power0.easeInOut}, delay)
+            .to('#eye__11 .lp-1', time, {morphSVG: '#eye__11 .lp-4', ease: Power0.easeInOut}, delay)
+            .to('#eye__11 .lp-1', time, {morphSVG: '#eye__11 .lp-5', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__11 .rg-1', time, {morphSVG: '#eye__11 .rg-2', ease: Power1.easeIn})
+            .to('#eye__11 .rg-1', time, {morphSVG: '#eye__11 .rg-3', ease: Power0.easeInOut}, delay)
+            .to('#eye__11 .rg-1', time, {morphSVG: '#eye__11 .rg-4', ease: Power0.easeInOut}, delay)
+            .to('#eye__11 .rg-1', time, {morphSVG: '#eye__11 .rg-5', ease: Power1.easeOut}, delay);
+            new TimelineMax().to('#eye__11 .lg-1', time, {morphSVG: '#eye__11 .lg-2', ease: Power1.easeIn})
+            .to('#eye__11 .lg-1', time, {morphSVG: '#eye__11 .lg-3', ease: Power0.easeInOut}, delay)
+            .to('#eye__11 .lg-1', time, {morphSVG: '#eye__11 .lg-4', ease: Power0.easeInOut}, delay)
+            .to('#eye__11 .lg-1', time, {morphSVG: '#eye__11 .lg-5', ease: Power1.easeOut}, delay);
+            break;
+          case 12:
+            var time = 0.3;
+            var delay = '-=0';
+            new TimelineMax({onComplete : function(){
+              new TimelineMax({delay : 1}).to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-2', ease: Power2.easeIn})
+              .to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-2', ease: Power2.easeIn})
+              .to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-2', ease: Power2.easeIn})
+              .to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-2', ease: Power2.easeIn})
+              .to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-2', ease: Power2.easeIn})
+              .to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-2', ease: Power2.easeIn})
+              .to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-2', ease: Power2.easeIn})
+              .to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-1', ease: Power2.easeOut}, delay);
+              new TimelineMax({delay : 1}).to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-2', ease: Power2.easeIn})
+              .to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-1', ease: Power2.easeOut}, delay);
+            }}).to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-2', ease: Power2.easeIn})
+            .to('#eye__12 .rp-1', time, {morphSVG: '#eye__12 .rp-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-2', ease: Power2.easeIn})
+            .to('#eye__12 .lp-1', time, {morphSVG: '#eye__12 .lp-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-2', ease: Power2.easeIn})
+            .to('#eye__12 .rg-1', time, {morphSVG: '#eye__12 .rg-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-2', ease: Power2.easeIn})
+            .to('#eye__12 .lg-1', time, {morphSVG: '#eye__12 .lg-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-2', ease: Power2.easeIn})
+            .to('#eye__12 .rty-1', time, {morphSVG: '#eye__12 .rty-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-2', ease: Power2.easeIn})
+            .to('#eye__12 .lty-1', time, {morphSVG: '#eye__12 .lty-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-2', ease: Power2.easeIn})
+            .to('#eye__12 .rby-1', time, {morphSVG: '#eye__12 .rby-3', ease: Power2.easeOut}, delay);
+            new TimelineMax().to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-2', ease: Power2.easeIn})
+            .to('#eye__12 .lby-1', time, {morphSVG: '#eye__12 .lby-3', ease: Power2.easeOut}, delay);
+            break;
+          default:
+            // statements_def
+            break;
+        }
+      }
     }
   };
 </script>
@@ -1939,7 +2404,7 @@
     top: auto;
     right: 57vw;
     width: 41vw;
-    bottom: 58vh;
+    bottom: 60%;
   }
   .eye__02 {
     position: fixed;    
@@ -1949,7 +2414,7 @@
   }
   .eye__08 {
     position: fixed;
-    bottom: 24vh;
+    bottom: 24%;
     right: 53vw;
     width: 26vw;
   }
@@ -1965,7 +2430,7 @@
     top: auto;
     right: 68vw;
     width: 25vw;
-    bottom: 44vh;
+    bottom: 44%;
   }
   .eye__03 {
     position: fixed;
@@ -1976,11 +2441,11 @@
   }
   .eye__06,
   .eye__10,
-  .eye__11 {    
+  .app:not(.contacts) .eye__11 {    
     visibility: hidden;
   }
   .contacts .eye__09 {
-    display: none;
+    visibility: hidden;
   }
 
 }

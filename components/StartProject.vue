@@ -11,12 +11,16 @@
       </div>
     </div>      
     <div class="start-project__bg"></div>    
+
+
+
+
     <div class="start-project__form">          
-      <form action="" @submit="formSubmit">
+      <form action="https://sparky.us19.list-manage.com/subscribe/post?u=53c4f2d01d5c23fa4187b803d&amp;id=a3703db259" method="post" @submit="formSubmit" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form">
         <div class="start-project__form_row">
           <div class="start-project__form_coll">
-            <div class="start-project__form_input" :class="formErrors.name ? 'error' : ''">
-              <input type="text" placeholder="Your Name Company" name="name" autocomplete="off" @focus="focusError">
+            <div class="start-project__form_input" :class="formErrors.COMPNAME ? 'error' : ''">
+              <input type="text" placeholder="Your Name Company" name="COMPNAME" autocomplete="off" @focus="focusError">
               <div class="start-project__form_input--bg"></div>
               <div class="start-project__form_error"></div>
               <div class="start-project__form_error--text">
@@ -25,8 +29,8 @@
             </div>
           </div>
           <div class="start-project__form_coll">
-            <div class="start-project__form_input" :class="formErrors.email ? 'error' : ''">
-              <input type="text" placeholder="Your E-mail" name="email" autocomplete="off" @focus="focusError">
+            <div class="start-project__form_input" :class="formErrors.EMAIL ? 'error' : ''">
+              <input type="text" placeholder="Your E-mail" name="EMAIL" autocomplete="off" @focus="focusError">
               <div class="start-project__form_input--bg"></div>
               <div class="start-project__form_error"></div>
               <div class="start-project__form_error--text">
@@ -52,8 +56,8 @@
           </div>
         </div>
         <div class="start-project__form_row">
-          <div class="start-project__form_textarea" :class="formErrors.msg ? 'error' : ''">
-            <textarea name="msg" id="" placeholder="Start typing message here ..." autocomplete="off" @focus="focusError"></textarea>
+          <div class="start-project__form_textarea" :class="formErrors.MESSAGE ? 'error' : ''">
+            <textarea name="MESSAGE" id="" placeholder="Start typing message here ..." autocomplete="off" @focus="focusError"></textarea>
             <div class="start-project__form_textarea--bg"></div>
             <div class="start-project__form_error"></div>
               <div class="start-project__form_error--text">
@@ -93,6 +97,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   export default {
     data : function(){
       return {
@@ -101,10 +106,10 @@
         h1Text : 'start a project',
         submit : false,
         formErrors : {
-          name : false,
-          email : false,
+          COMPNAME : false,
+          EMAIL : false,
           select : false,
-          msg : false
+          MESSAGE : false
         }
       }
     },
@@ -127,15 +132,16 @@
     },
     methods : {
       reset : function(){
-        var app = this;        
+        var app = this;
         app.h1Text = window.innerWidth > 768 ? 'start a project' : 'start <br/> a project';
         app.submit = false;
-        app.formErrors.name = false;
-        app.formErrors.email = false;
+        app.formErrors.COMPNAME = false;
+        app.formErrors.EMAIL = false;
         app.formErrors.select = false;
-        app.formErrors.msg = false;        
-        document.querySelector('.start-project input[name="name"]').value = '';
-        document.querySelector('.start-project input[name="email"]').value = '';
+        app.formErrors.MESSAGE = false;
+        console.log('reset');
+        document.querySelector('.start-project input[name="COMPNAME"]').value = '';
+        document.querySelector('.start-project input[name="EMAIL"]').value = '';
         document.querySelector('.start-project textarea').value = '';
         document.querySelector('.start-project__form_select b').innerText = 'Select Subject';
         document.querySelectorAll('.start-project__form_select ul li').forEach( function(el, i) {
@@ -168,7 +174,7 @@
         }        
       },
       startProjectClick : function(e){        
-        var app = this;        
+        var app = this;
         if(app.startProject){
           var tlEnd = new TimelineMax({onComplete : function(){
             TweenMax.set('.start-project__form_row', {clearProps : 'all'});
@@ -178,8 +184,8 @@
           .to('.start-project__h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeInOut, onComplete : function(){
             TweenMax.set('.start-project__h1, .start-project__form, .start-project__thank', {display : 'none'})
           }}, 'uno+=0.2')
-          .to('.copyright span', 0.4, {y : '100%', ease: Power2.easeOut}, 'uno+=0.2')
-          if(app.mobile){
+          if(app.pageName != 'contacts')tlEnd.to('.copyright span', 0.4, {y : '100%', ease: Power2.easeOut}, 'uno+=0.2');          
+          if(app.mobile && app.pageName != 'contacts'){
             tlEnd.to('.app-social a', 0.4, {y : '100%', color : '#191919', ease: Power2.easeOut}, 'uno+=0.2')
             .set('.app-social a', {y : '0%'})
             .set('.app-social', {clearProps : 'all'})
@@ -265,18 +271,18 @@
           .to('.start-project__text span', 0.4, {y : '0%', color : '#191919', ease: Power4.easeOut})
           .set('.start-project__h1 ', {display : 'block'}, 'uno+=0.6')
           .fromTo('.start-project__h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(dobbleTitle ? 1.1 : 1.5)}, 'uno+=0.6')
-          .to('.start-project__h1 .l2', 0.3, {y:(dobbleTitle ? '10%' : '15%'),ease: Power1.easeOut}, 'uno+=0.6')
-          .to('.start-project__h1 .l3', 0.4, {y:(dobbleTitle ? '20%' : '30%'),ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l2', 0.3, {y:(dobbleTitle ? '12%' : '15%'),ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l3', 0.4, {y:(dobbleTitle ? '22%' : '30%'),ease: Power1.easeOut}, 'uno+=0.6')
           .to('.start-project__h1 .l4', 0.5, {y:(dobbleTitle ? '30%' : '45%'),ease: Power1.easeOut}, 'uno+=0.6')
-          .to('.start-project__h1 .l5', 0.6, {y:(dobbleTitle ? '40%' : '60%'),ease: Power1.easeOut}, 'uno+=0.6')
+          .to('.start-project__h1 .l5', 0.6, {y:(dobbleTitle ? '35%' : '60%'),ease: Power1.easeOut}, 'uno+=0.6')
           .to('.start-project__h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
           .to('.start-project__h1 .l4', 0.5, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
           .to('.start-project__h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
           .to('.start-project__h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn}, 'uno+=1.3')
           .to('.copyright span', 0.4, {y : '0%', color : '#191919', ease: Power2.easeOut}, 'uno+=2.3')
-          if(app.mobile){
+          if(app.mobile && app.pageName != 'contacts'){
             tlStart.set('.app-social a', {y : '100%'}, 'uno+=2.3')
-            .set('.app-social', {display : 'block'}, 'uno+=2.3')
+            .set('.app-social', {display : 'flex'}, 'uno+=2.3')
             .to('.app-social a', 0.4, {y : '0%', color : '#191919', ease: Power2.easeOut}, 'uno+=2.3')
           }
           tlStart.set('.start-project__form', {display : 'block'}, 'uno+=1.7')          
@@ -342,24 +348,30 @@
         return null;
       },
       formSubmit : function(e){
-        var app = this;
-        e.preventDefault();
-        console.log(e.target.querySelector('input[name]'));
-        var name = e.target.querySelector('input[name="name"]').value.trim();
-        var email = e.target.querySelector('input[name="email"]').value.trim();
+        var app = this;        
+        e.preventDefault();        
+        var name = e.target.querySelector('input[name="COMPNAME"]').value.trim();
+        var email = e.target.querySelector('input[name="EMAIL"]').value.trim();
         var subject = e.target.querySelector('[data-name="subject"]').innerText;
-        var msg = e.target.querySelector('textarea').value.trim();
+        var msg = e.target.querySelector('textarea').value.trim();        
+
+        console.log(name);
+        console.log(email);
+        console.log(subject);
+        console.log(msg);        
+        
+
         if(!name.length){
-          app.formErrors.name = true;
+          app.formErrors.COMPNAME = true;
         }
         if(!email.length){
-          app.formErrors.email = true;
+          app.formErrors.EMAIL = true;
         }
         if(subject == 'Select Subject'){
           app.formErrors.select = true;
         }
         if(!msg.length){
-          app.formErrors.msg = true;
+          app.formErrors.MESSAGE = true;
         }
         if(!email.length || !email.length || subject == 'Select Subject' || !msg.length)return false;
         var tl = new TimelineMax().to('.start-project__h1 .l1 span', 0.7, {y : '130%', ease: Power4.easeInOut, onComplete : function(){          
@@ -377,27 +389,60 @@
         .to('.start-project__h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
         .to('.start-project__h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
         .set('.start-project__thank', {display : 'block'}, 'dos+=0.2')
-        .staggerFrom(document.querySelectorAll('.start-project__thank li'), 0.6, {opacity:0, y : '100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.1, 'dos+=0.2')
+        .staggerFrom(document.querySelectorAll('.start-project__thank li'), 0.6, {opacity:0, y : '100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.1, 'dos+=0.2');       
+
+
+        axios({
+          method: 'post',
+          url: 'https://sparky.us19.list-manage.com/subscribe/post-json?u=53c4f2d01d5c23fa4187b803d&amp;id=a3703db259&c=?',
+          headers: { 'content-type': 'application/json; charset=utf-8' },
+          responseType : 'json',
+          params: {
+            COMPNAME: name,
+            EMAIL : email,
+            SUBJECT : subject,
+            MESSAGE : msg
+          }
+        });
         
       },
       focusError : function(e){
         var app = this;
-        var name = e.target.name;        
+        var name = e.target.name;
+        console.log(name);
+        console.log(app.formErrors[name]);
+
+        
         if(app.formErrors[name])app.formErrors[name] = false;        
-      }
+      },
+      // subForm : function(e){        
+      //   axios({
+      //     method: 'post',
+      //     url: 'https://facebook.us18.list-manage.com/subscribe/post-json?u=3980af0245b922f0a5bc99fc9&amp;id=8e81ab7d88&c=?',          
+      //     headers: { 'content-type': 'application/json; charset=utf-8' },
+      //     responseType : 'json',
+      //     params: {
+      //       COMPNAME: 'doborsky2@ukr.net',
+      //       MMERGE1 : 'хуй'
+      //     }
+      //   });
+
+      // }
     },
     watch : {
       resize : function(e){
         var app = this;
         if(app.startProject){
-          var width = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;
-          var scale = (width / 50) * 2.55;
-          TweenMax.set('.start-project__bg', {scale : scale});
-          if(app.submit){
-            app.h1Text = 'thank you';
-          }else{
-            app.h1Text = window.innerWidth > 768 ? 'start a project' : 'start <br/> a project';
-          }          
+          setTimeout(function(){
+            var width = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;
+            var scale = (width / 50) * 2.55;
+            TweenMax.set('.start-project__bg', {scale : scale});
+            if(app.submit){
+              app.h1Text = 'thank you';
+            }else{
+              app.h1Text = window.innerWidth > 768 ? 'start a project' : 'start <br/> a project';
+            }
+          }, 100);          
         }        
       }
     }
@@ -971,7 +1016,7 @@
     bottom: 160px
   }
   .start-project__h1 span {
-    padding: 3vw 2.3vw 0.5vw 0vw;
+    padding: 3vw 2.3vw 1.1vw 0vw;
   }
 }
 

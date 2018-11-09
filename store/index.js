@@ -16,12 +16,15 @@ const store = () => new Vuex.Store({
     scrollDownTL : null,
     scroll : false,
     mouseMove : null,
+    cursorServiseHover : false,
     resize : null,
-    services : null,
+    touchevent : null,
+    services : null,    
     servicesSlider : false,
     prevPage : '',
     pageTransition : false,
     teamSlider : true,
+    teamSliderPosition : 'top',
     startProject : false,
     navigation : {
       state : 'app',
@@ -89,19 +92,19 @@ const store = () => new Vuex.Store({
       if(data.state == 'slider'){
         state.navigation.list = [
           {
-            name : 'MAXIMIZE MOMENTS',
+            name : 'mm',
             current : false,
             url : '/',
             sn : 'mm'
           },
           {
-            name : 'ELEVATE EXPERIENCES',
+            name : 'ee',
             current : false,
             url : '/description/',
             sn : 'ee'
           },
           {
-            name : 'Ignite Innovation',
+            name : 'ii',
             current : false,
             url : '/services',
             sn : 'ii'
@@ -181,6 +184,9 @@ const store = () => new Vuex.Store({
     mouseMove(state, e){
       state.mouseMove = e;
     },
+    touchevent(state, e){
+      state.touchevent = e;
+    },
     resize(state, e){
       state.resize = e;
     },
@@ -192,7 +198,13 @@ const store = () => new Vuex.Store({
     },
     mobile(state, status){
       state.mobile = status;
-    },    
+    },
+    cursorServiseHover(state, status){
+      state.cursorServiseHover = status;
+    },
+    teamSliderPosition(state, status){
+      state.teamSliderPosition = status;
+    }    
   }
 })
 

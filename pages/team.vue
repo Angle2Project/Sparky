@@ -35,6 +35,9 @@ export default {
     app.$store.commit('navigation', 'team');
     app.$store.commit('eyes', false);
     TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb'});
+    if(window.innerWidth <= 480){           
+      TweenMax.to('#app-logo .st2', 0.4, {opacity : 0});
+    }
   },
   data : function(){
     return {
@@ -51,6 +54,8 @@ export default {
         var app = this;
         var mobile = app.$store.state.mobile;
         var prev = (app.$store.state.prevPage == 'clients')
+        app.$store.commit('teamSliderPosition', 'top');
+        TweenMax.set('.team__list', {clearProps : 'all'});
         TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});
         TweenMax.to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#f8f8eb'});
         TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#f8f8eb'});
@@ -78,11 +83,15 @@ export default {
         //==//   
             app.$store.commit('teamSlider', true);
             var list;
-            if(mobile){
+            if(window.innerWidth <= 768 && window.innerWidth > 480){                    
+              list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];                
+            }else if(window.innerWidth <= 480){      
               list = document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom, .team__list .dos .top, .team__list .dos .bottom, .team__list .tres .top, .team__list .tres .bottom');
             }else{
-              list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];              
+              list = document.querySelectorAll('.team__list .uno .top, .team__list .dos .top, .team__list .tres .top, .team__list .uno .bottom, .team__list .dos .bottom, .team__list .tres .bottom');
             }
+
+            
             TweenMax.staggerTo(list, 0.9, {height : mobile ? '100%' : '27.8vw', delay : 1.2, ease: Power4.easeOut}, 0.14);   
         
     },
@@ -111,7 +120,10 @@ export default {
         .to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919'}, 'uno+=0.9')
         .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#191919'}, 'uno+=0.9')
         .to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'}, 'uno+=0.9')
-        .to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#191919'}, 'uno+=0.9');        
+        .to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#191919'}, 'uno+=0.9');
+        setTimeout(function(){
+          app.$store.commit('pageName', next);
+        }, 900)
       }
       if(next == 'services'){        
         tl.to('.bg__bottom', 0.7, {height : '-=0', ease: Power3.easeInOut, onComplete : done}, 'uno+=0.4')
@@ -132,32 +144,16 @@ export default {
     },
     resize : function(){
       return this.$store.state.resize;
+    },
+    teamSliderPosition  : function(){
+      return this.$store.state.teamSliderPosition;
+    },
+    servicesSlider : function(){
+      return this.$store.state.servicesSlider;
     }
   },
   methods : {
-    startParallax : function(leader, el){
-      var app = this;
-      var dos = el.classList.contains('dos');
-      console.log(dos);
-      TweenMax.set(el, {y : 0});
-      var pos = el._gsTransform;
-      TweenMax.to(el, 10, {
-        y: 0,
-        repeat: -1,
-        modifiers: {
-          y: function x() {
-            return pos.y + (leader.y - pos.y) * app.ease;
-            // if(dos){
-            //   return -(pos.y + (leader.y - pos.y) * app.ease);
-            // }else{
-            //   return pos.y + (leader.y - pos.y) * app.ease;
-            // }
-            
-          },
-        }
-      });
-      return pos;
-    }
+    
   },
   watch : {
     appStart : function(val){
@@ -177,10 +173,12 @@ export default {
             app.$store.commit('teamSlider', true);
             app.$store.commit('loader', false);
             var list;
-            if(app.mobile){
+            if(window.innerWidth <= 768 && window.innerWidth > 480){                    
+              list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];                
+            }else if(window.innerWidth <= 480){      
               list = document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom, .team__list .dos .top, .team__list .dos .bottom, .team__list .tres .top, .team__list .tres .bottom');
             }else{
-              list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];              
+              list = [document.querySelector('.team__list .uno .top'), document.querySelector('.team__list .dos .top'), document.querySelector('.team__list .tres .top'), document.querySelector('.team__list .uno .bottom'), document.querySelector('.team__list .dos .bottom'), document.querySelector('.team__list .tres .bottom')];
             }
             TweenMax.staggerTo(list, 0.8, {height : app.mobile ? '100%' : '27.8vw', delay : 0.35, ease: Power4.easeOut}, 0.14);
             TweenMax.to('h1 .l3', 0.6, {y:'0%',ease: Power1.easeIn});
@@ -193,7 +191,7 @@ export default {
               scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})
               .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})              
               .addCallback(function(){                
-                if(app.$store.state.scrollDownHover)scrollDownTL.pause();
+                if(app.$store.state.scrollDownHover || (app.$store.state.servicesSlider && app.mobile))scrollDownTL.pause();
               });
               TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.4});
               TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.4});
@@ -204,18 +202,40 @@ export default {
                   app.$store.commit('scroll', true);
                   app.$store.commit('pageTransition', false);
                 }});
+                TweenMax.set('#app-navigation li.current .item__name span', {y : '100%'});
+                TweenMax.set('#app-navigation li.current .item__name', {width : 'auto', x : function(i, el){
+                  return el.querySelector('span').clientWidth + 16;
+                }});
                 tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
                 .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
                   width : function(i, el){                  
                     return el.parentNode.classList.contains('current') ? 83 : 1;
                   }
-                }}, 0.09, '-=0.47');              
+                }}, 0.09, '-=0.47')
+                .to('#app-navigation li.current .item__name span', 0.2, {y : '0%'})
+                .to('.cursor', 0.3, {opacity : 1}, 'cursor')
+                .to('#cursor-svg .state-0', 0.4, {morphSVG: '#cursor-svg .state-1', ease: Power4.easeIn}, 'cursor+=0.1');
               }});
             }});
           }});
         //==//
       }
-    }    
+    },
+    teamSliderPosition : function(pos){
+      var app = this;
+      if(window.innerWidth > 768){
+        if(pos == 'top'){
+          TweenMax.to('.team__list', 0.9, {marginTop  : '-13.9vw', ease: Power3.easeInOut, onComplete : function(){
+             app.$store.commit('scroll', true);
+          }});
+        }
+        if(pos == 'bottom'){
+          TweenMax.to('.team__list', 0.9, {marginTop  : '-47.7vw', ease: Power3.easeInOut, onComplete : function(){
+             app.$store.commit('scroll', true);
+          }});
+        }
+      }      
+    }
   }  
 };
 </script>
@@ -288,7 +308,7 @@ h1 .l5 {
   }
   h1 {
     font-size: 15.6vw;
-    line-height: 12vw;
+    line-height: 11.9vw;
   }
   h1 .l1 {
     padding-top: 2vw;    
@@ -301,7 +321,7 @@ h1 .l5 {
 @media screen and (max-width: 480px) {
   h1 {
     font-size: 12.8vw;
-    line-height: 10.0vw;
+    line-height: 9.9vw;
     top: calc(84px - 2vw);
     left: 42px;
     transform: translateY(0);

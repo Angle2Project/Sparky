@@ -1,4 +1,5 @@
 var scrollDownTL;
+var prevNextLine;
 if (!String.prototype.trim) {
   (function() {    
     String.prototype.trim = function() {

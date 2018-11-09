@@ -40,10 +40,10 @@
         </a>        
       </div>
     </div>
-    <div class="follow-us">
+    <!-- <div class="follow-us">
       <span>follow us</span>
       <i></i>
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -59,7 +59,11 @@ export default {
     TweenMax.to('#eye__04 .st2', 0.4, {fill : '#f8f8eb'});
     TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'});
     TweenMax.to(document.querySelectorAll('#app-navigation li .item__name'), 0.4, {color : '#191919'});
-    TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb'})
+    TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb'});
+    if(app.mobile)TweenMax.set('.eye__11', {opacity : 0, scaleY : 0.5});
+    if(window.innerWidth <= 480){           
+      TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
+    }
     //var split = new SplitText(".contacts__information_address, .contacts__information_map", {type:"words"});
     
     
@@ -76,9 +80,9 @@ export default {
     enter : function(el, done){
       var app = this;
       var dobbleTitle = (window.innerWidth <= 768 && window.innerWidth > 480);
-      app.$store.state.scrollDownHover = true;
-      TweenMax.staggerTo(document.querySelectorAll('.eye__04, .eye__09'), 0.6, {y : '0%', opacity : 1, delay : 0.4, scaleY : 1, ease: Back.easeOut.config(1.7)}, 0.25)        
-        // H1 Animation //        
+      app.$store.state.scrollDownHover = true;      
+      TweenMax.staggerTo(document.querySelectorAll('.eye__11, .eye__09'), 0.6, {y : '0%', opacity : 1, delay : 0.4, scaleY : 1, ease: Back.easeOut.config(1.7)}, 0.25)        
+        // H1 Animation //
         
         var textList = document.querySelectorAll('.contacts__information_address > div, .contacts__information_map, .contacts__information_mail');
         var uno = new TimelineMax({ delay : 1.8});
@@ -88,6 +92,7 @@ export default {
         .to('.follow-us span', 0.7, {y : '0%', ease: Power4.easeOut}, 'line')
         .to('.copyright span', 0.7, {y : '0%', ease: Power4.easeOut}, 'line')
         if(app.$store.state.mobile){
+          TweenMax.set(document.querySelectorAll('.app-social a'), {y : '100%'});
           TweenMax.set('.app-social', {display : 'flex'})
           TweenMax.set('.app-social a', {y : '100%'});
         }
@@ -121,14 +126,18 @@ export default {
       app.$store.commit('prevPage', 'description');
       var next = app.$route.name;
       var textList = document.querySelectorAll('.contacts__information_address > div, .contacts__information_map, .contacts__information_mail');
-      if(next == 'index'){        
+      if(next == 'index'){   
+        if(app.$store.state.mobile){
+          TweenMax.set('.eye__09', {opacity : 0, scaleY : 0.5});
+          TweenMax.to('.eye__11', 0.6, {opacity : 0, scaleY : 0.5, ease: Power4.easeIn, force3D : true})
+        }
         var uno = new TimelineMax().staggerTo(textList, 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.05, 'uno')
         .to('h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeInOut, onComplete : function(){
           TweenMax.set('.scroll-down', {display : 'flex'});
           scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})
           .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
           .addCallback(function(){
-            if(app.$store.state.scrollDownHover)scrollDownTL.pause();
+            if(app.$store.state.scrollDownHover || (app.$store.state.servicesSlider && app.mobile))scrollDownTL.pause();
           });
           app.$store.state.scrollDownHover = false;
           TweenMax.to('#eye__04 .st2', 0.4, {fill : '#f0f0d9'});
@@ -137,14 +146,14 @@ export default {
         .to('.follow-us span', 0.7, {y : '100%', ease: Power4.easeOut}, 'uno+=0.2')
         .to('.copyright span', 0.7, {y : '100%', ease: Power4.easeOut}, 'uno+=0.2')
         .to('.follow-us i', 0.7, {width : '0px', ease: Power4.easeOut}, 'uno+=0.2')
-        if(app.$store.state.mobile){
+        if(app.$store.state.mobile){          
           uno.to('.app-social a', 0.7, {y : '100%', ease: Power4.easeOut, onComplete : function(){
             TweenMax.set('.app-social', {clearProps : 'all'})
             TweenMax.set('.app-social a', {y : '0%'});
           }}, 'uno+=0.2')
         }
       }else{
-        new TimelineMax().staggerTo(document.querySelectorAll('.eye__09, .eye__04'), 0.6, {opacity : 0, scaleY : 0.5, ease: Power4.easeIn, force3D : true}, 0.25, 'uno')
+        var uno = new TimelineMax().staggerTo(document.querySelectorAll('.eye__09, .eye__11'), 0.6, {opacity : 0, scaleY : 0.5, ease: Power4.easeIn, force3D : true}, 0.25, 'uno')
         .staggerTo(textList, 0.6, {opacity:0, y : '-100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.05, 'uno')
         .to('h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeInOut, onComplete : function(){
           TweenMax.set('.scroll-down', {display : 'flex'});
@@ -159,7 +168,13 @@ export default {
         }}, 'uno+=0.2')
         .to('.follow-us span', 0.7, {y : '100%', ease: Power4.easeOut}, 'uno+=0.2')
         .to('.copyright span', 0.7, {y : '100%', ease: Power4.easeOut}, 'uno+=0.2')
-        .to('.follow-us i', 0.7, {width : '0px', ease: Power4.easeOut}, 'uno+=0.2');
+        .to('.follow-us i', 0.7, {width : '0px', ease: Power4.easeOut}, 'uno+=0.2')
+        if(app.$store.state.mobile){          
+          uno.to('.app-social a', 0.7, {y : '100%', ease: Power4.easeOut, onComplete : function(){
+            TweenMax.set('.app-social', {clearProps : 'all'})
+            TweenMax.set('.app-social a', {y : '0%'});
+          }}, 'uno+=0.2')
+        }
         // new TimelineMax().staggerTo(document.querySelectorAll('.eye__02, .eye__07'), 0.3, {opacity : 0, scaleY : 0.5, ease: Power4.easeIn, force3D : true}, 0.1, 'uno')
         // .staggerTo(document.querySelectorAll('#app-description h1 > div, #app-description a > div'), 0.6, {opacity:0, scaleY:0, force3D:true, ease: Power4.easeOut}, 0.02, 'uno');
         // setTimeout(done, 700)
@@ -175,6 +190,9 @@ export default {
     },
     mobile : function(){
       return this.$store.state.mobile;
+    },
+    servicesSlider : function(){
+      return this.$store.state.servicesSlider;
     }
   },
   methods : {
@@ -192,9 +210,9 @@ export default {
       var app = this;
       var dobbleTitle = (window.innerWidth <= 768 && window.innerWidth > 480);
       if(val){
-        TweenMax.set(document.querySelectorAll('#app-eyes .eye__02, #app-eyes .eye__07'), {display : 'block'});
+        TweenMax.set(document.querySelectorAll('#app-eyes .eye__11, #app-eyes .eye__09'), {display : 'block'});
         TweenMax.fromTo('#app-eyes .eye__09', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -14, ease: Power3.easeInOut, force3D : true, delay : 1.15});        
-        TweenMax.fromTo('#app-eyes .eye__04', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -25, ease: Power3.easeInOut, force3D : true, delay : 1.2});
+        TweenMax.fromTo('#app-eyes .eye__11', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : -25, ease: Power3.easeInOut, force3D : true, delay : 1.2});
         // H1 Animation //
         TweenMax.set('h1', {visibility : 'visible'});
         TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(dobbleTitle ? 1.1 : 1.5), delay : 1.2});
@@ -235,12 +253,19 @@ export default {
                   app.$store.commit('scroll', true);
                   app.$store.commit('pageTransition', false);
                 }});
+                TweenMax.set('#app-navigation li.current .item__name span', {y : '100%'});
+                TweenMax.set('#app-navigation li.current .item__name', {width : 'auto', x : function(i, el){
+                  return el.querySelector('span').clientWidth + 16;
+                }});
                 tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
                 .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
                   width : function(i, el){                  
                     return el.parentNode.classList.contains('current') ? 83 : 1;
                   }
-                }}, 0.09, '-=0.47');              
+                }}, 0.09, '-=0.47')
+                .to('#app-navigation li.current .item__name span', 0.2, {y : '0%'})
+                .to('.cursor', 0.3, {opacity : 1}, 'cursor')
+                .to('#cursor-svg .state-0', 0.4, {morphSVG: '#cursor-svg .state-1', ease: Power4.easeIn}, 'cursor+=0.1');
               }});
             }});
           }});

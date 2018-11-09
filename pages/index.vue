@@ -24,7 +24,10 @@ export default {
     app.$store.commit('pageName', 'intro');
     app.$store.commit('navigation', 'intro');
     app.$store.commit('eyes', true);    
-    TweenMax.to('.app', 0.4, {backgroundColor : '#f0f0d9'})
+    TweenMax.to('.app', 0.4, {backgroundColor : '#f0f0d9'});
+    if(window.innerWidth <= 480){           
+      TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
+    }
   },
   data : function(){
     return {
@@ -65,7 +68,11 @@ export default {
       if(next == 'description'){
         eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__04, .eye__05, .eye__06, .eye__08, .eye__09, .eye__10, .eye__11, .eye__12');
       }else if(next == 'contacts'){
-        eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__02, .eye__05, .eye__06, .eye__08, .eye__07, .eye__10, .eye__11, .eye__12');
+        if(app.$store.state.mobile){
+          eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__02, .eye__05, .eye__06, .eye__08, .eye__07, .eye__10, .eye__09, .eye__04, .eye__12');
+        }else{
+          eyes = document.querySelectorAll('.eye__01, .eye__03, .eye__02, .eye__05, .eye__06, .eye__08, .eye__07, .eye__10, .eye__04, .eye__12');
+        }        
       }else{
         eyes = document.querySelectorAll('#app-eyes section');
       }
@@ -86,6 +93,9 @@ export default {
     },
     resize : function(){
       return this.$store.state.resize;
+    },
+    servicesSlider : function(){
+      return this.$store.state.servicesSlider;
     }
   },
   methods : {
@@ -93,7 +103,7 @@ export default {
   },
   watch : {
     appStart : function(val){
-      var app = this;      
+      var app = this;             
       if(val){
         TweenMax.set(document.querySelectorAll('#app-eyes section'), {display : 'block'});
         TweenMax.fromTo('#app-eyes .eye__01', 0.9, {x : '100%', y : '-100%', scale: 0.5, rotation : -15}, {x : '0%', y : '0%', scale : 1, opacity : 1, rotation : 0, ease: Power3.easeInOut, force3D : true, delay : 1.1});
@@ -128,8 +138,8 @@ export default {
             
             scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})              
             .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
-            .addCallback(function(){                
-              if(app.$store.state.scrollDownHover)scrollDownTL.pause();
+            .addCallback(function(){              
+              if(app.$store.state.scrollDownHover || (app.$store.state.servicesSlider && app.mobile))scrollDownTL.pause();
             });
 
             TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});
@@ -142,12 +152,19 @@ export default {
               var tl = new TimelineMax({onComplete : function(){
                 app.$store.commit('appStartAnimation', false);
               }});
+              TweenMax.set('#app-navigation li.current .item__name span', {y : '100%'});
+              TweenMax.set('#app-navigation li.current .item__name', {width : 'auto', x : function(i, el){
+                return el.querySelector('span').clientWidth + 16;
+              }});
               tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
               .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
-                width : function(i, el){                  
+                width : function(i, el){
                   return el.parentNode.classList.contains('current') ? 83 : 1;
                 }
-              }}, 0.09, '-=0.47');              
+              }}, 0.09, '-=0.47')
+              .to('#app-navigation li.current .item__name span', 0.2, {y : '0%'})
+              .to('.cursor', 0.3, {opacity : 1}, 'cursor')
+              .to('#cursor-svg .state-0', 0.4, {morphSVG: '#cursor-svg .state-1', ease: Power4.easeIn}, 'cursor+=0.1');
             }});
           }});          
         }});        

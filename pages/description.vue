@@ -18,6 +18,9 @@ export default {
     TweenMax.to(document.querySelectorAll('#app-navigation li .item__name'), 0.4, {color : '#191919'});
     TweenMax.to('.app', 0.4, {backgroundColor : '#f8f8eb'})
     var split = new SplitText("#app-description h1", {type:"words"});
+    if(window.innerWidth <= 480){           
+      TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
+    }
     
     
   },
@@ -77,8 +80,14 @@ export default {
       return this.$store.state.appStart;
     },
     loader : function(){
-        return this.$store.state.loader;
-      }
+      return this.$store.state.loader;
+    },
+    mobile : function(){
+      return this.$store.state.mobile;
+    },
+    servicesSlider : function(){
+      return this.$store.state.servicesSlider;
+    }
   },
   methods : {
     
@@ -100,8 +109,8 @@ export default {
           app.$store.commit('pageTransition', false);     
           scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})
           .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
-          .addCallback(function(){                
-            if(app.$store.state.scrollDownHover)scrollDownTL.pause();
+          .addCallback(function(){            
+            if(app.$store.state.scrollDownHover || (app.$store.state.servicesSlider && app.mobile))scrollDownTL.pause();
           });
 
           TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.5});
@@ -112,12 +121,19 @@ export default {
             var tl = new TimelineMax({onComplete : function(){
               app.$store.commit('appStartAnimation', false);
             }});
+            TweenMax.set('#app-navigation li.current .item__name span', {y : '100%'});
+            TweenMax.set('#app-navigation li.current .item__name', {width : 'auto', x : function(i, el){
+              return el.querySelector('span').clientWidth + 16;
+            }});
             tl.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
             .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
               width : function(i, el){                  
                 return el.parentNode.classList.contains('current') ? 83 : 1;
               }
-            }}, 0.09, '-=0.47');              
+            }}, 0.09, '-=0.47')
+            .to('#app-navigation li.current .item__name span', 0.2, {y : '0%'})
+            .to('.cursor', 0.3, {opacity : 1}, 'cursor')
+            .to('#cursor-svg .state-0', 0.4, {morphSVG: '#cursor-svg .state-1', ease: Power4.easeIn}, 'cursor+=0.1');
           }});
           TweenMax.set('#app-description h1 a', {clearProps : 'all'})
           TweenMax.set(document.querySelectorAll('#app-description h1 i'), {clearProps : 'all'});

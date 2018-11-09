@@ -3,7 +3,7 @@
     <div class="team__list swiper-container">
       <div class="swiper-wrapper">
       <div class="item uno swiper-slide">
-        <div class="top">
+        <div class="top" @click="position('top')">
           <div class="item__wrapper">
             <div class="item__info">
               <span>The Playmaker</span>
@@ -11,7 +11,7 @@
             </div>  
           </div>          
         </div>
-        <div class="bottom">
+        <div class="bottom" @click="position('bottom')">
           <div class="item__wrapper">
             <div class="item__info">
               <span>The Playmaker</span>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="item dos swiper-slide">
-        <div class="top">
+        <div class="top" @click="position('top')">
           <div class="item__wrapper">
             <div class="item__info">
               <span>The Playmaker</span>
@@ -29,7 +29,7 @@
             </div>  
           </div>          
         </div>
-        <div class="bottom">
+        <div class="bottom" @click="position('bottom')">
           <div class="item__wrapper">
             <div class="item__info">
               <span>The Playmaker</span>
@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="item tres swiper-slide">
-        <div class="top">
+        <div class="top" @click="position('top')">
           <div class="item__wrapper">
             <div class="item__info">
               <span>The Playmaker</span>
@@ -47,7 +47,7 @@
             </div>
           </div>            
         </div>
-        <div class="bottom">
+        <div class="bottom" @click="position('bottom')">
           <div class="item__wrapper">
             <div class="item__info">
               <span>The Playmaker</span>
@@ -94,10 +94,10 @@
       var app = this;
       var leader = app.pointer;
       var list = document.querySelectorAll('.team__list .item');
-      list.forEach( function(el, i) {
+      //var list = document.querySelectorAll('.team__list .item .top');
+      list.forEach( function(el, i) {        
         leader = app.startParallax(leader, el);
-      });
-      console.log(app.mobile)
+      });      
       if(app.mobile){
         app.swiper = new Swiper('.team__list.swiper-container', {          
           direction: 'horizontal',          
@@ -118,19 +118,24 @@
           y: 0,
           repeat: -1,
           modifiers: {
-            y: function x() {
+            y: function () {
+              //return false;
               if(app.mobile)return false;
-              return pos.y + (leader.y - pos.y) * app.ease;
-              // if(dos){
-              //   return -(pos.y + (leader.y - pos.y) * app.ease);
-              // }else{
-              //   return pos.y + (leader.y - pos.y) * app.ease;
-              // }
-              
+              return pos.y + (leader.y - pos.y) * app.ease;              
             },
           }
         });
         return pos;
+      },
+      position : function(pos){
+        var app = this;
+        if(window.innerWidth > 768){
+          if(pos == 'top'){
+            app.$store.commit('teamSliderPosition', 'top');
+          }else if(pos == 'bottom'){
+            app.$store.commit('teamSliderPosition', 'bottom');
+          }
+        }        
       }
     },
     watch : {
@@ -144,10 +149,11 @@
         }        
       },
       mobile : function(val){
-        var app = this;
+        var app = this;        
         if(app.teamSlider){
           var w = window.innerWidth;
           if(val){
+            TweenMax.to('#app-logo .st2', 0.4, {opacity : 0});
             app.swiper = new Swiper('.team__list.swiper-container', {
               direction: 'horizontal',
               slidesPerView: 'auto',
@@ -160,6 +166,7 @@
             var list = document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom, .team__list .dos .top, .team__list .dos .bottom, .team__list .tres .top, .team__list .tres .bottom');            
             TweenMax.staggerTo(list, 0.8, {height : '100%', ease: Power4.easeOut}, 0.14);
           }else{
+            TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
             app.swiper.destroy(false);
             var list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];
             TweenMax.staggerTo(list, 0.8, {height : '27.8vw', ease: Power4.easeOut}, 0.14);
@@ -180,7 +187,8 @@
   z-index: 2;
   display: flex;
   right: 160px;
-  top: 0;
+  top: 50%;  
+  margin-top: -13.9vw;
   height: 100%;
 }
 .team__list .item {  
@@ -209,7 +217,86 @@
   height: 27.8vw;
   position: absolute;
   left: 0;
+  top: calc(27.8vw + 6vw);
+  overflow: hidden;
+}
+.team__list .item .top .item__info {
+  position: absolute;
+  bottom: 2.25vw;
+  left: 2.25vw;
+}
+.team__list .item .bottom .item__info {
+  position: absolute;
+  top: 2.25vw;
+  left: 2.25vw;
+}
+.team__list .item span {
+  font: 500 14px/1 'Futura';
+  color: #f8f8eb;
+  display: block;
+  margin-bottom: 2px;
+}
+.team__list .item b {
+  font: 14px/ 1 "Futura Condensed Extra Italic";
+  color: #f8f8eb;
+}
+.team__list .item.uno .top {
+  background: url("~assets/headshots-1.jpg") no-repeat center top / cover;
+  /*background: #ccc;*/
+  transform: translateY(-3.3vw);
+}
+.team__list .item.uno .bottom {
+  background: url("~assets/headshots-4.jpg") no-repeat center bottom / cover;
+  /*background: #ccc;*/
+  transform: translateY(-3.3vw);
+}
+.team__list .item.dos .top {
+  background: url("~assets/headshots-2.jpg") no-repeat center top / cover;
+  /*background: #ccc;*/
+  transform: translateY(3.3vw);
+}
+.team__list .item.dos .bottom {
+  background: url("~assets/headshots-5.jpg") no-repeat center bottom / cover;
+  /*background: #ccc;*/
+  transform: translateY(3.3vw);
+}
+.team__list .item.tres .top {
+  background: url("~assets/headshots-3.jpg") no-repeat center top / cover;
+  /*background: #ccc;*/
+  /*transform: translateY(-5.5vw);*/
+}
+.team__list .item.tres .bottom {
+  background: #1f1f1f url("~assets/icon_marker_y.svg") no-repeat center / 1.3vw auto;
+  /*background: #ccc;*/
+  /*transform: translateY(5vw);*/
+}
+
+@media screen and (max-width: 768px) {
+  .team__list {
+    left: 80px;
+    height: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
+  }
+  .team__list .item {
+    flex-grow: 1;
+  }
+  .team__list .item .top {
+  width: 100%;
+  height: 27.8vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+.team__list .item .bottom {
+  width: 100%;
+  height: 27.8vw;
+  position: absolute;
+  left: 0;
   bottom: 0;
+  top: auto;
   overflow: hidden;
 }
 .team__list .item .top .item__info {
@@ -238,7 +325,7 @@
   transform: translateY(-7.8vw);
 }
 .team__list .item.uno .bottom {
-  background: url("~assets/headshots-4.jpg") no-repeat center bottom / cover;
+  background: url("~assets/headshots-4.jpg") no-repeat center bottom -1.5vw / cover;
   /*background: #ccc;*/
   transform: translateY(2.6vw);
 }
@@ -248,7 +335,7 @@
   transform: translateY(-3.3vw);
 }
 .team__list .item.dos .bottom {
-  background: url("~assets/headshots-5.jpg") no-repeat center bottom / cover;
+  background: url("~assets/headshots-5.jpg") no-repeat center bottom -1.5vw / cover;
   /*background: #ccc;*/
   transform: translateY(7.11vw);
 }
@@ -263,16 +350,6 @@
   transform: translateY(5vw);
 }
 
-@media screen and (max-width: 768px) {
-  .team__list {
-    left: 80px;
-    height: 50%;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .team__list .item {
-    flex-grow: 1;
-  }
 }
 
 @media screen and (max-width: 480px) {
@@ -297,7 +374,7 @@
   }
   .team__list .item .top,
   .team__list .item .bottom {
-    width: calc((90vh - 25vw - 100px - 114px) / 1.3);
+    width: calc((90vh - 25vw - 100px - 114px) / 1.2);
     height: 91vw;
     position: relative!important;
     transform: translateY(0)!important;
@@ -307,13 +384,23 @@
     background-size: 4vw auto;
     background-position: center top;
   }
-  .team__list .item.tres .bottom[data-v-20c76db8] {
+  .team__list .item.tres .bottom {
       background-position: center;
   }
   .team__list .item .top .item__info,
   .team__list .item .bottom .item__info {
     top: auto;
     bottom: 2.5vw;
+  }
+  .team__list .item.uno .bottom {
+    background: url("~assets/headshots-4.jpg") no-repeat center top / cover;
+    /*background: #ccc;*/
+    transform: translateY(2.6vw);
+  }
+  .team__list .item.dos .bottom {
+    background: url("~assets/headshots-5.jpg") no-repeat center top / cover;
+    /*background: #ccc;*/
+    transform: translateY(7.11vw);
   }
 }
 </style>
