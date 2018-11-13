@@ -66,7 +66,7 @@ html, body {
 }
 
 body, body * {
-    cursor: none!important;
+    /*cursor: none!important;*/
 }
 
 *::-moz-selection {

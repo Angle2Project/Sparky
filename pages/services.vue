@@ -599,9 +599,9 @@ export default {
             return w;
           }});
           TweenMax.set(document.querySelectorAll('.show-more span'), {opacity : 0});
-          TweenMax.set('h2.mm .l1', {left : dobbleTitle ? '30px' : '80px'});
-          TweenMax.set('h2.ee .l1', {left : dobbleTitle ? '30px' : '75px'});
-          TweenMax.set('h2.ii .l1', {left : dobbleTitle ? '30px' : '75px', x : 0});
+          TweenMax.set('h2.mm .l1', {left : dobbleTitle ? '42px' : '80px'});
+          TweenMax.set('h2.ee .l1', {left : dobbleTitle ? '42px' : '75px', right : 'auto'});
+          TweenMax.set('h2.ii .l1', {left : dobbleTitle ? '42px' : '75px', x : 0});
           TweenMax.set(document.querySelectorAll('h2 .l1 .end'), {width : function(i, el){
             var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);
             return w+'vw'
@@ -685,7 +685,7 @@ export default {
           }, ease: Power4.easeInOut, force3D: false}, 'uno');
         }
         openSlide.to(document.querySelectorAll('h2 .fill'), 0.7, {height: '0vw', ease: Power2.easeIn}, 'dos')
-        .set(document.querySelectorAll('h2'), {bottom : '144px', y : '0'})        
+        .set(document.querySelectorAll('h2'), {bottom : app.mobile ? '42px' : '144px', y : '0'})        
         .to(document.querySelectorAll('#app-logo .st2'), 0.4, {fill : '#f0f0d9', delay : 0.5}, 'dos')
         .to('.bg__bottom', 0.7, {height : '100%', ease: Power2.easeIn}, 'dos')
         .staggerTo(document.querySelectorAll('#app-navigation li i'), 0.1, {width : 83}, 0.05, 'dos')
@@ -923,7 +923,11 @@ export default {
         case 'descktop':
           TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
           if(app.servicesSlider){
-
+            TweenMax.set(document.querySelectorAll('h2'), {'bottom' : '144px'});
+            TweenMax.set(document.querySelectorAll('h2 .l1 .end'), {width : function(i, el){
+              var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);
+              return w+'vw'
+            }});
           }else{
             TweenMax.set('.bg__bottom', {height : '63%'});
             TweenMax.set('.bg__right', {width : '160px'});
@@ -934,7 +938,11 @@ export default {
         case 'tablet':
           TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
           if(app.servicesSlider){
-
+            TweenMax.set(document.querySelectorAll('h2'), {'bottom' : '144px'});
+            TweenMax.set(document.querySelectorAll('h2 .l1 .end'), {width : function(i, el){
+              var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);
+              return w+'vw'
+            }});
           }else{
             TweenMax.set('.bg__bottom', {height : '70%'});
             TweenMax.set('.bg__right', {width : '160px'});  
@@ -946,6 +954,11 @@ export default {
           TweenMax.to('#app-logo .st2', 0.4, {opacity : 0});
           if(app.servicesSlider){
             TweenMax.set('.bg__right', {width : '84px'}); 
+            TweenMax.set(document.querySelectorAll('h2'), {'bottom' : '42px'});
+            TweenMax.set(document.querySelectorAll('h2 .l1 .end'), {width : function(i, el){
+              var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);
+              return w+'vw'
+            }});
           }else{
             TweenMax.set('.bg__bottom', {height : '70%'});
             TweenMax.set('.bg__right', {width : '84px'}); 
@@ -1641,17 +1654,17 @@ h2.ii .l5 {
     margin-left: 2vw;
     margin-top: -0.5vw;
   }
-  h2.mm .stroke__wrapper {  
-    left: 30px;
+  h2.mm .stroke__wrapper {
+    left: 42px;
     bottom: 1vw;
   }
   h2.ee .stroke__wrapper {  
-    left: 30px;
+    left: 42px;
     bottom: 1vw;
   }
   h2.ii .stroke__wrapper {
     transform: translateX(0) skew(-9deg);
-    left: 30px;
+    left: 42px;
     bottom: 1vw;
   }
   .slider {
@@ -1681,9 +1694,8 @@ h2.ii .l5 {
   }
   h2.ii .l1 {
     left: 84px;
-    transform: translateX(0%) skew(-9deg)
-
-  } 
+    transform: translateX(0%) skew(-9deg);
+  }   
   h2.mm .l2,
   h2.mm .l3,
   h2.mm .l4,

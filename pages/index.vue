@@ -199,7 +199,7 @@ h1 span {
   display: inline-block;  
   padding: 0px 10px 0 0;
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 0;
   color:#191919;
   white-space: nowrap;
@@ -209,7 +209,7 @@ h1 span {
   overflow:hidden;
   z-index: 5;  
   position: relative;
-  padding-top: 20px;
+  padding-top: 10px;
   overflow: hidden;
   background-color: #f0f0d9;
 }

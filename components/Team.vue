@@ -166,6 +166,7 @@
             var list = document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom, .team__list .dos .top, .team__list .dos .bottom, .team__list .tres .top, .team__list .tres .bottom');            
             TweenMax.staggerTo(list, 0.8, {height : '100%', ease: Power4.easeOut}, 0.14);
           }else{
+            
             TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
             app.swiper.destroy(false);
             var list = [document.querySelectorAll('.team__list .uno .top, .team__list .uno .bottom'), document.querySelectorAll('.team__list .dos .top, .team__list .dos .bottom'), document.querySelectorAll('.team__list .tres .top, .team__list .tres .bottom')];
@@ -236,8 +237,12 @@
   display: block;
   margin-bottom: 2px;
 }
-.team__list .item b {
-  font: 14px/ 1 "Futura Condensed Extra Italic";
+.team__list .item b {  
+  font-family: "Futura Condensed Extra Italic";
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 100;
+  font-style: italic;  
   color: #f8f8eb;
 }
 .team__list .item.uno .top {
@@ -315,8 +320,12 @@
   display: block;
   margin-bottom: 2px;
 }
-.team__list .item b {
-  font: 14px/ 1 "Futura Condensed Extra Italic";
+.team__list .item b {  
+  font-family: "Futura Condensed Extra Italic";
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 100;
+  font-style: italic;  
   color: #f8f8eb;
 }
 .team__list .item.uno .top {

@@ -128,7 +128,10 @@
       },
       resize : function(){
         return this.$store.state.resize;
-      }
+      },
+      touchevent : function(){
+        return this.$store.state.touchevent;
+      }      
     },
     methods : {
       reset : function(){
@@ -138,8 +141,7 @@
         app.formErrors.COMPNAME = false;
         app.formErrors.EMAIL = false;
         app.formErrors.select = false;
-        app.formErrors.MESSAGE = false;
-        console.log('reset');
+        app.formErrors.MESSAGE = false;        
         document.querySelector('.start-project input[name="COMPNAME"]').value = '';
         document.querySelector('.start-project input[name="EMAIL"]').value = '';
         document.querySelector('.start-project textarea').value = '';
@@ -152,7 +154,9 @@
       },
       startProjectHover : function(e){
         var app = this;
+
         var name = app.$store.state.pageName;
+        if(app.touchevent)return false;
         if(e.type == 'mouseenter'){
           app.hover = true;
           TweenMax.to('.start-project__button', 0.25, {scale : 1.2, ease: Power2.easeIn});
@@ -176,6 +180,12 @@
       startProjectClick : function(e){        
         var app = this;
         if(app.startProject){
+          
+            TweenMax.to('.start-project__button', 0.25, {scale : 1.2, ease: Power2.easeIn});
+            TweenMax.to('.start-project__button_hover', 0.25, {scale : 1, ease: Power2.easeIn});
+            TweenMax.to('.start-project__button_1, .start-project__button_2', 0.25, {backgroundColor : (app.startProject ? '#191919':'#f6c930'), ease: Power2.easeIn});
+            TweenMax.to('.start-project__button_2', 0.25, {width : 16, ease: Power2.easeIn});
+          
           var tlEnd = new TimelineMax({onComplete : function(){
             TweenMax.set('.start-project__form_row', {clearProps : 'all'});
             if(app.pageName == 'services' && !app.servicesSlider)TweenMax.set('h1, .bg__top', {clearProps : 'zIndex'});
@@ -236,14 +246,16 @@
               }
             return color;
           }, borderColor : '#f6c930', ease: Power3.easeIn, onComplete : function(){
-            if(!app.hover)TweenMax.set('.start-project__button_hover', {clearProps : 'all'});
+            
+              TweenMax.to('.start-project__button', 0.25, {scale : 1, ease: Power2.easeIn});
+              TweenMax.to('.start-project__button_hover', 0.25, {scale : 0, ease: Power2.easeIn});
+              TweenMax.to('.start-project__button_1, .start-project__button_2', 0.25, {backgroundColor : '#191919', ease: Power2.easeIt});
+              TweenMax.to('.start-project__button_2', 0.25, {width : 12, ease: Power2.easeIn});              
+            
+            //if(!app.hover)TweenMax.set('.start-project__button_hover', {clearProps : 'all'});
           }}, 'uno+=0.7')
-          .to('.start-project__button_1, .start-project__button_2', 0.7, {backgroundColor : function(){
-            return app.hover ? '#f6c930' : '#191919';            
-          }, ease: Power4.easeInOut}, 'uno+=0.7')
-          .to('.start-project__button_2', 0.7, {width : function(){
-            return app.hover ? 16 : 12;
-          }, ease: Power4.easeInOut}, 'uno+=0.7')
+          .to('.start-project__button_1, .start-project__button_2', 0.7, {backgroundColor : '#191919', ease: Power4.easeInOut}, 'uno+=0.7')
+          //.to('.start-project__button_2', 0.7, {width : 12, ease: Power4.easeInOut}, 'uno+=0.7')
           .to('.start-project__button_1', 0.4, {rotation : 0, x : 0, y : 0, ease: Power4.easeInOut}, 'uno+=0.7')
           .to('.start-project__button_2', 0.4, {rotation : 0, x : 0, y : 0, ease: Power4.easeInOut}, 'uno+=0.7')
           
@@ -253,12 +265,26 @@
           var width = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;
           var scale = (width / 50) * 2.55;
           var dobbleTitle = window.innerWidth <= 768;
-          if(app.pageName == 'services' && !app.servicesSlider)TweenMax.set('h1, .bg__top', {zIndex : 0})
+          if(app.pageName == 'services' && !app.servicesSlider)TweenMax.set('h1, .bg__top', {zIndex : 0});
+
+          if(app.touchevent){
+            TweenMax.to('.start-project__button', 0.25, {scale : 1.2, ease: Power2.easeIn});
+            TweenMax.to('.start-project__button_hover', 0.25, {scale : 1, ease: Power2.easeIn});
+            TweenMax.to('.start-project__button_1, .start-project__button_2', 0.25, {backgroundColor : (app.startProject ? '#191919':'#f6c930'), ease: Power2.easeIn});
+            TweenMax.to('.start-project__button_2', 0.25, {width : 16, ease: Power2.easeIn, onComplete : function(){
+              TweenMax.to('.start-project__button', 0.25, {scale : 1, ease: Power2.easeIn});
+              TweenMax.to('.start-project__button_hover', 0.25, {scale : 0, ease: Power2.easeIn});
+              TweenMax.to('.start-project__button_1, .start-project__button_2', 0.25, {backgroundColor : '#191919', ease: Power2.easeIt});
+              TweenMax.to('.start-project__button_2', 0.25, {width : 16, ease: Power2.easeIn});
+            }});
+          }
+
           var tlStart = new TimelineMax().to('.start-project__button', 0.4, {backgroundColor : '#f8f8eb', ease: Power2.easeIn}, 'uno')
           .to('#app-logo .st1', 0.4, {fill : '#f8f8eb'}, 'uno+=0.3')
           .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#191919'}, 'uno+=0.3')
           .to('.start-project__button_hover', 0.4, {backgroundColor : '#f6c930', borderColor : '#f8f8eb', ease: Power3.easeIn}, 'uno')
           .to('.start-project__button_1, .start-project__button_2', 0.7, {backgroundColor : '#191919', ease: Power4.easeInOut}, 'uno')
+          .to('.start-project__button_2', 0.25, {width : 16, ease: Power2.easeIn}, 'uno')
           .to('.start-project__button_1', 0.4, {rotation : 45, x : 1, y : 3, ease: Power4.easeInOut}, 'uno')
           .to('.start-project__button_2', 0.4, {rotation : -45, x : 1, y : -3, ease: Power4.easeInOut}, 'uno')
           .to('.start-project__bg', 0.6, {scale : scale, ease: Power3.easeIn}, 'uno')

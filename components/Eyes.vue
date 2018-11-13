@@ -2257,7 +2257,7 @@
   position: fixed;
   top: 69vh;
   right: 12vw;  
-  width: 15vw;  
+  width: 15vw;
 }
 .eye__05 {
   position: fixed;
@@ -2394,11 +2394,13 @@
   .eye__01 {    
     right: 6vw;
     width: 50vw;
+    top: 12%;
   }
   .eye__04 {
     right: -12vw;
     width: 27vw;
-    bottom: 66vh;
+    bottom: 67%;
+    top: auto;
   }
   .eye__09 {
     top: auto;
@@ -2407,15 +2409,15 @@
     bottom: 60%;
   }
   .eye__02 {
-    position: fixed;    
-    right: -1vw;
+    position: fixed;
+    right: 8vw;
     width: 47vw;
-    bottom: 51vh;
+    bottom: 54.5%;
   }
   .eye__08 {
     position: fixed;
-    bottom: 24%;
-    right: 53vw;
+    bottom: 25%;
+    right: 60vw;
     width: 26vw;
   }
   .eye__05 {
@@ -2423,7 +2425,7 @@
     top: auto;
     right: 11vw;
     width: 37vw;
-    bottom: 29vh;
+    bottom: 33%;
   }
   .eye__07 {
     position: fixed;
