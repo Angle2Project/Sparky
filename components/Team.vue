@@ -6,16 +6,16 @@
         <div class="top" @click="position('top')">
           <div class="item__wrapper">
             <div class="item__info">
-              <span>The Playmaker</span>
-              <b>BOS</b>
+              <span>Ian Rich</span>
+              <b>CEO</b>
             </div>  
           </div>          
         </div>
         <div class="bottom" @click="position('bottom')">
           <div class="item__wrapper">
             <div class="item__info">
-              <span>The Playmaker</span>
-              <b>BOS</b>
+              <span>Derek Spychalla</span>
+              <b>Design Director</b>
             </div>
           </div>          
         </div>
@@ -24,16 +24,16 @@
         <div class="top" @click="position('top')">
           <div class="item__wrapper">
             <div class="item__info">
-              <span>The Playmaker</span>
-              <b>BOS</b>
+              <span>Meaghan Wingert</span>
+              <b>Consumer Experience Director</b>
             </div>  
           </div>          
         </div>
         <div class="bottom" @click="position('bottom')">
           <div class="item__wrapper">
             <div class="item__info">
-              <span>The Playmaker</span>
-              <b>BOS</b>
+              <span>Allie Radler</span>
+              <b>Digital Marketing Manager</b>
             </div>
           </div>          
         </div>
@@ -42,18 +42,25 @@
         <div class="top" @click="position('top')">
           <div class="item__wrapper">
             <div class="item__info">
-              <span>The Playmaker</span>
-              <b>BOS</b>
+              <span>Gilbert</span>
+              <b>Director of High Fives</b>
             </div>
           </div>            
         </div>
-        <div class="bottom" @click="position('bottom')">
-          <div class="item__wrapper">
-            <div class="item__info">
-              <span>The Playmaker</span>
-              <b>BOS</b>
+        <div class="bottom vacancy" @click="position('bottom')">
+          <a href="https://www.linkedin.com/company/yosparky/" target="_blank">
+            <div class="item__wrapper">
+              <div class="item__info">
+                <span>Want to join our team?</span>              
+              </div>
+              <div>              
+                <div class="vacancy__link">
+                  <span>Opportunities</span>
+                  <div class="vacancy__link_bg"></div>
+                </div>
+              </div>
             </div>
-          </div>          
+          </a>          
         </div>
       </div>
     </div>
@@ -274,6 +281,39 @@
   background: #1f1f1f url("~assets/icon_marker_y.svg") no-repeat center / 1.3vw auto;
   /*background: #ccc;*/
   /*transform: translateY(5vw);*/
+}
+.vacancy__link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 7px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+.vacancy__link span {
+  font-family: "Futura";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #f8f8eb;
+  text-decoration: none;
+  display: inline-block;
+}
+.vacancy__link_bg {
+  display: block;
+  height: 7px;
+  width: 108%;
+  background-color: #f8f8eb;
+  position: absolute;
+  left: 0;
+  top: 24px;  
+  transform: scaleY(1);  
+  transform-origin: top;  
+  transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.vacancy .item__wrapper:hover .vacancy__link_bg {
+  transform: scaleY(0.1);
 }
 
 @media screen and (max-width: 768px) {

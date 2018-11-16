@@ -30,31 +30,37 @@ const store = () => new Vuex.Store({
       state : 'app',
       list : [
         {
+          text : 'Home',
           name : 'intro',
           current : false,
           url : '/'
         },
         {
+          text : 'About',
           name : 'description',
           current : false,
           url : '/description'
         },
         {
+          text : 'Services',
           name : 'expertise',
           current : false,
           url : '/services'
         },
         {
+          text : 'Clients',
           name : 'clients',
           current : false,
           url : '/clients'
         },
         {
+          text : 'Team',
           name : 'team',
           current : false,
           url : '/team'
         },
         {
+          text : 'Contact',
           name : 'contacts',
           current : false,
           url : '/contacts'
@@ -117,31 +123,37 @@ const store = () => new Vuex.Store({
       if(data.state == 'app'){
         state.navigation.list = [
           {
+            text : 'Home',
             name : 'intro',
             current : false,
             url : '/'
           },
           {
+            text : 'About',
             name : 'description',
             current : false,
             url : '/description'
           },
           {
+            text : 'Services',
             name : 'expertise',
             current : false,
             url : '/services'
           },
           {
+            text : 'Clients',
             name : 'clients',
             current : false,
             url : '/clients'
           },
           {
+            text : 'Team',
             name : 'team',
             current : false,
             url : '/team'
           },
           {
+            text : 'Contact',
             name : 'contacts',
             current : false,
             url : '/contacts'

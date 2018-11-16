@@ -2,7 +2,7 @@
   <section class="start-project" :class="startProject ? 'sp-active' : ''" @click="documentClick">
     <div class="start-project__nav">
       <span class="start-project__text">
-        <span>start a project</span>
+        <span>get in touch</span>
       </span>
       <div class="start-project__button" @mouseenter="startProjectHover" @mouseleave="startProjectHover" @click="startProjectClick">
         <i class="start-project__button_hover"></i>
@@ -20,7 +20,7 @@
         <div class="start-project__form_row">
           <div class="start-project__form_coll">
             <div class="start-project__form_input" :class="formErrors.COMPNAME ? 'error' : ''">
-              <input type="text" placeholder="Your Name Company" name="COMPNAME" autocomplete="off" @focus="focusError">
+              <input type="text" placeholder="Name" name="COMPNAME" autocomplete="off" @focus="focusError">
               <div class="start-project__form_input--bg"></div>
               <div class="start-project__form_error"></div>
               <div class="start-project__form_error--text">
@@ -30,7 +30,7 @@
           </div>
           <div class="start-project__form_coll">
             <div class="start-project__form_input" :class="formErrors.EMAIL ? 'error' : ''">
-              <input type="text" placeholder="Your E-mail" name="EMAIL" autocomplete="off" @focus="focusError">
+              <input type="text" placeholder="Email" name="EMAIL" autocomplete="off" @focus="focusError">
               <div class="start-project__form_input--bg"></div>
               <div class="start-project__form_error"></div>
               <div class="start-project__form_error--text">
@@ -46,9 +46,10 @@
             </span>
             <i></i>
             <ul>
-              <li class="current" @click="selectListClick">Select Subject</li>
-              <li @click="selectListClick">New business</li>
+              <li class="current" @click="selectListClick">Select Subject</li>              
+              <li @click="selectListClick">New project</li>
               <li @click="selectListClick">General inquiry</li>
+              <li @click="selectListClick">Just sayin’ what up</li>              
             </ul>
             <div class="start-project__form_error--text">
               <span>Please Select Subject</span>
@@ -57,7 +58,7 @@
         </div>
         <div class="start-project__form_row">
           <div class="start-project__form_textarea" :class="formErrors.MESSAGE ? 'error' : ''">
-            <textarea name="MESSAGE" id="" placeholder="Start typing message here ..." autocomplete="off" @focus="focusError"></textarea>
+            <textarea name="MESSAGE" id="" placeholder="Details" autocomplete="off" @focus="focusError"></textarea>
             <div class="start-project__form_textarea--bg"></div>
             <div class="start-project__form_error"></div>
               <div class="start-project__form_error--text">
@@ -67,7 +68,7 @@
         </div>
         <div class="start-project__form_row">
           <div class="start-project__form_button">
-            <button>Send Request</button>
+            <button>AAAND GO</button>
             <div class="start-project__form_button--bg"></div>
           </div>
         </div>
@@ -495,7 +496,7 @@
     transform-origin: calc(100% - 25px);
   }
   .start-project .start-project__text {
-    font: 500 14px/1 'Futura';
+    font: 500 14px/1.3 'Futura';
     margin-right: 13px;
     overflow: hidden;    
   }
@@ -640,6 +641,7 @@
   transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
   z-index: 2;
   position: relative;
+  padding: 0;
 }
 .start-project__form_input input:hover {
   padding-left: 18px;
@@ -838,6 +840,8 @@
   font-weight: 500;
   font-size: 14px;  
   line-height: 18px;
+  padding-left: 0;
+  padding-right: 0;
   color: #191919;
   border: none;
   outline: none;

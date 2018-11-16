@@ -139,7 +139,7 @@ export default {
             scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})              
             .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
             .addCallback(function(){              
-              if(app.$store.state.scrollDownHover || (app.$store.state.servicesSlider && app.mobile))scrollDownTL.pause();
+              if(app.$store.state.scrollDownHover || (app.$store.state.servicesSlider && app.$store.state.mobile))scrollDownTL.pause();
             });
 
             TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});

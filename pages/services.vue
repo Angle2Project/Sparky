@@ -161,36 +161,34 @@
     </h2>
 
     <section class="slider mm">
-      <h3>Capitalize on your brand’s calendar with crystal clear channel alignment, cohesive creative, and thoughtful campaign execution.</h3>
-      <div class="slider__list_description">        
-        <span>brand positioning</span>
-        <span>narrative development</span>
-        <span>photography & video production</span>
-        <span>content strategy</span>        
-        <span>SEO</span>        
-        <span>influencer engagement</span>        
+      <h3>Capitalize on your brandʼs calendar with crystal clear channel alignment, cohesive creative, and thoughtful campaign execution.</h3>
+      <div class="slider__list_description">
+        <span>Creative Direction</span>
+        <span>Narrative Development</span>
+        <span>SEO</span>
+        <span>Social Media Marketing</span>
+        <span>Content Marketing Strategy</span>
+        <span>Art Direction</span>        
       </div>      
     </section>
     <section class="slider ee">
-      <h3>ELEVATE EXPERIENCES</h3>
-      <div class="slider__list_description">        
-        <span>brand positioning</span>
-        <span>narrative development</span>
-        <span>photography & video production</span>
-        <span>content strategy</span>        
-        <span>SEO</span>        
-        <span>influencer engagement</span>        
+      <h3>Heighten your brandʼs digital DNA by enhancing content, visuals, interactivity, and usability.</h3>
+      <div class="slider__list_description">
+        <span>UI/UX Design</span>
+        <span>Art & Copy</span>
+        <span>A/B/n & MVT Testing</span>
+        <span>Conversion Rate Optimization</span>
+        <span>Product Merchandising</span>
+        <span>Product Roadmapping</span>        
       </div>      
     </section>
     <section class="slider ii">
-      <h3>Ignite Innovation</h3>
-      <div class="slider__list_description">        
-        <span>brand positioning</span>
-        <span>narrative development</span>
-        <span>photography & video production</span>
-        <span>content strategy</span>        
-        <span>SEO</span>        
-        <span>influencer engagement</span>        
+      <h3>Arm your organization with the tools needed to take big swings, fail fast, learn quickly, and use data as a guiding light.</h3>
+      <div class="slider__list_description">
+        <span>Strategic Consulting</span>
+        <span>Platform Architecture</span>
+        <span>Future-proofing</span>
+        <span>eCom Merchandising & Technology</span>
       </div>      
     </section>
     
@@ -481,7 +479,7 @@ export default {
                 return el.parentNode.classList.contains('current') ? 83 : 1;
               }
             }}, 0.09, '-=0.47')
-            .to('#app-navigation li.current .item__name span', 0.2, {y : '0%'})
+            .to('#app-navigation li .item__name span', 0.2, {y : '0%'})
           }, 100);
           // Sider render //
           app.$store.commit('navigationType', {state : 'app', current : 'expertise'});
@@ -924,6 +922,7 @@ export default {
           TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
           if(app.servicesSlider){
             TweenMax.set(document.querySelectorAll('h2'), {'bottom' : '144px'});
+            TweenMax.set(document.querySelectorAll('h2 .l1'), {'left' : '75px'});
             TweenMax.set(document.querySelectorAll('h2 .l1 .end'), {width : function(i, el){
               var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);
               return w+'vw'
@@ -939,6 +938,7 @@ export default {
           TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
           if(app.servicesSlider){
             TweenMax.set(document.querySelectorAll('h2'), {'bottom' : '144px'});
+            TweenMax.set(document.querySelectorAll('h2 .l1'), {'left' : '75px'});
             TweenMax.set(document.querySelectorAll('h2 .l1 .end'), {width : function(i, el){
               var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);
               return w+'vw'
@@ -954,6 +954,7 @@ export default {
           TweenMax.to('#app-logo .st2', 0.4, {opacity : 0});
           if(app.servicesSlider){
             TweenMax.set('.bg__right', {width : '84px'}); 
+            TweenMax.set(document.querySelectorAll('h2 .l1'), {'left' : '42px'});
             TweenMax.set(document.querySelectorAll('h2'), {'bottom' : '42px'});
             TweenMax.set(document.querySelectorAll('h2 .l1 .end'), {width : function(i, el){
               var w = 100 / (window.window.innerWidth / el.querySelector('div').clientWidth);
@@ -1433,7 +1434,7 @@ h2.ii .l5 {
     display: none;
     align-items: center;
     position: fixed;
-    right: 29px;
+    right: 36px;
     bottom: 151px;
     transform: rotate(-90deg);
     transform-origin: right bottom;
@@ -1653,20 +1654,7 @@ h2.ii .l5 {
   h2.ii .stroke span:last-child {
     margin-left: 2vw;
     margin-top: -0.5vw;
-  }
-  h2.mm .stroke__wrapper {
-    left: 42px;
-    bottom: 1vw;
-  }
-  h2.ee .stroke__wrapper {  
-    left: 42px;
-    bottom: 1vw;
-  }
-  h2.ii .stroke__wrapper {
-    transform: translateX(0) skew(-9deg);
-    left: 42px;
-    bottom: 1vw;
-  }
+  }  
   .slider {
     left: 160px;    
     right: 160px;
@@ -1686,6 +1674,19 @@ h2.ii .l5 {
   h1 {
     right: 84px;
   } 
+  h2.mm .stroke__wrapper {
+    left: 42px;
+    bottom: 1vw;
+  }
+  h2.ee .stroke__wrapper {
+    left: 42px;
+    bottom: 1vw;
+  }
+  h2.ii .stroke__wrapper {
+    transform: translateX(0) skew(-9deg);
+    left: 42px;
+    bottom: 1vw;
+  }
   h2.mm .l1 {
     left: 84px;
   }

@@ -26,16 +26,16 @@
     </h1>  
     <div class="contacts__information">
       <div class="contacts__information_address">
-        <div>80 Franklin Street, Suite 1</div>
-        <div>New York, NY 10013, USA</div>
-        <div>Phone: +1 212 941 5222</div>        
+        <div>711 Atlantic Ave</div>
+        <div>Boston, MA 02111, USA</div>
+        <div>Phone: (617) 420-2553</div>
       </div>
       <div class="contacts__information_map">
         <a href="">view on google map</a>
       </div>
       <div class="contacts__information_mail">
-        <a href="" @mouseenter="mailHover" @mouseleave="mailHover">
-          <span>hi@sparky.agency</span>
+        <a href="mailto:yo@sparky.us" @mouseenter="mailHover" @mouseleave="mailHover">
+          <span>yo@sparky.us</span>
           <i></i>
         </a>        
       </div>
@@ -137,7 +137,7 @@ export default {
           scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})
           .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
           .addCallback(function(){
-            if(app.$store.state.scrollDownHover || (app.$store.state.servicesSlider && app.mobile))scrollDownTL.pause();
+            if(app.$store.state.scrollDownHover || (app.$store.state.servicesSlider && app.$store.state.mobile))scrollDownTL.pause();
           });
           app.$store.state.scrollDownHover = false;
           TweenMax.to('#eye__04 .st2', 0.4, {fill : '#f0f0d9'});

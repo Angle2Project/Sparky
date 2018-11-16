@@ -7,6 +7,7 @@
     <navigation />    
     <team v-show="teamSlider" />
     <StartProject/>
+    <turn/>
 
     <section class="app-logo" @click="logoClick">
       <nuxt-link to="/">
@@ -530,6 +531,7 @@
   import team from '~/components/Team.vue';
   import StartProject from '~/components/StartProject.vue';
   import pointer from '~/components/Pointer.vue';
+  import turn from '~/components/Turn.vue';
   
  
   
@@ -543,7 +545,8 @@
       navigation,
       team,
       StartProject,
-      pointer
+      pointer,
+      turn
     },
     data : function(){
       return {
@@ -561,6 +564,12 @@
     },
     mounted : function(){
       var app = this;
+      window.addEventListener('blur', function(){
+        console.log('Blur');
+      });
+      window.addEventListener('focus', function(){
+        console.log('Focus');
+      });
       window.addEventListener('resize', app.resizeEvent);
       TweenMax.to('.scroll-down', 10, {
         y: 0,

@@ -2,7 +2,7 @@
   <ul id="app-navigation">
     <li v-if="state == 'app'" v-for="(item, index) in list" :data-url="item.url" :data-name="item.name" :key="index" :class="item.current ? 'current' : ''" @mouseenter="hover" @mouseleave="hover" @click="app">      
       <div class="item__name">
-        <span>{{item.name}}</span>
+        <span>{{item.text}}</span>
       </div>
       <i></i>      
     </li>

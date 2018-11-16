@@ -62,11 +62,11 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	background-color: #fff;
+	background-color: #f8f8eb;
 }
 
 body, body * {
-    /*cursor: none!important;*/
+    cursor: none!important;
 }
 
 *::-moz-selection {
