@@ -761,20 +761,23 @@
 <script>
   export default {
     mounted : function(){
-      var app = this;
-      // TweenMax.set('#app-eyes .eye__03', {rotation : 10});
-      // TweenMax.set('#app-eyes .eye__04', {rotation : -25});
-      // TweenMax.set('#app-eyes .eye__05', {rotation : -8});      
-      // TweenMax.set('#app-eyes .eye__09', {rotation : -14});      
-      // TweenMax.set('#app-eyes .eye__11', {rotation : -8});
-      // TweenMax.set('#app-eyes .eye__12', {rotation : -26});
-      setInterval(function(){
+      var app = this;      
+      app.interval = setInterval(function(){
         app.randomEye();
       }, 4000);
+      window.addEventListener('blur', function(){
+        clearInterval(app.interval);        
+      });
+      window.addEventListener('focus', function(){
+        app.interval = setInterval(function(){
+          app.randomEye();
+        }, 4000);        
+      });
     },
     data : function(){
       return {
-        random : 0,        
+        random : 0,
+        interval : null,
         eye01 : {
           above : false,
           enter : false,
@@ -917,8 +920,7 @@
           //.to('#eye__01 .rg-1', time, {morphSVG: '#eye__01 .rg-1'}, delay);          
         }
       },
-      eye02Hover : function(e){
-        console.log(e);
+      eye02Hover : function(e){        
         var app = this;
         var time = 0.3;
         var delay = '-=0.02'

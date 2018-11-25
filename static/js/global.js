@@ -1,5 +1,6 @@
 var scrollDownTL;
 var prevNextLine;
+var eyesInterval;
 if (!String.prototype.trim) {
   (function() {    
     String.prototype.trim = function() {

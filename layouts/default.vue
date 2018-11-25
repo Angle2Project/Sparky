@@ -452,7 +452,7 @@
     </section>
 
     <section class="app-social">
-      <a href="">
+      <!-- <a href="">
         <svg version="1.1" id="icon-twitter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="14px" viewBox="0 0 16 14" style="enable-background:new 0 0 16 14;" xml:space="preserve">          
           <g>
             <g>
@@ -464,8 +464,8 @@
             </g>
           </g>
         </svg>
-      </a>
-      <a href="">
+      </a> -->
+      <a href="https://www.facebook.com/SparkyAgency/" target="_blank">
         <svg version="1.1" id="icon-facebook" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="9px" height="16px" viewBox="0 0 9 16" style="enable-background:new 0 0 9 16;" xml:space="preserve">          
           <g>
             <path id="f_1_" class="st0" d="M5.7,16V8.7h2.4l0.4-2.8H5.7V4c0-0.8,0.2-1.4,1.4-1.4h1.5V0.1C8.4,0.1,7.5,0,6.5,0
@@ -473,7 +473,7 @@
           </g>
         </svg>
       </a>
-      <a href="">
+      <!-- <a href="">
         <svg version="1.1" id="icon-instagram" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">          
           <g>
             <g>
@@ -484,8 +484,8 @@
             </g>
           </g>
         </svg>
-      </a>
-      <a href="">
+      </a> -->
+      <a href="https://www.linkedin.com/company/yosparky/" target="_blank">
         <svg version="1.1" id="icon-linkedin" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
           <g>
             <g>
@@ -563,13 +563,7 @@
       app.$store.commit('mobile', window.innerWidth <= 480 ? true : false);
     },
     mounted : function(){
-      var app = this;
-      window.addEventListener('blur', function(){
-        console.log('Blur');
-      });
-      window.addEventListener('focus', function(){
-        console.log('Focus');
-      });
+      var app = this;      
       window.addEventListener('resize', app.resizeEvent);
       TweenMax.to('.scroll-down', 10, {
         y: 0,
@@ -577,13 +571,10 @@
         modifiers: {
           y: function x() {
             var y = app.wheelSensivity*50;
-            app.wheelSensivity *= 0.9;            
-            //return y;            
+            app.wheelSensivity *= 0.9;
           },
         }
-      });
-      // alert(window.innerWidth);
-      // alert(window.innerHeight);
+      });      
     },    
     computed : {
       appStart : function(){
@@ -821,7 +812,9 @@
         e.preventDefault();
       },      
       logoClick : function(e){
-        document.querySelector('#app-navigation [data-name="intro"]').click();
+        var app = this;
+        console.log(app)
+        //document.querySelector('#app-navigation [data-name="intro"]').click();
       },
       resizeEvent : function(e){
         var app = this;

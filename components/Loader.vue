@@ -103,8 +103,8 @@
       return {
         percent : 0,
         performance : '',
-        performanceDesck : 'Hover on eyes for performance',
-        performanceMobile : 'Tap on eyes for performance'
+        performanceDesck : 'Hover on eyes for animation',
+        performanceMobile : 'Tap on eyes for animation'
       }
     },
     computed : {
@@ -119,8 +119,7 @@
       }
     },
     mounted : function(){
-      var app = this;
-      console.log(app.mobile)
+      var app = this;      
       if(app.mobile){
         app.performance = app.performanceMobile;
       }else{

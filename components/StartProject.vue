@@ -202,7 +202,7 @@
             .set('.app-social', {clearProps : 'all'})
           }
           tlEnd.to('.start-project__text span', 0.4, {y : '100%', ease: Power4.easeIn, onComplete : function(){
-            document.querySelector('.start-project__text span').innerText = 'start a project';
+            document.querySelector('.start-project__text span').innerText = 'get in touch';
           }}, 'uno')
           if(app.pageName == 'intro' || app.pageName == 'description'){
             tlEnd.to('.start-project__text span', 0.4, {y : '0%', color : '#191919', ease: Power4.easeOut})          
@@ -210,6 +210,7 @@
           tlEnd.to('.start-project__bg', 0.6, {scale : 0, ease: Power3.easeIn}, 'uno+=0.7')
           if(app.pageName == 'services' || app.pageName == 'clients' ||app.pageName == 'team')tlEnd.to('.app-social .st0', 0.4, {fill : '#f9f9ed', ease: Power4.easeInOut}, 'uno+=0.7')
           tlEnd.to('#app-logo .st1', 0.4, {fill : '#f6c930'}, 'uno+=0.9')
+          .to('#cursor-svg .state-0', 0.4, {fill : '#F0BC44'}, 'uno+=0.9')
           .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : function(){
             var color;
             if(app.pageName == 'team'){
@@ -282,6 +283,7 @@
 
           var tlStart = new TimelineMax().to('.start-project__button', 0.4, {backgroundColor : '#f8f8eb', ease: Power2.easeIn}, 'uno')
           .to('#app-logo .st1', 0.4, {fill : '#f8f8eb'}, 'uno+=0.3')
+          .to('#cursor-svg .state-0', 0.4, {fill : '#ffffff'}, 'uno+=0.3')
           .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#191919'}, 'uno+=0.3')
           .to('.start-project__button_hover', 0.4, {backgroundColor : '#f6c930', borderColor : '#f8f8eb', ease: Power3.easeIn}, 'uno')
           .to('.start-project__button_1, .start-project__button_2', 0.7, {backgroundColor : '#191919', ease: Power4.easeInOut}, 'uno')
@@ -380,13 +382,7 @@
         var name = e.target.querySelector('input[name="COMPNAME"]').value.trim();
         var email = e.target.querySelector('input[name="EMAIL"]').value.trim();
         var subject = e.target.querySelector('[data-name="subject"]').innerText;
-        var msg = e.target.querySelector('textarea').value.trim();        
-
-        console.log(name);
-        console.log(email);
-        console.log(subject);
-        console.log(msg);        
-        
+        var msg = e.target.querySelector('textarea').value.trim();       
 
         if(!name.length){
           app.formErrors.COMPNAME = true;
@@ -416,9 +412,8 @@
         .to('.start-project__h1 .l5', 0.4, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
         .to('.start-project__h1 .l2', 0.7, {y:'0%',ease: Power1.easeIn}, 'dos+=0.7')
         .set('.start-project__thank', {display : 'block'}, 'dos+=0.2')
-        .staggerFrom(document.querySelectorAll('.start-project__thank li'), 0.6, {opacity:0, y : '100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.1, 'dos+=0.2');       
-
-
+        .staggerFrom(document.querySelectorAll('.start-project__thank li'), 0.6, {opacity:0, y : '100%', scaleY : 0.5, force3D:true, delay : 0, ease: Power4.easeOut}, 0.1, 'dos+=0.2');
+        
         axios({
           method: 'post',
           url: 'https://sparky.us19.list-manage.com/subscribe/post-json?u=53c4f2d01d5c23fa4187b803d&amp;id=a3703db259&c=?',
@@ -435,26 +430,9 @@
       },
       focusError : function(e){
         var app = this;
-        var name = e.target.name;
-        console.log(name);
-        console.log(app.formErrors[name]);
-
-        
+        var name = e.target.name;        
         if(app.formErrors[name])app.formErrors[name] = false;        
-      },
-      // subForm : function(e){        
-      //   axios({
-      //     method: 'post',
-      //     url: 'https://facebook.us18.list-manage.com/subscribe/post-json?u=3980af0245b922f0a5bc99fc9&amp;id=8e81ab7d88&c=?',          
-      //     headers: { 'content-type': 'application/json; charset=utf-8' },
-      //     responseType : 'json',
-      //     params: {
-      //       COMPNAME: 'doborsky2@ukr.net',
-      //       MMERGE1 : 'хуй'
-      //     }
-      //   });
-
-      // }
+      }      
     },
     watch : {
       resize : function(e){
@@ -835,6 +813,7 @@
 .start-project__form_textarea textarea {
   width: 100%;
   height: 60px;
+  padding-top: 10px;
   resize: none;
   font-family: "Futura";
   font-weight: 500;
@@ -1023,6 +1002,11 @@
   left: 50vw;
   top: 305px;
   display: none;
+  font-family: "Futura";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #191919;
 }
 .start-project__thank li {  
   display: flex;  

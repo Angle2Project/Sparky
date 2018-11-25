@@ -15,19 +15,7 @@
             <div class="swiper-slide">              
               <img src="~assets/talbots.svg">
               <i></i>
-            </div>
-            <div class="swiper-slide">              
-              <img src="~assets/converse.svg">
-              <i></i>
-            </div>
-            <div class="swiper-slide">              
-              <img src="~assets/footjoy.svg">
-              <i></i>
-            </div>
-            <div class="swiper-slide">              
-              <img src="~assets/talbots.svg">
-              <i></i>
-            </div>
+            </div>            
         </div>        
     </div>
     <div class="swiper-navigation">

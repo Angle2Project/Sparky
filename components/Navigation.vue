@@ -38,7 +38,10 @@
       },
       pageTransition : function(){
         return this.$store.state.pageTransition;
-      }      
+      },
+      servicesSlider : function(){
+        return this.$store.state.servicesSlider;
+      },
     },
     methods : {
       hover : function(e){
@@ -77,28 +80,26 @@
       },
       slider : function(e, name){
         var app = this;        
-        if(app.$store.state.services.sliderTransition)return false;
+        if(app.$store.state.services.sliderTransition)return false;        
+        TweenMax.to('#cursor-svg', 0.6, {rotation : 45, ease: Power4.easeInOut});
+            TweenMax.to('.cursor__close', 0.6, {width : function(i, el){
+              var w = el.querySelector('span').clientWidth;
+              return w;
+            }, ease: Power4.easeInOut});
         app.$store.state.services.serviceDetails(e, name, true);
       },
       app : function(e){
         var app = this;        
         if(app.$store.state.pageTransition || e.currentTarget.classList.contains('current'))return false;        
         app.$store.commit('pageTransition', true);
-        var url = e.currentTarget.getAttribute('data-url');        
-        console.log(url);
-        app.$router.push({path : url});
-        // e.currentTarget.classList.add('current')
-        // TweenMax.to('#app-navigation li.current i', 0.7, {width : 1, ease: Power4.easeInOut});
-        // TweenMax.to(e.currentTarget.querySelector('.item__name'), 0.7, {width : 0, ease: Power4.easeInOut});
-        // TweenMax.to(e.currentTarget.querySelector('i'), 0.7, {width : 83, ease: Power4.easeInOut, onComplete : function(){
-        //   app.$store.commit('navigation', name);
-        // }});
+        var url = e.currentTarget.getAttribute('data-url');
+        app.$router.push({path : url});        
       }      
     },
     watch : {
       $route : function(rout){
         var app = this;
-        var name;
+        var name;        
         //app.$store.commit('navigation', name);
         if(rout.name == 'index'){
           name = 'intro'; 
@@ -106,24 +107,49 @@
           name = 'expertise';
         }else{
           name = rout.name
+        }
+        if(app.servicesSlider){
+          var tl = new TimelineMax({onComplete : function(){
+            setTimeout(function(){              
+              TweenMax.set(document.querySelectorAll('#app-navigation li .item__name'), {clearProps : 'all'});
+              var tl2 = new TimelineMax({onComplete : function(){
+                app.$store.commit('servicesSlider', false);
+              }});
+              TweenMax.set('#app-navigation li.current .item__name span', {y : '100%'});
+              TweenMax.set('#app-navigation li.current .item__name', {width : 'auto', x : function(i, el){
+                return el.querySelector('span').clientWidth + 16;
+              }});
+              tl2.staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, {x : 0}, 0.09)
+              .staggerFromTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, {cycle:{
+                width : function(i, el){
+                  return el.parentNode.classList.contains('current') ? 83 : 1;
+                }
+              }}, 0.09, '-=0.47')
+              .to('#app-navigation li .item__name span', 0.2, {y : '0%'})
+            }, 100);
+            // Sider render //
+            app.$store.commit('navigationType', {state : 'app', current : name});            
+          }});
+          tl.staggerTo(document.querySelectorAll('#app-navigation li i'), 0.2, {width : 83}, 0.09, 'uno')
+          tl.staggerTo(document.querySelectorAll('#app-navigation li .item__name span'), 0.2, {y : '100%'}, 0.09, 'uno')
+          .staggerTo(document.querySelectorAll('#app-navigation li i'), 0.2, {x : 83}, 0.09, '-=0.2');
+        }else{
+          var cuurent = document.querySelector('#app-navigation li[data-name="'+name+'"]');
+          document.querySelector('#app-navigation li.current').classList.remove('current');
+          document.querySelector('#app-navigation li[data-name="'+name+'"]').classList.add('current');
+          TweenMax.to(document.querySelectorAll('#app-navigation li:not(.current) .item__name'), 0.55, {opacity : 0, ease: Power4.easeInOut, onComplete : function(){
+            TweenMax.set(document.querySelectorAll('#app-navigation li:not(.current) .item__name'), {clearProps : 'all'});
+          }});
+          TweenMax.to(document.querySelectorAll('#app-navigation li.current .item__name'), 0.7, {width : function(i, el){
+            return el.querySelector('span').clientWidth; 
+          }, ease: Power4.easeInOut});
+          TweenMax.to(document.querySelectorAll('#app-navigation li:not([data-name="'+name+'"]) i'), 0.7, {width : 1, ease: Power4.easeInOut});
+          TweenMax.to(cuurent.querySelector('.item__name'), 0.7, {x : function(i, el){
+            var w = el.parentNode.classList.contains('current') ? (el.querySelector('span').clientWidth + 16) :  (el.clientWidth + 16);          
+            return w;          
+          }, ease: Power4.easeInOut});
+          TweenMax.to(cuurent.querySelector('i'), 0.7, {width : 83, ease: Power4.easeInOut});
         }        
-        var cuurent = document.querySelector('#app-navigation li[data-name="'+name+'"]');
-        document.querySelector('#app-navigation li.current').classList.remove('current');
-        document.querySelector('#app-navigation li[data-name="'+name+'"]').classList.add('current');
-        TweenMax.to(document.querySelectorAll('#app-navigation li:not(.current) .item__name'), 0.55, {opacity : 0, ease: Power4.easeInOut, onComplete : function(){
-          TweenMax.set(document.querySelectorAll('#app-navigation li:not(.current) .item__name'), {clearProps : 'all'});
-        }});
-        TweenMax.to(document.querySelectorAll('#app-navigation li.current .item__name'), 0.7, {width : function(i, el){
-          return el.querySelector('span').clientWidth; 
-        }, ease: Power4.easeInOut});
-        TweenMax.to(document.querySelectorAll('#app-navigation li:not([data-name="'+name+'"]) i'), 0.7, {width : 1, ease: Power4.easeInOut});
-        TweenMax.to(cuurent.querySelector('.item__name'), 0.7, {x : function(i, el){
-          var w = el.parentNode.classList.contains('current') ? (el.querySelector('span').clientWidth + 16) :  (el.clientWidth + 16);          
-          return w;          
-        }, ease: Power4.easeInOut});
-        TweenMax.to(cuurent.querySelector('i'), 0.7, {width : 83, ease: Power4.easeInOut, onComplete : function(){
-          
-        }});        
       }
     }
   };

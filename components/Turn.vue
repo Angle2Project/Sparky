@@ -6,7 +6,7 @@
       </div>
       <div class="mobile-turn__message_text">Please turn your device</div>
     </div>
-  </div>
+  </div>  
 </template>
 
 <script>
@@ -84,6 +84,7 @@
   line-height: 1;
   color: #191919;
   margin-top: 42px;
+  margin-bottom: -10px;
 }
 </style>
 
