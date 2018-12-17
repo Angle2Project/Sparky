@@ -108,6 +108,14 @@ export default {
       screen : null
     }
   },
+  head : function(){
+    return {
+      title : 'Our Clients | Sparky',
+      meta: [        
+        { hid: 'description', name: 'description', content: 'Learn more about the powerful brands our team has worked with, and what Sparky can do for your brand!' }
+      ]
+    }
+  },
   transition : {    
     mode : 'out-in',
     css : false,

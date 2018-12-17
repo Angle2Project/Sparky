@@ -1,0 +1,84 @@
+@charset "utf-8";
+/*--------------media query css------------------*/
+@media (max-height:750px) {
+	h1 {font-size: 110px;}
+	.product_img {height: calc(100vh - 80px);}
+	.start_project {bottom: 80px;}
+	.mid_wrapper h1 {top: calc(100vh - 335px);}
+	.project_content {top: 26%;}
+}
+@media (max-height:550px) {
+	.product_img {height: 600px;}
+	.mid_wrapper {height: auto;padding-bottom: 30px;}
+	.mid_wrapper h1 {top: auto;bottom: 150px;}
+}
+@media (max-width:1457px) {
+	h1 {font-size: 100px;}
+	h2 {font-size: 100px;}
+	.checkbox_wrap {width: calc(33.3333% - 29px);margin-bottom: 40px;}
+	.form_col li.checkfield {margin-bottom: 7px;}
+}
+@media (max-width:1200px) {
+	h1 {font-size: 85px;}
+	h2 {font-size: 85px;}
+	.mid_wrapper h1 {left: 30px;width: 53%;}
+	.project_content {left: 30px;width: 37%;}
+	.start_project {left: 30px;}
+	.social_icons {margin: 44px 0 0 30px;}
+	.copyright {margin: 46px 30px 0 0;}
+	.slick-arrow.slick-prev {right: auto;left: 63px;}
+}
+/*------------tablet portrait  view------*/
+@media (max-width:991px) {
+	h1 {font-size: 63px;letter-spacing: 0;}
+	h2 {font-size: 63px;letter-spacing: 0;}
+	h2:first-letter {letter-spacing: 0;}
+	h1:first-letter {letter-spacing: 0;}
+	h1 span {margin-left: 50px;}
+	.checkbox_wrap {width: calc(50% - 29px);}
+	.logo {left: 30px;}
+	.menu_icon {right: 30px;}
+	.slick-arrow.slick-prev {left: 107px;}
+	.successmsg {padding: 11px 0;}
+}
+/*------------mobile landscape  view------*/
+@media (max-width:767px) {
+	h1 {letter-spacing: -3px;font-size: 46px;}
+	h2 {font-size: 60px;text-align: left;letter-spacing: 0;margin-bottom: 40px;padding-left: 0;}
+	h2:first-letter {letter-spacing: 0;}
+	.wrapper {padding: 135px 15px 0;}
+	.mid_wrapper {text-align: center;padding-bottom: 40px;height: auto;}
+	.mid_wrapper h1 {position: relative;width: auto;top: 0;left: 0;right: 0;text-align: left;margin: 0 auto -20px;max-width: 315px;}
+	.logo {top: 17px;left: 19px;}
+	.menu_icon {top: 25px;right: 27px;}
+	.menu_icon span {display: none;}
+	.product_slider {width: auto;margin: 0 -15px 41px;}
+	.project_content {position: static;width: auto;padding: 0 15px;}
+	.project_content  p {text-align: center;}
+	.start_project {position: static;margin-bottom: 38px;}
+	.product_img {height: auto;padding-bottom: 118%;}
+	.social_icons {margin: 44px 0 0 20px;}
+	.copyright {margin: 46px 20px 0 0;}
+	.slick-arrow {right: 0;bottom: -50px;background: none;}
+	.slick-arrow.slick-prev {left: 0;}
+	.form_wrapper {width: 100%;margin: 0;text-align: left;}
+	.project_form_popup {padding: 132px 30px 25px;-webkit-transform: translateY(-100%) rotate(0deg);-ms-transform: translateY(-100%) rotate(0deg);-o-transform: translateY(-100%) rotate(0deg);transform: translateY(-100%) rotate(0deg);}
+	.form_col li {width: 100%;float: none;text-align: left;}	
+	.project_form_popup_wrap {display: -webkit-box;display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;}	
+	.project_form_popup_wrap > * {-webkit-box-flex: 0;-ms-flex: 0 0 100%;flex: 0 0 100%;max-width: 100%;}
+	.project_form_popup_wrap h2 {order: 1;}
+	.project_form_popup_wrap .form_wrapper {order: 2;}
+	.project_form_popup_wrap .clearfix {order: 3;}		
+	.wrapper:before {content: "";background: #ffcb3f;position: fixed;top: 0;left: 0;right: 17px;z-index: 99;height: 105px;display: block;opacity: 0;visibility: hidden;-webkit-transition: all 0.2s linear;-o-transition: all 0.2s linear;transition: all 0.2s linear;}
+	body.open_popup	.wrapper:before {opacity: 1;visibility: visible;-webkit-transition-delay: 0.5s;-o-transition-delay: 0.5s;transition-delay: 0.5s;}
+	.form_col {display: -webkit-box;display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;}
+	.form_col li {-webkit-box-flex: 0;-ms-flex: 0 0 100%;flex: 0 0 100%;max-width: 100%;order: 3;}
+	.form_col li:first-child, .form_col li:nth-child(3) {order: 2;}
+}
+@media (max-width:480px) {
+	h2 {font-size: 52px;}
+	.project_form_popup {padding: 132px 15px 25px;}
+	.checkbox_wrap {margin-right: 0;width: 100%;}
+	input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="password"], input[type="search"], input[type="url"], input[type="date"], select, textarea {font-size: 15px;}	
+	.successmsg{float: none;}
+}

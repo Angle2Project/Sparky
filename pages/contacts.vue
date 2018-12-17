@@ -74,6 +74,14 @@ export default {
       
     }
   },
+  head : function(){
+    return {
+      title : 'Contact Us | Sparky',
+      meta: [        
+        { hid: 'description', name: 'description', content: 'Get in touch with us today to learn more about Sparky and how we can help your brand!'}
+      ]
+    }
+  },
   transition : {    
     mode : 'out-in',
     css : false,

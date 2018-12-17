@@ -1,0 +1,670 @@
+@charset "utf-8";
+
+/* Default Reset Css Starts Here
+===============================================================*/
+html,body,body div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,figure,footer,header,menu,nav,section,time,mark,audio,video,details,summary{margin:0;padding:0;border:0;font-size:100%;font-weight:normal;vertical-align:baseline;background:transparent;box-sizing: border-box;}
+article,aside,figure,footer,header,nav,section,details,summary{display:block;}
+img,object,embed{max-width:100%;}
+html{overflow-y:scroll;}
+ul{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent;}
+del{text-decoration:line-through;}
+abbr[title],dfn[title]{border-bottom:1px dotted #000;cursor:help;}
+table{border-collapse:collapse;border-spacing:0;}
+th{font-weight:bold;vertical-align:bottom;}
+td{font-weight:normal;vertical-align:top;}
+hr{display:block;height:1px;border:0;margin:1em 0;padding:0;}
+input,select{vertical-align:middle;}
+pre{white-space:pre; /* CSS2 */white-space:pre-wrap; /* CSS 2.1 */white-space:pre-line; /* CSS 3 (and 2.1 as well, actually) */word-wrap:break-word; /* IE */}
+input[type="radio"]{vertical-align:text-bottom;}
+input[type="checkbox"]{vertical-align:bottom;}
+select,input,textarea{font:99% sans-serif;}
+table{font-size:inherit;}
+small{font-size:85%;}
+strong{font-weight:bold;}
+td,td img{vertical-align:top;}
+sub,sup{font-size:75%;line-height:0;position:relative;}
+sup{top:-0.5em;}
+sub{bottom:-0.25em;}
+pre,code,kbd,samp{font-family:monospace,sans-serif;}
+.clickable,label,input[type=button],input[type=submit],input[type=file],button{cursor:pointer;}
+button,input,select,textarea{margin:0;}
+
+/* make buttons play nice in IE */
+button,input[type=button]{width:auto;overflow:visible;}
+
+/* Let's Clear Some Floats
+===================================================*/
+.clearfix:before,.clearfix:after{content:"\0020";display:block;height:0;overflow:hidden;}
+.clearfix:after{clear:both;}
+.clearfix{zoom:1;}
+
+/* Fani Family Css Start Here
+===================================================*/
+@font-face {
+    font-family: 'Futura BdCn BT';
+    src: url('../fonts/FuturaBT-BoldCondensed.eot');
+    src: url('../fonts/FuturaBT-BoldCondensed.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FuturaBT-BoldCondensed.woff2') format('woff2'),
+        url('../fonts/FuturaBT-BoldCondensed.woff') format('woff'),
+        url('../fonts/FuturaBT-BoldCondensed.ttf') format('truetype'),
+        url('../fonts/FuturaBT-BoldCondensed.svg#FuturaBT-BoldCondensed') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Md BT';
+    src: url('../fonts/FuturaBT-Medium.eot');
+    src: url('../fonts/FuturaBT-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FuturaBT-Medium.woff2') format('woff2'),
+        url('../fonts/FuturaBT-Medium.woff') format('woff'),
+        url('../fonts/FuturaBT-Medium.ttf') format('truetype'),
+        url('../fonts/FuturaBT-Medium.svg#FuturaBT-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Bk BT';
+    src: url('../fonts/FuturaBT-Book.eot');
+    src: url('../fonts/FuturaBT-Book.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FuturaBT-Book.woff2') format('woff2'),
+        url('../fonts/FuturaBT-Book.woff') format('woff'),
+        url('../fonts/FuturaBT-Book.ttf') format('truetype'),
+        url('../fonts/FuturaBT-Book.svg#FuturaBT-Book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura Bd';
+    src: url('../fonts/Futura-Bold.eot');
+    src: url('../fonts/Futura-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Futura-Bold.woff2') format('woff2'),
+        url('../fonts/Futura-Bold.woff') format('woff'),
+        url('../fonts/Futura-Bold.ttf') format('truetype'),
+        url('../fonts/Futura-Bold.svg#Futura-Bold') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'futuracondensed_extra_bold';
+    src: url('../fonts/futura_condensed_extra_bold-webfont.eot');
+    src: url('../fonts/futura_condensed_extra_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/futura_condensed_extra_bold-webfont.woff2') format('woff2'),
+         url('../fonts/futura_condensed_extra_bold-webfont.woff') format('woff'),
+         url('../fonts/futura_condensed_extra_bold-webfont.ttf') format('truetype'),
+         url('../fonts/futura_condensed_extra_bold-webfont.svg#futuracondensed_extra_bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Default Css Start Here
+===================================================*/
+body {background: #191919;font-family: 'Futura Md BT';font-size: 14px;line-height: 1.2;overflow: hidden;}
+.main{max-width:942px;margin:0 auto;}
+.wrapper {position: relative;overflow: hidden;}
+h1 {
+	font-size: 124px;
+	line-height: 0.9;
+	color: #F8F8EB;
+	font-family: 'futuracondensed_extra_bold';
+	text-transform: uppercase;
+	letter-spacing: -5px;
+}
+h1:first-letter {
+	letter-spacing: -7px;
+}
+h1 span {
+	display: block;
+	margin-left: 100px;
+}
+h2 {
+	font-size: 124px;
+	line-height: 0.9;
+	color: #191919;
+	font-family: 'futuracondensed_extra_bold';
+	text-transform: uppercase;
+	letter-spacing: -5px;
+	padding: 0 0 0 6%;
+    z-index: 9;
+    -webkit-transform: skew(-7deg);
+    -ms-transform: skew(-7deg);
+    -o-transform: skew(-7deg);    
+}
+h2:first-letter {
+	letter-spacing: -7px;
+}
+h2 span {
+	display: block;
+	margin-left: 100px;
+}
+
+.wrapper :-moz-placeholder {color: #191919;opacity: 1;}
+.wrapper ::-webkit-input-placeholder {color: #191919;opacity: 1;}
+.wrapper ::-moz-placeholder {color: #191919; opacity:1;}
+.wrapper :-ms-input-placeholder {opacity:1; color: #191919;}
+
+/* Header Css Start Here
+===================================================*/
+.logo {
+	width: 189px;
+	height: 67px;
+	display: block;
+	position: absolute;
+	top: 53px;
+	left: 51px;
+	z-index: 99;
+}
+.logo img {
+	display: block;
+	width: 100%;
+}
+.logo img:nth-child(2) {
+	display: none;
+}
+.logo.logo_active img {
+	display: none;
+	width: 100%;
+}
+.logo.logo_active img:nth-child(2) {
+	display: block;
+}
+.menu_icon {
+	position: absolute;
+	top: 50px;
+	right: 46px;
+	background: #F8F8EB;
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	display: block;
+	font-size: 14px;
+	line-height: 1.2;
+	color: #ffffff;
+	font-family: 'Futura Md BT';
+	z-index: 99;
+}
+.menu_icon span {
+	white-space: nowrap;
+	display: block;
+	-webkit-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+	top: 100%;
+	left: -20px;
+	position: absolute;
+	margin-top: 51px;
+	min-width: 88px;
+	text-align: right;
+}
+.menu_icon:before {
+	content: "";
+	background: #85857e;
+	width: 2px;
+	height: 16px;
+	display: block;
+	position: absolute;
+	top: 20px;
+    left: 21px;
+    -webkit-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+.menu_icon:after {
+	content: "";
+	background: #85857e;
+	width: 2px;
+	height: 11px;
+	display: block;
+	position: absolute;
+	top: 20px;
+    left: 27px;
+    -webkit-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+.menu_icon.active {
+	color: #191919;
+}
+.menu_icon.active:before {
+        transform: rotate(45deg) translateY(0px) translateX(5px);
+    -webkit-transform: rotate(45deg) translateY(0px) translateX(5px);
+    top: 15px;
+    width: 1px;
+}
+.menu_icon.active:after {
+    transform: rotate(-45deg) translateY(0px) translateX(-4px);
+    -webkit-transform: rotate(-45deg) translateY(0px) translateX(-4px);
+    height: 16px;
+    top: 15px;
+    width: 1px;
+}
+
+
+
+
+/* Wrapper Css Start Here
+===================================================*/
+.mid_wrapper {
+	height: 100vh;
+}
+.mid_wrapper h1 {
+    position: absolute;
+    left: 8%;
+    top: calc(100vh - 50%);
+    width: 51%;
+    z-index: 9;
+    -webkit-transform: skew(-7deg);
+    -ms-transform: skew(-7deg);
+    -o-transform: skew(-7deg);
+    transform: skew(-7deg);
+}
+.product_slider {
+	width: 45.5%;
+	margin-left: auto;
+	margin-right: 11.4%;
+}
+.product_img {	
+	height: calc(100vh - 124px);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: left center;
+	position: relative;
+}
+.product_img figcaption {
+	position: absolute;
+	right: 0;
+	bottom: 21px;
+	text-transform: capitalize;
+	text-align: right;
+	padding: 0 30px;
+	color: #ffffff;
+	font-size: 16px;
+	line-height: 1.2;
+	font-family: 'Futura Md BT';
+}
+.product_img figcaption strong {
+	font-weight: normal;
+	display: block;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-family: 'Futura Bd';
+	margin-bottom: 8px;
+	letter-spacing: 1.5px;
+}
+.start_project {
+	display: inline-block;
+	border-bottom: solid 8px #F8F8EB;
+	color: #F8F8EB;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: 0 1px 10px 2px;
+	font-family: 'Futura Bd';
+	letter-spacing: 0.3px;
+	position: absolute;
+	bottom: 124px;
+	left: 9.3%;
+	-webkit-transition: all 0.4s linear;
+	-o-transition: all 0.4s linear;
+	transition: all 0.4s linear;
+}
+.start_project:hover, .start_project:focus {
+	color: #ffc000;
+	border-bottom-color: #ffc000;
+}
+.slick-slide:focus {
+	outline: none;
+	box-shadow: none;
+}
+.project_content {
+	position: absolute;
+	top: 25%;
+	left: 9.5%;
+	width: 30%;
+}
+.project_content p {
+	font-family: 'Futura Md BT';
+	color: #F8F8EB;
+	font-size: 14px;
+	line-height: 1.6;
+	letter-spacing: 0.7px;
+	text-align: justify;
+}
+.social_icons {
+	float: left;
+	list-style: none;
+	padding: 0;
+	margin: 44px 0 0 5.8%;
+	font-size: 16px;
+	line-height: 1;
+}
+.social_icons li {
+	display: inline-block;
+	list-style: none;
+	padding: 0;
+	margin: 0 0 0 22px;
+}
+.social_icons li a {
+	text-decoration: none;
+	color: #F8F8EB;
+	-webkit-transition: all 0.4s linear;
+	-o-transition: all 0.4s linear;
+	transition: all 0.4s linear;
+}
+.social_icons li a:hover, .social_icons li a:focus {
+	color: #ffc000;
+}
+.social_icons li:first-child {
+	margin-left: 0;
+}
+.copyright {
+	float: right;
+	margin: 46px 44px 0 0;
+}
+.copyright p {
+	color: #F8F8EB;
+	margin: 0;
+	text-transform: uppercase;
+	letter-spacing: 0.7px;
+}
+
+/* Project Form Css Popup
+================================================*/
+.project_form_popup {
+	padding: 132px 0 25px;
+	background: #ffcb3f;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: block;
+	z-index: 9;	
+	overflow: auto;
+	-webkit-transform: translateY(-100%) rotate(50deg);
+	-ms-transform: translateY(-100%) rotate(50deg);
+	-o-transform: translateY(-100%) rotate(50deg);
+	transform: translateY(-100%) rotate(50deg);
+	-webkit-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+	opacity: 0;
+	visibility: hidden;
+}
+.project_form_popup_wrap {
+	overflow: hidden;
+}
+.project_form_popup.open_popup {
+	-webkit-transform: translateY(0) rotate(0deg);
+	-ms-transform: translateY(0) rotate(0deg);
+	-o-transform: translateY(0) rotate(0deg);
+	transform: translateY(0) rotate(0deg);
+	opacity: 1;
+	visibility: visible;
+}
+body.open_popup, body.open_popup .wrapper {
+	overflow: hidden;
+	height: 100vh;
+}
+.project_form_popup .copyright p, .project_form_popup .social_icons li a {
+	color: #191919;
+}
+.project_form_popup .social_icons li a:hover, .project_form_popup .social_icons li a:focus {
+	color: #ffffff;
+}
+.form_wrapper {
+	width: 50.4%;
+	margin: 0 10.6% 3% auto;
+}
+.form_col {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.form_col li {
+	width: 47.6%;
+	float: left;
+	margin-bottom: 47px;
+}
+.form_col li:nth-child(2n+2) {
+	float: right;
+}
+.form_col li:nth-child(2n+1) {
+	clear: both;
+}
+.form_col li.checkfield, .form_col li.fullWidth {
+	float: none;
+	width: 100%;
+	clear: both;
+}
+.form_col li.checkfield > label {
+	display: inline-block;
+	margin-bottom: 34px;
+}
+input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="password"], input[type="search"], input[type="url"], input[type="date"], select, textarea {
+	width: 100%;
+	background: none;
+	border: none;
+	border-bottom: solid 1px #191919;
+	appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	-moz-appearance: none;
+	font-family: 'Futura BdCn BT';
+	height: 36px;
+	border-radius: 0;
+	-webkit-transition: all 0.4s linear;
+	-o-transition: all 0.4s linear;
+	transition: all 0.4s linear;
+	padding: 0 6px;
+	color: #191919;
+	font-size: 19px;
+	letter-spacing: 1px;
+	box-sizing: border-box;
+	border-radius: 0;
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="password"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="url"]:focus, input[type="date"]:focus, select:focus, textarea:focus {
+	outline: none;
+	box-shadow: none;
+	border-bottom-color: #ffffff;
+}
+label {
+	font-family: 'Futura Bd';
+	font-size: 14px;
+	line-height: 1;
+	text-transform: uppercase;
+	color: #191919;
+	display: inline-block;
+	letter-spacing: 0.4px;
+	padding-left: 1px;
+}
+select {
+	background-image: url('../images/select_arrow.png');
+	background-position: 95% center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+textarea {	
+	resize: none;
+	padding: 7px 0 5px;
+}
+input[type="submit"] {
+	border: none;
+	background: none;
+	appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	-moz-appearance: none;
+	border-radius: 0;
+	font-family: 'Futura Bd';
+	text-transform: uppercase;
+	font-size: 14px;
+	line-height: 1;
+	padding: 11px 17px;
+	color: #191919;
+	border-bottom: solid 8px #191919;
+	letter-spacing: 0.3px;
+	margin-top: 4px;
+	-webkit-transition: all 0.4s linear;
+	-o-transition: all 0.4s linear;
+	transition: all 0.4s linear;
+}
+input[type="submit"]:hover, input[type="submit"]:focus {
+	border-bottom-color: #ffffff; 
+	outline: none;
+	color: #ffffff;
+}
+.checkbox_wrap {
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-right: 25px;
+}
+.checkbox_wrap input {
+	opacity: 0;
+	position: absolute;
+}
+.checkbox_wrap label {
+	font-size: 16px;
+	line-height: 1.2;
+	font-family: 'Futura Md BT';
+	position: relative;
+	padding-left: 62px;
+	text-transform: capitalize;	
+}
+.checkbox_wrap label:before {
+	content: "";
+	background: #191919;
+	width: 50px;
+	height: 1px;
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.checkbox_wrap label span {
+	display: block;
+}
+.checkbox_wrap:last-child {
+	margin-right: 0;
+}
+.checkbox_wrap label span:before, .checkbox_wrap label span:after {
+	content: "";
+	background: #191919;
+	height: 50px;
+	width: 1px;
+	display: block;
+	position: absolute;
+	left: 24px;
+	bottom: 2px;
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all 0.4s linear;
+	-o-transition: all 0.4s linear;
+	transition: all 0.4s linear;
+}
+.checkbox_wrap label span:after {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+.checkbox_wrap input[type="checkbox"]:focus + label:before {
+	background: #ffffff;
+}
+.checkbox_wrap input[type="checkbox"]:checked + label span:before {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.checkbox_wrap input[type="checkbox"]:checked + label span:after {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+div.error {
+    margin-top: 10px;
+    color: #ff0000;
+}
+.slick-arrow {
+	position: absolute;
+	bottom: 0;
+	right: -50px;
+	z-index: 9;
+	width: 50px;
+	background: #191919;
+	border: none;
+	border-bottom: solid 8px #f8f8eb;
+	font-size: 0;
+	line-height: 0;
+	height: 53px;
+	color: #f8f8eb;
+	-webkit-transition: all 0.4s linear;
+	-o-transition: all 0.4s linear;
+	transition: all 0.4s linear;
+}
+.slick-arrow:before {
+	content: "\f105";
+    font-family:'Font Awesome 5 Free';
+    display: block;
+    font-size: 18px;
+    font-weight: 900;    
+    position: absolute;
+    bottom: 19px;
+    left: 20px;
+}
+.slick-arrow.slick-prev {
+    right: 79.2%;
+}
+.slick-arrow.slick-prev:before {
+	content: "\f104";
+}
+.slick-arrow:hover, .slick-arrow:focus {
+	outline: none;
+    color: #ffc000;
+    border-bottom-color: #ffc000;
+}
+.successmsg {
+	display: none;
+    float: right;
+    margin: 20px 0 0;
+    font-weight: 700;
+    font-family: 'Futura Bd';
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 1;
+    padding: 11px 17px;
+    color: #008000;
+}
+
+/* Change Selection Color
+===================================================*/
+::selection {
+  background: #ffc00f; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #ffc00f; /* Gecko Browsers */
+}
+
+h1::selection {
+  background: #ffc00f;
+}
+
+::selection {
+  background: #ffc00f;
+}

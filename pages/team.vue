@@ -47,6 +47,14 @@ export default {
       }
     }
   },
+  head : function(){
+    return {
+      title : 'Our Squad | Sparky',
+      meta: [        
+        { hid: 'description', name: 'description', content: 'Meet the Sparky team! Our squad is made up of metrics-driven, experienced digital marketing and design experts. Learn more about Sparky today.'}
+      ]
+    }
+  },
   transition : {    
     mode : 'out-in',
     css : false,

@@ -574,7 +574,10 @@
             app.wheelSensivity *= 0.9;
           },
         }
-      });      
+      });
+      if(/Firefox/i.test(navigator.userAgent)){
+        window.addEventListener('DOMMouseScroll', app.mousewheel);
+      }
     },    
     computed : {
       appStart : function(){
@@ -669,11 +672,11 @@
             break;
         } 
       },
-      mousewheel : function(e){
+      mousewheel : function(e){        
         var app = this;
         if(app.startProject)return false;
         var name;
-        app.wheelSensivity += e.deltaY*0.003;        
+        app.wheelSensivity += e.deltaY ? (e.deltaY*0.003) : (e.detail * 0.3);
         
         if(app.scroll){
           if(app.wheelSensivity > 1){

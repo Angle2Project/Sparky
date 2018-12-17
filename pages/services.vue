@@ -244,6 +244,14 @@ export default {
       prevNextText : 'next service'
     }
   },
+  head : function(){
+    return {
+      title : 'Our Services | Sparky',
+      meta: [        
+        { hid: 'description', name: 'description', content: 'We provide brands with fresh eyes and strategic consulting in UX/design, inbound marketing, product merchandising, conversion rate optimization, and more.' }
+      ]
+    }
+  },
   transition : {    
     mode : 'out-in',
     css : false,
@@ -361,7 +369,8 @@ export default {
         .to('.cursor__close', 0.6, {width : 0}, 'uno')
         .to('#cursor-svg', 0.4, {x : 0, y : 0, ease: Power4.easeIn}, 'rotate')
         .to('#cursor-svg .state-0', 0.4, {morphSVG: '#cursor-svg .state-1', ease: Power4.easeIn}, 'rotate')
-      .to(document.querySelectorAll('h2 .fill'), 0.7, {height : '0vw', ease: Power4.easeIn, force3D: false}, 'uno');
+        .to('h1 .l1 span', 0.7, {y : '100%', ease: Power4.easeIn}, 'uno')
+        .to(document.querySelectorAll('h2 .fill'), 0.7, {height : '0vw', ease: Power4.easeIn, force3D: false}, 'uno');
       if(next == 'index' || next == 'description' || next == 'contacts' || next == 'clients'){
         tl.to('.bg__right', 0.7, {width : '0px', ease: Power4.easeInOut}, 'uno+=0.5')
         .to('.bg__bottom', 0.7, {width : '100%', height : '0%', ease: Power4.easeInOut, onComplete : done}, 'uno+=0.5')

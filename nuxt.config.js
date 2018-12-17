@@ -42,12 +42,15 @@ module.exports = {
     // Загрузить модуль node.js
     'swiper/dist/css/swiper.min.css'
   ],
-  plugins: ['~/plugins/vue-js-modal.js', { src: '~plugins/ga.js', ssr: false }], 
+  plugins: ['~/plugins/vue-js-modal.js'], 
   router: {
       //base: '/sparky/'
   },
   modules: [
-   '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-127176219-1'
+    }]
   ],
   sitemap: {
     generate: true,
