@@ -8,11 +8,11 @@ module.exports = {
       { charset: 'utf-8'},      
       { hid: 'description', name: 'description', content: 'Sparky is a Boston-based digital marketing and creative services agency. We specialize in UI/UX consulting, design/creative services, conversion rate optimization, SEO, and more.'},
       {name : 'viewport', content : 'width=device-width,minimum-scale=1.0,maximum-scale=1.0'},
-      {name : 'google-site-verification', content : 'zYy2uKf2qCCau8EDZPNBfsET0b91o0phhF-ofQy4POI'},
+      {name : 'google-site-verification', content : 'hcyNOjE0hXpuxmgSYKszAttL5UwuLfoqFTEHxFMqxPc'},      
       {property : 'og:title', content : 'Sparky | Digital Marketing and Creative Agency'},
       {property : 'og:type', content : 'website'},
       {property : 'og:url', content : 'https://www.sparky.us/'},
-      {property : 'og:image', content : 'https://www.sparky.us/sparky_preview.png'},
+      {property : 'og:image', content : 'https://www.sparky.us/sparky_preview1.png'},
       {property : 'og:description', content : 'Sparky is a Boston-based digital marketing and creative services agency. We specialize in UI/UX consulting, design/creative services, conversion rate optimization, SEO, and more.'},      
     ],
     link: [
@@ -42,14 +42,14 @@ module.exports = {
     // Загрузить модуль node.js
     'swiper/dist/css/swiper.min.css'
   ],
-  plugins: ['~/plugins/vue-js-modal.js'], 
+  // plugins: ['~/plugins/vue-js-modal.js'], 
   router: {
       //base: '/sparky/'
   },
   modules: [
     '@nuxtjs/sitemap',
     ['@nuxtjs/google-analytics', {
-      id: 'UA-127176219-1'
+      id: 'UA-126758060-1'
     }]
   ],
   sitemap: {
