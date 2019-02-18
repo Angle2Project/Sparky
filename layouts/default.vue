@@ -1,6 +1,5 @@
 <template>
-  <div class="app" :class="[pageName, startProject ? 'sp-active' : '']" @mousewheel="mousewheel" @mousemove="mousemove" @touchstart="touchmove" @touchmove="touchmove" @touchend="touchmove">
-    <img class="logo-preview" src="~assets/sparky_preview.png" alt="">    
+  <div class="app" :class="[pageName, startProject ? 'sp-active' : '']" @mousewheel="mousewheel" @mousemove="mousemove" @touchstart="touchmove" @touchmove="touchmove" @touchend="touchmove">    
     <pointer/>
     <loader v-if="loader"/>
     <eyes v-show="eyes"/>
@@ -451,6 +450,13 @@
       </nuxt-link>
     </section>
 
+    <section class="app-blog" @mouseenter="blogHover"  @mouseleave="blogHover">
+      <a href="http://blog.sparky.us/" target="_blank">
+        <span>our blog</span>
+        <i></i>
+      </a>      
+    </section>
+
     <section class="app-social">
       <!-- <a href="">
         <svg version="1.1" id="icon-twitter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="14px" viewBox="0 0 16 14" style="enable-background:new 0 0 16 14;" xml:space="preserve">          
@@ -517,7 +523,7 @@
     <section class="bg__right"></section>
     <section class="bg__bottom"></section>
     <div class="copyright">
-      <span>© 2018 SPARKY</span>
+      <span>© {{currentYear}} SPARKY</span>
     </div>
     <!-- <div style="position: fixed;z-index: 10;font-size: 16px;font-weight: bold;left: 10px;top: 10px;">{{wheelSensivity}}</div> -->
   </div>
@@ -575,6 +581,8 @@
           },
         }
       });
+      TweenMax.set('.app-blog span', {y: '-100%'});
+      TweenMax.set('.app-blog i', {height: '0px'});
       if(/Firefox/i.test(navigator.userAgent)){
         window.addEventListener('DOMMouseScroll', app.mousewheel);
       }
@@ -619,7 +627,10 @@
       },
       teamSliderPosition : function(){
         return this.$store.state.teamSliderPosition;
-      }      
+      },
+      currentYear: function(){
+        return new Date().getFullYear();
+      }
     },
     methods : {      
       scrollDownHover : function(e){
@@ -827,6 +838,13 @@
         var app = this;
         TweenMax.to('.cursor', 0.7, {scale : 0});
         app.$store.commit('touchevent', e);
+      },
+      blogHover: function(e){
+        if(e.type == 'mouseenter'){
+          TweenMax.to('.app-blog i', 0.3, {height: '1px', ease: Power3.easeIn})
+        }else{
+          TweenMax.to('.app-blog i', 0.3, {height: '7px', ease: Power3.easeIn})
+        }
       }
     },    
     watch : {      
@@ -1022,6 +1040,33 @@
   .app-logo svg {
     width: 100%;
     transform: translateY(110%);
+  }
+  .app-blog {
+    position: fixed;
+    top: 80px;
+    right: 167px;
+    transform: translateY(-50%);    
+    z-index: 1;
+  }  
+  .app-blog a {
+    font: 500 14px/1.3 'Futura';
+    color: #191919;
+    text-decoration: none;
+    display: block;
+    overflow: hidden;
+    padding-bottom: 14px;
+  }
+  .app-blog span {
+    display: block;
+  }
+  .app-blog i {
+    display: block;
+    width: 100%;
+    height: 7px;
+    position: absolute;
+    background-color: #191919;
+    left: 0;
+    top: 21px;   
   }
   .app-social {
     display: flex;

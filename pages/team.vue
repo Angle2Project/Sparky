@@ -66,6 +66,8 @@ export default {
         TweenMax.set('.team__list', {clearProps : 'all'});
         TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});
         TweenMax.to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#f8f8eb'});
+        TweenMax.to('.app-blog a', 0.4, {color: '#f8f8eb'});
+        TweenMax.to('.app-blog i', 0.4, {backgroundColor: '#f8f8eb'});
         TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#f8f8eb'});
         TweenMax.to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#f8f8eb'});
         TweenMax.to('.bg__right', 0.7, {width : '100%', ease: Power3.easeInOut});
@@ -128,7 +130,9 @@ export default {
         .to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#191919'}, 'uno+=0.9')
         .to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#191919'}, 'uno+=0.9')
         .to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#191919'}, 'uno+=0.9')
-        .to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#191919'}, 'uno+=0.9');
+        .to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#191919'}, 'uno+=0.9')
+        .to('.app-blog a', 0.4, {color: '#191919'}, 'uno+=0.9')
+        .to('.app-blog i', 0.4, {backgroundColor: '#191919'}, 'uno+=0.9');
         setTimeout(function(){
           app.$store.commit('pageName', next);
         }, 900)
@@ -171,7 +175,9 @@ export default {
         TweenMax.to(document.querySelectorAll('.app-social .st0'), 0.4, {fill : '#f8f8eb'});
         TweenMax.to(document.querySelectorAll('#app-logo .st2'), 0.7, {fill : '#f8f8eb'});
         TweenMax.to(document.querySelectorAll('#app-navigation li i, .scroll-down .scroll-down__line i'), 0.4, {backgroundColor : '#f8f8eb'});
-        TweenMax.to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#f8f8eb'});        
+        TweenMax.to(document.querySelectorAll('#app-navigation li .item__name, .start-project__text, .scroll-down__text'), 0.4, {color : '#f8f8eb'});
+        TweenMax.to('.app-blog a', 0.4, {color: '#f8f8eb'});
+        TweenMax.to('.app-blog i', 0.4, {backgroundColor: '#f8f8eb'});
         TweenMax.set('h1', {visibility : 'visible'});        
         TweenMax.fromTo('h1 .l1 span', 1.2, {y:'130%'}, {y:'0%',ease: Back.easeOut.config(1.5), delay : 1.5});
           TweenMax.to('h1 .l2', 0.3, {y:'15%',ease: Power1.easeOut, delay : 1.5});
@@ -203,6 +209,8 @@ export default {
               });
               TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.4});
               TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.4});
+              new TimelineMax({delay : 0.4}).to('.app-blog span', 0.3, {y: '0%'})
+              .to('.app-blog i', 0.3, {height: '7px'}, '-=0.1');
               TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.4, onComplete : function(){
                 var w;
                 var tl = new TimelineMax({onComplete : function(){

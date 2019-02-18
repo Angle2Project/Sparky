@@ -123,6 +123,8 @@ export default {
 
           TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.5});
           TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.5});
+          new TimelineMax().to('.app-blog span', 0.3, {y: '0%'})
+          .to('.app-blog i', 0.3, {height: '7px'}, '-=0.1');
           TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.5, onComplete : function(){
             TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
             var w;

@@ -16,7 +16,7 @@ module.exports = {
       {property : 'og:description', content : 'Sparky is a Boston-based digital marketing and creative services agency. We specialize in UI/UX consulting, design/creative services, conversion rate optimization, SEO, and more.'},      
     ],
     link: [
-      { rel: 'canonical', href: 'https://www.sparky.us'},
+      //{ rel: 'canonical', href: 'https://www.sparky.us'},
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: '/css/global.css'}
 

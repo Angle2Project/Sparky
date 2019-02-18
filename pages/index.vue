@@ -27,7 +27,8 @@ export default {
     TweenMax.to('.app', 0.4, {backgroundColor : '#f0f0d9'});
     if(window.innerWidth <= 480){           
       TweenMax.to('#app-logo .st2', 0.4, {opacity : 1});
-    }
+    }    
+    if(app.$route.hash == '#getintouch')document.querySelector('.start-project__button').click();    
   },
   data : function(){
     return {
@@ -133,8 +134,7 @@ export default {
           TweenMax.to('.l4', 0.5, {y:'0%',ease: Power1.easeIn});
           TweenMax.to('.l5', 0.4, {y:'0%',ease: Power1.easeIn});
           TweenMax.to('.l2', 0.7, {y:'0%',ease: Power1.easeIn, onComplete : function(){
-            TweenMax.to('.app.intro h2 span', 0.5, {y : 0, ease: Power1.easeOut, delay : 0.1})
-
+            TweenMax.to('.app.intro h2 span', 0.5, {y : 0, ease: Power1.easeOut, delay : 0.1});
             
             scrollDownTL = new TimelineMax({repeat : -1}).fromTo('.scroll-down .scroll-down__line i' , 0.8, {x : '100%'}, {x : '0%', ease: Power4.easeIn})              
             .to('.scroll-down .scroll-down__line i' , 0.8, {x : '-100%', ease: Power4.easeIn})
@@ -144,6 +144,8 @@ export default {
 
             TweenMax.to(document.querySelectorAll('.app-social a'), 0.5, {y : 0, delay : 0.1});
             TweenMax.to('.app-logo svg', 0.5, {y : 0, delay : 0.1});
+            new TimelineMax({delay : 0.1}).to('.app-blog span', 0.3, {y: '0%'})
+            .to('.app-blog i', 0.3, {height: '7px'}, '-=0.1');
             TweenMax.to('.start-project__button', 0.5, {scale : 1, delay : 0.1, onComplete : function(){
               TweenMax.to('.scroll-down__text span, .start-project__text span', 0.5, {y : 0});
               app.$store.commit('scroll', true);
