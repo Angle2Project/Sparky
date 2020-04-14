@@ -1047,6 +1047,7 @@
     right: 167px;
     transform: translateY(-50%);    
     z-index: 1;
+    display: none;
   }  
   .app-blog a {
     font: 500 14px/1.3 'Futura';

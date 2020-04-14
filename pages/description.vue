@@ -28,15 +28,7 @@ export default {
     return {
       title: 'Hello World!'
     }
-  },
-  head : function(){
-    return {
-      title : 'About Us | Sparky',
-      meta: [        
-        { hid: 'description', name: 'description', content: 'We provide a fresh set of eyes for powerful brands looking to maximize moments, elevate experiences, and ignite innovation. Get in touch to learn more.' }
-      ]
-    }
-  },
+  },  
   transition : {    
     mode : 'out-in',
     css : false,

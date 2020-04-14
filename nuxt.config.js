@@ -8,7 +8,7 @@ module.exports = {
       { charset: 'utf-8'},      
       { hid: 'description', name: 'description', content: 'Sparky is a Boston-based digital marketing and creative services agency. We specialize in UI/UX consulting, design/creative services, conversion rate optimization, SEO, and more.'},
       {name : 'viewport', content : 'width=device-width,minimum-scale=1.0,maximum-scale=1.0'},
-      {name : 'google-site-verification', content : 'hcyNOjE0hXpuxmgSYKszAttL5UwuLfoqFTEHxFMqxPc'},      
+      {name : 'google-site-verification', content : 'zYy2uKf2qCCau8EDZPNBfsET0b91o0phhF-ofQy4POI'},      
       {property : 'og:title', content : 'Sparky | Digital Marketing and Creative Agency'},
       {property : 'og:type', content : 'website'},
       {property : 'og:url', content : 'https://www.sparky.us/'},

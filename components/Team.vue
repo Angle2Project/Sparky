@@ -14,11 +14,19 @@
         <div class="bottom" @click="position('bottom')">
           <div class="item__wrapper">
             <div class="item__info">
+              <span>Allie Radler</span>
+              <b>Digital Marketing Manager</b>
+            </div>
+          </div>          
+        </div>
+        <!-- <div class="bottom" @click="position('bottom')">
+          <div class="item__wrapper">
+            <div class="item__info">
               <span>Derek Spychalla</span>
               <b>Design Director</b>
             </div>
           </div>          
-        </div>
+        </div> -->
       </div>
       <div class="item dos swiper-slide">
         <div class="top" @click="position('top')">
@@ -29,17 +37,9 @@
             </div>  
           </div>          
         </div>
-        <div class="bottom" @click="position('bottom')">
-          <div class="item__wrapper">
-            <div class="item__info">
-              <span>Allie Radler</span>
-              <b>Digital Marketing Manager</b>
-            </div>
-          </div>          
-        </div>
-      </div>
-      <div class="item tres swiper-slide">
-        <div class="top" @click="position('top')">
+
+
+        <div class="bottom temporary-mobile" @click="position('top')">
           <div class="item__wrapper">
             <div class="item__info">
               <span>Gilbert</span>
@@ -47,7 +47,7 @@
             </div>
           </div>            
         </div>
-        <div class="bottom vacancy" @click="position('bottom')">
+        <div class="bottom vacancy temporary-desck" @click="position('bottom')">
           <a href="https://www.linkedin.com/company/yosparky/" target="_blank">
             <div class="item__wrapper">
               <div class="item__info">
@@ -62,6 +62,34 @@
             </div>
           </a>          
         </div>
+
+
+      </div>
+      <div class="item tres swiper-slide">
+        <div class="top vacancy temporary-mobile" @click="position('bottom')">
+          <a href="https://www.linkedin.com/company/yosparky/" target="_blank">
+            <div class="item__wrapper">
+              <div class="item__info">
+                <span>Want to join our team?</span>              
+              </div>
+              <div>              
+                <div class="vacancy__link">
+                  <span>Opportunities</span>
+                  <div class="vacancy__link_bg"></div>
+                </div>
+              </div>
+            </div>
+          </a>          
+        </div>
+        <div class="top temporary-desck" @click="position('top')">
+          <div class="item__wrapper">
+            <div class="item__info">
+              <span>Gilbert</span>
+              <b>Director of High Fives</b>
+            </div>
+          </div>            
+        </div>
+        
       </div>
     </div>
   </div>
@@ -98,7 +126,7 @@
       }
     },
     mounted : function(){
-      var app = this;
+      var app = this;      
       var leader = app.pointer;
       var list = document.querySelectorAll('.team__list .item');
       //var list = document.querySelectorAll('.team__list .item .top');
@@ -258,7 +286,7 @@
   transform: translateY(-3.3vw);
 }
 .team__list .item.uno .bottom {
-  background: url("~assets/headshots-4.jpg") no-repeat center bottom / cover;
+  background: url("~assets/headshots-5.jpg") no-repeat center bottom / cover;
   /*background: #ccc;*/
   transform: translateY(-3.3vw);
 }
@@ -268,8 +296,9 @@
   transform: translateY(3.3vw);
 }
 .team__list .item.dos .bottom {
-  background: url("~assets/headshots-5.jpg") no-repeat center bottom / cover;
+  /* background: url("~assets/headshots-5.jpg") no-repeat center bottom / cover; */
   /*background: #ccc;*/
+  background: #1f1f1f url("~assets/icon_marker_y.svg") no-repeat center / 1.3vw auto;
   transform: translateY(3.3vw);
 }
 .team__list .item.tres .top {
@@ -314,6 +343,9 @@
 }
 .vacancy .item__wrapper:hover .vacancy__link_bg {
   transform: scaleY(0.1);
+}
+.temporary-mobile {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -369,32 +401,32 @@
   color: #f8f8eb;
 }
 .team__list .item.uno .top {
-  background: url("~assets/headshots-1.jpg") no-repeat center top / cover;
+  /* background: url("~assets/headshots-1.jpg") no-repeat center top / cover; */
   /*background: #ccc;*/
   transform: translateY(-7.8vw);
 }
 .team__list .item.uno .bottom {
-  background: url("~assets/headshots-4.jpg") no-repeat center bottom -1.5vw / cover;
+  /* background: url("~assets/headshots-4.jpg") no-repeat center bottom -1.5vw / cover; */
   /*background: #ccc;*/
   transform: translateY(2.6vw);
 }
 .team__list .item.dos .top {
-  background: url("~assets/headshots-2.jpg") no-repeat center top / cover;
+  /* background: url("~assets/headshots-2.jpg") no-repeat center top / cover; */
   /*background: #ccc;*/
   transform: translateY(-3.3vw);
 }
 .team__list .item.dos .bottom {
-  background: url("~assets/headshots-5.jpg") no-repeat center bottom -1.5vw / cover;
+  /* background: url("~assets/headshots-5.jpg") no-repeat center bottom -1.5vw / cover; */
   /*background: #ccc;*/
   transform: translateY(7.11vw);
 }
 .team__list .item.tres .top {
-  background: url("~assets/headshots-3.jpg") no-repeat center top / cover;
+  /* background: url("~assets/headshots-3.jpg") no-repeat center top / cover; */
   /*background: #ccc;*/
   transform: translateY(-5.5vw);
 }
 .team__list .item.tres .bottom {
-  background: #1f1f1f url("~assets/icon_marker_y.svg") no-repeat center / 1.3vw auto;
+  /* background: #1f1f1f url("~assets/icon_marker_y.svg") no-repeat center / 1.3vw auto; */
   /*background: #ccc;*/
   transform: translateY(5vw);
 }
@@ -442,14 +474,25 @@
     bottom: 2.5vw;
   }
   .team__list .item.uno .bottom {
-    background: url("~assets/headshots-4.jpg") no-repeat center top / cover;
+    /* background: url("~assets/headshots-4.jpg") no-repeat center top / cover; */
     /*background: #ccc;*/
     transform: translateY(2.6vw);
   }
   .team__list .item.dos .bottom {
-    background: url("~assets/headshots-5.jpg") no-repeat center top / cover;
+    background: url("~assets/headshots-3.jpg") no-repeat center top / cover;
+    /* background: url("~assets/headshots-5.jpg") no-repeat center top / cover; */
     /*background: #ccc;*/
     transform: translateY(7.11vw);
   }
+  .team__list .item.tres .top {
+    background: #1f1f1f;
+  }
+  .temporary-mobile {
+    display: block;
+  }
+  .temporary-desck {
+    display: none;
+  }
+
 }
 </style>
